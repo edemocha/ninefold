@@ -410,6 +410,44 @@ test.describe('cautions', () => {
   });
 });
 
+test.describe('the maker\'s credit', () => {
+  test('shows in the footer of every kind of page', async ({ page }) => {
+    for (const path of ['/', '/numbers/8', '/method', '/privacy']) {
+      await page.goto(path);
+      await expect(page.getByTestId('credit')).toHaveText('Built by Danial Adam');
+    }
+    expect(await page.locator('meta[name="author"]').getAttribute('content')).toBe('Danial Adam');
+  });
+
+  test('shows in the footer of the reading screens and on the printed report', async ({ page }) => {
+    await enter(page);
+    await expect(page.getByTestId('credit')).toHaveText('Built by Danial Adam');
+    await go(page, 'Year');
+    await page.getByRole('link', { name: /Year report/ }).click();
+    await expect(page.getByTestId('report-credit')).toHaveText('Built by Danial Adam');
+    await page.emulateMedia({ media: 'print' });
+    await expect(page.getByTestId('report-credit')).toBeVisible();
+  });
+
+  test('is drawn on the share image, next to numbers and nothing personal', async ({ page }) => {
+    // Record every string the share image paints on its canvas.
+    await page.addInitScript(() => {
+      const original = CanvasRenderingContext2D.prototype.fillText;
+      CanvasRenderingContext2D.prototype.fillText = function (text: string, ...rest: [number, number, number?]) {
+        ((window as unknown as { __drawn: string[] }).__drawn ??= []).push(String(text));
+        return original.call(this, text, ...rest);
+      };
+    });
+    await enter(page);
+    const pending = page.waitForEvent('download');
+    await page.getByRole('button', { name: 'Share image (numbers only)' }).click();
+    await pending;
+    const drawn = await page.evaluate(() => (window as unknown as { __drawn?: string[] }).__drawn ?? []);
+    expect(drawn).toContain('Built by Danial Adam');
+    expect(drawn.join(' ').toLowerCase()).not.toContain('amelia');
+  });
+});
+
 test.describe('static pages', () => {
   test('the meaning pages, method, privacy and terms render without personal data', async ({ page }) => {
     for (const path of ['/numbers', '/numbers/8', '/numbers/11', '/numbers/33', '/method', '/privacy', '/terms']) {

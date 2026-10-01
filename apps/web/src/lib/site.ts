@@ -1,4 +1,7 @@
 export const SITE_NAME = 'Ninefold';
+/** The maker's credit. It shows in the footer, on the printed report and on the share image. */
+export const CREDIT = 'Built by Danial Adam';
+export const AUTHOR = 'Danial Adam';
 export const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://ninefold.invalid';
 
 /** Every value a number can take, in display order. */

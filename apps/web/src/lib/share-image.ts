@@ -1,3 +1,5 @@
+import { CREDIT } from './site';
+
 export type ShareRow = { label: string; value: string };
 
 export type ShareSpec = {
@@ -8,6 +10,7 @@ export type ShareSpec = {
 };
 
 export const SHARE_SIZE = { width: 1080, height: 1350 } as const;
+const SHARE_CREDIT = CREDIT;
 
 function family(variable: string, fallback: string): string {
   const raw = getComputedStyle(document.documentElement).getPropertyValue(variable).trim();
@@ -75,6 +78,13 @@ export function drawShareImage(canvas: HTMLCanvasElement, spec: ShareSpec): void
   ctx.fillStyle = '#5b21b6';
   ctx.font = `500 30px ${serif}`;
   ctx.fillText(spec.footer, 96, height - 100);
+
+  // The maker's credit, bottom right.
+  ctx.fillStyle = '#5b5275';
+  ctx.font = `italic 400 26px ${serif}`;
+  ctx.textAlign = 'right';
+  ctx.fillText(SHARE_CREDIT, width - 96, height - 100);
+  ctx.textAlign = 'left';
 }
 
 export function canvasToPng(canvas: HTMLCanvasElement): Promise<Blob> {

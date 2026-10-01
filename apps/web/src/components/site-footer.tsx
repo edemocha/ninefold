@@ -1,6 +1,7 @@
 import Link from '@/components/link';
 import { Disclaimer } from './disclaimer';
 import { Icon } from './icon';
+import { CREDIT } from '@/lib/site';
 import { t } from '@/lib/t';
 
 export function SiteFooter() {
@@ -28,6 +29,11 @@ export function SiteFooter() {
             Terms
           </Link>
         </nav>
+      </div>
+      <div className="border-t border-line">
+        <p className="mx-auto max-w-5xl px-5 py-4 text-xs text-muted" data-testid="credit">
+          <span className="font-serif text-sm italic text-primary">{CREDIT}</span>
+        </p>
       </div>
     </footer>
   );

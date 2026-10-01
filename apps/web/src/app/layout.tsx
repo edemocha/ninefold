@@ -6,7 +6,7 @@ import { Providers } from '@/components/providers';
 import { SiteFooter } from '@/components/site-footer';
 import { SiteHeader } from '@/components/site-header';
 import { analyticsDomain } from '@/lib/analytics';
-import { SITE_NAME, SITE_URL } from '@/lib/site';
+import { AUTHOR, SITE_NAME, SITE_URL } from '@/lib/site';
 import { t } from '@/lib/t';
 
 // Fonts are downloaded at build time and served from this site, so a visit
@@ -19,6 +19,8 @@ export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: { default: `${SITE_NAME}: numerology that shows its math`, template: `%s · ${SITE_NAME}` },
   description: t('site.tagline'),
+  authors: [{ name: AUTHOR }],
+  creator: AUTHOR,
   robots: { index: true, follow: true },
 };
 

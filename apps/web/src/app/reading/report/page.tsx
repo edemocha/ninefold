@@ -9,7 +9,7 @@ import { Icon } from '@/components/icon';
 import { LayerGate } from '@/components/layer-gate';
 import { useProfile } from '@/lib/profile-context';
 import { useToday } from '@/lib/use-today';
-import { SITE_NAME } from '@/lib/site';
+import { CREDIT, SITE_NAME } from '@/lib/site';
 
 /**
  * The year report. It is a normal page with a print stylesheet: the browser's
@@ -101,8 +101,11 @@ export default function ReportPage() {
                 </section>
               ))}
 
-              <footer className="border-t border-line pt-6 text-sm text-muted" data-testid="report-disclaimer">
-                {DISCLAIMER}
+              <footer className="border-t border-line pt-6 text-sm text-muted">
+                <p data-testid="report-disclaimer">{DISCLAIMER}</p>
+                <p className="mt-3 font-serif italic text-primary" data-testid="report-credit">
+                  {CREDIT}
+                </p>
               </footer>
             </article>
           );

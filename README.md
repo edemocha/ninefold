@@ -2,6 +2,8 @@
 
 A numerology website built from `Numerology web implementation plan.pdf`. A pure TypeScript engine and a static content bank run **in the visitor's browser**, and a composer stitches them into life, year, month and day readings. The server never sees a name or a birth date.
 
+Built by Danial Adam. The credit shows in the site footer, at the end of the printed year report and on the share image; it lives in one constant, `CREDIT` in `apps/web/src/lib/site.ts`.
+
 "Ninefold" is a placeholder name. It lives in `apps/web/src/lib/site.ts` and `apps/web/messages/en.json`.
 
 ## Run it
