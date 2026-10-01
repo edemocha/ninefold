@@ -1,0 +1,33 @@
+name: ci
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run typecheck
+      # Golden vectors, the 200-profile cross-check, properties, composer, pipeline and web helpers.
+      - run: npm test
+      # Gap, banned phrase or missing reflection prompt fails the build.
+      - run: npm run content:lint
+      # The snapshot diff shows the blast radius of every content edit.
+      - run: npm run content:diff
+      - run: npm run build
+      - run: npx playwright install --with-deps chromium
+      # Includes the privacy test (no name or birth date in any request), axe on every
+      # screen in light and dark, the Content-Security-Policy and the local-midnight tests.
+      - run: npm run e2e
+      - uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: playwright-traces
+          path: test-results

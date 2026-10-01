@@ -1,0 +1,368 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://numerology.invalid/schema/core.schema.json",
+  "title": "Numerology content layer: core",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "themes"
+  ],
+  "properties": {
+    "themes": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "11",
+        "22",
+        "33"
+      ],
+      "properties": {
+        "1": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "adj",
+            "activity",
+            "stage",
+            "tile"
+          ],
+          "properties": {
+            "adj": {
+              "type": "string",
+              "minLength": 1
+            },
+            "activity": {
+              "type": "string",
+              "minLength": 1
+            },
+            "stage": {
+              "type": "string",
+              "minLength": 1
+            },
+            "tile": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        },
+        "2": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "adj",
+            "activity",
+            "stage",
+            "tile"
+          ],
+          "properties": {
+            "adj": {
+              "type": "string",
+              "minLength": 1
+            },
+            "activity": {
+              "type": "string",
+              "minLength": 1
+            },
+            "stage": {
+              "type": "string",
+              "minLength": 1
+            },
+            "tile": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        },
+        "3": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "adj",
+            "activity",
+            "stage",
+            "tile"
+          ],
+          "properties": {
+            "adj": {
+              "type": "string",
+              "minLength": 1
+            },
+            "activity": {
+              "type": "string",
+              "minLength": 1
+            },
+            "stage": {
+              "type": "string",
+              "minLength": 1
+            },
+            "tile": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        },
+        "4": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "adj",
+            "activity",
+            "stage",
+            "tile"
+          ],
+          "properties": {
+            "adj": {
+              "type": "string",
+              "minLength": 1
+            },
+            "activity": {
+              "type": "string",
+              "minLength": 1
+            },
+            "stage": {
+              "type": "string",
+              "minLength": 1
+            },
+            "tile": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        },
+        "5": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "adj",
+            "activity",
+            "stage",
+            "tile"
+          ],
+          "properties": {
+            "adj": {
+              "type": "string",
+              "minLength": 1
+            },
+            "activity": {
+              "type": "string",
+              "minLength": 1
+            },
+            "stage": {
+              "type": "string",
+              "minLength": 1
+            },
+            "tile": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        },
+        "6": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "adj",
+            "activity",
+            "stage",
+            "tile"
+          ],
+          "properties": {
+            "adj": {
+              "type": "string",
+              "minLength": 1
+            },
+            "activity": {
+              "type": "string",
+              "minLength": 1
+            },
+            "stage": {
+              "type": "string",
+              "minLength": 1
+            },
+            "tile": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        },
+        "7": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "adj",
+            "activity",
+            "stage",
+            "tile"
+          ],
+          "properties": {
+            "adj": {
+              "type": "string",
+              "minLength": 1
+            },
+            "activity": {
+              "type": "string",
+              "minLength": 1
+            },
+            "stage": {
+              "type": "string",
+              "minLength": 1
+            },
+            "tile": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        },
+        "8": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "adj",
+            "activity",
+            "stage",
+            "tile"
+          ],
+          "properties": {
+            "adj": {
+              "type": "string",
+              "minLength": 1
+            },
+            "activity": {
+              "type": "string",
+              "minLength": 1
+            },
+            "stage": {
+              "type": "string",
+              "minLength": 1
+            },
+            "tile": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        },
+        "9": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "adj",
+            "activity",
+            "stage",
+            "tile"
+          ],
+          "properties": {
+            "adj": {
+              "type": "string",
+              "minLength": 1
+            },
+            "activity": {
+              "type": "string",
+              "minLength": 1
+            },
+            "stage": {
+              "type": "string",
+              "minLength": 1
+            },
+            "tile": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        },
+        "11": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "adj",
+            "activity",
+            "stage",
+            "tile"
+          ],
+          "properties": {
+            "adj": {
+              "type": "string",
+              "minLength": 1
+            },
+            "activity": {
+              "type": "string",
+              "minLength": 1
+            },
+            "stage": {
+              "type": "string",
+              "minLength": 1
+            },
+            "tile": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        },
+        "22": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "adj",
+            "activity",
+            "stage",
+            "tile"
+          ],
+          "properties": {
+            "adj": {
+              "type": "string",
+              "minLength": 1
+            },
+            "activity": {
+              "type": "string",
+              "minLength": 1
+            },
+            "stage": {
+              "type": "string",
+              "minLength": 1
+            },
+            "tile": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        },
+        "33": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "adj",
+            "activity",
+            "stage",
+            "tile"
+          ],
+          "properties": {
+            "adj": {
+              "type": "string",
+              "minLength": 1
+            },
+            "activity": {
+              "type": "string",
+              "minLength": 1
+            },
+            "stage": {
+              "type": "string",
+              "minLength": 1
+            },
+            "tile": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        }
+      }
+    }
+  }
+}

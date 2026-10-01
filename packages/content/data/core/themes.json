@@ -1,0 +1,14 @@
+{
+  "1": { "adj": "fresh-start", "activity": "beginnings and standing on your own", "stage": "independent starts", "tile": "Begin" },
+  "2": { "adj": "partnering", "activity": "listening, pairing up and patience", "stage": "patient partnership", "tile": "Pair up" },
+  "3": { "adj": "expressive", "activity": "saying things, making things and play", "stage": "creative expression", "tile": "Express" },
+  "4": { "adj": "structure-building", "activity": "structure and steady work", "stage": "steady building", "tile": "Build" },
+  "5": { "adj": "changeable", "activity": "change, movement and freedom", "stage": "change and movement", "tile": "Shift" },
+  "6": { "adj": "care-and-responsibility", "activity": "care and responsibility", "stage": "care and responsibility", "tile": "Tend" },
+  "7": { "adj": "reflective", "activity": "reflection, study and quiet", "stage": "study and reflection", "tile": "Reflect" },
+  "8": { "adj": "effort-and-results", "activity": "effort and follow-through", "stage": "effort and results", "tile": "Deliver" },
+  "9": { "adj": "completing", "activity": "completion and letting go", "stage": "completion and release", "tile": "Complete" },
+  "11": { "adj": "intuitive", "activity": "intuition and sensitivity", "stage": "heightened intuition", "tile": "Sense" },
+  "22": { "adj": "large-scale building", "activity": "building something meant to last", "stage": "building at scale", "tile": "Build big" },
+  "33": { "adj": "devoted", "activity": "devoted care and teaching", "stage": "devoted service", "tile": "Serve" }
+}

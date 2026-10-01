@@ -1,0 +1,79 @@
+{
+  "description": "Golden vectors from the implementation plan. 'published' rows reproduce a worked example from a named page. The rest are outputs of the plan's reference script and count as truth only while a second implementation agrees (tests/reference).",
+  "dates": [
+    {
+      "id": "astrosight-17-jun-1985",
+      "provenance": "published: astrosight pinnacles and challenges",
+      "birth": { "year": 1985, "month": 6, "day": 17 },
+      "lifePath": { "A": 1, "A2": 1, "B": 1, "C": 1 },
+      "lifePathA2": { "chain": [19, 10, 1], "karmicDebt": 19 },
+      "pinnacles": [5, 4, 9, 11],
+      "challenges": [2, 3, 1, 1],
+      "pinnacleAges": [[0, 35], [36, 44], [45, 53], [54, null]]
+    },
+    {
+      "id": "same-date-opposite-meanings-1940-01-07",
+      "provenance": "reference script: same date, opposite meanings",
+      "birth": { "year": 1940, "month": 1, "day": 7 },
+      "lifePath": { "A": 4, "A2": 4, "B": 22, "C": 4 },
+      "karmicDebt": { "A": 13, "A2": 13, "C": 13 }
+    },
+    {
+      "id": "master-flip-1940-01-05",
+      "provenance": "reference script: master flip",
+      "birth": { "year": 1940, "month": 1, "day": 5 },
+      "lifePath": { "A": 11, "A2": 11, "B": 2, "C": 2 }
+    }
+  ],
+  "cycles": [
+    {
+      "id": "helenthomas-2-apr-1969",
+      "provenance": "published: helenthomas.org personal year, month and day",
+      "birth": { "year": 1969, "month": 4, "day": 2 },
+      "year": 2023,
+      "personalYear": 4,
+      "month": 10,
+      "personalMonth": 5,
+      "date": { "year": 2023, "month": 10, "day": 15 },
+      "personalDay": 2
+    },
+    {
+      "id": "substack-15-jul-2025",
+      "provenance": "published: Substack, master kept",
+      "birth": { "year": 1990, "month": 7, "day": 15 },
+      "year": 2025,
+      "personalYearKeep": 22,
+      "personalYearSingle": 4
+    },
+    {
+      "id": "master-flip-cycles-1-jan-2025",
+      "provenance": "reference script: master flip in cycles (rule A)",
+      "birth": { "year": 1990, "month": 1, "day": 1 },
+      "year": 2025,
+      "personalYearA": 11,
+      "personalYearSingle": 2
+    },
+    {
+      "id": "rhythm-17-jun-1985-oct-2026",
+      "provenance": "reference script: day-to-day rhythm",
+      "birth": { "year": 1985, "month": 6, "day": 17 },
+      "personalYear": 6,
+      "month": { "year": 2026, "month": 10 },
+      "personalMonth": 7,
+      "date": { "year": 2026, "month": 10, "day": 1 },
+      "personalDay": 8,
+      "days": { "from": { "year": 2026, "month": 10, "day": 1 }, "numbers": [8, 9, 1, 2, 3, 4, 5] }
+    }
+  ],
+  "names": [
+    { "name": "JOHN", "pythagorean": 2, "chaldean": 9 },
+    { "name": "DAVID", "pythagorean": 22, "chaldean": 7 },
+    { "name": "MICHAEL", "pythagorean": 33, "chaldean": 22 },
+    { "name": "SARAH", "pythagorean": 2, "chaldean": 3 },
+    {
+      "name": "Amelia Rose Carter",
+      "perPart": { "expression": 1, "soulUrge": 6, "personality": 4 },
+      "wholeName": { "expression": 1, "soulUrge": 33, "personality": 4 }
+    }
+  ]
+}

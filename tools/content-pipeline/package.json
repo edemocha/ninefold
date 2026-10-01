@@ -1,0 +1,21 @@
+{
+  "name": "@numerology/content-pipeline",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "lint": "tsx src/cli.ts lint",
+    "snapshot": "tsx src/cli.ts snapshot",
+    "release": "tsx src/cli.ts release",
+    "gate": "tsx src/cli.ts gate",
+    "draft": "tsx src/cli.ts draft",
+    "diff": "tsx src/cli.ts diff",
+    "typecheck": "tsc -p tsconfig.json",
+    "sheet": "tsx src/cli.ts sheet"
+  },
+  "dependencies": {
+    "@numerology/content": "*",
+    "@numerology/engine": "*",
+    "@numerology/composer": "*"
+  }
+}
