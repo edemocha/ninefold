@@ -1,4 +1,4 @@
-import type { CoreKey, DayFacet } from './manifest';
+import type { CautionFacet, CautionLabel, CoreKey, DayFacet } from './manifest';
 
 /** The runtime shape of each released layer. Keys are the number as a string. */
 
@@ -17,6 +17,11 @@ export type CoreLayer = { themes: Record<string, Theme> };
 
 export type Sections<K extends string> = Record<K, string>;
 
+/** A short nudge about a behavior to watch. Never a forecast. */
+export type Caution = { label: CautionLabel; headline: string; body: string; link: string };
+/** Cautions by number, then facet, with six variants each. */
+export type CautionTable = Record<string, Record<CautionFacet, Caution[]>>;
+
 export type LifeLayer = {
   core: Record<CoreKey, Record<string, Sections<'overview' | 'strengths' | 'shadow' | 'relationships' | 'growth'>>>;
   karmicDebt: Record<string, Sections<'overview' | 'working'>>;
@@ -33,11 +38,13 @@ export type YearLayer = {
   personalYear: Record<string, Sections<'overview' | 'work' | 'relationships' | 'inner' | 'watch' | 'reflect'>>;
   overtones: Record<string, string>;
   yearLifePath: Record<string, Record<string, string>>;
+  caution: CautionTable;
 };
 
 export type MonthLayer = {
   personalMonth: Record<string, Sections<'theme' | 'focus' | 'reflect'>>;
   monthYear: Record<string, Record<string, string>>;
+  caution: CautionTable;
 };
 
 export type DayLayer = {
@@ -45,6 +52,7 @@ export type DayLayer = {
   dayMonth: Record<string, Record<string, string>>;
   dayLifePath: Record<string, Record<string, string>>;
   special: Record<string, string>;
+  caution: CautionTable;
 };
 
 export type ReleaseManifest = {

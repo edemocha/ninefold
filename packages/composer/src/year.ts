@@ -5,6 +5,7 @@ import {
   monthName,
   personalMonthOn,
   personalYear,
+  yearVariantIndex,
   type Conventions,
   type Result,
   type Step,
@@ -12,6 +13,7 @@ import {
 } from '@numerology/engine';
 import { YEAR_SECTIONS } from '@numerology/content';
 import { need, type Bank } from './bank';
+import { composeCautions, type CautionCard } from './cautions';
 import { displayNumber } from './format';
 import type { ReadingSection } from './life';
 
@@ -46,6 +48,8 @@ export type YearReading = {
   overtone?: { value: number; text: string; source: string };
   lifePathLine?: { lifePath: Result; text: string; source: string };
   months: MonthTile[];
+  /** Five cautions, one per facet. */
+  cautions: CautionCard[];
   steps: Step[];
   sources: string[];
 };
@@ -87,9 +91,11 @@ export function composeYear(bank: Bank, birth: YMD, year: number, c: Conventions
     activity: themes[key]?.activity ?? '',
     sections,
     months: [],
+    cautions: composeCautions(yearLayer.caution, 'year', py.root, yearVariantIndex(birth, year)),
     steps: py.steps,
     sources,
   };
+  for (const caution of reading.cautions) sources.push(caution.source);
 
   const masterKey = py.overtone ?? (py.value > 9 ? py.value : undefined);
   if (masterKey !== undefined && yearLayer.overtones[String(masterKey)]) {

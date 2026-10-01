@@ -25,9 +25,11 @@ describe('the content bank', () => {
     expect(present.size).toBe(expectedCount());
   });
 
-  it('is the size the plan sized: about 1,279 snippets', () => {
-    expect(expectedCount()).toBeGreaterThanOrEqual(1270);
-    expect(expectedCount()).toBeLessThanOrEqual(1290);
+  it('is the size the plan sized (about 1,279 snippets) plus 810 cautions', () => {
+    const base = expectedCount() - FAMILIES.filter((f) => f.caution).flatMap(expectedIds).length;
+    expect(base).toBeGreaterThanOrEqual(1270);
+    expect(base).toBeLessThanOrEqual(1290);
+    expect(expectedCount()).toBe(base + 810);
   });
 
   it('has lint clean: no banned claims, certainty words, fear hooks or missing reflection prompts', () => {
@@ -312,7 +314,13 @@ describe('variety', () => {
 
 describe('counts', () => {
   it('words are tallied the same way by the lint and the release', () => {
-    const total = loaded.flatMap((l) => l.snippets).reduce((n, s) => n + wordCount(s.text), 0);
+    const words = (s: { text: string; fields?: Record<string, string> }) =>
+      s.fields
+        ? Object.entries(s.fields)
+            .filter(([k]) => k !== 'label')
+            .reduce((n, [, v]) => n + wordCount(v), 0)
+        : wordCount(s.text);
+    const total = loaded.flatMap((l) => l.snippets).reduce((n, s) => n + words(s), 0);
     expect(total).toBe(lint(loaded).words);
     expect(flattenFamily(FAMILIES[0]!, loaded[0]!.data)).toHaveLength(loaded[0]!.snippets.length);
   });

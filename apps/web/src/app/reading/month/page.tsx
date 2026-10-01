@@ -8,6 +8,7 @@ import { AppLink } from '@/components/app-link';
 import { Icon } from '@/components/icon';
 import { LayerGate } from '@/components/layer-gate';
 import { MonthGrid } from '@/components/month-grid';
+import { CautionPanel } from '@/components/caution-panel';
 import { BigNumber, ConventionChips, WhyThisNumber } from '@/components/number';
 import { RhythmRing } from '@/components/rhythm-ring';
 import { Sections } from '@/components/sections';
@@ -120,6 +121,7 @@ export default function MonthPage() {
                   <Sections sections={reading.sections} />
                   {reading.monthYearLine ? <p className="reading card-flat self-start p-5 text-[1.02rem] leading-relaxed">{reading.monthYearLine.text}</p> : null}
                 </div>
+                <CautionPanel id="caution-month" title={t('caution.title.month')} cautions={reading.cautions} />
               </div>
             </div>
           );

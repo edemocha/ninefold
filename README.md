@@ -53,13 +53,22 @@ Two readings the plan left open, so you know what the code does:
 
 ## The content bank
 
-1,281 snippets, 34,215 words, every slot filled, lint clean. The structure follows the plan (life 421, year 165, month 108, day 587). **Every snippet is a draft.** I wrote them from the meaning sheets and the voice guide, and the plan is explicit that a human edits and approves the text.
+2,091 snippets, 58,000 words, every slot filled, lint clean. The structure follows the plan (life 421, year 165, month 108, day 587: 1,281 snippets and 34,215 words) plus 810 cautions (see below). **Every snippet is a draft.** I wrote them from the meaning sheets and the voice guide, and the plan is explicit that a human edits and approves the text.
 
-- It is about 37% of the plan's 92,600-word sizing. The plan's own argument is that detail means layers and visible math, not word count, so I filled every slot at a shorter length instead of leaving any empty. Raising a family's word budget in `packages/content/src/manifest.ts` and drafting longer text is a normal editorial pass.
+- The plan-sized part is about 37% of the plan's 92,600-word sizing. The plan's own argument is that detail means layers and visible math, not word count, so I filled every slot at a shorter length instead of leaving any empty. Raising a family's word budget in `packages/content/src/manifest.ts` and drafting longer text is a normal editorial pass.
 - `meaning-sheets/` (one page per number) and `voice-guide.md` are drafts for the owner's approval. Per Gate 1, nothing further should be drafted until they are approved.
 - Statuses live in `packages/content/status.json` (empty: all draft). Release defaults to allowing drafts; set `CONTENT_MIN_STATUS=approved` for launch.
 
-Gate 3 fails today, correctly: 0 of 1,281 snippets are approved. The variety condition passes.
+Gate 3 fails today, correctly: 0 of 2,091 snippets are approved. The variety condition passes.
+
+### Cautions
+
+A caution is a short, practical nudge about a behavior to watch, never a forecast. There are 810: 3 layers (year, month, day) by 9 numbers by 5 facets (money, work, relationships, energy, mind) by 6 variants. Each has a label (WATCH OUT, GO EASY ON or AVOID), a headline of at most 8 words, a body of at most 35 words, and the shadow trait it comes from. They follow the product owner's brief, which is also the drafting prompt for these slots (`npm run content:draft -- day.caution.8.energy.v2`).
+
+- The lint enforces the brief: a tendency in the wording, AVOID only for behaviors (never a date, trip or activity), unique headlines, and the hard rules (no death, injury, illness, pregnancy or disaster, no certainty words, no fear hooks, no calorie or diet advice, no legal or relationship verdicts, no selling, investing or borrowing).
+- **One call that differs from the plan's lint:** the plan bans "buy" and "purchase" everywhere, but the brief's own example ("Big buys on a whim") uses both. They are now allowed in the money facet only, as a nudge to pause, and still banned in every other snippet. That is one entry in `packages/content/src/rules.ts` if you want it reversed.
+- Two safety lines show on every caution card, whatever the number: "Never drive tired, upset or impaired, on any day." and "For health, money or legal decisions, talk to a qualified person, not a number." They are fixed text in `manifest.ts`, not in the bank, and a test checks that they are identical on different numbers and contain no digit.
+- A day shows one caution (the facet rotates each time the same number comes round and the variant moves on every fifth, so none repeats for about nine months). A year or month shows five, one per facet.
 
 ## Privacy, and how it is proved
 

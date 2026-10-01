@@ -1,0 +1,1730 @@
+{
+  "1": {
+    "money": [
+      {
+        "label": "GO EASY ON",
+        "headline": "A fresh-start purchase",
+        "body": "A 1 day can make a new thing feel like a new beginning. Go easy: put it in a note and look at it again tomorrow before you buy.",
+        "link": "the 1's urge to start fresh"
+      },
+      {
+        "label": "WATCH OUT",
+        "headline": "Settling shared costs without asking",
+        "body": "Today it is easy to decide who pays and tell them afterwards. Send one message first and wait for a reply.",
+        "link": "the 1's habit of going it alone"
+      },
+      {
+        "label": "AVOID",
+        "headline": "Paying to avoid owing anyone",
+        "body": "Covering everything so you owe nobody can feel like freedom. Let one small favor be returned.",
+        "link": "the 1's need to stand on its own"
+      },
+      {
+        "label": "WATCH OUT",
+        "headline": "Guessing instead of asking the price",
+        "body": "You may notice you would rather guess than ask. Ask the plain question once and write down the answer.",
+        "link": "the 1's difficulty asking for help"
+      },
+      {
+        "label": "GO EASY ON",
+        "headline": "Paying extra to skip the queue",
+        "body": "Impatience tends to shop for speed. Go easy: decide in advance what waiting is worth and stick to it.",
+        "link": "the 1's impatience"
+      },
+      {
+        "label": "WATCH OUT",
+        "headline": "Defending a cost out of habit",
+        "body": "If someone queries a spend, you may bristle first. Say 'let me check' and look at the figure before replying.",
+        "link": "the 1's defensiveness"
+      }
+    ],
+    "work": [
+      {
+        "label": "WATCH OUT",
+        "headline": "Taking over the next task",
+        "body": "A 1 day pulls you to the front. Before you take the lead on something, ask who else wants it.",
+        "link": "the 1's bossy streak"
+      },
+      {
+        "label": "GO EASY ON",
+        "headline": "Opening three new things",
+        "body": "New starts are easy to make today, and finishing is harder. Go easy: pick one and write down the first small step.",
+        "link": "the 1's pull to begin without finishing"
+      },
+      {
+        "label": "AVOID",
+        "headline": "Waving off a quick comment",
+        "body": "A comment can feel like an interruption. Say it back in your own words before you reply.",
+        "link": "the 1's defensiveness"
+      },
+      {
+        "label": "WATCH OUT",
+        "headline": "Skipping the handover",
+        "body": "You may notice you keep a task because explaining takes minutes. Spend those minutes and hand it over.",
+        "link": "the 1's habit of going it alone"
+      },
+      {
+        "label": "GO EASY ON",
+        "headline": "Answering before reading the whole message",
+        "body": "Speed can feel like leadership. Go easy: finish reading, then reply, and sleep on anything you cannot undo.",
+        "link": "the 1's impatience"
+      },
+      {
+        "label": "WATCH OUT",
+        "headline": "Insisting your route is faster",
+        "body": "You tend to be sure it is quicker your way. Ask what the other route would cost before you push.",
+        "link": "the 1's stubbornness"
+      }
+    ],
+    "relationships": [
+      {
+        "label": "WATCH OUT",
+        "headline": "Telling instead of asking",
+        "body": "Today you may notice plans arriving as instructions. Turn one sentence into a question and wait for the answer.",
+        "link": "the 1's bossiness"
+      },
+      {
+        "label": "GO EASY ON",
+        "headline": "Needing the last word",
+        "body": "The last word is easy to want and rarely worth it. Go easy: stop one sentence early.",
+        "link": "the 1's stubbornness"
+      },
+      {
+        "label": "AVOID",
+        "headline": "Going silent rather than asking",
+        "body": "Handling a hard feeling alone can look strong and feel lonely. Say one plain sentence about what you need.",
+        "link": "the 1's difficulty asking for help"
+      },
+      {
+        "label": "WATCH OUT",
+        "headline": "Snapping at a slow reply",
+        "body": "A 1 day tends to shorten patience. Notice the irritation rising and wait a full minute before you answer.",
+        "link": "the 1's impatience"
+      },
+      {
+        "label": "GO EASY ON",
+        "headline": "Picking everything for everyone",
+        "body": "It is easy to choose the place and the time. Go easy: let someone else decide this one.",
+        "link": "the 1's need to lead"
+      },
+      {
+        "label": "WATCH OUT",
+        "headline": "Hearing advice as criticism",
+        "body": "You may feel a bristle when someone offers a thought. Say thank you first and decide later.",
+        "link": "the 1's defensiveness"
+      }
+    ],
+    "energy": [
+      {
+        "label": "WATCH OUT",
+        "headline": "Starting at full speed",
+        "body": "A 1 day can give a rush at the start and a dip after lunch. Plan the easy task for the dip.",
+        "link": "the 1's all-in starts"
+      },
+      {
+        "label": "GO EASY ON",
+        "headline": "Skipping the break to win time",
+        "body": "Breaks can feel like lost time. Go easy: take ten minutes away from the screen before the push.",
+        "link": "the 1's reluctance to slow down"
+      },
+      {
+        "label": "AVOID",
+        "headline": "Proving you can keep going",
+        "body": "Showing you need no break is a pressure you set yourself. Pick a stop time this morning and keep it.",
+        "link": "the 1's need to prove itself"
+      },
+      {
+        "label": "WATCH OUT",
+        "headline": "Running on irritation",
+        "body": "Impatience tends to feel like fuel for an hour. Notice it and walk for five minutes.",
+        "link": "the 1's impatience"
+      },
+      {
+        "label": "GO EASY ON",
+        "headline": "Too many firsts, one tank",
+        "body": "Every new thing can draw on the same energy. Go easy: choose two for the day and park the rest.",
+        "link": "the 1's scattered beginnings"
+      },
+      {
+        "label": "WATCH OUT",
+        "headline": "Carrying it alone to avoid a request",
+        "body": "Asking often costs less energy than carrying. Name one thing someone else could take and ask now.",
+        "link": "the 1's habit of going it alone"
+      }
+    ],
+    "mind": [
+      {
+        "label": "WATCH OUT",
+        "headline": "Sure before the facts arrive",
+        "body": "A 1 day tends to produce quick conviction. Write one reason you could be wrong and read it back.",
+        "link": "the 1's quick certainty"
+      },
+      {
+        "label": "GO EASY ON",
+        "headline": "Reading a question as weakness",
+        "body": "You may notice a story that asking means falling behind. Go easy: ask one honest question today and see what it costs.",
+        "link": "the 1's difficulty asking for help"
+      },
+      {
+        "label": "AVOID",
+        "headline": "Judging ideas by who said them",
+        "body": "An idea from someone else can feel less worth hearing. Read it as if you wrote it.",
+        "link": "the 1's defensiveness"
+      },
+      {
+        "label": "WATCH OUT",
+        "headline": "Settling it all before anyone weighs in",
+        "body": "The urge to answer everything first can crowd out better options. Share a rough idea and ask for one change.",
+        "link": "the 1's bossiness"
+      },
+      {
+        "label": "GO EASY ON",
+        "headline": "Checking who is ahead",
+        "body": "Being first can turn into watching who else is. Go easy on the scoreboard and note one thing you finished.",
+        "link": "the 1's competitive streak"
+      },
+      {
+        "label": "WATCH OUT",
+        "headline": "Defending a first impression",
+        "body": "A first take tends to harden into a position. Give it one more look before you argue for it.",
+        "link": "the 1's stubbornness"
+      }
+    ]
+  },
+  "2": {
+    "money": [
+      {
+        "label": "WATCH OUT",
+        "headline": "Paying to skip an awkward moment",
+        "body": "A 2 day can make covering a cost feel easier than speaking up. Say the amount aloud before you pay.",
+        "link": "the 2's habit of smoothing things over"
+      },
+      {
+        "label": "GO EASY ON",
+        "headline": "Delaying the shared-cost chat",
+        "body": "You may feel the topic is awkward and let it slide. Go easy: send one line proposing a time to talk.",
+        "link": "the 2's avoidance of conflict"
+      },
+      {
+        "label": "AVOID",
+        "headline": "Tallying favors in your head",
+        "body": "A private score tends to turn into resentment. Say one plain sentence about what feels uneven.",
+        "link": "the 2's habit of keeping score quietly"
+      },
+      {
+        "label": "WATCH OUT",
+        "headline": "Generosity as a bid for approval",
+        "body": "You may notice a gift or a round that is really about being liked. Pause and ask if you would do it unseen.",
+        "link": "the 2's wish to please"
+      },
+      {
+        "label": "GO EASY ON",
+        "headline": "Hoping they name the budget",
+        "body": "It is easy to wait for another person's number. Go easy: write yours down first.",
+        "link": "the 2's indecision"
+      },
+      {
+        "label": "WATCH OUT",
+        "headline": "Passing every money choice along",
+        "body": "Leaning on the most confident person can push you out of the choice. Make one small choice yourself now.",
+        "link": "the 2's leaning on others"
+      }
+    ],
+    "work": [
+      {
+        "label": "WATCH OUT",
+        "headline": "A quick yes you may regret",
+        "body": "A 2 day tends to bring requests you accept to be kind. Say 'let me check' and look at your list.",
+        "link": "the 2's people-pleasing"
+      },
+      {
+        "label": "GO EASY ON",
+        "headline": "Seeking approval before starting",
+        "body": "The pull to check first can stall good work. Go easy: begin, then ask for comments.",
+        "link": "the 2's indecision"
+      },
+      {
+        "label": "AVOID",
+        "headline": "Agreeing out loud, doubting inside",
+        "body": "Silent disagreement can feel peaceful and often builds distance. Say one concern in a calm sentence.",
+        "link": "the 2's avoidance of conflict"
+      },
+      {
+        "label": "WATCH OUT",
+        "headline": "Deflecting a thank-you",
+        "body": "You may notice you brush off praise. Say 'thank you' and nothing more.",
+        "link": "the 2's self-effacing habit"
+      },
+      {
+        "label": "GO EASY ON",
+        "headline": "Decoding a terse message",
+        "body": "A short reply can feel like a final judgment. Go easy: ask what they meant before you assume.",
+        "link": "the 2's over-sensitivity"
+      },
+      {
+        "label": "WATCH OUT",
+        "headline": "Noting who did less",
+        "body": "Quietly tracking effort tends to sour a team. Ask for one specific thing while it is small.",
+        "link": "the 2's habit of keeping score quietly"
+      }
+    ],
+    "relationships": [
+      {
+        "label": "WATCH OUT",
+        "headline": "Hinting and hoping",
+        "body": "You may drop a hint and wait for it to land. Turn it into one plain request.",
+        "link": "the 2's avoidance of conflict"
+      },
+      {
+        "label": "GO EASY ON",
+        "headline": "A reflex apology",
+        "body": "Sorry can arrive before you have thought. Go easy: pause one breath first.",
+        "link": "the 2's people-pleasing"
+      },
+      {
+        "label": "AVOID",
+        "headline": "Carrying someone else's mood",
+        "body": "Taking on their mood can feel like care and tire you out. Say to yourself, 'that part is theirs'.",
+        "link": "the 2's over-sensitivity"
+      },
+      {
+        "label": "WATCH OUT",
+        "headline": "Waiting to be asked",
+        "body": "Hoping people notice what you want can slide into resentment. State one preference now.",
+        "link": "the 2's habit of waiting"
+      },
+      {
+        "label": "GO EASY ON",
+        "headline": "Smoothing the rough patch",
+        "body": "Peace at any price tends to hide honest topics. Let one small disagreement stand a minute.",
+        "link": "the 2's avoidance of conflict"
+      },
+      {
+        "label": "WATCH OUT",
+        "headline": "A comment that stings",
+        "body": "A casual remark may sting more than it should. Ask what they meant before you decide.",
+        "link": "the 2's over-sensitivity"
+      }
+    ],
+    "energy": [
+      {
+        "label": "WATCH OUT",
+        "headline": "Helping past empty",
+        "body": "A 2 day can make helping automatic. Put one hour on the calendar that is only yours.",
+        "link": "the 2's over-giving"
+      },
+      {
+        "label": "GO EASY ON",
+        "headline": "Skipping your quiet",
+        "body": "You may skip time alone to keep everyone comfortable. Go easy: take ten silent minutes.",
+        "link": "the 2's reluctance to disappoint"
+      },
+      {
+        "label": "AVOID",
+        "headline": "Replaying the day after dark",
+        "body": "Going over small remarks can cost rest and rarely changes them. Write the worry down and look at it in the morning.",
+        "link": "the 2's over-sensitivity"
+      },
+      {
+        "label": "WATCH OUT",
+        "headline": "Staying on until the room is happy",
+        "body": "It is easy to wait until everyone is settled. Take your break first.",
+        "link": "the 2's people-pleasing"
+      },
+      {
+        "label": "GO EASY ON",
+        "headline": "Agreeing to dodge the awkward",
+        "body": "A yes to avoid a pause can cost an evening. Go easy: say 'let me check'.",
+        "link": "the 2's avoidance of conflict"
+      },
+      {
+        "label": "WATCH OUT",
+        "headline": "Adapting to every pace but yours",
+        "body": "You may match everyone else's speed. Do one task at your own rhythm.",
+        "link": "the 2's leaning on others"
+      }
+    ],
+    "mind": [
+      {
+        "label": "WATCH OUT",
+        "headline": "Weighing both sides forever",
+        "body": "Considering every side can turn into avoiding the choice. Pick the better of two by noon.",
+        "link": "the 2's indecision"
+      },
+      {
+        "label": "GO EASY ON",
+        "headline": "Guessing what they want",
+        "body": "A 2 day tends to run on mind-reading. Go easy: ask one person what they prefer.",
+        "link": "the 2's habit of reading others first"
+      },
+      {
+        "label": "AVOID",
+        "headline": "Rewriting the note again",
+        "body": "Editing a message ten times often makes it less honest. Send the second draft.",
+        "link": "the 2's over-sensitivity"
+      },
+      {
+        "label": "WATCH OUT",
+        "headline": "Waiting for a confirming nod",
+        "body": "You may hold off trusting a choice until someone approves. Write your own preference first.",
+        "link": "the 2's leaning on others"
+      },
+      {
+        "label": "GO EASY ON",
+        "headline": "Doubting a decision already made",
+        "body": "A 2 day can bring second thoughts. Go easy: note why you chose and move on.",
+        "link": "the 2's indecision"
+      },
+      {
+        "label": "WATCH OUT",
+        "headline": "Adding up small slights",
+        "body": "Quiet scorekeeping tends to grow unseen. Pick one item and raise it kindly.",
+        "link": "the 2's habit of keeping score quietly"
+      }
+    ]
+  },
+  "3": {
+    "money": [
+      {
+        "label": "WATCH OUT",
+        "headline": "A treat to fix a mood",
+        "body": "A 3 day can make a small buy feel like a remedy. Put it on a list and look again tomorrow.",
+        "link": "the 3's mood swings"
+      },
+      {
+        "label": "GO EASY ON",
+        "headline": "Gear for an unstarted hobby",
+        "body": "Planning a new interest can be more fun than starting it. Go easy: use what you own first.",
+        "link": "the 3's unfinished projects"
+      },
+      {
+        "label": "AVOID",
+        "headline": "Paying for the table to look warm",
+        "body": "Picking up the bill can stand in for warmth. Ask whether you would do it unseen.",
+        "link": "the 3's habit of performing instead of feeling"
+      },
+      {
+        "label": "WATCH OUT",
+        "headline": "Small costs that pile up",
+        "body": "Little renewals tend to build quietly. Spend ten minutes listing them and drop one.",
+        "link": "the 3's scattered attention"
+      },
+      {
+        "label": "GO EASY ON",
+        "headline": "A plan that only exists in talk",
+        "body": "A money plan can feel done once it sounds good. Go easy: write one figure and one date.",
+        "link": "the 3's surface talk"
+      },
+      {
+        "label": "WATCH OUT",
+        "headline": "A joke instead of the figure",
+        "body": "Humor can blur who owes what. State the amount plainly, then laugh.",
+        "link": "the 3's habit of avoiding the dull detail"
+      }
+    ],
+    "work": [
+      {
+        "label": "WATCH OUT",
+        "headline": "A shiny new idea",
+        "body": "A 3 day can hand you a fresh idea by lunch. Finish a small piece of the oldest task first.",
+        "link": "the 3's unfinished projects"
+      },
+      {
+        "label": "GO EASY ON",
+        "headline": "Describing it well instead of doing it",
+        "body": "A plan can feel finished once it is explained. Go easy: write the first concrete step.",
+        "link": "the 3's surface talk"
+      },
+      {
+        "label": "AVOID",
+        "headline": "A joke that skips the point",
+        "body": "Humor can ease a room and dodge the issue. Say the serious version first.",
+        "link": "the 3's habit of avoiding depth"
+      },
+      {
+        "label": "WATCH OUT",
+        "headline": "A yes before the diary is open",
+        "body": "Enthusiasm tends to answer first. Say 'let me confirm' and reply later.",
+        "link": "the 3's scattered enthusiasm"
+      },
+      {
+        "label": "GO EASY ON",
+        "headline": "A polished pitch, loose numbers",
+        "body": "The story is easy to refine and the footnotes easy to skip. Go easy: have someone check one figure.",
+        "link": "the 3's habit of favoring the bright part"
+      },
+      {
+        "label": "WATCH OUT",
+        "headline": "Too many threads open",
+        "body": "A 3 day pulls you toward every interesting thread. Keep three and park the rest.",
+        "link": "the 3's scattered attention"
+      }
+    ],
+    "relationships": [
+      {
+        "label": "WATCH OUT",
+        "headline": "Filling the pause",
+        "body": "You may notice you talk to avoid a quiet moment. Let one pause stand.",
+        "link": "the 3's habit of avoiding depth"
+      },
+      {
+        "label": "GO EASY ON",
+        "headline": "A joke over a feeling",
+        "body": "Humor can keep a topic closed. Go easy: say the plain sentence, then smile.",
+        "link": "the 3's habit of performing instead of feeling"
+      },
+      {
+        "label": "AVOID",
+        "headline": "Gossip as closeness",
+        "body": "A story about someone else can feel like bonding and keeps things thin. Share something true about you.",
+        "link": "the 3's surface talk"
+      },
+      {
+        "label": "WATCH OUT",
+        "headline": "Changing the subject gracefully",
+        "body": "You may be good at steering away from the hard thing. Name it and ask for five minutes.",
+        "link": "the 3's habit of avoiding depth"
+      },
+      {
+        "label": "GO EASY ON",
+        "headline": "Warm, then suddenly distant",
+        "body": "A bright hour can be followed by a retreat that confuses people. Go easy: say when you need quiet.",
+        "link": "the 3's mood swings"
+      },
+      {
+        "label": "WATCH OUT",
+        "headline": "Only the sunny version",
+        "body": "A 3 day tends to put the best story forward. Tell one person how it really went.",
+        "link": "the 3's habit of performing instead of feeling"
+      }
+    ],
+    "energy": [
+      {
+        "label": "WATCH OUT",
+        "headline": "High now, flat later",
+        "body": "A 3 day can lift you and drop you quickly. Plan an easy task for mid-afternoon.",
+        "link": "the 3's mood swings"
+      },
+      {
+        "label": "GO EASY ON",
+        "headline": "Yes to everything",
+        "body": "Social energy is easy to spend. Go easy: choose one plan you actually want.",
+        "link": "the 3's scattered attention"
+      },
+      {
+        "label": "AVOID",
+        "headline": "One more story before going home",
+        "body": "Late talk can feel like fuel and take from the morning. Name your going-home time and keep it.",
+        "link": "the 3's pull toward the next bright thing"
+      },
+      {
+        "label": "WATCH OUT",
+        "headline": "Reaching for novelty when flat",
+        "body": "You may notice something new appears whenever the day dips. Walk for ten minutes first.",
+        "link": "the 3's restless appetite for novelty"
+      },
+      {
+        "label": "GO EASY ON",
+        "headline": "Avoiding the quiet",
+        "body": "Quiet can feel dull on a 3 day. Go easy: sit with a notebook for ten minutes.",
+        "link": "the 3's habit of avoiding depth"
+      },
+      {
+        "label": "WATCH OUT",
+        "headline": "A feed instead of rest",
+        "body": "You may find scrolling fills the space rest would fill better. Put the phone out of reach for an hour.",
+        "link": "the 3's habit of reaching for stimulation"
+      }
+    ],
+    "mind": [
+      {
+        "label": "WATCH OUT",
+        "headline": "The next idea already",
+        "body": "A 3 day tends to produce ideas faster than they can be tried. Write each one down and pick one.",
+        "link": "the 3's scattered attention"
+      },
+      {
+        "label": "GO EASY ON",
+        "headline": "Skimming the surface",
+        "body": "It is easy to know a little about a lot. Go easy: read two pages deeper on one topic.",
+        "link": "the 3's habit of avoiding depth"
+      },
+      {
+        "label": "AVOID",
+        "headline": "Comparing with highlights",
+        "body": "Other people's best moments can make an ordinary day look dull. Name one good thing about yours.",
+        "link": "the 3's need for an audience"
+      },
+      {
+        "label": "WATCH OUT",
+        "headline": "A clever reason to stop",
+        "body": "You may notice a neat argument for dropping the project. Write it down and test it tomorrow.",
+        "link": "the 3's unfinished projects"
+      },
+      {
+        "label": "GO EASY ON",
+        "headline": "An unsent draft",
+        "body": "A good message can sit in drafts for days. Go easy on perfecting: send the plain version.",
+        "link": "the 3's habit of avoiding the hard part"
+      },
+      {
+        "label": "WATCH OUT",
+        "headline": "A mood that colors the plan",
+        "body": "Mood swings tend to change how a plan looks. Wait for a second look before you act.",
+        "link": "the 3's mood swings"
+      }
+    ]
+  },
+  "4": {
+    "money": [
+      {
+        "label": "WATCH OUT",
+        "headline": "A budget without breathing space",
+        "body": "A 4 day can tighten every figure. Keep one small line for something you simply enjoy.",
+        "link": "the 4's rigidity"
+      },
+      {
+        "label": "GO EASY ON",
+        "headline": "Another look at the same total",
+        "body": "Re-checking feels safe and can eat the afternoon. Go easy: check once and close it.",
+        "link": "the 4's narrow focus on detail"
+      },
+      {
+        "label": "AVOID",
+        "headline": "Refusing any unplanned treat",
+        "body": "Saying no to everything off the list can feel disciplined and flat. Choose one small treat on purpose.",
+        "link": "the 4's joyless routine"
+      },
+      {
+        "label": "WATCH OUT",
+        "headline": "The old method, again",
+        "body": "A 4 day tends to keep what worked before. Try one different way of noting a cost.",
+        "link": "the 4's resistance to change"
+      },
+      {
+        "label": "GO EASY ON",
+        "headline": "Spare time as a loss",
+        "body": "You may notice free minutes feel wasted. Go easy: keep twenty with nothing to save.",
+        "link": "the 4's overwork"
+      },
+      {
+        "label": "WATCH OUT",
+        "headline": "Correcting someone's money habit",
+        "body": "Stubbornness tends to call other habits careless. Ask how they decide before you advise.",
+        "link": "the 4's stubbornness"
+      }
+    ],
+    "work": [
+      {
+        "label": "WATCH OUT",
+        "headline": "Staying past the useful hour",
+        "body": "A 4 day can make long hours feel like virtue. Pick a stop time now and keep it.",
+        "link": "the 4's overwork"
+      },
+      {
+        "label": "GO EASY ON",
+        "headline": "Gripping the plan harder",
+        "body": "You may notice the plan tightens when facts shift. Go easy: note what changed and amend one step.",
+        "link": "the 4's resistance to change"
+      },
+      {
+        "label": "AVOID",
+        "headline": "Re-checking a colleague's part",
+        "body": "Redoing others' work can feel like care and signals doubt. Keep one item as they made it.",
+        "link": "the 4's need for control of detail"
+      },
+      {
+        "label": "WATCH OUT",
+        "headline": "Doubting what is untested",
+        "body": "A 4 day tends to prefer the proven way. Try the new idea small before you judge it.",
+        "link": "the 4's suspicion of the untried"
+      },
+      {
+        "label": "GO EASY ON",
+        "headline": "Tidying the layout first",
+        "body": "Formatting is easy to polish while the question waits. Go easy: send the correct version.",
+        "link": "the 4's narrow focus on detail"
+      },
+      {
+        "label": "WATCH OUT",
+        "headline": "No break on the schedule",
+        "body": "The schedule can outrank the person following it. Put a ten-minute break in and keep it.",
+        "link": "the 4's joyless routine"
+      }
+    ],
+    "relationships": [
+      {
+        "label": "WATCH OUT",
+        "headline": "Care that arrives as a list",
+        "body": "You may notice affection turning into logistics. Say one warm sentence with no plan in it.",
+        "link": "the 4's habit of showing love through tasks"
+      },
+      {
+        "label": "GO EASY ON",
+        "headline": "Pointing out the better method",
+        "body": "A 4 day tends to spot the improved way at once. Go easy: ask what they were aiming for.",
+        "link": "the 4's rigidity"
+      },
+      {
+        "label": "AVOID",
+        "headline": "Winning the detail, souring the mood",
+        "body": "Being right about a small point can cost the evening. Say 'you may be right' once.",
+        "link": "the 4's stubbornness"
+      },
+      {
+        "label": "WATCH OUT",
+        "headline": "A fully scheduled evening",
+        "body": "A full plan can crowd out surprise. Keep one hour open and let someone else choose.",
+        "link": "the 4's narrow routine"
+      },
+      {
+        "label": "GO EASY ON",
+        "headline": "Waiting for tidy words",
+        "body": "Holding a feeling until it is phrased perfectly can mean silence. Go easy: say it plainly.",
+        "link": "the 4's difficulty with unstructured feeling"
+      },
+      {
+        "label": "WATCH OUT",
+        "headline": "Irritated by a sudden change",
+        "body": "You may find last-minute plans grating. Take a breath and say yes to one small shift.",
+        "link": "the 4's resistance to change"
+      }
+    ],
+    "energy": [
+      {
+        "label": "WATCH OUT",
+        "headline": "Pushing on out of pride",
+        "body": "A 4 day can make endurance a point of pride. When attention thins, pause for ten minutes.",
+        "link": "the 4's overwork"
+      },
+      {
+        "label": "GO EASY ON",
+        "headline": "Rest as falling behind",
+        "body": "You may notice breaks feel like lost time. Go easy: schedule one like any task.",
+        "link": "the 4's joyless routine"
+      },
+      {
+        "label": "AVOID",
+        "headline": "Holding a worn-out routine",
+        "body": "A habit that once served you can quietly drain you. Change one element and see how it feels.",
+        "link": "the 4's resistance to change"
+      },
+      {
+        "label": "WATCH OUT",
+        "headline": "A day with nothing playful",
+        "body": "A 4 day tends to fill up with useful things. Book ten minutes of pure enjoyment.",
+        "link": "the 4's joyless routine"
+      },
+      {
+        "label": "GO EASY ON",
+        "headline": "Hours on one task",
+        "body": "Narrow focus can feel productive and wear you down. Go easy: stand and walk five minutes.",
+        "link": "the 4's narrow focus"
+      },
+      {
+        "label": "WATCH OUT",
+        "headline": "Weekend work by habit",
+        "body": "The habit can continue after the need has gone. Keep one weekend block work-free.",
+        "link": "the 4's overwork"
+      }
+    ],
+    "mind": [
+      {
+        "label": "WATCH OUT",
+        "headline": "Right or wrong, nothing between",
+        "body": "A 4 day tends to sort things into two piles. Look for a third option.",
+        "link": "the 4's rigidity"
+      },
+      {
+        "label": "GO EASY ON",
+        "headline": "A detail swallowing the hour",
+        "body": "A single detail can swallow an afternoon. Go easy: set a timer, then look at the whole.",
+        "link": "the 4's narrow focus"
+      },
+      {
+        "label": "AVOID",
+        "headline": "A reflex no to something new",
+        "body": "A fresh idea can feel like a threat to what is built. Write it down and look again next week.",
+        "link": "the 4's suspicion of the untried"
+      },
+      {
+        "label": "WATCH OUT",
+        "headline": "Rehearsing what could go wrong",
+        "body": "Planning for problems helps and can slip into dwelling. List two risks with one step each, then stop.",
+        "link": "the 4's need to control outcomes"
+      },
+      {
+        "label": "GO EASY ON",
+        "headline": "Polishing past good enough",
+        "body": "It is easy to keep refining after the job is done. Go easy: write what 'done' means first.",
+        "link": "the 4's perfectionism"
+      },
+      {
+        "label": "WATCH OUT",
+        "headline": "Every minute mapped",
+        "body": "Over-planning tends to take the room out of a day. Keep one slot open.",
+        "link": "the 4's joyless routine"
+      }
+    ]
+  },
+  "5": {
+    "money": [
+      {
+        "label": "GO EASY ON",
+        "headline": "A purchase on impulse",
+        "body": "A 5 day can pull toward quick, exciting buys. Add it to a list and wait 24 hours.",
+        "link": "the 5's impulsiveness"
+      },
+      {
+        "label": "WATCH OUT",
+        "headline": "Chasing a bargain",
+        "body": "A deal can feel like an adventure. Write what you came for and stop when you have it.",
+        "link": "the 5's appetite for novelty"
+      },
+      {
+        "label": "AVOID",
+        "headline": "Paying for a change of mood",
+        "body": "New things can lift you briefly and fade. Name what the purchase is meant to fix.",
+        "link": "the 5's restlessness"
+      },
+      {
+        "label": "WATCH OUT",
+        "headline": "A sign-up you may ignore",
+        "body": "New subscriptions are easy to accept and forget. Set a review reminder before you confirm.",
+        "link": "the 5's boredom with follow-through"
+      },
+      {
+        "label": "GO EASY ON",
+        "headline": "Yes to a group tab",
+        "body": "Group costs can multiply fast. Go easy: ask the total before you say yes.",
+        "link": "the 5's excess"
+      },
+      {
+        "label": "WATCH OUT",
+        "headline": "Keeping the choice open",
+        "body": "Keeping every option can delay a simple decision. Pick one and note it.",
+        "link": "the 5's avoidance of commitment"
+      }
+    ],
+    "work": [
+      {
+        "label": "WATCH OUT",
+        "headline": "Switching tasks halfway",
+        "body": "A 5 day can make a new task more appealing than the one in hand. Finish the stage you are in first.",
+        "link": "the 5's boredom with follow-through"
+      },
+      {
+        "label": "GO EASY ON",
+        "headline": "Hurrying the dull middle",
+        "body": "The start and the finish are exciting; the middle is easy to rush. Go easy: give it a twenty-minute slot.",
+        "link": "the 5's impatience with routine"
+      },
+      {
+        "label": "AVOID",
+        "headline": "A yes to everything",
+        "body": "Enthusiasm tends to say yes before checking. Write what it would take and decide from that.",
+        "link": "the 5's excess of enthusiasm"
+      },
+      {
+        "label": "WATCH OUT",
+        "headline": "A plan change nobody heard",
+        "body": "A shift can feel natural to you and confusing to others. Send two lines.",
+        "link": "the 5's impulsiveness"
+      },
+      {
+        "label": "GO EASY ON",
+        "headline": "Five tabs, five tasks",
+        "body": "Variety can keep you sharp and thin your attention. Go easy: pick two and defer the rest.",
+        "link": "the 5's scattered attention"
+      },
+      {
+        "label": "WATCH OUT",
+        "headline": "Reluctance to pick a direction",
+        "body": "A 5 day tends to resist a firm choice. Choose one direction and write it down.",
+        "link": "the 5's avoidance of commitment"
+      }
+    ],
+    "relationships": [
+      {
+        "label": "WATCH OUT",
+        "headline": "Wanting space as it deepens",
+        "body": "You may notice an urge to step back as closeness grows. Say 'I need a few hours' and say when you plan to reply.",
+        "link": "the 5's avoidance of commitment"
+      },
+      {
+        "label": "GO EASY ON",
+        "headline": "Cancelling on a mood",
+        "body": "A change of mood can undo a plan. Go easy on the late no: go for just one hour.",
+        "link": "the 5's impulsiveness"
+      },
+      {
+        "label": "AVOID",
+        "headline": "Staying vague about what you want",
+        "body": "Being unclear can feel flexible and frustrates people. Say one clear sentence.",
+        "link": "the 5's avoidance of commitment"
+      },
+      {
+        "label": "WATCH OUT",
+        "headline": "A warm yes that fades",
+        "body": "It is easy to agree and lose the thread. Put the promise in your calendar now.",
+        "link": "the 5's boredom with follow-through"
+      },
+      {
+        "label": "GO EASY ON",
+        "headline": "Moving on mid-sentence",
+        "body": "A 5 day tends to move faster than the other person. Go easy: ask one more question.",
+        "link": "the 5's restlessness"
+      },
+      {
+        "label": "WATCH OUT",
+        "headline": "The new face over the old friend",
+        "body": "New company can be more exciting than the familiar. Send one old friend a message.",
+        "link": "the 5's appetite for novelty"
+      }
+    ],
+    "energy": [
+      {
+        "label": "WATCH OUT",
+        "headline": "A day with no gaps",
+        "body": "A 5 day can be thrilling and tiring. Keep one evening empty and treat it as fixed.",
+        "link": "the 5's excess"
+      },
+      {
+        "label": "GO EASY ON",
+        "headline": "Excitement passing for fuel",
+        "body": "Stimulation can feel like energy for an afternoon. Go easy: add a quiet hour after the big thing.",
+        "link": "the 5's appetite for stimulation"
+      },
+      {
+        "label": "AVOID",
+        "headline": "Burning the night for novelty",
+        "body": "Late hours can be fun and wear thin quickly. Pick a time to stop and keep it.",
+        "link": "the 5's excess"
+      },
+      {
+        "label": "WATCH OUT",
+        "headline": "A feed for the restless itch",
+        "body": "You may notice restlessness sends you scrolling. Step outside for ten minutes first.",
+        "link": "the 5's restlessness"
+      },
+      {
+        "label": "GO EASY ON",
+        "headline": "No anchor in the day",
+        "body": "Too much variety tends to drain you. Go easy: keep one fixed point, like lunch at the same hour.",
+        "link": "the 5's resistance to routine"
+      },
+      {
+        "label": "WATCH OUT",
+        "headline": "Comfort food for restless nerves",
+        "body": "You may notice you reach for comfort food when restless or stressed. Take a minute of slow breathing first.",
+        "link": "the 5's habit of reaching for stimulation"
+      }
+    ],
+    "mind": [
+      {
+        "label": "WATCH OUT",
+        "headline": "Deciding before thinking",
+        "body": "A 5 day tends to rush choices. Pause for one breath and one consequence, then act.",
+        "link": "the 5's impulsiveness"
+      },
+      {
+        "label": "GO EASY ON",
+        "headline": "Afraid to miss something",
+        "body": "Every invitation can look like the one to catch. Go easy: ask what you would really give up.",
+        "link": "the 5's appetite for novelty"
+      },
+      {
+        "label": "AVOID",
+        "headline": "Abandoning what has turned dull",
+        "body": "Boredom can look like a sign that something is wrong. Give it another day before you decide.",
+        "link": "the 5's boredom with follow-through"
+      },
+      {
+        "label": "WATCH OUT",
+        "headline": "Thinking about what comes next",
+        "body": "You may notice your mind jumping ahead. Give twenty minutes to what is in front of you.",
+        "link": "the 5's scattered attention"
+      },
+      {
+        "label": "GO EASY ON",
+        "headline": "Keeping every door ajar",
+        "body": "Open options feel like freedom and can keep you stuck. Go easy: close one now.",
+        "link": "the 5's avoidance of commitment"
+      },
+      {
+        "label": "WATCH OUT",
+        "headline": "Restlessness mistaken for a calling",
+        "body": "The urge to change everything often passes. Write it down and look again next week.",
+        "link": "the 5's restlessness"
+      }
+    ]
+  },
+  "6": {
+    "money": [
+      {
+        "label": "WATCH OUT",
+        "headline": "Covering a cost to feel needed",
+        "body": "A 6 day can make paying for others feel like love. Ask whether you were asked.",
+        "link": "the 6's wish to be needed"
+      },
+      {
+        "label": "GO EASY ON",
+        "headline": "A gift bigger than planned",
+        "body": "It is easy to buy a little extra for people you care about. Go easy: set the amount before you shop.",
+        "link": "the 6's over-giving"
+      },
+      {
+        "label": "AVOID",
+        "headline": "Paying and keeping score",
+        "body": "Generosity with strings tends to sour. Give only what you can give freely.",
+        "link": "the 6's resentment when care is not returned"
+      },
+      {
+        "label": "WATCH OUT",
+        "headline": "Spending out of guilt",
+        "body": "You may notice a buy that is really about feeling like a good parent. Wait a day and ask who it is for.",
+        "link": "the 6's guilt about not doing enough"
+      },
+      {
+        "label": "GO EASY ON",
+        "headline": "A budget with no cushion",
+        "body": "A perfect plan can crowd out surprise. Go easy: add one small cushion line.",
+        "link": "the 6's perfectionism"
+      },
+      {
+        "label": "WATCH OUT",
+        "headline": "Everyone's money on your desk",
+        "body": "A 6 day tends to make you the household treasurer. Hand one task back.",
+        "link": "the 6's habit of taking on others' load"
+      }
+    ],
+    "work": [
+      {
+        "label": "WATCH OUT",
+        "headline": "Taking on another person's task",
+        "body": "You may notice you absorb extra work because it is quicker than asking. Hand something back.",
+        "link": "the 6's habit of taking on others' load"
+      },
+      {
+        "label": "GO EASY ON",
+        "headline": "Perfecting what is already good",
+        "body": "A 6 day can send you back to a finished piece. Go easy: write 'good and finished' as the standard.",
+        "link": "the 6's perfectionism"
+      },
+      {
+        "label": "AVOID",
+        "headline": "Quietly covering the gap",
+        "body": "Quiet cover can look like loyalty and teaches others to rely on it. Say what you can do in the time you have.",
+        "link": "the 6's over-giving"
+      },
+      {
+        "label": "WATCH OUT",
+        "headline": "Your effort going unseen",
+        "body": "Helpfulness often goes unnoticed. Say what you did in one plain sentence.",
+        "link": "the 6's habit of working unseen"
+      },
+      {
+        "label": "GO EASY ON",
+        "headline": "Yes to the small favor",
+        "body": "Small favors add up to a second job. Go easy: say 'I can do that next week'.",
+        "link": "the 6's difficulty refusing"
+      },
+      {
+        "label": "WATCH OUT",
+        "headline": "Fussing over the unasked detail",
+        "body": "Attention to the small thing can become meddling. Ask whether it matters to the person it is for.",
+        "link": "the 6's meddling"
+      }
+    ],
+    "relationships": [
+      {
+        "label": "WATCH OUT",
+        "headline": "Advice before they ask",
+        "body": "A 6 day tends to turn care into suggestions. Ask 'advice or just company?' first.",
+        "link": "the 6's control through helpfulness"
+      },
+      {
+        "label": "GO EASY ON",
+        "headline": "A quiet count of who gave more",
+        "body": "You may notice a tally building. Go easy: say what you need in one plain sentence.",
+        "link": "the 6's resentment when care is not returned"
+      },
+      {
+        "label": "AVOID",
+        "headline": "Fixing instead of hearing",
+        "body": "Solving a problem can feel like love and can skip the listening. Ask one more question.",
+        "link": "the 6's control through helpfulness"
+      },
+      {
+        "label": "WATCH OUT",
+        "headline": "Adjusting yourself to their mood",
+        "body": "You may shape yourself to everyone else's mood. Notice which feelings are yours.",
+        "link": "the 6's habit of taking on others' load"
+      },
+      {
+        "label": "GO EASY ON",
+        "headline": "Hovering nearby",
+        "body": "It is easy to stand close in case you are needed. Go easy: step back for an hour.",
+        "link": "the 6's meddling"
+      },
+      {
+        "label": "WATCH OUT",
+        "headline": "Waiting for thanks",
+        "body": "Unspoken expectations of thanks can sour a kindness. Give without a ledger.",
+        "link": "the 6's resentment when care is not returned"
+      }
+    ],
+    "energy": [
+      {
+        "label": "WATCH OUT",
+        "headline": "Running on empty for others",
+        "body": "A 6 day can make your own needs feel optional. Put thirty minutes in the diary that are only yours.",
+        "link": "the 6's over-giving"
+      },
+      {
+        "label": "GO EASY ON",
+        "headline": "Hosting past your limit",
+        "body": "Welcoming people is a gift and can wear you thin. Go easy: pick the one thing you want.",
+        "link": "the 6's wish to look after everyone"
+      },
+      {
+        "label": "AVOID",
+        "headline": "Carrying the household alone",
+        "body": "Quiet effort can look like devotion and tends to exhaust. Ask someone to own one chore.",
+        "link": "the 6's habit of taking on others' load"
+      },
+      {
+        "label": "WATCH OUT",
+        "headline": "Rest last on the list",
+        "body": "You may notice your rest is the first thing to go. Do it first today.",
+        "link": "the 6's self-neglect"
+      },
+      {
+        "label": "GO EASY ON",
+        "headline": "Everyone fed but you",
+        "body": "You may notice you reach for comfort food when you have given everything away. Make something comforting for yourself first.",
+        "link": "the 6's over-giving"
+      },
+      {
+        "label": "WATCH OUT",
+        "headline": "Guilt for stopping",
+        "body": "Resting can feel like letting people down. Tell someone you are off duty and keep to it.",
+        "link": "the 6's guilt about not doing enough"
+      }
+    ],
+    "mind": [
+      {
+        "label": "WATCH OUT",
+        "headline": "The ideal home in your head",
+        "body": "A 6 day tends to compare the home and the meal with an ideal. Name one thing that was good enough.",
+        "link": "the 6's perfectionism"
+      },
+      {
+        "label": "GO EASY ON",
+        "headline": "Guessing what they need",
+        "body": "It is easy to act before anyone has asked. Go easy: ask once.",
+        "link": "the 6's meddling"
+      },
+      {
+        "label": "AVOID",
+        "headline": "Calling your rest selfish",
+        "body": "Rest can feel undeserved when others are busy. A rested carer often helps more than a tired one.",
+        "link": "the 6's guilt about not doing enough"
+      },
+      {
+        "label": "WATCH OUT",
+        "headline": "A worry that is not yours",
+        "body": "You may notice concerns that belong to someone else. Write one down and ask if it is yours to act on.",
+        "link": "the 6's habit of taking on others' load"
+      },
+      {
+        "label": "GO EASY ON",
+        "headline": "A long review of a small slip",
+        "body": "A 6 day can turn a small mistake into a long review. Go easy: say what you would say to a friend.",
+        "link": "the 6's perfectionism"
+      },
+      {
+        "label": "WATCH OUT",
+        "headline": "Needing to be needed",
+        "body": "Being needed can feel like worth, and it can wear you out. Teach someone one small task.",
+        "link": "the 6's wish to be needed"
+      }
+    ]
+  },
+  "7": {
+    "money": [
+      {
+        "label": "WATCH OUT",
+        "headline": "Comparing a small buy for hours",
+        "body": "A 7 day can turn a modest purchase into an afternoon of comparison. Give it thirty minutes, then choose.",
+        "link": "the 7's over-analysis"
+      },
+      {
+        "label": "GO EASY ON",
+        "headline": "Holding out for certainty",
+        "body": "You may notice you wait until every unknown is answered. Go easy: write the three facts you need and decide when you have them.",
+        "link": "the 7's habit of waiting for certainty"
+      },
+      {
+        "label": "AVOID",
+        "headline": "Keeping a figure to yourself",
+        "body": "Privacy is fine, and secrecy from those affected tends to build distance. Share one plain number.",
+        "link": "the 7's secrecy"
+      },
+      {
+        "label": "WATCH OUT",
+        "headline": "Reading every offer as a trick",
+        "body": "A 7 day can make each deal look like a trap. Check one claim properly.",
+        "link": "the 7's cynicism"
+      },
+      {
+        "label": "GO EASY ON",
+        "headline": "Research with no decision",
+        "body": "Reading more can feel productive and delay a choice. Go easy: write the choice and the time.",
+        "link": "the 7's over-analysis"
+      },
+      {
+        "label": "WATCH OUT",
+        "headline": "Admin pushed aside by big ideas",
+        "body": "Thinking about large questions can push aside the small forms. Do one practical task first.",
+        "link": "the 7's withdrawal into thought"
+      }
+    ],
+    "work": [
+      {
+        "label": "WATCH OUT",
+        "headline": "Working alone all day",
+        "body": "A 7 day can make solitary focus feel ideal. Share what you have with one person.",
+        "link": "the 7's withdrawal"
+      },
+      {
+        "label": "GO EASY ON",
+        "headline": "Holding work until perfect",
+        "body": "You may notice you wait to show anything. Go easy: share a rough version.",
+        "link": "the 7's secrecy"
+      },
+      {
+        "label": "AVOID",
+        "headline": "Studying instead of stepping",
+        "body": "A thorough study can feel safe and delay a simple action. Write the next step in one sentence and do it.",
+        "link": "the 7's over-analysis"
+      },
+      {
+        "label": "WATCH OUT",
+        "headline": "A cool answer to enthusiasm",
+        "body": "A dry reaction can read as disapproval. Name one thing you like first.",
+        "link": "the 7's cynicism"
+      },
+      {
+        "label": "GO EASY ON",
+        "headline": "Doubts kept in your head",
+        "body": "Quiet concerns tend to grow when unspoken. Go easy: say one in a calm sentence.",
+        "link": "the 7's secrecy"
+      },
+      {
+        "label": "WATCH OUT",
+        "headline": "One more fact first",
+        "body": "It is easy to think another fact would settle it. Set a time and decide on what you have.",
+        "link": "the 7's habit of waiting for certainty"
+      }
+    ],
+    "relationships": [
+      {
+        "label": "WATCH OUT",
+        "headline": "Silent without explanation",
+        "body": "You may notice you withdraw and others guess why. Send a short note: 'I need quiet for now.'",
+        "link": "the 7's withdrawal"
+      },
+      {
+        "label": "GO EASY ON",
+        "headline": "A message left waiting",
+        "body": "A 7 day can drift from replies. Go easy: answer one waiting message.",
+        "link": "the 7's aloofness"
+      },
+      {
+        "label": "AVOID",
+        "headline": "Thoughts kept back from friends",
+        "body": "Privacy is healthy and secrecy from those close tends to feel like distance. Tell one person something small and true.",
+        "link": "the 7's secrecy"
+      },
+      {
+        "label": "WATCH OUT",
+        "headline": "A wry line that sounds cold",
+        "body": "A dry comment may be read as dismissal. Add a warm sentence after it.",
+        "link": "the 7's cynicism"
+      },
+      {
+        "label": "GO EASY ON",
+        "headline": "Analyzing instead of listening",
+        "body": "It is easy to read for meaning. Go easy: repeat what they said and ask if you got it right.",
+        "link": "the 7's over-analysis"
+      },
+      {
+        "label": "WATCH OUT",
+        "headline": "Unexplained quiet",
+        "body": "Time alone is healthy; unexplained, it can look like rejection. Say when you plan to be back.",
+        "link": "the 7's aloofness"
+      }
+    ],
+    "energy": [
+      {
+        "label": "WATCH OUT",
+        "headline": "Thought loops after dark",
+        "body": "A 7 day tends to bring mental circling late on. Write the question on paper and park it.",
+        "link": "the 7's over-analysis"
+      },
+      {
+        "label": "GO EASY ON",
+        "headline": "More solitude than restores",
+        "body": "Solitude helps and, in excess, can drain. Go easy: message one person for a short chat.",
+        "link": "the 7's withdrawal"
+      },
+      {
+        "label": "AVOID",
+        "headline": "Staying in with your thoughts",
+        "body": "Staying in can feel peaceful and tends to dull the mood. Take a ten-minute walk outside.",
+        "link": "the 7's isolation"
+      },
+      {
+        "label": "WATCH OUT",
+        "headline": "A tired mind first",
+        "body": "You may notice your mind tires before your body. Switch to something with your hands.",
+        "link": "the 7's over-analysis"
+      },
+      {
+        "label": "GO EASY ON",
+        "headline": "Skipping the shared break",
+        "body": "Passing on group breaks can keep your energy and connections low. Go easy: join this one.",
+        "link": "the 7's aloofness"
+      },
+      {
+        "label": "WATCH OUT",
+        "headline": "Absorbed past bedtime",
+        "body": "Absorbing study can cost rest. Set a time to close the book and keep it.",
+        "link": "the 7's absorption in thought"
+      }
+    ],
+    "mind": [
+      {
+        "label": "WATCH OUT",
+        "headline": "Holding out for a full answer",
+        "body": "A 7 day tends to wait for certainty. Write the best available answer and act on it.",
+        "link": "the 7's habit of waiting for certainty"
+      },
+      {
+        "label": "GO EASY ON",
+        "headline": "Skepticism going sour",
+        "body": "Doubt is useful and can slide into assuming the worst. Go easy: name one thing that might work.",
+        "link": "the 7's cynicism"
+      },
+      {
+        "label": "AVOID",
+        "headline": "Mistrusting a plain good thing",
+        "body": "A plain good result can look too easy to trust. Accept it for an hour before you look for the catch.",
+        "link": "the 7's suspicion of the easy"
+      },
+      {
+        "label": "WATCH OUT",
+        "headline": "Studying a feeling",
+        "body": "You may notice you analyze a feeling instead of having it. Name it in one word.",
+        "link": "the 7's over-analysis"
+      },
+      {
+        "label": "GO EASY ON",
+        "headline": "Replaying what was said",
+        "body": "Going over a talk can feel like understanding. Go easy: pick one thing to ask next time.",
+        "link": "the 7's over-analysis"
+      },
+      {
+        "label": "WATCH OUT",
+        "headline": "An idea kept private",
+        "body": "Good thinking often stays hidden. Share one idea with someone today, even if it is half formed.",
+        "link": "the 7's secrecy"
+      }
+    ]
+  },
+  "8": {
+    "money": [
+      {
+        "label": "WATCH OUT",
+        "headline": "Self-worth tied to a figure",
+        "body": "An 8 day can tie self-respect to income or status. Name one thing you value that no figure shows.",
+        "link": "the 8's habit of measuring worth by output"
+      },
+      {
+        "label": "GO EASY ON",
+        "headline": "Spending to show you are doing well",
+        "body": "It is easy to buy the visible proof. Go easy: wait a day on any purchase meant mainly for display.",
+        "link": "the 8's need to prove itself"
+      },
+      {
+        "label": "AVOID",
+        "headline": "Holding every money choice",
+        "body": "Controlling all the choices can feel like responsibility and tends to shut others out. Hand one over.",
+        "link": "the 8's need for control"
+      },
+      {
+        "label": "WATCH OUT",
+        "headline": "Counting who owes what",
+        "body": "You may notice an exact tally of favors. Forgive one small debt aloud.",
+        "link": "the 8's habit of keeping score"
+      },
+      {
+        "label": "GO EASY ON",
+        "headline": "Extra hours for a target",
+        "body": "Chasing a number can swallow the evening. Go easy: set the hours you give it.",
+        "link": "the 8's overwork"
+      },
+      {
+        "label": "WATCH OUT",
+        "headline": "A gift heard as a debt",
+        "body": "An 8 day tends to hear a kindness as an obligation. Say 'thank you' and stop there.",
+        "link": "the 8's habit of keeping score"
+      }
+    ],
+    "work": [
+      {
+        "label": "WATCH OUT",
+        "headline": "Another task on a full plate",
+        "body": "Effort comes naturally on an 8 day and the load can keep growing. Drop one thing before you add one.",
+        "link": "the 8's overwork"
+      },
+      {
+        "label": "GO EASY ON",
+        "headline": "Doing every detail yourself",
+        "body": "Control can look like competence and tends to slow a team. Go easy: delegate one task fully.",
+        "link": "the 8's need for control"
+      },
+      {
+        "label": "AVOID",
+        "headline": "Rating people by results",
+        "body": "Measuring colleagues by output can hide what they carry. Ask how someone is first.",
+        "link": "the 8's hardness"
+      },
+      {
+        "label": "WATCH OUT",
+        "headline": "A sharp tone in a message",
+        "body": "Pressure may sharpen your voice. When you notice it, wait a minute before you send.",
+        "link": "the 8's hardness"
+      },
+      {
+        "label": "GO EASY ON",
+        "headline": "No stop time set",
+        "body": "Without a limit, work tends to expand to fill everything. Go easy: set a finishing hour now.",
+        "link": "the 8's overwork"
+      },
+      {
+        "label": "WATCH OUT",
+        "headline": "Taking all the credit or blame",
+        "body": "An 8 day tends to carry the outcome alone. Name one contributor and say what they did.",
+        "link": "the 8's need for control"
+      }
+    ],
+    "relationships": [
+      {
+        "label": "WATCH OUT",
+        "headline": "Running people like a project",
+        "body": "You may notice you manage partners and friends like tasks. Ask what they would like first.",
+        "link": "the 8's need for control"
+      },
+      {
+        "label": "GO EASY ON",
+        "headline": "A firm tone that lands hard",
+        "body": "Stress can make you short. Go easy: say 'I am under pressure, not angry at you'.",
+        "link": "the 8's hardness"
+      },
+      {
+        "label": "AVOID",
+        "headline": "Scorekeeping in a close bond",
+        "body": "Tracking who did more tends to sour affection. Say one thing you appreciate first.",
+        "link": "the 8's habit of keeping score"
+      },
+      {
+        "label": "WATCH OUT",
+        "headline": "Rushing past a feeling",
+        "body": "Feelings can look slow to an 8. Listen for two minutes without fixing.",
+        "link": "the 8's impatience with softness"
+      },
+      {
+        "label": "GO EASY ON",
+        "headline": "Providing instead of being there",
+        "body": "Providing is real care and can stand in for presence. Go easy: give twenty minutes with no agenda.",
+        "link": "the 8's habit of showing care through work"
+      },
+      {
+        "label": "WATCH OUT",
+        "headline": "Setting everyone's speed",
+        "body": "It is easy to expect everyone to match your pace. Ask what pace feels right to them.",
+        "link": "the 8's impatience"
+      }
+    ],
+    "energy": [
+      {
+        "label": "WATCH OUT",
+        "headline": "Pushing past your limit",
+        "body": "8 days lean on effort and control. Pick a stop time this morning and keep it, even if the list isn't done.",
+        "link": "the 8's overwork"
+      },
+      {
+        "label": "GO EASY ON",
+        "headline": "Rest as a prize",
+        "body": "You may notice rest feels like something to earn. Go easy: take a short break before the push.",
+        "link": "the 8's habit of measuring worth by output"
+      },
+      {
+        "label": "AVOID",
+        "headline": "Letting work take the weekend",
+        "body": "A weekend task can become a habit. Keep one block free of work.",
+        "link": "the 8's overwork"
+      },
+      {
+        "label": "WATCH OUT",
+        "headline": "Running on pressure",
+        "body": "Stress can feel like energy for a while. Notice when it runs you and walk for ten minutes.",
+        "link": "the 8's need for control"
+      },
+      {
+        "label": "GO EASY ON",
+        "headline": "Skipping the break",
+        "body": "Skipped breaks tend to slow the afternoon. Go easy: take a real ten minutes.",
+        "link": "the 8's overwork"
+      },
+      {
+        "label": "WATCH OUT",
+        "headline": "Handling everyone's problems",
+        "body": "An 8 day can make you the one who handles everything. Ask one person to take one problem.",
+        "link": "the 8's habit of taking charge"
+      }
+    ],
+    "mind": [
+      {
+        "label": "WATCH OUT",
+        "headline": "Grading the day by output",
+        "body": "You may notice the day gets scored on what it produced. Note one thing that mattered and produced nothing.",
+        "link": "the 8's habit of measuring worth by output"
+      },
+      {
+        "label": "GO EASY ON",
+        "headline": "A critic that drives and belittles",
+        "body": "The voice that pushes you can also put you down. Go easy: speak to yourself as to a colleague.",
+        "link": "the 8's hardness"
+      },
+      {
+        "label": "AVOID",
+        "headline": "Controlling every outcome",
+        "body": "Wanting certainty can feel like diligence and tends to exhaust. Name one thing out of your hands.",
+        "link": "the 8's need for control"
+      },
+      {
+        "label": "WATCH OUT",
+        "headline": "Impatient with a slower pace",
+        "body": "An 8 day tends to speed up as others slow. Ask what the slower pace protects.",
+        "link": "the 8's impatience with softness"
+      },
+      {
+        "label": "GO EASY ON",
+        "headline": "Looking at who is ahead",
+        "body": "It is easy to measure yourself against others. Go easy: compare today with your own last week.",
+        "link": "the 8's habit of keeping score"
+      },
+      {
+        "label": "WATCH OUT",
+        "headline": "A light hour feeling like failure",
+        "body": "You may notice slack time feels like falling behind. Plan one hour on purpose.",
+        "link": "the 8's resistance to slowing down"
+      }
+    ]
+  },
+  "9": {
+    "money": [
+      {
+        "label": "WATCH OUT",
+        "headline": "Giving beyond what you can spare",
+        "body": "A 9 day can make generosity feel like duty. Decide your giving amount before you are asked.",
+        "link": "the 9's martyrdom"
+      },
+      {
+        "label": "GO EASY ON",
+        "headline": "Gifts spread too thin",
+        "body": "Many small gifts can feel kind and are hard to track. Go easy: choose one cause to support well.",
+        "link": "the 9's scattered giving"
+      },
+      {
+        "label": "AVOID",
+        "headline": "Giving until it sours",
+        "body": "Giving beyond your means tends to turn into bitterness. If you notice the sourness, lower the amount.",
+        "link": "the 9's bitterness after over-giving"
+      },
+      {
+        "label": "WATCH OUT",
+        "headline": "Ignoring your own figures",
+        "body": "Attention to others' needs can crowd out your own. Spend ten minutes on your accounts.",
+        "link": "the 9's detachment from its own needs"
+      },
+      {
+        "label": "GO EASY ON",
+        "headline": "Holding on out of loyalty",
+        "body": "You may keep something because ending it feels disloyal. Go easy: close one small thing.",
+        "link": "the 9's trouble letting go"
+      },
+      {
+        "label": "WATCH OUT",
+        "headline": "Unpaid effort, quiet resentment",
+        "body": "A 9 day tends to pull toward unpaid work. Name what you are giving and set a limit.",
+        "link": "the 9's martyrdom"
+      }
+    ],
+    "work": [
+      {
+        "label": "WATCH OUT",
+        "headline": "A yes to every cause",
+        "body": "A 9 day can draw you into every good project. Choose one and decline the rest kindly.",
+        "link": "the 9's scattered giving"
+      },
+      {
+        "label": "GO EASY ON",
+        "headline": "Tending what is finished",
+        "body": "It is easy to keep tending something that is done. Go easy: write what finished means and close it.",
+        "link": "the 9's trouble letting go"
+      },
+      {
+        "label": "AVOID",
+        "headline": "Giving the credit away",
+        "body": "Passing every compliment on can keep your work unseen. Say what you contributed.",
+        "link": "the 9's self-effacement"
+      },
+      {
+        "label": "WATCH OUT",
+        "headline": "Resentment about no thanks",
+        "body": "You may notice resentment building when work goes unthanked. Ask for what you need.",
+        "link": "the 9's bitterness"
+      },
+      {
+        "label": "GO EASY ON",
+        "headline": "A cause that became a job",
+        "body": "Extras can pile up. Go easy: set the hours you offer and write them down.",
+        "link": "the 9's martyrdom"
+      },
+      {
+        "label": "WATCH OUT",
+        "headline": "Distance when it turns personal",
+        "body": "A wide view can slip into distance. When someone shares something sensitive, stay and listen.",
+        "link": "the 9's detachment"
+      }
+    ],
+    "relationships": [
+      {
+        "label": "WATCH OUT",
+        "headline": "Staying loyal past usefulness",
+        "body": "A 9 day can keep you in something long after it works. Ask what you would need for it to work.",
+        "link": "the 9's trouble letting go"
+      },
+      {
+        "label": "GO EASY ON",
+        "headline": "Giving without being asked how you are",
+        "body": "Generosity can hide a wish to be asked. Go easy: state one need to someone close.",
+        "link": "the 9's self-neglect"
+      },
+      {
+        "label": "AVOID",
+        "headline": "Withdrawing instead of speaking",
+        "body": "Detachment can feel like calm and often hides hurt. Say what is bothering you in one sentence.",
+        "link": "the 9's detachment"
+      },
+      {
+        "label": "WATCH OUT",
+        "headline": "An old hurt returning",
+        "body": "You may notice a past grievance resurfacing. Write the story down, then decide whether you need it.",
+        "link": "the 9's trouble letting go"
+      },
+      {
+        "label": "GO EASY ON",
+        "headline": "Loving someone's potential",
+        "body": "It is easy to love what someone could be. Go easy: describe them as they are now.",
+        "link": "the 9's idealism"
+      },
+      {
+        "label": "WATCH OUT",
+        "headline": "Rescuing unasked",
+        "body": "A 9 day pulls toward helping everyone. Ask 'what would help?' and let them answer.",
+        "link": "the 9's wish to save others"
+      }
+    ],
+    "energy": [
+      {
+        "label": "WATCH OUT",
+        "headline": "Giving until empty",
+        "body": "A 9 day can drain you slowly. Decide what you can offer now and stop there.",
+        "link": "the 9's martyrdom"
+      },
+      {
+        "label": "GO EASY ON",
+        "headline": "A cause with no off switch",
+        "body": "Worthy work can take every hour. Go easy: set a time when it stops.",
+        "link": "the 9's habit of living for a cause"
+      },
+      {
+        "label": "AVOID",
+        "headline": "Putting everyone before you",
+        "body": "Putting everyone first can feel noble and tends to wear thin. Do one thing for yourself.",
+        "link": "the 9's self-neglect"
+      },
+      {
+        "label": "WATCH OUT",
+        "headline": "A sadness skipped over",
+        "body": "Endings can bring a heaviness that is easy to push past. Sit with it for five minutes.",
+        "link": "the 9's detachment from its own feelings"
+      },
+      {
+        "label": "GO EASY ON",
+        "headline": "No room for play",
+        "body": "A serious day can crowd out play. Go easy: add one small enjoyable thing.",
+        "link": "the 9's habit of living for a cause"
+      },
+      {
+        "label": "WATCH OUT",
+        "headline": "Carrying every ending",
+        "body": "A 9 day tends to bring closings. Mark one with a small ritual, then put it down.",
+        "link": "the 9's trouble letting go"
+      }
+    ],
+    "mind": [
+      {
+        "label": "WATCH OUT",
+        "headline": "Old hurts on repeat",
+        "body": "A 9 day can bring old grievances back. Ask whether it is still useful and write a line to set it down.",
+        "link": "the 9's trouble letting go"
+      },
+      {
+        "label": "GO EASY ON",
+        "headline": "A wide view, no starting point",
+        "body": "Seeing everything can make you unsure where to act. Go easy: choose one small thing that is yours.",
+        "link": "the 9's scattered giving"
+      },
+      {
+        "label": "AVOID",
+        "headline": "Thinking nobody understands",
+        "body": "Feeling unseen can slide into bitterness. Tell one person what you wish they knew.",
+        "link": "the 9's bitterness"
+      },
+      {
+        "label": "WATCH OUT",
+        "headline": "Your plans waiting on the cause",
+        "body": "You may notice your own plans waiting while the cause gets everything. Do one small personal thing now.",
+        "link": "the 9's habit of living for a cause"
+      },
+      {
+        "label": "GO EASY ON",
+        "headline": "Guilt about the undone",
+        "body": "It is easy to feel bad about unfinished things. Go easy: finish one and release one.",
+        "link": "the 9's trouble letting go"
+      },
+      {
+        "label": "WATCH OUT",
+        "headline": "Standing apart from people",
+        "body": "A wide perspective can turn into distance. Share one personal thing with someone.",
+        "link": "the 9's detachment"
+      }
+    ]
+  }
+}

@@ -46,6 +46,26 @@ export function setSnippetText(id: string, text: string, root = DATA_ROOT): void
   writeFileSync(path, `${JSON.stringify(json, null, 2)}\n`);
 }
 
+/** Replaces all fields of a snippet that has them (a caution's label, headline, body and link). */
+export function setSnippetFields(id: string, fields: Record<string, string>, root = DATA_ROOT): void {
+  const parsed = parseId(id);
+  if (!parsed || !parsed.family.fields) throw new Error(`${id} has no fields`);
+  const path = join(root, parsed.family.file);
+  const json = JSON.parse(readFileSync(path, 'utf8')) as Obj;
+  let node: Obj = json;
+  for (const key of [...(parsed.family.within ?? []), ...parsed.keys.slice(0, -1)]) node = node[key] as Obj;
+  const last = parsed.keys[parsed.keys.length - 1] as string;
+  const value = Object.fromEntries(parsed.family.fields.map((f) => [f, fields[f] ?? '']));
+  if (parsed.variant !== undefined) {
+    const list = node[last] as Obj[];
+    if (!Array.isArray(list) || parsed.variant < 1 || parsed.variant > list.length) throw new Error(`No variant ${parsed.variant} for ${id}`);
+    list[parsed.variant - 1] = value;
+  } else {
+    node[last] = value;
+  }
+  writeFileSync(path, `${JSON.stringify(json, null, 2)}\n`);
+}
+
 /** Records a status. Drafts are the default, so the file only holds edited and approved snippets. */
 export function writeStatus(map: Record<string, Status>, file = STATUS_FILE): void {
   const sparse = Object.fromEntries(

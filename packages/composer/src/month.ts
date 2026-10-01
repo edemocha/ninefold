@@ -4,6 +4,7 @@ import {
   daysInMonth,
   monthName,
   personalDayNumber,
+  monthVariantIndex,
   personalMonthOn,
   personalYear,
   weekday,
@@ -14,6 +15,7 @@ import {
 } from '@numerology/engine';
 import { MONTH_SECTIONS } from '@numerology/content';
 import { need, type Bank } from './bank';
+import { composeCautions, type CautionCard } from './cautions';
 import { displayNumber, withArticle } from './format';
 import type { ReadingSection } from './life';
 
@@ -50,6 +52,8 @@ export type MonthReading = {
   days: DayCell[];
   /** More than one entry when the birthday falls inside the month (birthday convention). */
   segments: MonthSegment[];
+  /** Five cautions, one per facet. */
+  cautions: CautionCard[];
   steps: Step[];
   sources: string[];
 };
@@ -90,9 +94,11 @@ export function composeMonth(bank: Bank, birth: YMD, year: number, month: number
     sections,
     days: [],
     segments: [],
+    cautions: composeCautions(monthLayer.caution, 'month', pm.value, monthVariantIndex(birth, year, month, c)),
     steps: pm.steps,
     sources,
   };
+  for (const caution of reading.cautions) sources.push(caution.source);
 
   const line = monthLayer.monthYear[key]?.[yearKey];
   if (line) {

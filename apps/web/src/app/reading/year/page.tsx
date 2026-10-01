@@ -2,6 +2,7 @@
 
 import { composeYear, currentCycleYear } from '@numerology/composer';
 import { AppLink } from '@/components/app-link';
+import { CautionPanel } from '@/components/caution-panel';
 import { ExportPanel } from '@/components/export-buttons';
 import { Icon } from '@/components/icon';
 import { LayerGate } from '@/components/layer-gate';
@@ -9,6 +10,7 @@ import { BigNumber, ConventionChips, WhyThisNumber } from '@/components/number';
 import { Sections } from '@/components/sections';
 import { hrefWith } from '@/lib/hash';
 import { useProfile } from '@/lib/profile-context';
+import { t } from '@/lib/t';
 import { useToday } from '@/lib/use-today';
 
 export default function YearPage() {
@@ -74,6 +76,8 @@ export default function YearPage() {
                   ) : null}
                 </div>
               </section>
+
+              <CautionPanel id="caution-year" title={t('caution.title.year')} cautions={reading.cautions} />
 
               <section aria-labelledby="months-title" className="space-y-5">
                 <h2 id="months-title" className="text-3xl">

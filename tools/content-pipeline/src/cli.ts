@@ -2,7 +2,7 @@ import { readFileSync } from 'node:fs';
 import type { Status } from '@numerology/content';
 import { buildLayers } from './build';
 import { buildDraftRequest, callClaude } from './draft';
-import { setSnippetText } from './edit';
+import { setSnippetFields, setSnippetText } from './edit';
 import { formatGate, runGate } from './gate';
 import { formatReport, lint } from './lint';
 import { loadFamilies } from './load';
@@ -81,7 +81,8 @@ async function main(): Promise<void> {
       const draft = await callClaude(request, key);
       console.log(draft.text);
       if (has('apply')) {
-        setSnippetText(id, draft.text);
+        if (draft.fields) setSnippetFields(id, draft.fields);
+        else setSnippetText(id, draft.text);
         console.log(`\nWritten to ${id} as a draft. Run lint, then review it.`);
       }
       break;

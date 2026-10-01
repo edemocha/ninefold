@@ -1,0 +1,1730 @@
+{
+  "1": {
+    "money": [
+      {
+        "label": "WATCH OUT",
+        "headline": "New-month, new-gear urges",
+        "body": "A 1 month can make fresh starts look like they need new things. Put the item on a list, wait three days, and check whether it still earns its place.",
+        "link": "the 1's urge to start fresh with new things"
+      },
+      {
+        "label": "GO EASY ON",
+        "headline": "Settling shared costs solo",
+        "body": "It is easy to settle who pays what this month without asking. Go easy on it: send one message with the plan and wait for a reply first.",
+        "link": "the 1's habit of going it alone"
+      },
+      {
+        "label": "AVOID",
+        "headline": "Spending to look self-sufficient",
+        "body": "Paying for everything yourself can be a way of saying you need nobody. Let someone else cover one small thing and say thank you.",
+        "link": "the 1's need to stand on its own"
+      },
+      {
+        "label": "WATCH OUT",
+        "headline": "Skipping the question you should ask",
+        "body": "You may notice you would rather guess a price or a term than ask. Ask once, in plain words, before you commit to anything.",
+        "link": "the 1's difficulty asking for help"
+      },
+      {
+        "label": "GO EASY ON",
+        "headline": "Paying for speed again and again",
+        "body": "A 1 month tends to be impatient, and speed has a price. Go easy on shortcuts that cost extra: wait a day on the next one.",
+        "link": "the 1's impatience"
+      },
+      {
+        "label": "WATCH OUT",
+        "headline": "Bristling when spending is questioned",
+        "body": "If someone asks about a cost, you tend to defend before you look. Pull up the number first and answer from it.",
+        "link": "the 1's defensiveness"
+      }
+    ],
+    "work": [
+      {
+        "label": "WATCH OUT",
+        "headline": "Running the meeting yourself",
+        "body": "A 1 month can push you to take the lead in every room. Ask a quiet person for their view before you give yours.",
+        "link": "the 1's bossy streak"
+      },
+      {
+        "label": "GO EASY ON",
+        "headline": "A new start every week",
+        "body": "You may find a new idea each Monday. Go easy on switching: give the current project four more weeks before you open another.",
+        "link": "the 1's pull to begin without finishing"
+      },
+      {
+        "label": "AVOID",
+        "headline": "Brushing off a colleague's concern",
+        "body": "Treating a worry as a delay can cost more than hearing it. Ask one follow-up question and write down what they said.",
+        "link": "the 1's defensiveness"
+      },
+      {
+        "label": "WATCH OUT",
+        "headline": "Not delegating the dull part",
+        "body": "You may notice you keep the tedious parts because explaining takes longer. Write three lines of instructions and hand one piece over.",
+        "link": "the 1's habit of going it alone"
+      },
+      {
+        "label": "GO EASY ON",
+        "headline": "Deciding before the facts arrive",
+        "body": "This month rewards speed, and speed can run ahead of the data. Go easy on early commitments: ask what is still unknown first.",
+        "link": "the 1's impatience"
+      },
+      {
+        "label": "WATCH OUT",
+        "headline": "Holding to the plan against the evidence",
+        "body": "A 1 tends to defend its plan when things change. Look at what changed and adjust one step, not the whole thing.",
+        "link": "the 1's stubbornness"
+      }
+    ],
+    "relationships": [
+      {
+        "label": "WATCH OUT",
+        "headline": "Plans handed down, not discussed",
+        "body": "In a 1 month you may find yourself telling people the plan. Ask one person what they would prefer, then actually use the answer.",
+        "link": "the 1's bossiness"
+      },
+      {
+        "label": "GO EASY ON",
+        "headline": "Winning the small argument",
+        "body": "The small argument is easy to win and costly to keep. Go easy: say 'you may be right' once this week and watch the room soften.",
+        "link": "the 1's stubbornness"
+      },
+      {
+        "label": "AVOID",
+        "headline": "Going quiet instead of asking for support",
+        "body": "Pushing through alone can look like calm and feel like distance. Tell someone close what kind of help would actually land.",
+        "link": "the 1's difficulty asking for help"
+      },
+      {
+        "label": "WATCH OUT",
+        "headline": "Snapping at slower replies",
+        "body": "A 1 month tends to shorten your patience. Notice the irritation, wait a minute before answering, and start with a question.",
+        "link": "the 1's impatience"
+      },
+      {
+        "label": "GO EASY ON",
+        "headline": "Choosing everything for the group",
+        "body": "Picking the place, the time and the plan is easy to slip into. Go easy: hand one choice to someone else and accept their pick.",
+        "link": "the 1's need to lead"
+      },
+      {
+        "label": "WATCH OUT",
+        "headline": "Reading advice as criticism",
+        "body": "You may notice a bristle when someone offers a suggestion. Thank them first and decide later what to use.",
+        "link": "the 1's defensiveness"
+      }
+    ],
+    "energy": [
+      {
+        "label": "WATCH OUT",
+        "headline": "A strong start and a sagging middle",
+        "body": "A 1 month can start at full speed and fade by week three. Plan the easy days in advance so the middle is already softened.",
+        "link": "the 1's all-in starts"
+      },
+      {
+        "label": "GO EASY ON",
+        "headline": "Treating breaks as lost time",
+        "body": "This month, rest can feel like falling behind. Go easy on that story: block two short breaks a day and keep them.",
+        "link": "the 1's reluctance to slow down"
+      },
+      {
+        "label": "AVOID",
+        "headline": "Pushing through to prove stamina",
+        "body": "Showing you can keep going is a pressure you set yourself. Name a finishing hour for each day and honor it.",
+        "link": "the 1's need to prove itself"
+      },
+      {
+        "label": "WATCH OUT",
+        "headline": "Fuelling the day with irritation",
+        "body": "Impatience tends to feel like energy for about an hour. Notice when it appears and walk for five minutes before replying.",
+        "link": "the 1's impatience"
+      },
+      {
+        "label": "GO EASY ON",
+        "headline": "Too many projects drawing on one tank",
+        "body": "Every new thing in a 1 month can draw on the same energy. Go easy on starts: choose two active projects and park the rest.",
+        "link": "the 1's scattered beginnings"
+      },
+      {
+        "label": "WATCH OUT",
+        "headline": "Carrying the whole load to avoid asking",
+        "body": "You may find that asking costs less energy than carrying. Name one task for someone else and ask for it in the next day.",
+        "link": "the 1's habit of going it alone"
+      }
+    ],
+    "mind": [
+      {
+        "label": "WATCH OUT",
+        "headline": "Sureness arriving too early",
+        "body": "A 1 month tends to produce quick conviction. Write down what would change your mind and check it at the end of the week.",
+        "link": "the 1's quick certainty"
+      },
+      {
+        "label": "GO EASY ON",
+        "headline": "Calling questions a weakness",
+        "body": "You may notice a belief that asking shows you are behind. Go easy on it: ask one honest question this month and see who answers.",
+        "link": "the 1's difficulty asking for help"
+      },
+      {
+        "label": "AVOID",
+        "headline": "Rejecting ideas by their source",
+        "body": "If an idea comes from someone else, it can feel less worth hearing. Judge it on a page, without the name attached.",
+        "link": "the 1's defensiveness"
+      },
+      {
+        "label": "WATCH OUT",
+        "headline": "Needing to settle it all first",
+        "body": "The urge to answer everything before anyone chimes in can crowd out better options. Share a rough plan and ask for one edit.",
+        "link": "the 1's bossiness"
+      },
+      {
+        "label": "GO EASY ON",
+        "headline": "Counting who is ahead",
+        "body": "Being first can become tracking who else is. Go easy on the scoreboard and list one thing you finished each week.",
+        "link": "the 1's competitive streak"
+      },
+      {
+        "label": "WATCH OUT",
+        "headline": "Defending a first impression",
+        "body": "A first take often hardens into a position. Give it a second look after a night's sleep before you argue for it.",
+        "link": "the 1's stubbornness"
+      }
+    ]
+  },
+  "2": {
+    "money": [
+      {
+        "label": "WATCH OUT",
+        "headline": "Covering costs to avoid awkwardness",
+        "body": "A 2 month may find you paying to skip a tense moment. Before you cover it, say the figure and ask if splitting would be fair.",
+        "link": "the 2's habit of smoothing things over"
+      },
+      {
+        "label": "GO EASY ON",
+        "headline": "Putting off the shared-money talk",
+        "body": "It is easy to let a money topic slide because it feels uncomfortable. Go easy on the delay: pick a day this month and bring the numbers.",
+        "link": "the 2's avoidance of conflict"
+      },
+      {
+        "label": "AVOID",
+        "headline": "Counting favors in silence",
+        "body": "Keeping a private score tends to harden into resentment. Name one specific thing that feels uneven and ask for a small change.",
+        "link": "the 2's habit of keeping score quietly"
+      },
+      {
+        "label": "WATCH OUT",
+        "headline": "Rounds and gifts to win approval",
+        "body": "You may notice generosity that is really a bid to be liked. Pause before the next round and ask whether you would do it unseen.",
+        "link": "the 2's wish to please"
+      },
+      {
+        "label": "GO EASY ON",
+        "headline": "Waiting for the other person's number",
+        "body": "Hoping someone else sets the budget can give you no say. Go easy: write your own figure before the conversation.",
+        "link": "the 2's indecision"
+      },
+      {
+        "label": "WATCH OUT",
+        "headline": "Handing over every money choice",
+        "body": "A 2 month tends to lean on whoever seems most confident. Make one small money choice yourself and note how it feels.",
+        "link": "the 2's leaning on others"
+      }
+    ],
+    "work": [
+      {
+        "label": "WATCH OUT",
+        "headline": "A yes that costs a weekend",
+        "body": "A 2 month can fill your calendar with other people's priorities. Answer 'let me check' to the next request and compare it with your list.",
+        "link": "the 2's people-pleasing"
+      },
+      {
+        "label": "GO EASY ON",
+        "headline": "Asking again before you begin",
+        "body": "The pull to seek approval can slow a good start. Go easy on checking in: begin the first section, then share it.",
+        "link": "the 2's indecision"
+      },
+      {
+        "label": "AVOID",
+        "headline": "Nodding while you disagree",
+        "body": "Agreeing out loud and disagreeing inside often builds distance. Say one calm sentence about your concern and offer a way forward.",
+        "link": "the 2's avoidance of conflict"
+      },
+      {
+        "label": "WATCH OUT",
+        "headline": "Handing your credit to someone else",
+        "body": "You may notice you deflect thanks. Accept one compliment this month with just 'thank you'.",
+        "link": "the 2's self-effacing habit"
+      },
+      {
+        "label": "GO EASY ON",
+        "headline": "Decoding a short reply",
+        "body": "A brief message can feel like a final judgment. Go easy on the guessing and ask what they meant.",
+        "link": "the 2's over-sensitivity"
+      },
+      {
+        "label": "WATCH OUT",
+        "headline": "Noting who did less",
+        "body": "Tracking unequal effort quietly tends to sour a team. Ask for one specific thing early, before it builds.",
+        "link": "the 2's habit of keeping score quietly"
+      }
+    ],
+    "relationships": [
+      {
+        "label": "WATCH OUT",
+        "headline": "Waiting to be understood without asking",
+        "body": "You may drop hints and hope they land. This month, turn one hint into a plain request and accept the answer.",
+        "link": "the 2's avoidance of conflict"
+      },
+      {
+        "label": "GO EASY ON",
+        "headline": "Saying sorry before you have thought",
+        "body": "Apologies can arrive on reflex in a 2 month. Go easy on it: pause, then say sorry only for what you did.",
+        "link": "the 2's people-pleasing"
+      },
+      {
+        "label": "AVOID",
+        "headline": "Soaking up another person's mood",
+        "body": "Carrying someone else's mood can feel like care and wear you out. Tell yourself 'that part is theirs' and do one thing that is yours.",
+        "link": "the 2's over-sensitivity"
+      },
+      {
+        "label": "WATCH OUT",
+        "headline": "Letting wishes go unspoken",
+        "body": "Hoping people notice what you want can slide into resentment. State one preference before they ask.",
+        "link": "the 2's habit of waiting"
+      },
+      {
+        "label": "GO EASY ON",
+        "headline": "Smoothing every rough edge",
+        "body": "Keeping the peace at any cost tends to keep honest topics away. Let one small disagreement stay open for a few minutes.",
+        "link": "the 2's avoidance of conflict"
+      },
+      {
+        "label": "WATCH OUT",
+        "headline": "A small remark that lingers",
+        "body": "A casual comment may sting longer than it needs to. Ask what they meant before you decide it was unkind.",
+        "link": "the 2's over-sensitivity"
+      }
+    ],
+    "energy": [
+      {
+        "label": "WATCH OUT",
+        "headline": "Helping until you are empty",
+        "body": "A 2 month can make helping automatic. Block one slot a week for you alone, and treat it as fixed.",
+        "link": "the 2's over-giving"
+      },
+      {
+        "label": "GO EASY ON",
+        "headline": "Trading your quiet for others' comfort",
+        "body": "You may skip time alone to keep everyone content. Go easy: guard twenty minutes of silence daily.",
+        "link": "the 2's reluctance to disappoint"
+      },
+      {
+        "label": "AVOID",
+        "headline": "Replaying conversations after dark",
+        "body": "Going over a talk late into the evening can cost rest and seldom changes anything. Write the worry down and decide to look at it in the morning.",
+        "link": "the 2's over-sensitivity"
+      },
+      {
+        "label": "WATCH OUT",
+        "headline": "Waiting out the room instead of resting",
+        "body": "It is easy to stay on until everyone is settled. Take your break first and let the room manage.",
+        "link": "the 2's people-pleasing"
+      },
+      {
+        "label": "GO EASY ON",
+        "headline": "Yes to plans you do not want",
+        "body": "Agreeing to dodge an awkward moment can cost a full evening. Go easy: say 'let me check' and answer later.",
+        "link": "the 2's avoidance of conflict"
+      },
+      {
+        "label": "WATCH OUT",
+        "headline": "Matching everyone else's speed",
+        "body": "You may adapt to every pace but your own. Choose one daily task and do it at your own rhythm.",
+        "link": "the 2's leaning on others"
+      }
+    ],
+    "mind": [
+      {
+        "label": "WATCH OUT",
+        "headline": "Weighing it for weeks",
+        "body": "Considering every side can become a way of avoiding the choice. Set a decision date, pick the better of two, and keep it for a month.",
+        "link": "the 2's indecision"
+      },
+      {
+        "label": "GO EASY ON",
+        "headline": "Mind-reading as a habit",
+        "body": "A 2 month tends to run on guessing what others want. Go easy: ask one person what they would pick.",
+        "link": "the 2's habit of reading others first"
+      },
+      {
+        "label": "AVOID",
+        "headline": "Polishing a message past the point",
+        "body": "Editing a note ten times often makes it less honest. Send the second draft and let it be enough.",
+        "link": "the 2's over-sensitivity"
+      },
+      {
+        "label": "WATCH OUT",
+        "headline": "Needing others to confirm your choice",
+        "body": "You may hold off trusting a decision until someone approves. Write your own preference on paper first.",
+        "link": "the 2's leaning on others"
+      },
+      {
+        "label": "GO EASY ON",
+        "headline": "Doubt after a kind decision",
+        "body": "After you choose, a 2 month can bring a round of second thoughts. Go easy: note why you chose and recheck at month end.",
+        "link": "the 2's indecision"
+      },
+      {
+        "label": "WATCH OUT",
+        "headline": "A list of small unfair moments",
+        "body": "Quiet scorekeeping tends to grow unseen. Choose one item and bring it up kindly.",
+        "link": "the 2's habit of keeping score quietly"
+      }
+    ]
+  },
+  "3": {
+    "money": [
+      {
+        "label": "WATCH OUT",
+        "headline": "Cheering yourself up with a purchase",
+        "body": "A 3 month can make a small buy feel like a mood fix. Put it on a list for 48 hours and see whether the wish survives.",
+        "link": "the 3's mood swings"
+      },
+      {
+        "label": "GO EASY ON",
+        "headline": "Gear for a hobby you have not started",
+        "body": "Planning a new interest can be more fun than starting it. Go easy: use what you own for two weeks before you add anything.",
+        "link": "the 3's unfinished projects"
+      },
+      {
+        "label": "AVOID",
+        "headline": "Paying to seem generous",
+        "body": "Picking up the bill to look warm can stand in for feeling it. Ask whether you would do it if no one saw.",
+        "link": "the 3's habit of performing instead of feeling"
+      },
+      {
+        "label": "WATCH OUT",
+        "headline": "Small charges that creep",
+        "body": "Little recurring costs tend to stack up in a lively month. Spend one hour listing what renews and drop one.",
+        "link": "the 3's scattered attention"
+      },
+      {
+        "label": "GO EASY ON",
+        "headline": "Enjoying the plan more than the step",
+        "body": "A money plan can feel done once it sounds good. Go easy on describing: write one figure and one date.",
+        "link": "the 3's surface talk"
+      },
+      {
+        "label": "WATCH OUT",
+        "headline": "A joke where the figure should be",
+        "body": "Humor can blur who owes what. State the amount plainly first and let the laughter follow.",
+        "link": "the 3's habit of avoiding the dull detail"
+      }
+    ],
+    "work": [
+      {
+        "label": "WATCH OUT",
+        "headline": "A fresh idea every Monday",
+        "body": "A 3 month can bring a new concept each week. Finish a small piece of the oldest open task before you start another.",
+        "link": "the 3's unfinished projects"
+      },
+      {
+        "label": "GO EASY ON",
+        "headline": "A good description in place of progress",
+        "body": "You may notice a plan feels done once it is explained well. Go easy: add the first concrete step and a date.",
+        "link": "the 3's surface talk"
+      },
+      {
+        "label": "AVOID",
+        "headline": "Laughing past the real issue",
+        "body": "A joke can ease the room and skip the point. Say the serious version first, then lighten it.",
+        "link": "the 3's habit of avoiding depth"
+      },
+      {
+        "label": "WATCH OUT",
+        "headline": "A yes before the diary is open",
+        "body": "Enthusiasm tends to answer before the calendar is checked. Reply 'let me confirm' to the next request.",
+        "link": "the 3's scattered enthusiasm"
+      },
+      {
+        "label": "GO EASY ON",
+        "headline": "A beautiful pitch with loose details",
+        "body": "The story is easy to polish and the footnotes easy to skip. Go easy: ask someone to check the numbers.",
+        "link": "the 3's habit of favoring the bright part"
+      },
+      {
+        "label": "WATCH OUT",
+        "headline": "Ten threads in the air",
+        "body": "A 3 month pulls you toward every interesting thread. Keep three live and park the rest in writing.",
+        "link": "the 3's scattered attention"
+      }
+    ],
+    "relationships": [
+      {
+        "label": "WATCH OUT",
+        "headline": "Talking to avoid a pause",
+        "body": "You may notice you fill every gap. Let one silence stand this month and see what the other person offers.",
+        "link": "the 3's habit of avoiding depth"
+      },
+      {
+        "label": "GO EASY ON",
+        "headline": "A joke on a closed topic",
+        "body": "Humor can keep a mood light and a topic shut. Go easy: say the plain sentence, then smile.",
+        "link": "the 3's habit of performing instead of feeling"
+      },
+      {
+        "label": "AVOID",
+        "headline": "Bonding over stories about others",
+        "body": "Gossip can feel like closeness and tends to keep things thin. Offer something true about yourself.",
+        "link": "the 3's surface talk"
+      },
+      {
+        "label": "WATCH OUT",
+        "headline": "A graceful change of subject",
+        "body": "You may be skilled at steering away from the hard thing. Name it and ask for ten minutes.",
+        "link": "the 3's habit of avoiding depth"
+      },
+      {
+        "label": "GO EASY ON",
+        "headline": "Open one evening, distant the next",
+        "body": "A warm night can be followed by a retreat that confuses people. Go easy on the swing: say when you need a quiet day.",
+        "link": "the 3's mood swings"
+      },
+      {
+        "label": "WATCH OUT",
+        "headline": "Only showing the sunny version",
+        "body": "A 3 month tends to put the best story forward. Tell one friend how it really went.",
+        "link": "the 3's habit of performing instead of feeling"
+      }
+    ],
+    "energy": [
+      {
+        "label": "WATCH OUT",
+        "headline": "A high, then a crash",
+        "body": "A 3 month can lift you and drop you quickly. Schedule an easy day after each big social one.",
+        "link": "the 3's mood swings"
+      },
+      {
+        "label": "GO EASY ON",
+        "headline": "Every invitation, every time",
+        "body": "Social energy is easy to spend. Go easy: choose two events a week you want and decline the rest warmly.",
+        "link": "the 3's scattered attention"
+      },
+      {
+        "label": "AVOID",
+        "headline": "One more story before bed",
+        "body": "Late evenings of talk can feel like fuel and often take from the next morning. Name your going-home time and keep it.",
+        "link": "the 3's pull toward the next bright thing"
+      },
+      {
+        "label": "WATCH OUT",
+        "headline": "Reaching for something new when flat",
+        "body": "You may notice a new thing appears whenever the day dips. Walk for ten minutes first and see if the urge fades.",
+        "link": "the 3's restless appetite for novelty"
+      },
+      {
+        "label": "GO EASY ON",
+        "headline": "Fearing the quiet hour",
+        "body": "Quiet can feel dull in a 3 month. Go easy on avoiding it: sit with a notebook for fifteen minutes.",
+        "link": "the 3's habit of avoiding depth"
+      },
+      {
+        "label": "WATCH OUT",
+        "headline": "A feed where rest should be",
+        "body": "You may find scrolling fills the space rest would fill better. Put the phone out of reach for the last half hour.",
+        "link": "the 3's habit of reaching for stimulation"
+      }
+    ],
+    "mind": [
+      {
+        "label": "WATCH OUT",
+        "headline": "Ideas faster than action",
+        "body": "A 3 month tends to produce ideas quicker than they can be tried. Write each one down and revisit the list on Friday.",
+        "link": "the 3's scattered attention"
+      },
+      {
+        "label": "GO EASY ON",
+        "headline": "Skimming everything",
+        "body": "It is easy to know a little about a lot. Go easy: choose one subject and read two pages deeper.",
+        "link": "the 3's habit of avoiding depth"
+      },
+      {
+        "label": "AVOID",
+        "headline": "Measuring your life against highlights",
+        "body": "Other people's best moments can make an ordinary day look dull. Name one thing that was good about yours.",
+        "link": "the 3's need for an audience"
+      },
+      {
+        "label": "WATCH OUT",
+        "headline": "A clever reason to drop it",
+        "body": "You may notice a neat argument for abandoning the project. Write it down and test it after a night's sleep.",
+        "link": "the 3's unfinished projects"
+      },
+      {
+        "label": "GO EASY ON",
+        "headline": "Messages left in drafts",
+        "body": "A good message can sit unsent for days. Go easy on perfecting: send the plain version.",
+        "link": "the 3's habit of avoiding the hard part"
+      },
+      {
+        "label": "WATCH OUT",
+        "headline": "A mood that rewrites the plan",
+        "body": "Mood swings tend to change how a plan looks. Check the same decision on two different days.",
+        "link": "the 3's mood swings"
+      }
+    ]
+  },
+  "4": {
+    "money": [
+      {
+        "label": "WATCH OUT",
+        "headline": "A figure-perfect plan with no air",
+        "body": "A 4 month can tighten every line of the budget until nothing is left for pleasure. Keep one small line for fun and spend it.",
+        "link": "the 4's rigidity"
+      },
+      {
+        "label": "GO EASY ON",
+        "headline": "Re-checking the same sum",
+        "body": "Another check feels safe and can eat an evening. Go easy: check once, note the date, and close the page.",
+        "link": "the 4's narrow focus on detail"
+      },
+      {
+        "label": "AVOID",
+        "headline": "Saying no to every unplanned treat",
+        "body": "Refusing anything off the list can feel disciplined and joyless. Pick one small treat on purpose and enjoy it without a tally.",
+        "link": "the 4's joyless routine"
+      },
+      {
+        "label": "WATCH OUT",
+        "headline": "Sticking with an old tracking method",
+        "body": "A 4 month tends to keep what worked last time. Try a different way of recording costs for four weeks and compare.",
+        "link": "the 4's resistance to change"
+      },
+      {
+        "label": "GO EASY ON",
+        "headline": "Counting spare time as waste",
+        "body": "You may notice unscheduled hours feel like a loss. Go easy: keep one hour free this month with no saving task.",
+        "link": "the 4's overwork"
+      },
+      {
+        "label": "WATCH OUT",
+        "headline": "Correcting how others handle money",
+        "body": "Stubbornness tends to label other habits as careless. Ask how they decide before you advise.",
+        "link": "the 4's stubbornness"
+      }
+    ],
+    "work": [
+      {
+        "label": "WATCH OUT",
+        "headline": "Staying late on principle",
+        "body": "A 4 month can make long hours feel like integrity. Set a finishing time for the week and keep it even if the list is long.",
+        "link": "the 4's overwork"
+      },
+      {
+        "label": "GO EASY ON",
+        "headline": "Holding the plan as things change",
+        "body": "You may notice the plan gets tighter when the facts move. Go easy: list what changed and amend one step.",
+        "link": "the 4's resistance to change"
+      },
+      {
+        "label": "AVOID",
+        "headline": "Redoing colleagues' work",
+        "body": "Checking over what others did can feel like care and often signals doubt. Keep one item exactly as they made it.",
+        "link": "the 4's need for control of detail"
+      },
+      {
+        "label": "WATCH OUT",
+        "headline": "Doubting anything untested",
+        "body": "A 4 month tends to prefer the proven way. Try the new idea small, for two weeks, before you judge it.",
+        "link": "the 4's suspicion of the untried"
+      },
+      {
+        "label": "GO EASY ON",
+        "headline": "Fine-tuning the layout first",
+        "body": "The formatting is easy to polish while the question waits. Go easy: send the correct version and refine later.",
+        "link": "the 4's narrow focus on detail"
+      },
+      {
+        "label": "WATCH OUT",
+        "headline": "Breaks lost to the schedule",
+        "body": "The schedule can outrank the person following it. Put two breaks a day in the calendar and treat them as meetings.",
+        "link": "the 4's joyless routine"
+      }
+    ],
+    "relationships": [
+      {
+        "label": "WATCH OUT",
+        "headline": "Love expressed only as arrangements",
+        "body": "You may notice care arriving as lists and logistics. Say one warm sentence this month that has nothing to do with a plan.",
+        "link": "the 4's habit of showing love through tasks"
+      },
+      {
+        "label": "GO EASY ON",
+        "headline": "The better method, announced",
+        "body": "A 4 month tends to spot the improved way at once. Go easy on the correction: ask what they were aiming for.",
+        "link": "the 4's rigidity"
+      },
+      {
+        "label": "AVOID",
+        "headline": "Winning on detail, losing the evening",
+        "body": "Being right about a small point can cost the mood. Say 'you may be right' once and watch what shifts.",
+        "link": "the 4's stubbornness"
+      },
+      {
+        "label": "WATCH OUT",
+        "headline": "Every weekend planned",
+        "body": "A full plan can crowd out surprise. Keep one afternoon open and let someone else choose.",
+        "link": "the 4's narrow routine"
+      },
+      {
+        "label": "GO EASY ON",
+        "headline": "Waiting for the tidy way to say it",
+        "body": "Holding feelings until the phrasing is perfect can mean silence. Go easy: say it plainly and briefly.",
+        "link": "the 4's difficulty with unstructured feeling"
+      },
+      {
+        "label": "WATCH OUT",
+        "headline": "Bristling at sudden plans",
+        "body": "You may find last-minute changes irritating. Ask friends for a heads-up and agree to one spontaneous yes a month.",
+        "link": "the 4's resistance to change"
+      }
+    ],
+    "energy": [
+      {
+        "label": "WATCH OUT",
+        "headline": "Running on stamina and pride",
+        "body": "A 4 month can make endurance a source of pride. When your attention thins, pause for ten minutes before the next step.",
+        "link": "the 4's overwork"
+      },
+      {
+        "label": "GO EASY ON",
+        "headline": "Rest filed under laziness",
+        "body": "You may notice rest feels like falling behind. Go easy on that story: schedule recovery as firmly as a task.",
+        "link": "the 4's joyless routine"
+      },
+      {
+        "label": "AVOID",
+        "headline": "Clinging to a worn-out routine",
+        "body": "A habit that once served you can quietly drain you. Change one element of the daily pattern and see how it feels.",
+        "link": "the 4's resistance to change"
+      },
+      {
+        "label": "WATCH OUT",
+        "headline": "A month with no play in it",
+        "body": "A 4 month tends to fill the diary with useful things. Book one purely enjoyable thing and protect it.",
+        "link": "the 4's joyless routine"
+      },
+      {
+        "label": "GO EASY ON",
+        "headline": "Long stretches on one task",
+        "body": "Narrow focus can feel productive and wear you down. Go easy: stand and walk five minutes each hour.",
+        "link": "the 4's narrow focus"
+      },
+      {
+        "label": "WATCH OUT",
+        "headline": "Weekend work by habit",
+        "body": "The habit can continue after the need has ended. Choose one weekend day that stays work-free.",
+        "link": "the 4's overwork"
+      }
+    ],
+    "mind": [
+      {
+        "label": "WATCH OUT",
+        "headline": "Sorting everything into right or wrong",
+        "body": "A 4 month tends to see two options only. Look for a third before you settle.",
+        "link": "the 4's rigidity"
+      },
+      {
+        "label": "GO EASY ON",
+        "headline": "One detail swallowing the week",
+        "body": "A single detail can swallow an afternoon. Go easy: set a timer, then look at the whole picture.",
+        "link": "the 4's narrow focus"
+      },
+      {
+        "label": "AVOID",
+        "headline": "Turning down a new idea on reflex",
+        "body": "A fresh idea can feel like a threat to what is built. Write it down and revisit it in a week.",
+        "link": "the 4's suspicion of the untried"
+      },
+      {
+        "label": "WATCH OUT",
+        "headline": "Dwelling on what could go wrong",
+        "body": "Planning for problems helps and can slip into dwelling. List two risks, one step for each, then close the list.",
+        "link": "the 4's need to control outcomes"
+      },
+      {
+        "label": "GO EASY ON",
+        "headline": "Polishing past good enough",
+        "body": "It is easy to keep refining after the work is done. Go easy: write what 'done' means before you begin.",
+        "link": "the 4's perfectionism"
+      },
+      {
+        "label": "WATCH OUT",
+        "headline": "Every hour mapped out",
+        "body": "Over-planning tends to take the room out of a month. Keep one part of the plan open.",
+        "link": "the 4's joyless routine"
+      }
+    ]
+  },
+  "5": {
+    "money": [
+      {
+        "label": "GO EASY ON",
+        "headline": "A spur-of-the-moment big spend",
+        "body": "A 5 month can pull toward quick, exciting purchases. Add anything large to a list and wait three days.",
+        "link": "the 5's impulsiveness"
+      },
+      {
+        "label": "WATCH OUT",
+        "headline": "Hunting for the next bargain",
+        "body": "A deal can feel like an adventure. Write down what you need before you shop and stop when you have it.",
+        "link": "the 5's appetite for novelty"
+      },
+      {
+        "label": "AVOID",
+        "headline": "Buying change to feel different",
+        "body": "New things can lift your mood briefly and fade. Name what the purchase is meant to fix before you pay.",
+        "link": "the 5's restlessness"
+      },
+      {
+        "label": "WATCH OUT",
+        "headline": "Sign-ups you forget about",
+        "body": "New subscriptions are easy to say yes to. Put a review date in your calendar this week and cancel what you do not use.",
+        "link": "the 5's boredom with follow-through"
+      },
+      {
+        "label": "GO EASY ON",
+        "headline": "Joining every group plan",
+        "body": "Group costs can multiply quickly in a 5 month. Go easy: ask the total first, then decide.",
+        "link": "the 5's excess"
+      },
+      {
+        "label": "WATCH OUT",
+        "headline": "Refusing to settle on one option",
+        "body": "Keeping every choice open can delay a simple decision. Pick one and note the date.",
+        "link": "the 5's avoidance of commitment"
+      }
+    ],
+    "work": [
+      {
+        "label": "WATCH OUT",
+        "headline": "A sudden change of project",
+        "body": "A 5 month can make something new more attractive than the task in hand. Finish the current stage before you move.",
+        "link": "the 5's boredom with follow-through"
+      },
+      {
+        "label": "GO EASY ON",
+        "headline": "Rushing the unglamorous part",
+        "body": "The start and finish are exciting; the middle is easy to hurry. Go easy: put a small daily slot on the dull part.",
+        "link": "the 5's impatience with routine"
+      },
+      {
+        "label": "AVOID",
+        "headline": "Agreeing to everything",
+        "body": "Enthusiasm tends to say yes before checking. Write what the task would take and decide from the list.",
+        "link": "the 5's excess of enthusiasm"
+      },
+      {
+        "label": "WATCH OUT",
+        "headline": "A change nobody heard about",
+        "body": "A shift can feel natural to you and confusing to others. Send two lines when plans move.",
+        "link": "the 5's impulsiveness"
+      },
+      {
+        "label": "GO EASY ON",
+        "headline": "Five tasks at once",
+        "body": "Variety can keep you sharp and thin your attention. Go easy: choose two priorities and defer the rest.",
+        "link": "the 5's scattered attention"
+      },
+      {
+        "label": "WATCH OUT",
+        "headline": "Not committing to a direction",
+        "body": "A 5 month tends to resist a firm choice. Pick one direction and write it where you can see it.",
+        "link": "the 5's avoidance of commitment"
+      }
+    ],
+    "relationships": [
+      {
+        "label": "WATCH OUT",
+        "headline": "Needing space just as it deepens",
+        "body": "You may notice an urge to step back as closeness grows. Say 'I need a day' and say when you plan to reply.",
+        "link": "the 5's avoidance of commitment"
+      },
+      {
+        "label": "GO EASY ON",
+        "headline": "Cancelling because the mood shifted",
+        "body": "A change of mood can undo a plan. Go easy on the late no: decide earlier or join for an hour.",
+        "link": "the 5's impulsiveness"
+      },
+      {
+        "label": "AVOID",
+        "headline": "Staying deliberately unclear",
+        "body": "Being vague about what you want can feel flexible and frustrates people. Say one clear sentence about your choice.",
+        "link": "the 5's avoidance of commitment"
+      },
+      {
+        "label": "WATCH OUT",
+        "headline": "A warm yes that drifts away",
+        "body": "It is easy to agree and lose the thread. Put the promise in your calendar the moment you say it.",
+        "link": "the 5's boredom with follow-through"
+      },
+      {
+        "label": "GO EASY ON",
+        "headline": "Moving on mid-conversation",
+        "body": "A 5 month tends to move faster than the other person. Go easy: ask one more question first.",
+        "link": "the 5's restlessness"
+      },
+      {
+        "label": "WATCH OUT",
+        "headline": "New faces over old friends",
+        "body": "New company can be more exciting than the familiar. Contact one old friend and listen properly.",
+        "link": "the 5's appetite for novelty"
+      }
+    ],
+    "energy": [
+      {
+        "label": "WATCH OUT",
+        "headline": "A diary with no gaps",
+        "body": "A 5 month can be thrilling and tiring. Keep two evenings a week empty and treat them as fixed.",
+        "link": "the 5's excess"
+      },
+      {
+        "label": "GO EASY ON",
+        "headline": "Stimulation passing for energy",
+        "body": "Excitement can feel like fuel for an afternoon. Go easy: pair each big day with a quiet one.",
+        "link": "the 5's appetite for stimulation"
+      },
+      {
+        "label": "AVOID",
+        "headline": "Burning the night for the next thing",
+        "body": "Late nights can be fun for a few days and wear thin quickly. Pick a bedtime and keep it most evenings.",
+        "link": "the 5's excess"
+      },
+      {
+        "label": "WATCH OUT",
+        "headline": "Scrolling when restless",
+        "body": "You may notice restlessness sends you to a feed. Step outside for ten minutes first.",
+        "link": "the 5's restlessness"
+      },
+      {
+        "label": "GO EASY ON",
+        "headline": "No fixed point in the day",
+        "body": "Too much variety tends to drain you. Go easy: keep one anchor, such as the same start time.",
+        "link": "the 5's resistance to routine"
+      },
+      {
+        "label": "WATCH OUT",
+        "headline": "Comfort food for restless nerves",
+        "body": "You may notice you reach for comfort food when restless or stressed. Pause for water and a minute of slow breathing first.",
+        "link": "the 5's habit of reaching for stimulation"
+      }
+    ],
+    "mind": [
+      {
+        "label": "WATCH OUT",
+        "headline": "Deciding at speed",
+        "body": "A 5 month tends to rush choices. Add a pause: write the choice and one consequence, then act.",
+        "link": "the 5's impulsiveness"
+      },
+      {
+        "label": "GO EASY ON",
+        "headline": "The fear of missing out",
+        "body": "Every invitation can look like the one to catch. Go easy: ask what you would really give up by declining.",
+        "link": "the 5's appetite for novelty"
+      },
+      {
+        "label": "AVOID",
+        "headline": "Dropping things when they dull",
+        "body": "Boredom can look like a sign that something is wrong. Keep going one more week before you decide.",
+        "link": "the 5's boredom with follow-through"
+      },
+      {
+        "label": "WATCH OUT",
+        "headline": "Already on to the next thing",
+        "body": "You may notice your mind jumping ahead. Give one hour to what is in front of you.",
+        "link": "the 5's scattered attention"
+      },
+      {
+        "label": "GO EASY ON",
+        "headline": "Doors left ajar",
+        "body": "Open options feel like freedom and can keep you stuck. Go easy: close one this month on purpose.",
+        "link": "the 5's avoidance of commitment"
+      },
+      {
+        "label": "WATCH OUT",
+        "headline": "An itch mistaken for a calling",
+        "body": "The urge to change everything often passes. Write it down and look again in two weeks.",
+        "link": "the 5's restlessness"
+      }
+    ]
+  },
+  "6": {
+    "money": [
+      {
+        "label": "WATCH OUT",
+        "headline": "Covering costs to feel needed",
+        "body": "A 6 month can make paying for others feel like love. Ask whether you were asked and whether you can pay without keeping count.",
+        "link": "the 6's wish to be needed"
+      },
+      {
+        "label": "GO EASY ON",
+        "headline": "Spending more on gifts than planned",
+        "body": "It is easy to buy a little extra for people you care about. Go easy: set the amount first and keep to it.",
+        "link": "the 6's over-giving"
+      },
+      {
+        "label": "AVOID",
+        "headline": "Paying, then keeping score",
+        "body": "Generosity with strings tends to sour. Give only what you can give freely, and say so if you cannot.",
+        "link": "the 6's resentment when care is not returned"
+      },
+      {
+        "label": "WATCH OUT",
+        "headline": "Spending to quiet a guilty feeling",
+        "body": "You may notice a buy that is really about feeling like a good parent or partner. Wait a day and ask who it is for.",
+        "link": "the 6's guilt about not doing enough"
+      },
+      {
+        "label": "GO EASY ON",
+        "headline": "A flawless budget with no cushion",
+        "body": "A perfect plan can crowd out surprise. Go easy: add a small cushion line and let it be.",
+        "link": "the 6's perfectionism"
+      },
+      {
+        "label": "WATCH OUT",
+        "headline": "Everyone's money, your desk",
+        "body": "A 6 month tends to make you the household treasurer. Hand one money task back to its owner.",
+        "link": "the 6's habit of taking on others' load"
+      }
+    ],
+    "work": [
+      {
+        "label": "WATCH OUT",
+        "headline": "Absorbing a colleague's workload",
+        "body": "You may notice you take on extra because it is quicker than asking. Name what you are carrying and hand something back.",
+        "link": "the 6's habit of taking on others' load"
+      },
+      {
+        "label": "GO EASY ON",
+        "headline": "Fixing what was already good",
+        "body": "A 6 month can send you back to perfect a finished piece. Go easy: write 'good and finished' as the standard.",
+        "link": "the 6's perfectionism"
+      },
+      {
+        "label": "AVOID",
+        "headline": "Covering gaps without saying so",
+        "body": "Quiet cover can look like loyalty and tends to teach others to rely on it. Say what you can do in the time you have.",
+        "link": "the 6's over-giving"
+      },
+      {
+        "label": "WATCH OUT",
+        "headline": "Letting your effort go unseen",
+        "body": "Helpfulness often goes unnoticed. Say what you did in one plain sentence.",
+        "link": "the 6's habit of working unseen"
+      },
+      {
+        "label": "GO EASY ON",
+        "headline": "A yes to each small request",
+        "body": "Small favors add up to a second job. Go easy: say 'I can do that next week'.",
+        "link": "the 6's difficulty refusing"
+      },
+      {
+        "label": "WATCH OUT",
+        "headline": "Fussing over the unasked detail",
+        "body": "Attention to the small thing is a strength and can become meddling. Ask whether it matters to the person it is for.",
+        "link": "the 6's meddling"
+      }
+    ],
+    "relationships": [
+      {
+        "label": "WATCH OUT",
+        "headline": "Suggestions in place of listening",
+        "body": "A 6 month tends to turn care into advice. Ask 'advice or just company?' before you offer any.",
+        "link": "the 6's control through helpfulness"
+      },
+      {
+        "label": "GO EASY ON",
+        "headline": "A private tally of who gave more",
+        "body": "You may notice a quiet count building. Go easy: say what you need in one plain sentence.",
+        "link": "the 6's resentment when care is not returned"
+      },
+      {
+        "label": "AVOID",
+        "headline": "Solving it before hearing it",
+        "body": "Fixing a problem can feel like love and can skip the listening. Ask one more question first.",
+        "link": "the 6's control through helpfulness"
+      },
+      {
+        "label": "WATCH OUT",
+        "headline": "Adjusting yourself to keep others comfortable",
+        "body": "You may find you shape yourself to everyone else's mood. Notice which feelings are yours.",
+        "link": "the 6's habit of taking on others' load"
+      },
+      {
+        "label": "GO EASY ON",
+        "headline": "Standing close in case you are needed",
+        "body": "It is easy to hover. Go easy: step back for an hour and let them finish.",
+        "link": "the 6's meddling"
+      },
+      {
+        "label": "WATCH OUT",
+        "headline": "Hoping to be thanked",
+        "body": "Unspoken expectations of thanks can sour a kindness. Give without a ledger, or say what you would like back.",
+        "link": "the 6's resentment when care is not returned"
+      }
+    ],
+    "energy": [
+      {
+        "label": "WATCH OUT",
+        "headline": "Spent on everyone else",
+        "body": "A 6 month can make your own needs feel optional. Put one hour a week in the diary for you alone.",
+        "link": "the 6's over-giving"
+      },
+      {
+        "label": "GO EASY ON",
+        "headline": "One gathering too many",
+        "body": "Welcoming people is a gift and can wear you thin. Go easy: choose two you want and decline the rest warmly.",
+        "link": "the 6's wish to look after everyone"
+      },
+      {
+        "label": "AVOID",
+        "headline": "Doing the whole household alone",
+        "body": "Quiet effort can look like devotion and tends to exhaust. Name one chore and ask someone to own it.",
+        "link": "the 6's habit of taking on others' load"
+      },
+      {
+        "label": "WATCH OUT",
+        "headline": "Your rest at the back of the queue",
+        "body": "You may notice your rest is the first thing to go. Move it to the start of the day.",
+        "link": "the 6's self-neglect"
+      },
+      {
+        "label": "GO EASY ON",
+        "headline": "Everyone fed but you",
+        "body": "You may notice you reach for comfort food when you have given everything away. Make something comforting for yourself first.",
+        "link": "the 6's over-giving"
+      },
+      {
+        "label": "WATCH OUT",
+        "headline": "Feeling guilty for stopping",
+        "body": "Resting can feel like letting people down. Tell someone when you are off duty and keep to it.",
+        "link": "the 6's guilt about not doing enough"
+      }
+    ],
+    "mind": [
+      {
+        "label": "WATCH OUT",
+        "headline": "Measuring against an ideal home",
+        "body": "A 6 month tends to compare the home and the meal with an ideal. Name one thing that was good enough.",
+        "link": "the 6's perfectionism"
+      },
+      {
+        "label": "GO EASY ON",
+        "headline": "Guessing everyone's needs",
+        "body": "It is easy to act before anyone has asked. Go easy: ask once before you arrange it.",
+        "link": "the 6's meddling"
+      },
+      {
+        "label": "AVOID",
+        "headline": "Calling your rest selfish",
+        "body": "Rest can feel undeserved when others are busy. A rested carer often helps more than a tired one.",
+        "link": "the 6's guilt about not doing enough"
+      },
+      {
+        "label": "WATCH OUT",
+        "headline": "Carrying someone else's worry",
+        "body": "You may notice concerns that are not yours. Write them down and ask which you can act on.",
+        "link": "the 6's habit of taking on others' load"
+      },
+      {
+        "label": "GO EASY ON",
+        "headline": "A long review of a small slip",
+        "body": "A 6 month can turn a small mistake into a long review. Go easy: say what you would say to a friend.",
+        "link": "the 6's perfectionism"
+      },
+      {
+        "label": "WATCH OUT",
+        "headline": "Being the one who is needed",
+        "body": "Being needed can feel like worth. Teach one person to do one of your tasks.",
+        "link": "the 6's wish to be needed"
+      }
+    ]
+  },
+  "7": {
+    "money": [
+      {
+        "label": "WATCH OUT",
+        "headline": "A week of comparing small options",
+        "body": "A 7 month can turn a modest buy into days of comparison. Give it one evening, then choose the best you found.",
+        "link": "the 7's over-analysis"
+      },
+      {
+        "label": "GO EASY ON",
+        "headline": "Holding out for every unknown",
+        "body": "You may notice you wait until every unknown is answered, and some cannot be. Go easy: write the three facts you need and decide when you have them.",
+        "link": "the 7's habit of waiting for certainty"
+      },
+      {
+        "label": "AVOID",
+        "headline": "Hiding the figures from people involved",
+        "body": "Privacy is fine, and secrecy from those affected tends to build distance. Share one plain figure.",
+        "link": "the 7's secrecy"
+      },
+      {
+        "label": "WATCH OUT",
+        "headline": "Assuming every deal is a trick",
+        "body": "A 7 month can make each offer look like a trap. Check one claim properly and judge from that.",
+        "link": "the 7's cynicism"
+      },
+      {
+        "label": "GO EASY ON",
+        "headline": "More reading, no decision",
+        "body": "Reading more can feel productive and delay a simple choice. Go easy: write the choice and its date.",
+        "link": "the 7's over-analysis"
+      },
+      {
+        "label": "WATCH OUT",
+        "headline": "Big questions crowding out small forms",
+        "body": "Thinking about large things can push aside the small admin. Do one practical task before you read anything.",
+        "link": "the 7's withdrawal into thought"
+      }
+    ],
+    "work": [
+      {
+        "label": "WATCH OUT",
+        "headline": "Solo for weeks",
+        "body": "A 7 month can make solitary focus feel ideal. Share what you have with one person before it feels finished.",
+        "link": "the 7's withdrawal"
+      },
+      {
+        "label": "GO EASY ON",
+        "headline": "Holding work back until perfect",
+        "body": "You may notice you wait to show anything. Go easy: share a rough version and ask one question.",
+        "link": "the 7's secrecy"
+      },
+      {
+        "label": "AVOID",
+        "headline": "Analysis in place of a step",
+        "body": "A thorough study can feel safe and delay a simple action. Write the next step in one sentence and do it.",
+        "link": "the 7's over-analysis"
+      },
+      {
+        "label": "WATCH OUT",
+        "headline": "A cool reply to someone's excitement",
+        "body": "A dry reaction can read as disapproval. Name one thing you like before the doubts.",
+        "link": "the 7's cynicism"
+      },
+      {
+        "label": "GO EASY ON",
+        "headline": "Doubts stored in your head",
+        "body": "Quiet concerns tend to grow when unspoken. Go easy: say one doubt in a calm sentence at the next meeting.",
+        "link": "the 7's secrecy"
+      },
+      {
+        "label": "WATCH OUT",
+        "headline": "One more fact before deciding",
+        "body": "It is easy to think another fact would settle it. Set a decision date and use what you have.",
+        "link": "the 7's habit of waiting for certainty"
+      }
+    ],
+    "relationships": [
+      {
+        "label": "WATCH OUT",
+        "headline": "Retreating without a word",
+        "body": "You may notice you withdraw and others guess why. Send a short note: 'I need quiet; I plan to reply on Friday.'",
+        "link": "the 7's withdrawal"
+      },
+      {
+        "label": "GO EASY ON",
+        "headline": "Slow to answer messages",
+        "body": "A 7 month can drift from replies and plans. Go easy: answer one waiting message this week.",
+        "link": "the 7's aloofness"
+      },
+      {
+        "label": "AVOID",
+        "headline": "Keeping your real thoughts back",
+        "body": "Privacy is healthy and secrecy from people close to you tends to feel like distance. Tell one friend something you have kept to yourself.",
+        "link": "the 7's secrecy"
+      },
+      {
+        "label": "WATCH OUT",
+        "headline": "A wry remark that sounds cold",
+        "body": "A dry comment may be read as dismissal. Add a warm sentence after it.",
+        "link": "the 7's cynicism"
+      },
+      {
+        "label": "GO EASY ON",
+        "headline": "Studying a friend, not hearing them",
+        "body": "It is easy to read for meaning. Go easy: repeat what they said and ask if you got it right.",
+        "link": "the 7's over-analysis"
+      },
+      {
+        "label": "WATCH OUT",
+        "headline": "Quiet that nobody understands",
+        "body": "Time alone is healthy; unexplained, it can look like rejection. Say when you are recharging and when you are back.",
+        "link": "the 7's aloofness"
+      }
+    ],
+    "energy": [
+      {
+        "label": "WATCH OUT",
+        "headline": "Late loops of thought",
+        "body": "A 7 month tends to bring mental circling after dark. Write the question on paper and park it until morning.",
+        "link": "the 7's over-analysis"
+      },
+      {
+        "label": "GO EASY ON",
+        "headline": "More solitude than restores you",
+        "body": "Solitude helps and, in excess, can drain. Go easy: add one short social plan this week.",
+        "link": "the 7's withdrawal"
+      },
+      {
+        "label": "AVOID",
+        "headline": "Skipping fresh air and company",
+        "body": "Staying in with your thoughts can feel peaceful and tends to dull the mood. Take a twenty-minute walk.",
+        "link": "the 7's isolation"
+      },
+      {
+        "label": "WATCH OUT",
+        "headline": "A tired mind and a rested body",
+        "body": "You may notice your mind tires first. Switch to something with your hands for half an hour.",
+        "link": "the 7's over-analysis"
+      },
+      {
+        "label": "GO EASY ON",
+        "headline": "Passing on the shared break",
+        "body": "Skipping group breaks can keep your energy and connections low. Go easy: join one a week.",
+        "link": "the 7's aloofness"
+      },
+      {
+        "label": "WATCH OUT",
+        "headline": "Deep reading past bedtime",
+        "body": "Absorbing study can cost rest. Set a time to close the book and keep it.",
+        "link": "the 7's absorption in thought"
+      }
+    ],
+    "mind": [
+      {
+        "label": "WATCH OUT",
+        "headline": "Holding out for a complete answer",
+        "body": "A 7 month tends to wait for certainty. Write the best answer available and act on it for four weeks.",
+        "link": "the 7's habit of waiting for certainty"
+      },
+      {
+        "label": "GO EASY ON",
+        "headline": "Skepticism turning sour",
+        "body": "Doubt is useful and can slide into assuming the worst. Go easy: name one thing that might work before listing what may not.",
+        "link": "the 7's cynicism"
+      },
+      {
+        "label": "AVOID",
+        "headline": "Distrusting what is simply good",
+        "body": "A plain good result can look too easy to trust. Accept it for a day before you look for the catch.",
+        "link": "the 7's suspicion of the easy"
+      },
+      {
+        "label": "WATCH OUT",
+        "headline": "Studying a feeling, not feeling it",
+        "body": "You may notice you analyze a feeling instead of having it. Name it in one word.",
+        "link": "the 7's over-analysis"
+      },
+      {
+        "label": "GO EASY ON",
+        "headline": "Running a conversation again",
+        "body": "Going over what was said can feel like understanding. Go easy: pick one question for next time and drop the rest.",
+        "link": "the 7's over-analysis"
+      },
+      {
+        "label": "WATCH OUT",
+        "headline": "Good ideas kept private",
+        "body": "Good thinking often stays hidden. Share one idea this month, even half formed.",
+        "link": "the 7's secrecy"
+      }
+    ]
+  },
+  "8": {
+    "money": [
+      {
+        "label": "WATCH OUT",
+        "headline": "Worth tied to a figure",
+        "body": "An 8 month can tie self-respect to income or status. Write three things you value that no figure shows.",
+        "link": "the 8's habit of measuring worth by output"
+      },
+      {
+        "label": "GO EASY ON",
+        "headline": "Buying the visible proof",
+        "body": "It is easy to spend on what shows you are doing well. Go easy: wait a week on any buy meant mainly for display.",
+        "link": "the 8's need to prove itself"
+      },
+      {
+        "label": "AVOID",
+        "headline": "Holding every money decision",
+        "body": "Controlling all the choices can feel like responsibility and tends to shut others out. Hand one shared decision over completely.",
+        "link": "the 8's need for control"
+      },
+      {
+        "label": "WATCH OUT",
+        "headline": "An exact tally of who owes what",
+        "body": "You may notice a precise count of favors and shares. Forgive one small debt out loud.",
+        "link": "the 8's habit of keeping score"
+      },
+      {
+        "label": "GO EASY ON",
+        "headline": "Extra hours to reach a number",
+        "body": "Chasing a target can swallow evenings. Go easy: set the hours you give it and let the figure follow.",
+        "link": "the 8's overwork"
+      },
+      {
+        "label": "WATCH OUT",
+        "headline": "A kindness heard as a debt",
+        "body": "An 8 month tends to hear a gift as an obligation. Say 'thank you' and nothing about repaying it.",
+        "link": "the 8's habit of keeping score"
+      }
+    ],
+    "work": [
+      {
+        "label": "WATCH OUT",
+        "headline": "A heavier load every week",
+        "body": "Effort comes naturally this month and the load can keep growing. Name one commitment to drop before you add another.",
+        "link": "the 8's overwork"
+      },
+      {
+        "label": "GO EASY ON",
+        "headline": "Every detail through your hands",
+        "body": "Control can look like competence and tends to slow a team. Go easy: delegate one task with real authority.",
+        "link": "the 8's need for control"
+      },
+      {
+        "label": "AVOID",
+        "headline": "Rating colleagues by output",
+        "body": "Measuring people by results can hide what they carry. Ask how someone is before you ask about the work.",
+        "link": "the 8's hardness"
+      },
+      {
+        "label": "WATCH OUT",
+        "headline": "A sharp tone under pressure",
+        "body": "Pressure may sharpen your voice. When you notice it, wait a minute before you send the message.",
+        "link": "the 8's hardness"
+      },
+      {
+        "label": "GO EASY ON",
+        "headline": "A month without a finishing hour",
+        "body": "Without a limit, work tends to expand to fill everything. Go easy: set a stop time for each day.",
+        "link": "the 8's overwork"
+      },
+      {
+        "label": "WATCH OUT",
+        "headline": "Owning all the credit or blame",
+        "body": "An 8 month tends to carry the outcome alone. Name two contributors and say what they did.",
+        "link": "the 8's need for control"
+      }
+    ],
+    "relationships": [
+      {
+        "label": "WATCH OUT",
+        "headline": "People organized like projects",
+        "body": "You may notice you manage partners and friends like tasks. Ask what they would like before you propose the plan.",
+        "link": "the 8's need for control"
+      },
+      {
+        "label": "GO EASY ON",
+        "headline": "Firmness that reads as hardness",
+        "body": "Stress can make you firm and short. Go easy: say 'I am under pressure, not angry at you'.",
+        "link": "the 8's hardness"
+      },
+      {
+        "label": "AVOID",
+        "headline": "A running count in a close relationship",
+        "body": "Tracking who did more tends to sour affection. Say one thing you appreciate before you raise one that is uneven.",
+        "link": "the 8's habit of keeping score"
+      },
+      {
+        "label": "WATCH OUT",
+        "headline": "Feelings treated as inefficient",
+        "body": "Feelings can look slow to an 8. Listen for two minutes without offering a fix.",
+        "link": "the 8's impatience with softness"
+      },
+      {
+        "label": "GO EASY ON",
+        "headline": "Care that arrives only as providing",
+        "body": "Providing is real care and can stand in for presence. Go easy: give one hour with no agenda.",
+        "link": "the 8's habit of showing care through work"
+      },
+      {
+        "label": "WATCH OUT",
+        "headline": "Setting the pace for others",
+        "body": "It is easy to expect everyone to match your speed. Ask what pace feels right to them.",
+        "link": "the 8's impatience"
+      }
+    ],
+    "energy": [
+      {
+        "label": "WATCH OUT",
+        "headline": "Pushing past your limit",
+        "body": "An 8 month leans on effort and control. Pick a stop time each day and keep it, even if the list is not done.",
+        "link": "the 8's overwork"
+      },
+      {
+        "label": "GO EASY ON",
+        "headline": "Rest as something to earn",
+        "body": "You may notice rest feels like a reward. Go easy: schedule recovery before the push.",
+        "link": "the 8's habit of measuring worth by output"
+      },
+      {
+        "label": "AVOID",
+        "headline": "Weekends that turn into work",
+        "body": "A weekend task can become a habit. Pick one weekend day to keep free of work.",
+        "link": "the 8's overwork"
+      },
+      {
+        "label": "WATCH OUT",
+        "headline": "Running on pressure",
+        "body": "Stress can feel like energy for a while. Notice when it starts to run you and walk for ten minutes.",
+        "link": "the 8's need for control"
+      },
+      {
+        "label": "GO EASY ON",
+        "headline": "Skipping the break to save time",
+        "body": "Skipped breaks tend to slow the afternoon. Go easy: take a real ten-minute break.",
+        "link": "the 8's overwork"
+      },
+      {
+        "label": "WATCH OUT",
+        "headline": "Everyone's problems on your plate",
+        "body": "An 8 month can make you the one who handles everything. Ask one person to take one problem fully.",
+        "link": "the 8's habit of taking charge"
+      }
+    ],
+    "mind": [
+      {
+        "label": "WATCH OUT",
+        "headline": "Grading the month by output",
+        "body": "You may notice every week gets scored on what it produced. Note one thing that mattered and produced nothing.",
+        "link": "the 8's habit of measuring worth by output"
+      },
+      {
+        "label": "GO EASY ON",
+        "headline": "A critic that drives and belittles",
+        "body": "The voice that pushes you can also put you down. Go easy: speak to yourself as you would to a colleague.",
+        "link": "the 8's hardness"
+      },
+      {
+        "label": "AVOID",
+        "headline": "Wanting control of every result",
+        "body": "Wanting certainty can feel like diligence and tends to exhaust. Name one thing out of your hands and let it go.",
+        "link": "the 8's need for control"
+      },
+      {
+        "label": "WATCH OUT",
+        "headline": "Impatience when others slow down",
+        "body": "An 8 month tends to speed up as others slow. Ask what the slower pace is protecting.",
+        "link": "the 8's impatience with softness"
+      },
+      {
+        "label": "GO EASY ON",
+        "headline": "Measuring yourself against others",
+        "body": "It is easy to look at who is ahead. Go easy: compare this month with your own last one.",
+        "link": "the 8's habit of keeping score"
+      },
+      {
+        "label": "WATCH OUT",
+        "headline": "A lighter week feeling like failure",
+        "body": "You may notice a lighter schedule feels like falling behind. Plan one on purpose and see what changes.",
+        "link": "the 8's resistance to slowing down"
+      }
+    ]
+  },
+  "9": {
+    "money": [
+      {
+        "label": "WATCH OUT",
+        "headline": "Giving past your means",
+        "body": "A 9 month can make generosity feel like duty. Decide a giving amount before you are asked and keep to it.",
+        "link": "the 9's martyrdom"
+      },
+      {
+        "label": "GO EASY ON",
+        "headline": "Donations spread too thin",
+        "body": "Many small gifts can feel kind and are hard to track. Go easy: choose two causes to support well.",
+        "link": "the 9's scattered giving"
+      },
+      {
+        "label": "AVOID",
+        "headline": "Giving until it sours",
+        "body": "Giving beyond your means tends to turn into bitterness. If you notice the sourness, lower the amount and say so.",
+        "link": "the 9's bitterness after over-giving"
+      },
+      {
+        "label": "WATCH OUT",
+        "headline": "Skipping a look at your own figures",
+        "body": "Attention to others' needs can crowd out your own. Set aside twenty minutes to read your accounts.",
+        "link": "the 9's detachment from its own needs"
+      },
+      {
+        "label": "GO EASY ON",
+        "headline": "Keeping something out of loyalty",
+        "body": "You may hold on to items or commitments because ending them feels disloyal. Go easy: close one this month.",
+        "link": "the 9's trouble letting go"
+      },
+      {
+        "label": "WATCH OUT",
+        "headline": "Unpaid effort and quiet resentment",
+        "body": "A 9 month tends to pull toward unpaid work. Name what you are giving and set a limit aloud.",
+        "link": "the 9's martyrdom"
+      }
+    ],
+    "work": [
+      {
+        "label": "WATCH OUT",
+        "headline": "Saying yes to each worthy project",
+        "body": "A 9 month can draw you into every good cause. Choose one for real time and decline the rest kindly.",
+        "link": "the 9's scattered giving"
+      },
+      {
+        "label": "GO EASY ON",
+        "headline": "Tending a project past its season",
+        "body": "It is easy to keep tending something that is done. Go easy: write what finished means and close it.",
+        "link": "the 9's trouble letting go"
+      },
+      {
+        "label": "AVOID",
+        "headline": "Passing every compliment on",
+        "body": "Giving all the credit away can keep your work unseen. Say what you contributed in one plain sentence.",
+        "link": "the 9's self-effacement"
+      },
+      {
+        "label": "WATCH OUT",
+        "headline": "Unthanked effort turning bitter",
+        "body": "You may notice resentment building when work goes unthanked. Ask for what you need before it hardens.",
+        "link": "the 9's bitterness"
+      },
+      {
+        "label": "GO EASY ON",
+        "headline": "A good cause becoming a second job",
+        "body": "Extras can pile up. Go easy: set the hours you offer and write them down.",
+        "link": "the 9's martyrdom"
+      },
+      {
+        "label": "WATCH OUT",
+        "headline": "Distance when it gets personal",
+        "body": "A wide view can slip into distance. When someone raises something sensitive, stay and listen for five minutes.",
+        "link": "the 9's detachment"
+      }
+    ],
+    "relationships": [
+      {
+        "label": "WATCH OUT",
+        "headline": "Loyalty past usefulness",
+        "body": "A 9 month can keep you in something long after it works. Ask what would keep it alive and what you would need for that.",
+        "link": "the 9's trouble letting go"
+      },
+      {
+        "label": "GO EASY ON",
+        "headline": "Giving and not being asked in return",
+        "body": "Generosity can hide a wish to be asked how you are. Go easy: state one need to someone close.",
+        "link": "the 9's self-neglect"
+      },
+      {
+        "label": "AVOID",
+        "headline": "Retreating instead of saying it",
+        "body": "Detachment can feel like calm and often hides hurt. Say what is bothering you in one honest sentence.",
+        "link": "the 9's detachment"
+      },
+      {
+        "label": "WATCH OUT",
+        "headline": "An old grievance resurfacing",
+        "body": "You may notice a past hurt returning. Write the story down, then decide whether you still need it.",
+        "link": "the 9's trouble letting go"
+      },
+      {
+        "label": "GO EASY ON",
+        "headline": "Seeing the potential, not the person",
+        "body": "It is easy to love what someone could be. Go easy: describe them as they are now.",
+        "link": "the 9's idealism"
+      },
+      {
+        "label": "WATCH OUT",
+        "headline": "Rescuing people who did not ask",
+        "body": "A 9 month pulls toward helping everyone. Ask 'what would help?' and let them answer.",
+        "link": "the 9's wish to save others"
+      }
+    ],
+    "energy": [
+      {
+        "label": "WATCH OUT",
+        "headline": "Giving until empty",
+        "body": "A 9 month can drain you slowly. Decide in advance what you can offer this week and stop there.",
+        "link": "the 9's martyrdom"
+      },
+      {
+        "label": "GO EASY ON",
+        "headline": "A cause that does not switch off",
+        "body": "Worthy work can take every evening. Go easy: pick one day a week when it is off the table.",
+        "link": "the 9's habit of living for a cause"
+      },
+      {
+        "label": "AVOID",
+        "headline": "Putting everyone before yourself",
+        "body": "Putting everyone first can feel noble and tends to wear thin. Do one thing for yourself each day.",
+        "link": "the 9's self-neglect"
+      },
+      {
+        "label": "WATCH OUT",
+        "headline": "A heaviness you push past",
+        "body": "Endings can bring a sadness that is easy to skip. Take ten minutes to sit with it and write one sentence.",
+        "link": "the 9's detachment from its own feelings"
+      },
+      {
+        "label": "GO EASY ON",
+        "headline": "Play squeezed out",
+        "body": "A serious month can crowd out play. Go easy: add one small, purely enjoyable thing a week.",
+        "link": "the 9's habit of living for a cause"
+      },
+      {
+        "label": "WATCH OUT",
+        "headline": "Every closing carried alone",
+        "body": "A 9 month tends to bring many endings. Mark each with a small ritual, then put it down.",
+        "link": "the 9's trouble letting go"
+      }
+    ],
+    "mind": [
+      {
+        "label": "WATCH OUT",
+        "headline": "Old hurts on repeat",
+        "body": "A 9 month can bring old grievances back. When one returns, ask whether it is still useful and write a line to set it down.",
+        "link": "the 9's trouble letting go"
+      },
+      {
+        "label": "GO EASY ON",
+        "headline": "A wide view with no foothold",
+        "body": "Seeing everything can make you unsure where to act. Go easy: choose one small thing that is yours to do.",
+        "link": "the 9's scattered giving"
+      },
+      {
+        "label": "AVOID",
+        "headline": "Believing nobody understands",
+        "body": "Feeling unseen can slide into bitterness. Tell one person what you wish they knew.",
+        "link": "the 9's bitterness"
+      },
+      {
+        "label": "WATCH OUT",
+        "headline": "The cause eating your own plans",
+        "body": "You may notice your own plans waiting while the cause gets everything. Write one personal goal and give it a date.",
+        "link": "the 9's habit of living for a cause"
+      },
+      {
+        "label": "GO EASY ON",
+        "headline": "Guilt over what is undone",
+        "body": "It is easy to feel bad about unfinished things. Go easy: list three, finish one, and release the rest.",
+        "link": "the 9's trouble letting go"
+      },
+      {
+        "label": "WATCH OUT",
+        "headline": "Keeping a distance from people",
+        "body": "A wide perspective can turn into distance. Share one personal thing with someone this month.",
+        "link": "the 9's detachment"
+      }
+    ]
+  }
+}

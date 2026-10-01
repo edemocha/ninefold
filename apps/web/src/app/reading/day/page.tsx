@@ -4,6 +4,7 @@ import { useId, useMemo } from 'react';
 import { composeDay } from '@numerology/composer';
 import { addDays, isValidYMD, sameYMD, type YMD } from '@numerology/engine';
 import { AppLink } from '@/components/app-link';
+import { CautionPanel } from '@/components/caution-panel';
 import { DayCardView, dayShareSpec } from '@/components/day-card';
 import { ShareImageButton } from '@/components/export-buttons';
 import { Icon } from '@/components/icon';
@@ -82,6 +83,7 @@ function Card({ bank, birth, date }: { bank: Parameters<typeof composeDay>[0]; b
   return (
     <>
       <DayCardView card={card} />
+      {card.caution ? <CautionPanel id="caution-day" title={t('caution.title.day')} cautions={[card.caution]} /> : null}
       <section className="card-flat no-print flex flex-wrap items-center justify-between gap-4 p-5" aria-label={t('reading.exports')}>
         <p className="max-w-[48ch] text-sm text-muted">{t('reading.exportNote')}</p>
         <div className="flex flex-wrap gap-3">

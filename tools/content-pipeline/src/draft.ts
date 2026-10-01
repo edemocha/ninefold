@@ -1,6 +1,7 @@
 import { existsSync, readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { RULES, wordCount } from '@numerology/content';
+import { buildCautionRequest } from './caution-draft';
 import { parseId } from './edit';
 import { CONTENT_ROOT, loadFamilies, loadStatus, statusOf } from './load';
 
@@ -20,6 +21,8 @@ export type DraftRequest = {
   user: string;
   tool: { name: string; description: string; input_schema: Record<string, unknown> };
   budget: readonly [number, number];
+  /** The id the reply must carry, when it differs from the bank id (cautions use the brief's format). */
+  expectId?: string;
 };
 
 function readIfExists(path: string): string {
@@ -46,6 +49,10 @@ function describeSlot(id: string): { family: string; keys: string[]; variant?: n
 export function buildDraftRequest(id: string, contentRoot = CONTENT_ROOT): DraftRequest {
   const slot = describeSlot(id);
   const parsed = parseId(id)!;
+  if (parsed.family.caution) {
+    const c = buildCautionRequest(id, contentRoot);
+    return { id, model: DRAFT_MODEL, system: c.system, user: c.user, tool: c.tool, budget: parsed.family.words, expectId: c.expectId };
+  }
   const loaded = loadFamilies(join(contentRoot, 'data')).find((l) => l.family.id === slot.family);
   const status = loadStatus(join(contentRoot, 'status.json'));
   const siblings = (loaded?.snippets ?? []).filter((s) => s.id !== id);
@@ -115,7 +122,7 @@ export function buildDraftRequest(id: string, contentRoot = CONTENT_ROOT): Draft
   };
 }
 
-export type DraftResult = { id: string; text: string };
+export type DraftResult = { id: string; text: string; fields?: Record<string, string> };
 
 type FetchLike = (url: string, init: { method: string; headers: Record<string, string>; body: string }) => Promise<{
   ok: boolean;
@@ -139,9 +146,20 @@ export async function callClaude(request: DraftRequest, apiKey: string, fetchImp
     }),
   });
   if (!response.ok) throw new Error(`The API answered ${response.status}: ${await response.text()}`);
-  const body = (await response.json()) as { content?: { type: string; input?: { id?: string; text?: string } }[] };
-  const block = body.content?.find((c) => c.type === 'tool_use');
-  const text = block?.input?.text;
-  if (!text || block?.input?.id !== request.id) throw new Error('The reply did not contain the requested snippet.');
-  return { id: request.id, text: text.trim() };
+  const body = (await response.json()) as {
+    content?: { type: string; input?: { id?: string; text?: string; label?: string; headline?: string; body?: string; link_to_theme?: string } }[];
+  };
+  const input = body.content?.find((c) => c.type === 'tool_use')?.input;
+  if (input?.id !== (request.expectId ?? request.id)) throw new Error('The reply did not contain the requested snippet.');
+  if (request.expectId) {
+    // A caution: label, headline, body and the shadow trait it comes from.
+    if (!input?.label || !input.headline || !input.body || !input.link_to_theme) throw new Error('The reply did not contain the requested snippet.');
+    return {
+      id: request.id,
+      text: input.body.trim(),
+      fields: { label: input.label, headline: input.headline.trim(), body: input.body.trim(), link: input.link_to_theme.trim() },
+    };
+  }
+  if (!input?.text) throw new Error('The reply did not contain the requested snippet.');
+  return { id: request.id, text: input.text.trim() };
 }

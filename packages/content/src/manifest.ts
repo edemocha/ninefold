@@ -44,6 +44,33 @@ export const DAY_FACET_VARIANTS: Record<(typeof DAY_FACETS)[number], number> = {
 };
 export type DayFacet = (typeof DAY_FACETS)[number];
 
+/**
+ * Cautions: a short nudge about a behavior to watch, never a forecast. Each
+ * number has six variants for each of five facets, in each of three layers.
+ */
+export const CAUTION_FACETS = ['money', 'work', 'relationships', 'energy', 'mind'] as const;
+export type CautionFacet = (typeof CAUTION_FACETS)[number];
+export const CAUTION_LABELS = ['WATCH OUT', 'GO EASY ON', 'AVOID'] as const;
+export type CautionLabel = (typeof CAUTION_LABELS)[number];
+export const CAUTION_VARIANTS = 6;
+export const CAUTION_FIELDS = ['label', 'headline', 'body', 'link'] as const;
+export const CAUTION_VARIANT_COUNTS: Record<CautionFacet, number> = {
+  money: CAUTION_VARIANTS,
+  work: CAUTION_VARIANTS,
+  relationships: CAUTION_VARIANTS,
+  energy: CAUTION_VARIANTS,
+  mind: CAUTION_VARIANTS,
+};
+
+/**
+ * Fixed lines shown on every caution card, whatever the number. They are not
+ * generated, not tied to a number and not part of the bank.
+ */
+export const CAUTION_SAFETY_LINES = [
+  'Never drive tired, upset or impaired, on any day.',
+  'For health, money or legal decisions, talk to a qualified person, not a number.',
+] as const;
+
 /** Special dates, in the order the composer prefers them when several apply. */
 export const SPECIAL_DATES = [
   'birthday',
@@ -92,6 +119,20 @@ export type Family = {
   words: readonly [number, number];
   /** Snippets whose key at `axis` equals `value` must end on a question. */
   question?: { axis: number; value: string };
+  /**
+   * When set, each snippet is an object with exactly these fields (all plain
+   * text) instead of a string. `textField` is the one `words` applies to.
+   */
+  fields?: readonly string[];
+  textField?: string;
+  /** Per-field word budgets for the other fields: [min, max]. */
+  fieldWords?: Record<string, readonly [number, number]>;
+  /** Allowed values for a field, e.g. the caution labels. */
+  enums?: Record<string, readonly string[]>;
+  /** Marks a caution family, which the lint holds to extra rules. */
+  caution?: boolean;
+  /** Lint rule groups relaxed for this family (see rules.ts). */
+  allow?: readonly string[];
 };
 
 const coreFamily = (key: CoreKey): Family => ({
@@ -102,6 +143,22 @@ const coreFamily = (key: CoreKey): Family => ({
   axes: [coreValues(key), str(CORE_SECTIONS)],
   words: [28, 110],
   question: { axis: 1, value: 'growth' },
+});
+
+const cautionFamily = (layer: 'year' | 'month' | 'day'): Family => ({
+  id: `${layer}.caution`,
+  layer,
+  file: `${layer}/caution.json`,
+  path: ['caution'],
+  axes: [str(DIGITS), str(CAUTION_FACETS)],
+  variants: CAUTION_VARIANT_COUNTS,
+  words: [12, 35],
+  fields: CAUTION_FIELDS,
+  textField: 'body',
+  fieldWords: { headline: [2, 8], link: [3, 18] },
+  enums: { label: CAUTION_LABELS },
+  caution: true,
+  allow: ['spending'],
 });
 
 export const FAMILIES: readonly Family[] = [
@@ -182,6 +239,7 @@ export const FAMILIES: readonly Family[] = [
     axes: [str(DIGITS), str(VALUES)],
     words: [18, 65],
   },
+  cautionFamily('year'),
   {
     id: 'month.personalMonth',
     layer: 'month',
@@ -199,6 +257,7 @@ export const FAMILIES: readonly Family[] = [
     axes: [str(DIGITS), str(DIGITS)],
     words: [16, 55],
   },
+  cautionFamily('month'),
   {
     id: 'day.personalDay',
     layer: 'day',
@@ -233,6 +292,7 @@ export const FAMILIES: readonly Family[] = [
     axes: [str(SPECIAL_DATES)],
     words: [18, 65],
   },
+  cautionFamily('day'),
 ];
 
 export const LAYERS: readonly Layer[] = ['life', 'year', 'month', 'day'];
@@ -246,12 +306,15 @@ export type Snippet = {
   keys: string[];
   /** 1-based variant number for families with variants. */
   variant?: number;
+  /** The text the word budget and the guardrails apply to (a caution's body). */
   text: string;
+  /** All fields of a snippet that has them (a caution's label, headline, body, link). */
+  fields?: Record<string, string>;
 };
 
 export type Status = 'draft' | 'edited' | 'approved';
 
-type Json = string | string[] | { [k: string]: Json };
+type Json = string | Json[] | { [k: string]: Json };
 
 function dig(root: Json | undefined, keys: readonly string[]): Json | undefined {
   let node: Json | undefined = root;
@@ -260,6 +323,20 @@ function dig(root: Json | undefined, keys: readonly string[]): Json | undefined 
     node = node[k];
   }
   return node;
+}
+
+/** Reads a leaf as a snippet's text and, for field families, its fields. */
+function readLeaf(family: Family, node: Json | undefined): { text: string; fields?: Record<string, string> } | null {
+  if (family.fields) {
+    if (node === undefined || typeof node === 'string' || Array.isArray(node)) return null;
+    const fields: Record<string, string> = {};
+    for (const key of family.fields) {
+      const value = node[key];
+      fields[key] = typeof value === 'string' ? value : '';
+    }
+    return { text: fields[family.textField ?? family.fields[0] ?? ''] ?? '', fields };
+  }
+  return typeof node === 'string' ? { text: node } : null;
 }
 
 /** The part of a source file that holds this family. */
@@ -297,18 +374,20 @@ export function flattenFamily(family: Family, data: unknown): Snippet[] {
       const count = family.variants?.[last];
       if (count !== undefined) {
         const list = Array.isArray(node) ? node : [];
-        list.forEach((text, i) =>
+        list.forEach((item, i) => {
+          const leaf = readLeaf(family, item) ?? { text: String(item) };
           out.push({
             id: `${family.id}.${keys.join('.')}.v${i + 1}`,
             layer: family.layer,
             family: family.id,
             keys,
             variant: i + 1,
-            text: String(text),
-          }),
-        );
-      } else if (typeof node === 'string') {
-        out.push({ id: `${family.id}.${keys.join('.')}`, layer: family.layer, family: family.id, keys, text: node });
+            ...leaf,
+          });
+        });
+      } else {
+        const leaf = readLeaf(family, node);
+        if (leaf) out.push({ id: `${family.id}.${keys.join('.')}`, layer: family.layer, family: family.id, keys, ...leaf });
       }
       return;
     }

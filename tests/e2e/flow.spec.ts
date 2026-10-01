@@ -326,12 +326,87 @@ test.describe('exports', () => {
     const report = page.getByTestId('report');
     await expect(report).toBeVisible();
     await expect(page.getByTestId('report-disclaimer')).toHaveText(/Numerology is a symbolic tradition\. There is no scientific evidence/);
-    await expect(report.getByRole('heading', { level: 2 })).toHaveCount(6 + 12);
+    await expect(report.getByRole('heading', { level: 2 })).toHaveCount(6 + 12 + 1);
     const text = (await report.innerText()).toLowerCase();
     expect(text).not.toContain('amelia');
     expect(text).not.toContain('carter');
     await page.emulateMedia({ media: 'print' });
     await expect(page.getByRole('navigation', { name: 'Your reading' })).toBeHidden();
+  });
+});
+
+test.describe('cautions', () => {
+  const SAFETY = ['Never drive tired, upset or impaired, on any day.', 'For health, money or legal decisions, talk to a qualified person, not a number.'];
+
+  test.beforeEach(async ({ page }) => enter(page));
+
+  test('the day card has one caution, where it comes from, and both fixed safety lines', async ({ page }) => {
+    await go(page, 'Day');
+    const panel = page.getByTestId('caution-panel');
+    await expect(panel.getByRole('heading', { name: 'A caution for this day' })).toBeVisible();
+    await expect(panel.getByTestId('caution-card')).toHaveCount(1);
+    await expect(panel.getByTestId('caution-label')).toHaveText(/^(WATCH OUT|GO EASY ON|AVOID)$/);
+    await expect(panel.getByText('Comes from', { exact: true })).toBeVisible();
+    await expect(panel.getByText(/the 8's/)).toBeVisible();
+    for (const line of SAFETY) await expect(panel.getByTestId('caution-safety').getByText(line)).toBeVisible();
+    // The reading still ends on its reflection prompt: the caution is a separate card below it.
+    await expect(page.getByTestId('facet-reflect')).toContainText('?');
+  });
+
+  test('the caution is not a forecast: no certainty words appear on the card', async ({ page }) => {
+    await go(page, 'Day');
+    const text = (await page.getByTestId('caution-card').innerText()).toLowerCase();
+    expect(text).not.toMatch(/\b(will|always|never|guaranteed|destined|fate|doomed|cursed)\b/);
+  });
+
+  test('the year and month views have five cautions, one per facet', async ({ page }) => {
+    await go(page, 'Year');
+    const year = page.getByTestId('caution-panel');
+    await expect(year.getByRole('heading', { name: 'Cautions for the year' })).toBeVisible();
+    await expect(year.getByTestId('caution-card')).toHaveCount(5);
+    for (const facet of ['Money', 'Work', 'Relationships', 'Energy', 'Mind']) await expect(year.getByText(facet, { exact: true })).toBeVisible();
+
+    await go(page, 'Month');
+    const month = page.getByTestId('caution-panel');
+    await expect(month.getByRole('heading', { name: 'Cautions for the month' })).toBeVisible();
+    await expect(month.getByTestId('caution-card')).toHaveCount(5);
+  });
+
+  test('the safety lines are identical whatever the number, and never tied to one', async ({ page }) => {
+    await go(page, 'Day');
+    const texts: string[] = [];
+    const heads: string[] = [];
+    for (const date of ['2026-10-01', '2026-10-02', '2026-10-03', '2026-10-04']) {
+      await page.getByTestId('date-picker').fill(date);
+      await expect(page.getByTestId('day-card')).toBeVisible();
+      texts.push(await page.getByTestId('caution-safety').innerText());
+      heads.push(await page.getByTestId('personal-day').innerText());
+    }
+    expect(new Set(heads).size).toBe(4); // four different personal day numbers
+    expect(new Set(texts).size).toBe(1); // one set of safety lines
+    for (const line of SAFETY) expect(texts[0]).toContain(line);
+    // No number appears inside the safety lines.
+    expect(texts[0]?.replace(/True on every day, whatever your numbers say/, '')).not.toMatch(/\d/);
+  });
+
+  test('a different date gives a different caution', async ({ page }) => {
+    await go(page, 'Day');
+    const seen = new Set<string>();
+    for (const date of ['2026-10-01', '2026-10-10', '2026-10-19', '2026-10-28']) {
+      // These four dates are all personal day 8, nine days apart.
+      await page.getByTestId('date-picker').fill(date);
+      await expect(page.getByTestId('personal-day')).toHaveText('8');
+      seen.add(await page.getByTestId('caution-card').innerText());
+    }
+    expect(seen.size).toBe(4);
+  });
+
+  test('the printed year report carries the year cautions and the safety lines', async ({ page }) => {
+    await go(page, 'Year');
+    await page.getByRole('link', { name: /Year report/ }).click();
+    const report = page.getByTestId('report');
+    await expect(report.getByTestId('caution-card')).toHaveCount(5);
+    for (const line of SAFETY) await expect(report.getByText(line)).toBeVisible();
   });
 });
 

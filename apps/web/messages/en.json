@@ -59,5 +59,11 @@
   "common.loading": "Loading the readings",
   "common.error": "The readings could not be loaded. Check your connection and reload.",
   "common.convention": "Convention",
-  "common.root": "Root"
+  "common.root": "Root",
+  "caution.title.day": "A caution for this day",
+  "caution.title.month": "Cautions for the month",
+  "caution.title.year": "Cautions for the year",
+  "caution.intro": "A tendency to watch, never a forecast. Each one comes from the shadow side of the number, and each ends on something small you can do.",
+  "caution.why": "Comes from",
+  "caution.safety.heading": "True on every day, whatever your numbers say"
 }

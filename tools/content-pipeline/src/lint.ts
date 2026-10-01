@@ -58,15 +58,22 @@ function checkSnippet(family: Family, s: Snippet, report: LintReport): void {
   if (words < min) push('error', 'length', `${words} words; the budget for ${family.id} is ${min} to ${max}.`);
   if (words > max) push('error', 'length', `${words} words; the budget for ${family.id} is ${min} to ${max}.`);
 
+  // Every field is held to the guardrails, not only the one the word budget measures.
+  const haystack = s.fields ? Object.values(s.fields).join(' | ') : text;
+  const facet = family.caution ? s.keys[1] : undefined;
   for (const group of RULES) {
+    // A family can relax a group, and the spending group only applies to the money facet.
+    if (family.allow?.includes(group.id) && (group.id !== 'spending' || facet === 'money')) continue;
     for (const pattern of group.patterns) {
-      const match = text.match(pattern);
+      const match = haystack.match(pattern);
       if (match) {
         push('error', group.id, `"${match[0]}": ${group.reason} ${group.suggest}`);
         break;
       }
     }
   }
+
+  if (s.fields) checkFields(family, s, push);
 
   if (words >= 12) {
     const grade = fleschKincaidGrade(text);
@@ -77,6 +84,49 @@ function checkSnippet(family: Family, s: Snippet, report: LintReport): void {
   const q = family.question;
   if (q && s.keys[q.axis] === q.value && !/\?\s*["”']?$/.test(text.trim())) {
     push('error', 'reflection', 'A reading ends on a reflection prompt: this one must end with a question.');
+  }
+}
+
+const AVOID_ACTIVITY = /\b(today|tomorrow|tonight|this (?:week|month|year)|travel(?:ing|s)?|trips?|driv(?:e|es|ing)|flights?|flying)\b/i;
+const TENDENCY = /\b(tends?|tendency|may|might|can|easy to|pulls?|leans?|often|likely|slips?|slides?|creeps?|drifts?|tempting)\b/i;
+
+/** Checks that apply to snippets made of fields: labels, per-field budgets and the caution rules. */
+function checkFields(
+  family: Family,
+  s: Snippet,
+  push: (severity: Finding['severity'], rule: string, message: string) => void,
+): void {
+  const fields = s.fields as Record<string, string>;
+  for (const [field, allowed] of Object.entries(family.enums ?? {})) {
+    if (!allowed.includes(fields[field] ?? '')) push('error', 'label', `${field} must be one of ${allowed.join(', ')}.`);
+  }
+  for (const [field, [min, max]] of Object.entries(family.fieldWords ?? {})) {
+    const value = fields[field] ?? '';
+    const n = wordCount(value);
+    if (value !== value.trim() || /\s{2,}/.test(value)) push('error', 'whitespace', `Stray whitespace in ${field}.`);
+    if (n < min || n > max) push('error', 'length', `${field} has ${n} words; the budget is ${min} to ${max}.`);
+  }
+  if (!family.caution) return;
+  const headline = fields.headline ?? '';
+  const body = fields.body ?? '';
+  if (!TENDENCY.test(`${headline} ${body}`)) {
+    push('error', 'tendency', 'Write a caution as a tendency: "tends to", "you may notice", "easy to slip into".');
+  }
+  if (fields.label === 'AVOID') {
+    const match = `${headline} ${body}`.match(AVOID_ACTIVITY);
+    if (match) push('error', 'avoid-activity', `"${match[0]}": AVOID applies to a behavior, never to a date or an activity in general.`);
+  }
+}
+
+/** A caution headline is not repeated inside its family. */
+function checkHeadlines(snippets: Snippet[], report: LintReport): void {
+  const seen = new Map<string, string>();
+  for (const s of snippets) {
+    const headline = s.fields?.headline?.trim().toLowerCase();
+    if (!headline) continue;
+    const other = seen.get(headline);
+    if (other) report.errors.push({ severity: 'error', id: s.id, rule: 'duplicate-headline', message: `Same headline as ${other}.` });
+    else seen.set(headline, s.id);
   }
 }
 
@@ -118,9 +168,10 @@ export function lint(loaded: LoadedFamily[]): LintReport {
     for (const s of snippets) {
       checkSnippet(family, s, report);
       report.snippets += 1;
-      report.words += wordCount(s.text);
+      report.words += s.fields ? Object.entries(s.fields).filter(([k]) => k !== 'label').reduce((n, [, v]) => n + wordCount(v), 0) : wordCount(s.text);
     }
     checkDuplicates(snippets, report);
+    if (family.caution) checkHeadlines(snippets, report);
   }
   return report;
 }

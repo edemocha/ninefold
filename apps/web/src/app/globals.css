@@ -236,6 +236,11 @@ a.chip:hover {
   color: var(--warn-ink);
   border-color: transparent;
 }
+.chip-bad {
+  background: var(--bad-bg);
+  color: var(--bad-ink);
+  border-color: transparent;
+}
 .chip-info {
   background: var(--info-bg);
   color: var(--info-ink);

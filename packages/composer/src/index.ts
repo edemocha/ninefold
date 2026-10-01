@@ -5,3 +5,4 @@ export * from './year';
 export * from './month';
 export * from './day';
 export { specialDateKey } from './special';
+export * from './cautions';

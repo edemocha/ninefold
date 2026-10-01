@@ -2,18 +2,29 @@ import { FAMILIES, type Family, type Layer } from './manifest';
 
 type Schema = Record<string, unknown>;
 
+/** The schema for one snippet: a string, or an object of plain-text fields. */
+function item(family: Family): Schema {
+  if (!family.fields) return { type: 'string', minLength: 1 };
+  return {
+    type: 'object',
+    additionalProperties: false,
+    required: [...family.fields],
+    properties: Object.fromEntries(
+      family.fields.map((field) => {
+        const allowed = family.enums?.[field];
+        return [field, allowed ? { type: 'string', enum: [...allowed] } : { type: 'string', minLength: 1 }];
+      }),
+    ),
+  };
+}
+
 function leaf(family: Family, keys: string[]): Schema {
   const last = keys[keys.length - 1] as string;
   const count = family.variants?.[last];
   if (count !== undefined) {
-    return {
-      type: 'array',
-      minItems: count,
-      maxItems: count,
-      items: { type: 'string', minLength: 1 },
-    };
+    return { type: 'array', minItems: count, maxItems: count, items: item(family) };
   }
-  return { type: 'string', minLength: 1 };
+  return item(family);
 }
 
 function node(family: Family, depth: number, keys: string[]): Schema {

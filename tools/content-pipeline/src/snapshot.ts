@@ -95,6 +95,10 @@ export function composeSnapshot(bank: Bank, profiles = snapshotProfiles(), dates
         ...year.sections.map((s) => s.text),
         year.lifePathLine?.text,
         year.overtone?.text,
+        // Cautions too, so an edit to one shows its blast radius.
+        day.caution ? `${day.caution.label} ${day.caution.headline} ${day.caution.body} ${day.caution.link}` : undefined,
+        ...month.cautions.map((x) => `${x.label} ${x.headline} ${x.body} ${x.link}`),
+        ...year.cautions.map((x) => `${x.label} ${x.headline} ${x.body} ${x.link}`),
       ]
         .filter(Boolean)
         .join('\n');

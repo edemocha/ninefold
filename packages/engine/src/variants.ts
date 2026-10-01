@@ -1,5 +1,6 @@
 import { compareYMD, fromOrdinal, toOrdinal } from './calendar';
-import { personalDayNumber } from './cycles';
+import { cycleYearOn, personalDayNumber } from './cycles';
+import { digitalRoot } from './reduce';
 import type { Conventions, YMD } from './types';
 
 /** Counting starts here, so a variant is stable for a given birthday forever. */
@@ -35,4 +36,29 @@ export function variantIndexRange(birth: YMD, from: YMD, to: YMD, c: Conventions
 export function variantIndex(birth: YMD, date: YMD, c: Conventions): number {
   const [only] = variantIndexRange(birth, date, date, c);
   return only ? only.variantIndex : 0;
+}
+
+/**
+ * How many earlier personal years since 1900 had the same number as this one
+ * for this birth month and day. Cautions rotate through their variants with it.
+ */
+export function yearVariantIndex(birth: YMD, cycleYear: number): number {
+  const target = digitalRoot(birth.month + birth.day + cycleYear);
+  let count = 0;
+  for (let y = VARIANT_EPOCH.year; y < cycleYear; y += 1) {
+    if (digitalRoot(birth.month + birth.day + y) === target) count += 1;
+  }
+  return count;
+}
+
+/** The same count for personal months: earlier months since January 1900 with this month's number. */
+export function monthVariantIndex(birth: YMD, year: number, month: number, c: Pick<Conventions, 'cycleYear' | 'leapBirthday'>): number {
+  const numberFor = (y: number, m: number): number => digitalRoot(digitalRoot(birth.month + birth.day + cycleYearOn(birth, { year: y, month: m, day: 1 }, c)) + m);
+  const target = numberFor(year, month);
+  let count = 0;
+  for (let y = VARIANT_EPOCH.year; y <= year; y += 1) {
+    const last = y === year ? month - 1 : 12;
+    for (let m = 1; m <= last; m += 1) if (numberFor(y, m) === target) count += 1;
+  }
+  return count;
 }

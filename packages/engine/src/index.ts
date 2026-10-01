@@ -23,5 +23,5 @@ export {
 export type { NormalizedName } from './names';
 export { coreProfile, maturity, lifeStage } from './profile';
 export type { LifeStage } from './profile';
-export { variantIndex, variantIndexRange, VARIANT_EPOCH } from './variants';
+export { variantIndex, variantIndexRange, yearVariantIndex, monthVariantIndex, VARIANT_EPOCH } from './variants';
 export type { DayIndex } from './variants';

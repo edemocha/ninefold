@@ -4,6 +4,7 @@ import { composeMonth, composeYear, currentCycleYear } from '@numerology/compose
 import { DISCLAIMER } from '@numerology/content';
 import { MONTH_NAMES } from '@numerology/engine';
 import { AppLink } from '@/components/app-link';
+import { CautionPanel } from '@/components/caution-panel';
 import { Icon } from '@/components/icon';
 import { LayerGate } from '@/components/layer-gate';
 import { useProfile } from '@/lib/profile-context';
@@ -66,6 +67,8 @@ export default function ReportPage() {
                   </p>
                 ) : null}
               </section>
+
+              <CautionPanel id="caution-report" title="Cautions for the year" cautions={y.cautions} className="print-keep" />
 
               {months.map((m) => (
                 <section key={`${m.year}-${m.month}`} className="print-keep space-y-4 border-t border-line pt-6" aria-label={`${MONTH_NAMES[m.month - 1]} ${m.year}`}>

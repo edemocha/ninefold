@@ -4,7 +4,7 @@
  */
 
 export type RuleGroup = {
-  id: 'certainty' | 'fear' | 'health' | 'money' | 'legal' | 'relationship';
+  id: 'certainty' | 'fear' | 'health' | 'money' | 'spending' | 'legal' | 'relationship';
   /** Why the rule exists, shown with every finding. */
   reason: string;
   /** Case-insensitive whole-word patterns. */
@@ -29,7 +29,8 @@ export const RULES: readonly RuleGroup[] = [
       'inevitabl[ey]',
       'undoubtedly',
       'destined',
-      'fated',
+      'fated?',
+      'fates?',
       'must',
       'for sure',
     ]),
@@ -49,7 +50,11 @@ export const RULES: readonly RuleGroup[] = [
       'bad luck',
       'misfortune',
       'beware',
-      'dangerous',
+      'danger(?:s|ous)?',
+      'deadly',
+      'fatal(?:ly)?',
+      'warning signs?',
+      'omens?',
     ]),
     suggest: 'Name the pattern in neutral words and end on a question.',
   },
@@ -76,6 +81,15 @@ export const RULES: readonly RuleGroup[] = [
       'medical',
       'doctors?',
       'medication',
+      'diet(?:s|ing)?',
+      'calor(?:y|ie|ies)',
+      'portions?',
+      'over-?eat(?:s|ing)?',
+      'bing(?:e|ing)',
+      'fasting',
+      '(?:lose|losing|gain|gaining|body) weight',
+      'weight loss',
+      'burn-?out',
     ]),
     suggest: 'Leave the body and its outcomes out. Write about habits, attention and energy.',
   },
@@ -83,14 +97,12 @@ export const RULES: readonly RuleGroup[] = [
     id: 'money',
     reason: 'No money moves: buying, selling, investing or quitting.',
     patterns: words([
-      'buy(?:ing)?',
-      'bought',
       'sell(?:ing)?',
       'sold',
       'invest(?:s|ed|ing|ment|ments)?',
       'quit(?:s|ting)?',
       'resign(?:s|ed|ing)?',
-      'purchase[sd]?',
+      'borrow(?:s|ed|ing)?',
       'lottery',
       'gambl(?:e|ing)',
       'stocks?',
@@ -98,6 +110,12 @@ export const RULES: readonly RuleGroup[] = [
       'windfall',
     ]),
     suggest: 'Write about effort, attention and how you spend a day, not what to do with money.',
+  },
+  {
+    id: 'spending',
+    reason: 'Buying and purchasing are for caution snippets in the money facet only, as a nudge to pause, never a tip about what to buy.',
+    patterns: words(['buy(?:s|ing)?', 'bought', 'purchas(?:e|es|ed|ing)']),
+    suggest: 'Outside a caution about impulse spending, write about effort and attention instead.',
   },
   {
     id: 'legal',

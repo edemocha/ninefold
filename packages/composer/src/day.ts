@@ -18,6 +18,7 @@ import {
 import type { DayFacet } from '@numerology/content';
 import { need, type Bank } from './bank';
 import { agesText, dateLabel, displayNumber, ordinal, withArticle } from './format';
+import { composeDayCaution, type CautionCard } from './cautions';
 import { specialDateKey } from './special';
 
 export const FACET_LABELS: Record<Exclude<DayFacet, 'headline'>, string> = {
@@ -70,6 +71,8 @@ export type DayCard = {
   lifeStage?: { text: string; age: number; pinnacleValue: number };
   special?: { key: string; text: string; source: string };
   facets: DayFacetReading[];
+  /** One caution for the day: a behavior to watch, never a forecast. */
+  caution?: CautionCard;
   math: MathGroup[];
   variantIndex: number;
   /** Snippet ids used, for the snapshot's blast radius. */
@@ -168,6 +171,12 @@ export function composeDay(
     pinnacleValue: pin.value,
     text: `${ordinal(pin.n)} pinnacle (${pin.value > 9 ? `${pin.value}/${pin.root}` : pin.value}, ${agesText(pin.ageFrom, pin.ageTo)}), ${themes[String(pin.value)]?.stage ?? ''}`,
   };
+
+  const caution = composeDayCaution(dayLayer.caution, pd.value, index);
+  if (caution) {
+    card.caution = caution;
+    sources.push(caution.source);
+  }
 
   const specialKey = specialDateKey(birth, date, c);
   if (specialKey && dayLayer.special[specialKey]) {
