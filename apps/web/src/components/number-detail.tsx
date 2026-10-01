@@ -23,7 +23,7 @@ export function NumberDetail({ coreKey }: { coreKey: CoreKey }) {
   return (
     <article className="space-y-10">
       <header className="rise grid gap-6 sm:grid-cols-[auto_1fr] sm:items-end">
-        <div className="card tint-0 flex min-w-40 flex-col items-center justify-center px-8 py-8">
+        <div className={`card card-hue ${result ? `tint-${result.root} hue-${result.root}` : 'tint-0'} flex min-w-40 flex-col items-center justify-center px-8 py-8`}>
           {result ? <BigNumber result={result} className="text-8xl" /> : <span className="numeral text-6xl text-muted">?</span>}
         </div>
         <div className="space-y-3">

@@ -9,7 +9,7 @@ export function SiteFooter() {
       <div className="mx-auto grid max-w-5xl gap-6 px-5 py-10 md:grid-cols-[1fr_auto]">
         <div className="space-y-3">
           <p className="flex items-center gap-2 text-sm text-ink-strong">
-            <Icon name="lock" size={16} />
+            <Icon name="lock" size={16} className="text-primary" />
             {t('privacy.line')}
           </p>
           <Disclaimer className="max-w-prose" />

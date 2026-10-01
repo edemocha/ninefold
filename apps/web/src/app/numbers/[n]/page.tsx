@@ -58,8 +58,8 @@ export default async function NumberMeaning({ params }: { params: Promise<{ n: s
         All the numbers
       </Link>
       <header className="mt-4 grid gap-6 sm:grid-cols-[auto_1fr] sm:items-end">
-        <div className={`tint-${rootOf(value)} flex min-w-44 items-center justify-center rounded-xl border border-line px-8 py-8`}>
-          <span className="numeral text-9xl">
+        <div className={`tint-${rootOf(value)} hue-${rootOf(value)} flex min-w-44 items-center justify-center rounded-xl border border-line border-t-[3px] border-t-[var(--hue)] px-8 py-8`}>
+          <span className="numeral numeral-hue text-9xl">
             {value}
             {value > 9 ? <span className="text-5xl text-muted">/{rootOf(value)}</span> : null}
           </span>

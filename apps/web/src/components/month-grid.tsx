@@ -122,10 +122,10 @@ export function MonthGrid({
                     aria-current={isToday ? 'date' : undefined}
                     onFocus={() => setFocus(cell.date.day)}
                     onClick={() => onOpen(cell.date)}
-                    className={`tint-${cell.personalDay} relative flex aspect-square w-full flex-col items-center justify-center rounded-lg border text-ink-strong transition-transform hover:scale-[1.03] active:scale-[0.98] ${isToday ? 'border-[var(--ink-strong)] border-2' : 'border-line'} ${cell.loopStart ? 'outline outline-2 outline-offset-2 outline-[var(--ink-strong)]' : ''}`}
+                    className={`tint-${cell.personalDay} hue-${cell.personalDay} relative flex aspect-square w-full flex-col items-center justify-center rounded-lg border text-ink-strong transition-transform hover:scale-[1.03] active:scale-[0.98] ${isToday ? 'border-[3px] border-[var(--gold)]' : 'border-line'} ${cell.loopStart ? 'outline outline-2 outline-offset-2 outline-[var(--primary)]' : ''}`}
                   >
                     <span className="absolute left-1.5 top-1 font-mono text-[0.65rem] text-muted">{cell.date.day}</span>
-                    <span className="numeral text-2xl sm:text-3xl">{cell.personalDay}</span>
+                    <span className="numeral numeral-hue text-2xl sm:text-3xl">{cell.personalDay}</span>
                   </button>
                 </td>
               );

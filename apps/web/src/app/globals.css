@@ -1,80 +1,63 @@
 @import 'tailwindcss';
 
 /*
- * Warm monochrome with a few washed-out pastels. Colour carries meaning only:
- * each personal number has one tint, and the digit is always printed on it, so
- * nothing relies on colour alone.
+ * Light only. A lavender-tinted paper, deep indigo ink, violet for actions and a
+ * warm gold for emphasis. Every number from 1 to 9 has its own hue: a pale tint
+ * for backgrounds and a deep tone for the numeral. The digit is always printed,
+ * so colour never carries meaning alone, and every pair below is checked to
+ * WCAG AA (see scratchpad palette check in the build notes).
  */
 :root {
   color-scheme: light;
-  --bg: #fbfbfa;
+  --bg: #faf7ff;
   --surface: #ffffff;
-  --surface-2: #f7f6f3;
-  --line: #eaeaea;
-  --line-strong: #d9d8d4;
-  --ink: #2f3437;
-  --ink-strong: #111111;
-  --muted: #62615d;
-  --focus: #1f6c9f;
-  --btn: #111111;
+  --surface-2: #f4effc;
+  --line: #e6def4;
+  --line-strong: #cfc3e8;
+  --ink: #3a2f55;
+  --ink-strong: #1f1640;
+  --muted: #5b5275;
+  --primary: #5b21b6;
+  --primary-hover: #4c1d95;
+  --primary-soft: #ede5ff;
+  --gold: #b7791f;
+  --gold-soft: #fef1c7;
+  --focus: #6d28d9;
+  --btn: var(--primary);
   --btn-ink: #ffffff;
-  --btn-hover: #333333;
-  --warn-bg: #fbf3db;
-  --warn-ink: #7a5200;
-  --info-bg: #e1f3fe;
-  --info-ink: #1f6c9f;
-  --good-bg: #edf3ec;
-  --good-ink: #2d5a31;
-  --bad-bg: #fdebec;
-  --bad-ink: #9f2f2d;
+  --btn-hover: var(--primary-hover);
+  --warn-bg: #fef1c7;
+  --warn-ink: #7a4a00;
+  --info-bg: #ede5ff;
+  --info-ink: #4c1d95;
+  --good-bg: #ddf5e4;
+  --good-ink: #166534;
+  --bad-bg: #ffe4e8;
+  --bad-ink: #9f1239;
 
-  --n1: #fdebec;
-  --n2: #e1f3fe;
-  --n3: #fbf3db;
-  --n4: #edf3ec;
-  --n5: #efe9f7;
-  --n6: #fde9dc;
-  --n7: #e2f0ee;
-  --n8: #efe8d6;
-  --n9: #e8edf4;
-  --n0: #f1f0ed;
-}
+  /* pale tints, one per number */
+  --n1: #ffd9e0;
+  --n2: #cfebfa;
+  --n3: #fff0b3;
+  --n4: #ddf3c9;
+  --n5: #e3d9ff;
+  --n6: #ffddbf;
+  --n7: #c7f0ea;
+  --n8: #f4d6f0;
+  --n9: #d5daff;
+  --n0: #efeaf7;
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    color-scheme: dark;
-    --bg: #171716;
-    --surface: #1e1e1c;
-    --surface-2: #252523;
-    --line: #2f2f2c;
-    --line-strong: #44443f;
-    --ink: #d8d6d0;
-    --ink-strong: #f3f2ee;
-    --muted: #a09e97;
-    --focus: #7cc0ec;
-    --btn: #f3f2ee;
-    --btn-ink: #111111;
-    --btn-hover: #d8d6d0;
-    --warn-bg: #3a3118;
-    --warn-ink: #e8cf86;
-    --info-bg: #17303f;
-    --info-ink: #9fd0ef;
-    --good-bg: #1f3022;
-    --good-ink: #a6d3a9;
-    --bad-bg: #3c1f20;
-    --bad-ink: #f1a9a7;
-
-    --n1: #3c2527;
-    --n2: #1d3340;
-    --n3: #3b3320;
-    --n4: #243425;
-    --n5: #302a40;
-    --n6: #3d2b20;
-    --n7: #213635;
-    --n8: #38321f;
-    --n9: #272f3d;
-    --n0: #2b2a28;
-  }
+  /* deep tones, one per number, for numerals and accents */
+  --d1: #be123c;
+  --d2: #0369a1;
+  --d3: #a16207;
+  --d4: #4d7c0f;
+  --d5: #6d28d9;
+  --d6: #c2410c;
+  --d7: #0f766e;
+  --d8: #a21cad;
+  --d9: #4338ca;
+  --d0: #5b5275;
 }
 
 @theme inline {
@@ -86,6 +69,8 @@
   --color-ink: var(--ink);
   --color-ink-strong: var(--ink-strong);
   --color-muted: var(--muted);
+  --color-primary: var(--primary);
+  --color-gold: var(--gold);
   --font-sans: var(--font-geist-sans), 'Helvetica Neue', Helvetica, Arial, sans-serif;
   --font-serif: var(--font-newsreader), 'Iowan Old Style', Georgia, serif;
   --font-mono: var(--font-geist-mono), ui-monospace, 'SF Mono', Menlo, monospace;
@@ -97,7 +82,11 @@ html {
 }
 
 body {
-  background: var(--bg);
+  background:
+    radial-gradient(52rem 28rem at 88% -6%, #efe4ff 0%, rgba(239, 228, 255, 0) 70%),
+    radial-gradient(40rem 24rem at -8% 6%, #fff1cf 0%, rgba(255, 241, 207, 0) 68%),
+    var(--bg);
+  background-repeat: no-repeat;
   color: var(--ink);
   font-family: var(--font-sans);
   font-size: 1rem;
@@ -122,7 +111,7 @@ h3 {
 }
 
 ::selection {
-  background: var(--n3);
+  background: var(--n5);
 }
 
 /* ---- components -------------------------------------------------------- */
@@ -130,13 +119,21 @@ h3 {
 .card {
   background: var(--surface);
   border: 1px solid var(--line);
-  border-radius: 12px;
+  border-radius: 14px;
+  box-shadow:
+    0 1px 2px rgba(76, 29, 149, 0.04),
+    0 10px 28px -16px rgba(76, 29, 149, 0.16);
 }
 
 .card-flat {
   background: var(--surface-2);
   border: 1px solid var(--line);
-  border-radius: 12px;
+  border-radius: 14px;
+}
+
+/* A card that belongs to one number: its hue shows as a top edge. */
+.card-hue {
+  border-top: 3px solid var(--hue);
 }
 
 .eyebrow {
@@ -194,8 +191,8 @@ h3 {
   padding: 0.5rem 0.9rem;
   border-radius: 6px;
   border: 1px solid var(--line-strong);
-  background: transparent;
-  color: var(--ink-strong);
+  background: var(--surface);
+  color: var(--primary);
   font-size: 0.92rem;
   cursor: pointer;
   transition:
@@ -203,15 +200,16 @@ h3 {
     transform 160ms;
 }
 .btn-quiet:hover {
-  background: var(--surface-2);
+  background: var(--primary-soft);
+  border-color: var(--primary);
 }
 .btn-quiet:active {
   transform: scale(0.98);
 }
 .btn-quiet[aria-pressed='true'] {
-  background: var(--ink-strong);
-  color: var(--bg);
-  border-color: var(--ink-strong);
+  background: var(--primary);
+  color: #ffffff;
+  border-color: var(--primary);
 }
 
 .chip {
@@ -220,9 +218,9 @@ h3 {
   min-height: 24px;
   padding: 0.1rem 0.6rem;
   border-radius: 9999px;
-  background: var(--surface-2);
-  border: 1px solid var(--line);
-  color: var(--muted);
+  background: var(--primary-soft);
+  border: 1px solid transparent;
+  color: var(--info-ink);
   font-family: var(--font-mono);
   font-size: 0.7rem;
   letter-spacing: 0.05em;
@@ -230,8 +228,8 @@ h3 {
   white-space: nowrap;
 }
 a.chip:hover {
-  color: var(--ink-strong);
-  border-color: var(--line-strong);
+  color: var(--primary);
+  border-color: var(--primary);
 }
 .chip-warn {
   background: var(--warn-bg);
@@ -277,6 +275,18 @@ kbd {
   color: var(--ink-strong);
   line-height: 1;
 }
+
+.hue-1 { --hue: var(--d1); }
+.hue-2 { --hue: var(--d2); }
+.hue-3 { --hue: var(--d3); }
+.hue-4 { --hue: var(--d4); }
+.hue-5 { --hue: var(--d5); }
+.hue-6 { --hue: var(--d6); }
+.hue-7 { --hue: var(--d7); }
+.hue-8 { --hue: var(--d8); }
+.hue-9 { --hue: var(--d9); }
+.hue-0 { --hue: var(--d0); }
+.numeral-hue { color: var(--hue, var(--ink-strong)); }
 
 .tint-1 { background: var(--n1); }
 .tint-2 { background: var(--n2); }
@@ -343,6 +353,9 @@ details > summary::-webkit-details-marker {
 /* ---- print: the year report becomes a clean PDF ------------------------- */
 
 @media print {
+  body {
+    background: #ffffff;
+  }
   :root {
     --bg: #ffffff;
     --surface: #ffffff;

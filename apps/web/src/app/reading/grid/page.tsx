@@ -49,7 +49,7 @@ export default function GridPage() {
                     <li
                       key={`${l.letter}-${i}`}
                       aria-label={`${l.letter}, value ${l.value}, ${l.kind}`}
-                      className={`flex size-12 flex-col items-center justify-center rounded-md border border-line ${l.kind === 'vowel' ? 'tint-3' : 'tint-2'}`}
+                      className={`flex size-12 flex-col items-center justify-center rounded-md border border-line ${l.kind === 'vowel' ? 'tint-3' : 'tint-5'}`}
                     >
                       <span className="font-serif text-lg leading-none text-ink-strong">{l.letter}</span>
                       <span className="mt-0.5 font-mono text-[0.7rem] text-muted">{l.value}</span>
@@ -64,7 +64,7 @@ export default function GridPage() {
             <span className="tint-3 inline-block size-4 rounded-sm border border-line" /> vowel
           </span>
           <span className="flex items-center gap-2">
-            <span className="tint-2 inline-block size-4 rounded-sm border border-line" /> consonant
+            <span className="tint-5 inline-block size-4 rounded-sm border border-line" /> consonant
           </span>
           {conventions.yRule === 'vowel-if-alone' ? <span>Y counts as a vowel when it is the only vowel in its word.</span> : <span>Y counts as a consonant.</span>}
         </p>
@@ -84,10 +84,10 @@ export default function GridPage() {
                 key={n}
                 role="listitem"
                 aria-label={`${n}: ${count} ${count === 1 ? 'time' : 'times'}${missing ? ', missing' : ''}${passion ? ', appears most often' : ''}`}
-                className={`rounded-lg border p-3 ${missing ? 'border-dashed border-line-strong bg-transparent' : passion ? 'tint-3 border-line' : 'tint-0 border-line'}`}
+                className={`rounded-lg border p-3 hue-${n} ${missing ? 'border-dashed border-line-strong bg-transparent' : passion ? `tint-${n} border-[var(--hue)] border-2` : `tint-${n} border-line`}`}
               >
                 <div className="flex items-baseline justify-between">
-                  <span className="numeral text-3xl">{n}</span>
+                  <span className="numeral numeral-hue text-3xl">{n}</span>
                   <span className="font-mono text-xs text-muted">{count}×</span>
                 </div>
                 <p className="mt-2 font-mono text-[0.68rem] uppercase tracking-wider text-muted">

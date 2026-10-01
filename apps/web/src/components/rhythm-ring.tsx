@@ -25,14 +25,14 @@ export function RhythmRing({ lit, size = 168, label }: { lit: number; size?: num
               cx={node.x}
               cy={node.y}
               r={on ? 17 : 13}
-              style={{ fill: on ? 'var(--ink-strong)' : `var(--n${node.n})`, stroke: on ? 'var(--ink-strong)' : 'var(--line)' }}
+              style={{ fill: on ? `var(--d${node.n})` : `var(--n${node.n})`, stroke: on ? `var(--d${node.n})` : 'var(--line)' }}
             />
             <text
               x={node.x}
               y={node.y + 5}
               textAnchor="middle"
               className="font-serif"
-              style={{ fill: on ? 'var(--bg)' : 'var(--ink-strong)', fontSize: on ? 16 : 13 }}
+              style={{ fill: on ? '#ffffff' : `var(--d${node.n})`, fontSize: on ? 16 : 13 }}
             >
               {node.n}
             </text>

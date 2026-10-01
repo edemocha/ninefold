@@ -49,7 +49,7 @@ export default function YearPage() {
           return (
             <>
               <section className="grid gap-8 lg:grid-cols-[18rem_1fr]">
-                <div className="card rise flex flex-col gap-4 p-6 lg:self-start" style={{ ['--i' as string]: 1 }}>
+                <div className={`card card-hue hue-${reading.personalYear.root} rise flex flex-col gap-4 p-6 lg:self-start`} style={{ ['--i' as string]: 1 }}>
                   <h2 className="section-title">Personal year</h2>
                   <p aria-label={`Personal year ${reading.display}`} data-testid="personal-year">
                     <BigNumber result={reading.personalYear} className="text-8xl" />
@@ -88,7 +88,7 @@ export default function YearPage() {
                           to="/reading/month"
                           view={{ my: m.year, mo: m.month }}
                           aria-current={isNow ? 'date' : undefined}
-                          className={`rise tint-${m.value} flex min-h-28 flex-col justify-between rounded-xl border p-4 hover:border-[var(--ink-strong)] ${isNow ? 'border-[var(--ink-strong)]' : 'border-line'}`}
+                          className={`rise tint-${m.value} flex min-h-28 flex-col justify-between rounded-xl border p-4 hover:border-[var(--primary)] ${isNow ? 'border-[var(--primary)] border-2' : 'border-line'}`}
                           style={{ ['--i' as string]: i }}
                         >
                           <span className="font-mono text-xs uppercase tracking-wider text-muted">
@@ -96,7 +96,7 @@ export default function YearPage() {
                             {m.fromDay ? ` from day ${m.fromDay}` : ''}
                           </span>
                           <span className="flex items-end justify-between">
-                            <span className="numeral text-5xl">{m.value}</span>
+                            <span className={`numeral numeral-hue hue-${m.value} text-5xl`}>{m.value}</span>
                             <span className="text-sm text-ink-strong">{m.tile}</span>
                           </span>
                         </AppLink>

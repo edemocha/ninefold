@@ -15,9 +15,9 @@ export function SiteHeader() {
   return (
     <header role="banner" className="border-b border-line">
       <div className="mx-auto flex max-w-5xl items-center justify-between gap-4 px-5 py-4">
-        <Link href="/" className="flex items-center gap-2.5 text-ink-strong" aria-label={`${t('site.name')}, home`}>
+        <Link href="/" className="flex items-center gap-2.5 text-primary" aria-label={`${t('site.name')}, home`}>
           <Mark />
-          <span className="font-serif text-xl tracking-tight">{t('site.name')}</span>
+          <span className="font-serif text-xl tracking-tight text-ink-strong">{t('site.name')}</span>
         </Link>
         <nav aria-label="Site" className="flex items-center gap-1 text-sm">
           {LINKS.map((l) => (
@@ -25,7 +25,7 @@ export function SiteHeader() {
               key={l.href}
               href={l.href}
               aria-current={path.startsWith(l.href) ? 'page' : undefined}
-              className="rounded-md px-3 py-2 text-muted hover:text-ink-strong aria-[current=page]:text-ink-strong"
+              className="rounded-md px-3 py-2 text-muted hover:text-primary aria-[current=page]:bg-[var(--primary-soft)] aria-[current=page]:text-[var(--info-ink)]"
             >
               {t(l.label)}
             </Link>

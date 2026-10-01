@@ -16,6 +16,7 @@ export default defineConfig({
     baseURL: `http://localhost:${PORT}`,
     trace: 'retain-on-failure',
     locale: 'en-GB',
+    colorScheme: 'light',
     timezoneId: 'Europe/London',
   },
   projects: [{ name: 'chromium', use: { ...devices['Desktop Chrome'] } }],

@@ -3,8 +3,8 @@ import { expect, test, type Page } from '@playwright/test';
 import { enter, go } from './helpers';
 
 /*
- * axe on every screen, in light and dark, with the build failing on any
- * serious or critical violation.
+ * axe on every screen, with the build failing on any serious or critical
+ * violation. The site is light only.
  */
 
 async function audit(page: Page, label: string): Promise<void> {
@@ -14,7 +14,7 @@ async function audit(page: Page, label: string): Promise<void> {
   expect(summary, `${label}`).toEqual([]);
 }
 
-for (const scheme of ['light', 'dark'] as const) {
+for (const scheme of ['light'] as const) {
   test.describe(`accessibility, ${scheme}`, () => {
     // Elements fading in are measured mid-fade, so audit them at rest. Motion has its own test below.
     test.use({ colorScheme: scheme, reducedMotion: 'reduce' });

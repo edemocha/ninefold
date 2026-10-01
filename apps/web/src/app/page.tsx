@@ -1,8 +1,10 @@
 import Link from '@/components/link';
 import { ProfileForm } from '@/components/profile-form';
 import { Icon } from '@/components/icon';
+import { NineDots } from '@/components/nine-dots';
 import { t } from '@/lib/t';
 
+// Each card takes the hue of the number it is numbered with.
 const OUTPUTS = [
   { n: '1', title: 'Core profile', text: 'Life path, expression, soul urge, personality, birth day and maturity, with karmic debt flags.' },
   { n: '2', title: 'Name grid', text: 'Your letters, vowels against consonants, the numbers your name lacks and the one it repeats.' },
@@ -15,23 +17,28 @@ export default function HomePage() {
     <div className="mx-auto max-w-5xl px-5">
       <section className="grid gap-12 py-14 lg:grid-cols-[1fr_28rem] lg:items-start lg:py-20">
         <div className="rise lg:pt-6">
-          <p className="eyebrow mb-5">Numerology in your browser</p>
-          <h1 className="max-w-[16ch] text-5xl sm:text-6xl">{t('form.title')}</h1>
+          <p className="eyebrow mb-5 !text-[color:var(--primary)]">Numerology in your browser</p>
+          <h1 className="max-w-[16ch] text-5xl sm:text-6xl">
+            {t('form.title').split(', ')[0]}, <span className="italic text-primary">{t('form.title').split(', ')[1]}</span>
+          </h1>
           <p className="mt-6 max-w-[46ch] text-lg leading-relaxed text-muted">{t('form.intro')}</p>
           <ul className="mt-8 space-y-3 text-[0.95rem] text-ink">
             <li className="flex gap-3">
-              <Icon name="check" size={18} className="mt-1 shrink-0" />
+              <Icon name="check" size={18} className="mt-1 shrink-0 text-primary" />
               Every number shows its arithmetic, one click away.
             </li>
             <li className="flex gap-3">
-              <Icon name="check" size={18} className="mt-1 shrink-0" />
+              <Icon name="check" size={18} className="mt-1 shrink-0 text-primary" />
               Your name and birth date stay on this page. They are not sent, saved or put in the address.
             </li>
             <li className="flex gap-3">
-              <Icon name="check" size={18} className="mt-1 shrink-0" />
+              <Icon name="check" size={18} className="mt-1 shrink-0 text-primary" />
               Published sources disagree on the rules, so you can see and change each one.
             </li>
           </ul>
+          <div className="mt-10 hidden lg:block">
+            <NineDots />
+          </div>
         </div>
         <div className="rise" style={{ ['--i' as string]: 2 }}>
           <ProfileForm />
@@ -45,8 +52,8 @@ export default function HomePage() {
         </h2>
         <div className="mt-10 grid gap-4 sm:grid-cols-2">
           {OUTPUTS.map((o, i) => (
-            <article key={o.n} className="card rise p-6" style={{ ['--i' as string]: i }}>
-              <p className="numeral text-4xl text-muted">{o.n}</p>
+            <article key={o.n} className={`card card-hue hue-${o.n} rise p-6`} style={{ ['--i' as string]: i }}>
+              <p className={`numeral numeral-hue inline-flex size-12 items-center justify-center rounded-full text-3xl tint-${o.n}`}>{o.n}</p>
               <h3 className="mt-4 text-xl">{o.title}</h3>
               <p className="mt-2 text-[0.95rem] text-muted">{o.text}</p>
             </article>

@@ -16,9 +16,9 @@ function Triple({ card }: { card: DayCard }) {
   return (
     <ul className="flex gap-2" aria-label="Personal day, month and year">
       {items.map((it) => (
-        <li key={it.label} className={`tint-${it.tint} rounded-lg border border-line px-4 py-2.5`}>
+        <li key={it.label} className={`tint-${it.tint} hue-${it.tint} rounded-lg border border-line px-4 py-2.5`}>
           <span className="section-title block">{it.label}</span>
-          <span className="numeral text-3xl" data-testid={`personal-${it.label.toLowerCase()}`}>
+          <span className="numeral numeral-hue text-3xl" data-testid={`personal-${it.label.toLowerCase()}`}>
             {it.value}
           </span>
           {it.overtone ? <span className="ml-1 font-mono text-[0.65rem] text-muted">{it.overtone}</span> : null}

@@ -9,7 +9,7 @@ import { t } from '@/lib/t';
 export function BigNumber({ result, className = 'text-7xl' }: { result: Pick<Result, 'value' | 'root'>; className?: string }) {
   const master = result.value > 9;
   return (
-    <span className={`numeral ${className}`}>
+    <span className={`numeral numeral-hue hue-${result.root} ${className}`}>
       {result.value}
       {master ? <span className="ml-0.5 text-[0.42em] text-muted">/{result.root}</span> : null}
     </span>

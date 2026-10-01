@@ -94,7 +94,7 @@ function Timeline({ bank, today }: { bank: Parameters<typeof composeTimeline>[0]
         </div>
         <ol className="grid gap-4 md:grid-cols-2">
           {timeline.pinnacles.map((p) => (
-            <li key={p.n} aria-current={pinnacle.n === p.n ? 'true' : undefined} className={`card p-6 ${pinnacle.n === p.n ? '!border-[var(--ink-strong)]' : ''}`}>
+            <li key={p.n} aria-current={pinnacle.n === p.n ? 'true' : undefined} className={`card p-6 ${pinnacle.n === p.n ? '!border-[var(--primary)]' : ''}`}>
               <div className="flex items-baseline justify-between gap-3">
                 <h3 className="section-title">{p.label}</h3>
                 <span className="font-mono text-xs text-muted">
@@ -102,7 +102,7 @@ function Timeline({ bank, today }: { bank: Parameters<typeof composeTimeline>[0]
                   {p.yearTo ? ` to ${p.yearTo}` : ' on'}
                 </span>
               </div>
-              <p className="numeral mt-3 text-6xl">{p.display}</p>
+              <p className={`numeral numeral-hue hue-${p.value > 9 ? p.value === 11 ? 2 : 4 : p.value} mt-3 text-6xl`}>{p.display}</p>
               <p className="reading mt-4 text-[1rem] leading-relaxed">{p.text}</p>
               {p.guidance ? <p className="reading mt-3 text-[1rem] leading-relaxed">{p.guidance}</p> : null}
               <WhyThisNumber steps={p.steps} />
@@ -117,12 +117,12 @@ function Timeline({ bank, today }: { bank: Parameters<typeof composeTimeline>[0]
         </h2>
         <ol className="grid gap-4 md:grid-cols-2">
           {timeline.challenges.map((p) => (
-            <li key={p.n} aria-current={challenge.n === p.n ? 'true' : undefined} className={`card p-6 ${challenge.n === p.n ? '!border-[var(--ink-strong)]' : ''}`}>
+            <li key={p.n} aria-current={challenge.n === p.n ? 'true' : undefined} className={`card p-6 ${challenge.n === p.n ? '!border-[var(--primary)]' : ''}`}>
               <div className="flex items-baseline justify-between gap-3">
                 <h3 className="section-title">{p.label}</h3>
                 <span className="font-mono text-xs text-muted">{p.agesText}</span>
               </div>
-              <p className="numeral mt-3 text-6xl">{p.display}</p>
+              <p className={`numeral numeral-hue hue-${p.value} mt-3 text-6xl`}>{p.display}</p>
               <p className="reading mt-4 text-[1rem] leading-relaxed">{p.text}</p>
               <WhyThisNumber steps={p.steps} />
             </li>

@@ -225,7 +225,7 @@ export function ProfileForm() {
                           id={id}
                           type="radio"
                           name={`${uid}-${field}`}
-                          className="mt-1 size-4 accent-[var(--ink-strong)]"
+                          className="mt-1 size-4 accent-[var(--primary)]"
                           checked={conventions[field] === opt.value}
                           onChange={() => choose(field, opt.value as Conventions[typeof field])}
                         />

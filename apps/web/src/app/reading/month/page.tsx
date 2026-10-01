@@ -87,15 +87,19 @@ export default function MonthPage() {
                     <h2 className="section-title">{t('reading.rhythm')}</h2>
                     <p className="text-sm text-muted">{t('reading.rhythmNote')}</p>
                     <p className="flex items-center gap-2 text-sm">
-                      <span className="tint-1 inline-block size-4 rounded-sm outline outline-2 outline-offset-2 outline-[var(--ink-strong)]" />
+                      <span className="tint-1 inline-block size-4 rounded-sm outline outline-2 outline-offset-2 outline-[var(--primary)]" />
                       Outlined dates start a new loop.
+                    </p>
+                    <p className="flex items-center gap-2 text-sm">
+                      <span className="tint-2 inline-block size-4 rounded-sm border-[3px] border-[var(--gold)]" />
+                      Gold marks today.
                     </p>
                   </div>
                 </div>
               </section>
 
               <aside className="space-y-6">
-                <div className="card rise space-y-4 p-6">
+                <div className={`card card-hue hue-${reading.personalMonth.root} rise space-y-4 p-6`}>
                   <h2 className="section-title">Personal month</h2>
                   <p aria-label={`Personal month ${reading.display}`} data-testid="personal-month">
                     <BigNumber result={reading.personalMonth} className="text-8xl" />

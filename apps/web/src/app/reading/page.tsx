@@ -89,7 +89,7 @@ export default function SnapshotPage() {
           return (
             <article
               key={key}
-              className={`card rise flex flex-col p-6 ${span}`}
+              className={`card card-hue hue-${result?.root ?? 0} rise flex flex-col p-6 ${span}`}
               style={{ ['--i' as string]: i + 2 }}
               data-testid={`core-${key}`}
             >
@@ -107,7 +107,7 @@ export default function SnapshotPage() {
                     <ConventionChips kind={key as ChipKind} conventions={conventions} />
                   </div>
                   <WhyThisNumber steps={result.steps} chain={result.chain} />
-                  <AppLink to={`/reading/number/${key}`} className="mt-5 inline-flex min-h-11 items-center gap-2 text-sm font-medium text-ink-strong underline-offset-4 hover:underline">
+                  <AppLink to={`/reading/number/${key}`} className="mt-5 inline-flex min-h-11 items-center gap-2 text-sm font-medium text-primary underline-offset-4 hover:underline">
                     Read the {label.title.toLowerCase()} reading
                     <Icon name="right" size={15} />
                   </AppLink>

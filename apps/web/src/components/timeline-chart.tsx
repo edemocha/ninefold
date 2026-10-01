@@ -121,9 +121,9 @@ export function TimelineChart({
                   width={x1 - x0 - 2}
                   height={ROW.pinnacle.h}
                   rx={6}
-                  style={{ fill: `var(--n${rootOf(p.value)})`, stroke: active ? 'var(--ink-strong)' : 'var(--line)', strokeWidth: active ? 2 : 1 }}
+                  style={{ fill: `var(--n${rootOf(p.value)})`, stroke: active ? 'var(--primary)' : 'var(--line)', strokeWidth: active ? 2.5 : 1 }}
                 />
-                <text x={x0 + 10} y={ROW.pinnacle.y + 33} className="fill-[var(--ink-strong)] font-serif text-[26px]">
+                <text x={x0 + 10} y={ROW.pinnacle.y + 33} style={{ fill: `var(--d${rootOf(p.value)})` }} className="font-serif text-[26px]">
                   {p.display}
                 </text>
                 <text x={x1 - 12} y={ROW.pinnacle.y + 20} textAnchor="end" className="fill-[var(--muted)] font-mono text-[10px]">
@@ -148,9 +148,9 @@ export function TimelineChart({
                   width={x1 - x0 - 2}
                   height={ROW.challenge.h}
                   rx={6}
-                  style={{ fill: 'var(--n0)', stroke: active ? 'var(--ink-strong)' : 'var(--line)', strokeWidth: active ? 2 : 1 }}
+                  style={{ fill: 'var(--n0)', stroke: active ? 'var(--primary)' : 'var(--line)', strokeWidth: active ? 2.5 : 1 }}
                 />
-                <text x={x0 + 10} y={ROW.challenge.y + 27} className="fill-[var(--ink-strong)] font-serif text-[22px]">
+                <text x={x0 + 10} y={ROW.challenge.y + 27} style={{ fill: `var(--d${p.value})` }} className="font-serif text-[22px]">
                   {p.value}
                 </text>
                 <text x={x1 - 12} y={ROW.challenge.y + 16} textAnchor="end" className="fill-[var(--muted)] font-mono text-[10px]">
@@ -178,7 +178,8 @@ export function TimelineChart({
                   x={X(y.age) + cell / 2}
                   y={ROW.years.y + 28}
                   textAnchor="middle"
-                  className="fill-[var(--ink-strong)] font-mono text-[9px]"
+                  style={{ fill: `var(--d${digit})` }}
+                  className="font-mono text-[9px]"
                 >
                   {digit}
                 </text>
@@ -203,9 +204,9 @@ export function TimelineChart({
 
           {currentAge >= 0 && currentAge <= 100 ? (
             <g aria-hidden="true" data-testid="you-are-here">
-              <rect x={X(currentAge)} y={ROW.years.y + ROW.years.h} width={Math.max(1, cell - 1)} height={4} fill="var(--ink-strong)" />
-              <line x1={X(currentAge) + cell / 2} x2={X(currentAge) + cell / 2} y1={ROW.years.y + ROW.years.h + 4} y2={318} stroke="var(--ink-strong)" strokeWidth={1} />
-              <text x={X(currentAge) + cell / 2} y={338} textAnchor="middle" className="fill-[var(--ink-strong)] font-mono text-[11px] uppercase tracking-widest">
+              <rect x={X(currentAge)} y={ROW.years.y + ROW.years.h} width={Math.max(1, cell - 1)} height={4} fill="var(--primary)" />
+              <line x1={X(currentAge) + cell / 2} x2={X(currentAge) + cell / 2} y1={ROW.years.y + ROW.years.h + 4} y2={318} stroke="var(--primary)" strokeWidth={1} />
+              <text x={X(currentAge) + cell / 2} y={338} textAnchor="middle" className="fill-[var(--primary)] font-mono text-[11px] uppercase tracking-widest">
                 you are here
               </text>
             </g>
@@ -224,9 +225,9 @@ export function TimelineChart({
             className="cursor-grab outline-none focus-visible:[&_.handle]:stroke-[var(--focus)] focus-visible:[&_.handle]:stroke-[3px]"
             data-testid="timeline-marker"
           >
-            <line x1={markerX} x2={markerX} y1={30} y2={ROW.axis} stroke="var(--ink-strong)" strokeWidth={1.5} strokeDasharray="3 3" />
-            <rect x={markerX - 22} y={6} width={44} height={24} rx={5} className="handle" style={{ fill: 'var(--ink-strong)', stroke: 'var(--ink-strong)' }} />
-            <text x={markerX} y={22} textAnchor="middle" style={{ fill: 'var(--bg)' }} className="font-mono text-[12px]">
+            <line x1={markerX} x2={markerX} y1={30} y2={ROW.axis} stroke="var(--primary)" strokeWidth={1.5} strokeDasharray="3 3" />
+            <rect x={markerX - 22} y={6} width={44} height={24} rx={5} className="handle" style={{ fill: 'var(--primary)', stroke: 'var(--primary)' }} />
+            <text x={markerX} y={22} textAnchor="middle" style={{ fill: '#ffffff' }} className="font-mono text-[12px]">
               {age}
             </text>
           </g>

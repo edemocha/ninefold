@@ -20,8 +20,8 @@ export default function NumbersIndex() {
       <ul className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {ALL_VALUES.map((n, i) => (
           <li key={n} className="rise" style={{ ['--i' as string]: i }}>
-            <Link href={`/numbers/${n}`} className={`tint-${rootOf(n)} flex h-full min-h-40 flex-col justify-between rounded-xl border border-line p-6 hover:border-[var(--ink-strong)]`}>
-              <span className="numeral text-6xl">
+            <Link href={`/numbers/${n}`} className={`tint-${rootOf(n)} flex h-full min-h-40 flex-col justify-between rounded-xl border border-line p-6 hover:border-[var(--primary)]`}>
+              <span className={`numeral numeral-hue hue-${rootOf(n)} text-6xl`}>
                 {n}
                 {n > 9 ? <span className="text-3xl text-muted">/{rootOf(n)}</span> : null}
               </span>
