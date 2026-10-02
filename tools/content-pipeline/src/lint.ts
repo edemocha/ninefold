@@ -2,6 +2,7 @@ import {
   expectedIds,
   fleschKincaidGrade,
   jaccard,
+  mustEndOnQuestion,
   NEAR_DUPLICATE,
   READING_LEVEL,
   RULES,
@@ -83,8 +84,7 @@ function checkSnippet(family: Family, s: Snippet, report: LintReport): void {
     else if (grade > READING_LEVEL.warn) push('warning', 'reading-level', `Grade ${grade.toFixed(1)}; aim for under ${READING_LEVEL.warn}.`);
   }
 
-  const q = family.question;
-  if (q && s.keys[q.axis] === q.value && !/\?\s*["”']?$/.test(text.trim())) {
+  if (mustEndOnQuestion(family, s.keys) && !/\?\s*["”']?$/.test(text.trim())) {
     push('error', 'reflection', 'A reading ends on a reflection prompt: this one must end with a question.');
   }
 }

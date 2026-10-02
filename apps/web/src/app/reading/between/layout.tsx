@@ -2,36 +2,43 @@
 
 import { usePathname } from 'next/navigation';
 import { useState, type ReactNode } from 'react';
-import { DEFAULT_OTHER } from '@numerology/composer';
+import { nameNumbers } from '@numerology/engine';
 import { AppLink } from '@/components/app-link';
 import { Disclaimer } from '@/components/disclaimer';
 import { Icon } from '@/components/icon';
 import { PairForm } from '@/components/pair-form';
 import { PairSafetyLines } from '@/components/pair-safety';
-import { useProfile } from '@/lib/profile-context';
+import { MAX_OTHERS, useProfile } from '@/lib/profile-context';
 import { t, type MessageKey } from '@/lib/t';
 
-const SECTIONS: { href: string; label: MessageKey }[] = [
-  { href: '/reading/between', label: 'between.nav.overview' },
-  { href: '/reading/between/days', label: 'between.nav.days' },
-  { href: '/reading/between/month', label: 'between.nav.month' },
-  { href: '/reading/between/life', label: 'between.nav.life' },
-];
+type Mode = 'none' | 'edit' | 'add';
+
+const cap = (s: string): string => s.charAt(0).toUpperCase() + s.slice(1);
 
 /**
- * Everything under Between us: the heading, the form for the second person
- * (shown until someone is added, and whenever their details are being
- * changed), and the sections that read the pair. The second person lives in
- * memory next to the first, so these screens keep them as you move between.
+ * Everything under Between us: the heading, the form for the other person
+ * (shown until someone is added, and while their details are being changed or
+ * another person is being added), a switch between the people added, and the
+ * sections that read the pair. Everyone lives in memory next to the first
+ * person, so these screens keep them as you move between.
  */
 export default function BetweenLayout({ children }: { children: ReactNode }) {
-  const { profile, partner, partnerUnder16, clearPartner } = useProfile();
+  const { profile, partners, partner, partnerLabels, partnerLabel, selected, selectPartner, partnerUnder16, clearPartner, conventions } = useProfile();
   const path = usePathname().replace(/\/$/, '') || '/';
-  const [editing, setEditing] = useState(false);
+  const [mode, setMode] = useState<Mode>('none');
   if (!profile) return null;
 
-  const showForm = !partner || editing;
-  const otherName = partner?.label.trim() || DEFAULT_OTHER;
+  const showForm = partners.length === 0 || mode !== 'none';
+  const hasName = Boolean(partner?.name?.trim()) && nameNumbers(partner?.name ?? '', conventions).ok;
+
+  const sections: { href: string; label: MessageKey }[] = [
+    { href: '/reading/between', label: 'between.nav.overview' },
+    { href: '/reading/between/days', label: 'between.nav.days' },
+    { href: '/reading/between/month', label: 'between.nav.month' },
+    { href: '/reading/between/life', label: 'between.nav.life' },
+    ...(hasName ? [{ href: '/reading/between/names', label: 'between.nav.names' as const }] : []),
+    ...(partners.length >= 2 ? [{ href: '/reading/between/circle', label: 'between.nav.circle' as const }] : []),
+  ];
 
   return (
     <div className="space-y-10">
@@ -50,16 +57,46 @@ export default function BetweenLayout({ children }: { children: ReactNode }) {
         </p>
       ) : null}
 
-      {showForm ? <PairForm initial={partner} onDone={() => setEditing(false)} onCancel={partner ? () => setEditing(false) : undefined} /> : null}
+      {showForm ? (
+        <PairForm
+          key={mode === 'add' ? 'add' : `edit-${selected}`}
+          initial={mode === 'add' ? null : partner}
+          adding={mode === 'add'}
+          onDone={() => setMode('none')}
+          onCancel={partners.length > 0 ? () => setMode('none') : undefined}
+        />
+      ) : null}
 
       {partner && !showForm ? (
         <>
+          {partners.length > 1 ? (
+            <div role="group" aria-label={t('between.people.label')} className="no-print flex flex-wrap gap-2" data-testid="pair-people">
+              {partners.map((_, i) => (
+                <button
+                  key={i}
+                  type="button"
+                  className="btn-quiet !min-h-9 !px-3 !text-sm"
+                  aria-pressed={i === selected}
+                  onClick={() => selectPartner(i)}
+                >
+                  {cap(partnerLabels[i] ?? '')}
+                </button>
+              ))}
+            </div>
+          ) : null}
+
           <div className="flex flex-wrap items-end justify-between gap-3">
             <h2 className="text-3xl sm:text-4xl" data-testid="pair-heading">
-              You and {otherName}
+              You and {partnerLabel}
             </h2>
             <div className="no-print flex flex-wrap gap-2">
-              <button type="button" className="btn-quiet !min-h-9 !px-3 !text-sm" onClick={() => setEditing(true)}>
+              {partners.length < MAX_OTHERS ? (
+                <button type="button" className="btn-quiet !min-h-9 !px-3 !text-sm" onClick={() => setMode('add')}>
+                  <Icon name="plus" size={14} />
+                  {t('between.add')}
+                </button>
+              ) : null}
+              <button type="button" className="btn-quiet !min-h-9 !px-3 !text-sm" onClick={() => setMode('edit')}>
                 {t('between.change')}
               </button>
               <button type="button" className="btn-quiet !min-h-9 !px-3 !text-sm" onClick={clearPartner}>
@@ -70,7 +107,7 @@ export default function BetweenLayout({ children }: { children: ReactNode }) {
           </div>
 
           <nav aria-label={t('between.nav.label')} className="no-print -mt-4 flex flex-wrap gap-1 border-b border-line pb-2 text-sm">
-            {SECTIONS.map((s) => (
+            {sections.map((s) => (
               <AppLink
                 key={s.href}
                 to={s.href}

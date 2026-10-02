@@ -20,7 +20,7 @@ export default function PrivacyPage() {
         <li>The page address after the # holds only your view and the conventions you chose, such as the date rule. It never holds a name or a birth date, and the part after # is not sent to a server.</li>
         <li>No cookies, local storage or similar are used to remember you.</li>
         <li>
-          If you add someone on Between us, their birth date and nickname are treated exactly like yours: they stay in the memory of the open tab, and they are not sent, saved, put in the page address or put in the share image.
+          If you add someone on Between us (up to four people), their birth date and nickname, and their full name if you choose to give it, are treated exactly like yours: they stay in the memory of the open tab, and they are not sent, saved, put in the page address or put in the share image. The Names screen shows the letters of a name in its arithmetic, as it does for yours.
           &ldquo;Forget my details&rdquo; clears both of you. Only add details you are comfortable using, and ask the person first if you can.
         </li>
       </ul>

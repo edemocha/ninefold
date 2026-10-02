@@ -1,7 +1,8 @@
 'use client';
 
-import { useMemo } from 'react';
-import { composePair, DEFAULT_OTHER, type Bank, type PairReading } from '@numerology/composer';
+import { useId, useMemo } from 'react';
+import { composePair, composeTypeTalk, PAIR_TYPE_TITLES, type Bank, type PairReading } from '@numerology/composer';
+import { PAIR_TYPES, type PairType } from '@numerology/content';
 import type { YMD } from '@numerology/engine';
 import { CycleStrip } from '@/components/cycle-strip';
 import { ShareImageButton } from '@/components/export-buttons';
@@ -30,14 +31,13 @@ export default function BetweenPage() {
 }
 
 function Overview({ bank, today }: { bank: Bank; today: YMD }) {
-  const { profile, partner, conventions } = useProfile();
+  const { profile, partner, partnerLabel: otherName, conventions } = useProfile();
   const you = profile!.birth;
   const other = partner!;
   const reading = useMemo(
-    () => composePair(bank, you, other.birth, today, conventions, other.label),
-    [bank, you, other.birth, other.label, today, conventions],
+    () => composePair(bank, you, other.birth, today, conventions, otherName),
+    [bank, you, other.birth, otherName, today, conventions],
   );
-  const otherName = other.label.trim() || DEFAULT_OTHER;
   const r = reading.rhythm;
 
   return (
@@ -79,6 +79,8 @@ function Overview({ bank, today }: { bank: Bank; today: YMD }) {
       </section>
 
       <PairSections reading={reading} />
+
+      <TypeQuestions bank={bank} />
 
       <section aria-labelledby="cycles-heading" className="card space-y-7 p-6 sm:p-8" data-testid="pair-cycles">
         <div>
@@ -146,6 +148,68 @@ function PairSections({ reading }: { reading: PairReading }) {
         <p className="reading rounded-lg bg-surface-2 px-4 py-3 text-[0.98rem] leading-relaxed" data-testid="pair-overlay">
           {reading.overlayNote.text}
         </p>
+      ) : null}
+    </section>
+  );
+}
+
+/**
+ * An optional kind of relationship. It only changes the questions: nothing said
+ * about the numbers depends on it, and "no choice" is the default.
+ */
+function TypeQuestions({ bank }: { bank: Bank }) {
+  const { partner, setPartnerType } = useProfile();
+  const uid = useId();
+  const type = partner?.type;
+  const talk = type ? composeTypeTalk(bank, type) : undefined;
+  const options: { value: PairType | ''; label: string }[] = [
+    { value: '', label: t('between.type.none') },
+    ...PAIR_TYPES.map((value) => ({ value, label: PAIR_TYPE_TITLES[value] })),
+  ];
+
+  return (
+    <section aria-labelledby={`${uid}-legend`} className="card-flat space-y-4 p-6" data-testid="pair-type">
+      <fieldset className="space-y-3">
+        <legend id={`${uid}-legend`} className="section-title mb-1">
+          {t('between.type.legend')}
+        </legend>
+        <p className="max-w-[62ch] text-sm text-muted">{t('between.type.help')}</p>
+        <div className="flex flex-wrap gap-2">
+          {options.map((o) => {
+            const id = `${uid}-${o.value || 'none'}`;
+            const checked = (type ?? '') === o.value;
+            return (
+              <label
+                key={id}
+                htmlFor={id}
+                className={`inline-flex min-h-11 cursor-pointer items-center gap-2 rounded-md border px-3 text-sm ${checked ? 'border-[var(--primary)] bg-[var(--primary-soft)] text-[color:var(--info-ink)]' : 'border-line text-ink'}`}
+              >
+                <input
+                  id={id}
+                  type="radio"
+                  name={`${uid}-type`}
+                  className="size-4 accent-[var(--primary)]"
+                  checked={checked}
+                  onChange={() => setPartnerType(o.value === '' ? undefined : o.value)}
+                />
+                {o.label}
+              </label>
+            );
+          })}
+        </div>
+      </fieldset>
+
+      {talk ? (
+        <div className="space-y-3 border-t border-line pt-4" data-testid="pair-type-questions">
+          <h4 className="font-serif text-xl text-ink-strong">{t('between.type.heading', { kind: talk.title.toLowerCase() })}</h4>
+          <ul className="reading space-y-2 leading-relaxed">
+            {talk.questions.map((q) => (
+              <li key={q.id}>
+                {q.text}
+              </li>
+            ))}
+          </ul>
+        </div>
       ) : null}
     </section>
   );

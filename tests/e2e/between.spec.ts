@@ -186,6 +186,8 @@ test.describe('Between us', () => {
     await page.keyboard.press('Tab');
     await page.keyboard.type('1988');
     await page.keyboard.press('Tab');
+    await expect(form.getByLabel(/^Their full name/)).toBeFocused();
+    await page.keyboard.press('Tab');
     await expect(form.getByRole('button', { name: 'Show us side by side' })).toBeFocused();
     await page.keyboard.press('Enter');
     await expect(page.getByTestId('pair-heading')).toHaveText('You and Kai');

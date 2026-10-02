@@ -1,7 +1,7 @@
 'use client';
 
 import { useId, useState, type FormEvent } from 'react';
-import { validateBirth } from '@numerology/engine';
+import { nameNumbers, validateBirth } from '@numerology/engine';
 import { DateFields, EMPTY_DATE, toYMD, type DateValue } from './date-fields';
 import { Icon } from './icon';
 import { track } from '@/lib/analytics';
@@ -16,11 +16,24 @@ export const MAX_NICKNAME = 30;
  * Nothing here is sent anywhere or saved; it goes into the same in-memory
  * state as the first person.
  */
-export function PairForm({ initial, onDone, onCancel }: { initial: Partner | null; onDone: () => void; onCancel?: () => void }) {
+export function PairForm({
+  initial,
+  adding = false,
+  onDone,
+  onCancel,
+}: {
+  initial: Partner | null;
+  /** True when this adds another person rather than changing the selected one. */
+  adding?: boolean;
+  onDone: () => void;
+  onCancel?: () => void;
+}) {
   const uid = useId();
   const today = useToday();
-  const { setPartner } = useProfile();
+  const { setPartner, addPartner, conventions } = useProfile();
   const [label, setLabel] = useState(initial?.label ?? '');
+  const [name, setName] = useState(initial?.name ?? '');
+  const [nameError, setNameError] = useState<string | undefined>();
   const [date, setDate] = useState<DateValue>(
     initial ? { day: String(initial.birth.day), month: String(initial.birth.month), year: String(initial.birth.year) } : EMPTY_DATE,
   );
@@ -34,7 +47,22 @@ export function PairForm({ initial, onDone, onCancel }: { initial: Partner | nul
     const issue = validateBirth(birth, today);
     if (issue) return setError(issue.message);
     setError(undefined);
-    setPartner({ label: label.trim().slice(0, MAX_NICKNAME), birth });
+
+    const fullName = name.trim();
+    if (fullName) {
+      const check = nameNumbers(fullName, conventions);
+      if (!check.ok) return setNameError(check.issues.find((i) => i.blocking)?.message ?? t('between.error.name'));
+    }
+    setNameError(undefined);
+
+    const next: Partner = { label: label.trim().slice(0, MAX_NICKNAME), birth };
+    if (fullName) next.name = fullName;
+    if (initial?.type) next.type = initial.type;
+    if (adding) {
+      if (!addPartner(next)) return setError(t('between.max'));
+    } else {
+      setPartner(next);
+    }
     track('between');
     onDone();
   }
@@ -42,7 +70,7 @@ export function PairForm({ initial, onDone, onCancel }: { initial: Partner | nul
   return (
     <form onSubmit={onSubmit} noValidate aria-labelledby={`${uid}-title`} aria-describedby={`${uid}-consent`} className="card space-y-6 p-6 sm:p-8" data-testid="pair-form">
       <h2 id={`${uid}-title`} className="section-title">
-        {t('between.formTitle')}
+        {adding || !initial ? t('between.formTitle') : t('between.formTitle.edit')}
       </h2>
 
       <div className="space-y-2">
@@ -66,6 +94,32 @@ export function PairForm({ initial, onDone, onCancel }: { initial: Partner | nul
       </div>
 
       <DateFields id={uid} legend={t('between.birthDate')} value={date} onChange={setDate} today={today} error={error} />
+
+      <div className="space-y-2">
+        <label htmlFor={`${uid}-name`} className="block font-medium text-ink-strong">
+          {t('between.name')} <span className="font-normal text-muted">(optional)</span>
+        </label>
+        <input
+          id={`${uid}-name`}
+          name="their-name"
+          className="field"
+          autoComplete="off"
+          autoCapitalize="words"
+          spellCheck={false}
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+          aria-invalid={nameError ? true : undefined}
+          aria-describedby={`${uid}-name-help${nameError ? ` ${uid}-name-err` : ''}`}
+        />
+        <p id={`${uid}-name-help`} className="text-sm text-muted">
+          {t('between.name.help')}
+        </p>
+        {nameError ? (
+          <p id={`${uid}-name-err`} role="alert" className="text-sm text-[color:var(--bad-ink)]">
+            {nameError}
+          </p>
+        ) : null}
+      </div>
 
       <div className="space-y-3">
         <div className="flex flex-wrap gap-3">

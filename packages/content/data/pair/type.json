@@ -1,0 +1,26 @@
+{
+  "friends": {
+    "q1": "What do you each count on the other for, and have you ever said so out loud?",
+    "q2": "How much time together feels right for each of you, and how do you tell the other when you need less or more?",
+    "q3": "What is something you have wanted to try together and have not yet suggested?",
+    "q4": "When one of you is having a hard time, what helps most: advice, company, or just being listened to?"
+  },
+  "family": {
+    "q1": "What did each of you learn growing up about how people in a family disagree, and do you still follow it?",
+    "q2": "Which family habits would you each like to keep, and which would you change?",
+    "q3": "What is one thing you would like the other to understand about your life right now?",
+    "q4": "How could you each ask for help without it sounding like a complaint?"
+  },
+  "colleagues": {
+    "q1": "How do you each like to work: alone first, together from the start, or something in between?",
+    "q2": "What does a good handover or a good disagreement look like for each of you?",
+    "q3": "What do you each need to hear when something has gone well, and how often?",
+    "q4": "Where do your jobs overlap in a way that is not yet clear, and how could you settle it?"
+  },
+  "couple": {
+    "q1": "What does a good week together look like for each of you, and what gets in its way?",
+    "q2": "How do you each prefer to raise a difficulty: straight away, after some time, or in writing?",
+    "q3": "What do you each do to feel appreciated, and what does the other do that you rarely mention?",
+    "q4": "What would each of you like more of in the next three months, and less of?"
+  }
+}

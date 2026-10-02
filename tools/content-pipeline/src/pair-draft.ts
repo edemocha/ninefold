@@ -1,6 +1,6 @@
 import { existsSync, readFileSync } from 'node:fs';
 import { join } from 'node:path';
-import { PAIR_SAFETY_LINES, wordCount, type Family } from '@numerology/content';
+import { mustEndOnQuestion, PAIR_SAFETY_LINES, wordCount, type Family } from '@numerology/content';
 import { parseId } from './edit';
 import { loadFamilies, loadStatus, statusOf } from './load';
 
@@ -57,6 +57,9 @@ export type PairRequest = {
   tool: { name: string; description: string; input_schema: Record<string, unknown> };
 };
 
+const TYPE_QUESTION =
+  'One question for the two people to answer about themselves, written for this kind of relationship. It never rules on the relationship. It must end on a question.';
+
 /** What each section is for, so a draft is written to the right job. */
 const SECTION_BRIEF: Record<string, string> = {
   meet: 'Where these two numbers tend to meet easily: shared ground and what each can offer the other.',
@@ -64,6 +67,10 @@ const SECTION_BRIEF: Record<string, string> = {
   talk: 'Two or three questions the two people can answer about themselves and about what they would like to try. It must end on a question.',
   meaning: 'What it means that two cycles sit this many steps apart on the nine-number cycle. Plain arithmetic first, then what it can mean for two people.',
   use: 'One practical way two people can use the gap: share experience, plan around it, be curious. Not advice about the relationship.',
+  q1: TYPE_QUESTION,
+  q2: TYPE_QUESTION,
+  q3: TYPE_QUESTION,
+  q4: TYPE_QUESTION,
 };
 
 export function buildPairRequest(id: string, bannedList: string, contentRoot: string): PairRequest {
@@ -91,13 +98,17 @@ export function buildPairRequest(id: string, bannedList: string, contentRoot: st
       ? `the pair of numbers ${first.replace('-', ' and ')}, section "${section}"`
       : family.id === 'pair.master'
         ? `the note for ${first === 'both' ? 'two master numbers' : `a master ${first}`} in a pair`
-        : `a gap of ${first} ${first === '1' ? 'step' : 'steps'} between two cycles (${first === '0' ? 'the same number' : 'the shorter way round the nine'}), section "${section}"`;
+        : family.id === 'pair.lens'
+          ? `the one-line frame for reading a pair through ${first === 'soulUrge' ? 'soul urge' : first}: what that number is about, in plain words, and that the pair text below is read as a prompt, not a verdict`
+          : family.id === 'pair.type'
+            ? `question ${section?.replace('q', '')} of 4 for two people who are ${first === 'couple' ? 'a couple' : first}`
+            : `a gap of ${first} ${first === '1' ? 'step' : 'steps'} between two cycles (${first === '0' ? 'the same number' : 'the shorter way round the nine'}), section "${section}"`;
 
   const user = [
     `Write the text for the slot ${id}: ${subject}.`,
     `Length: ${min} to ${max} words.`,
     section && SECTION_BRIEF[section] ? `Job of this section: ${SECTION_BRIEF[section]}` : '',
-    section === 'talk' ? 'This snippet must end on a question.' : '',
+    mustEndOnQuestion(family, parsed.keys) ? 'This snippet must end on a question.' : '',
     '',
     'Notes on writing about pairs:',
     addendum || '(no pair notes yet)',

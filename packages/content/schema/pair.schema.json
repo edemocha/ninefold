@@ -7,7 +7,9 @@
   "required": [
     "core",
     "master",
-    "rhythm"
+    "rhythm",
+    "lens",
+    "type"
   ],
   "properties": {
     "core": {
@@ -1247,6 +1249,148 @@
               "minLength": 1
             },
             "talk": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        }
+      }
+    },
+    "lens": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "expression",
+        "soulUrge"
+      ],
+      "properties": {
+        "expression": {
+          "type": "string",
+          "minLength": 1
+        },
+        "soulUrge": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "type": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "friends",
+        "family",
+        "colleagues",
+        "couple"
+      ],
+      "properties": {
+        "friends": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "q1",
+            "q2",
+            "q3",
+            "q4"
+          ],
+          "properties": {
+            "q1": {
+              "type": "string",
+              "minLength": 1
+            },
+            "q2": {
+              "type": "string",
+              "minLength": 1
+            },
+            "q3": {
+              "type": "string",
+              "minLength": 1
+            },
+            "q4": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        },
+        "family": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "q1",
+            "q2",
+            "q3",
+            "q4"
+          ],
+          "properties": {
+            "q1": {
+              "type": "string",
+              "minLength": 1
+            },
+            "q2": {
+              "type": "string",
+              "minLength": 1
+            },
+            "q3": {
+              "type": "string",
+              "minLength": 1
+            },
+            "q4": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        },
+        "colleagues": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "q1",
+            "q2",
+            "q3",
+            "q4"
+          ],
+          "properties": {
+            "q1": {
+              "type": "string",
+              "minLength": 1
+            },
+            "q2": {
+              "type": "string",
+              "minLength": 1
+            },
+            "q3": {
+              "type": "string",
+              "minLength": 1
+            },
+            "q4": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        },
+        "couple": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "q1",
+            "q2",
+            "q3",
+            "q4"
+          ],
+          "properties": {
+            "q1": {
+              "type": "string",
+              "minLength": 1
+            },
+            "q2": {
+              "type": "string",
+              "minLength": 1
+            },
+            "q3": {
+              "type": "string",
+              "minLength": 1
+            },
+            "q4": {
               "type": "string",
               "minLength": 1
             }

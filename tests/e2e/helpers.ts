@@ -38,7 +38,7 @@ export async function go(page: Page, tab: 'Snapshot' | 'Name grid' | 'Life timel
   await page.getByRole('navigation', { name: 'Your reading' }).getByRole('link', { name: tab, exact: true }).click();
 }
 
-export type Partner = { label?: string; day: number; month: number; year: number };
+export type Partner = { label?: string; name?: string; day: number; month: number; year: number };
 
 /** A second made-up person for Between us: life path 3, a personal year 5 in 2026. */
 export const SAM: Partner = { label: 'Sam', day: 2, month: 11, year: 1988 };
@@ -47,9 +47,16 @@ export const SAM: Partner = { label: 'Sam', day: 2, month: 11, year: 1988 };
 export async function addPartner(page: Page, p: Partner): Promise<void> {
   const form = page.getByTestId('pair-form');
   if (p.label) await form.getByLabel(/^Nickname/).fill(p.label);
+  if (p.name) await form.getByLabel(/^Their full name/).fill(p.name);
   await expect(form.locator('select').nth(2).locator('option')).not.toHaveCount(1);
   await form.getByLabel('Day', { exact: true }).selectOption(String(p.day));
   await form.getByLabel('Month', { exact: true }).selectOption(String(p.month));
   await form.getByLabel('Year', { exact: true }).selectOption(String(p.year));
   await form.getByRole('button', { name: 'Show us side by side' }).click();
+}
+
+/** Adds another person from the "Add someone else" button, after the first has been added. */
+export async function addAnother(page: Page, p: Partner): Promise<void> {
+  await page.getByRole('button', { name: 'Add someone else' }).click();
+  await addPartner(page, p);
 }

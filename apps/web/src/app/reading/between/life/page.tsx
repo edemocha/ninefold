@@ -29,10 +29,10 @@ export default function PairLifePage() {
 }
 
 function PairLifeView({ bank, today }: { bank: Bank; today: YMD }) {
-  const { profile, partner, conventions } = useProfile();
+  const { profile, partner, partnerLabel, conventions } = useProfile();
   const life = useMemo(
-    () => composePairLife(bank, profile!.birth, partner!.birth, today, conventions, partner!.label),
-    [bank, profile, partner, today, conventions],
+    () => composePairLife(bank, profile!.birth, partner!.birth, today, conventions, partnerLabel),
+    [bank, profile, partner, today, conventions, partnerLabel],
   );
 
   return (

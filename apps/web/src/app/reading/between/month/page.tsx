@@ -1,7 +1,7 @@
 'use client';
 
 import { useMemo } from 'react';
-import { composePairMonth, DEFAULT_OTHER, type Bank } from '@numerology/composer';
+import { composePairMonth, type Bank } from '@numerology/composer';
 import { MONTH_NAMES, type YMD } from '@numerology/engine';
 import { AppLink } from '@/components/app-link';
 import { Icon } from '@/components/icon';
@@ -63,12 +63,11 @@ export default function PairMonthPage() {
 }
 
 function PairMonthView({ bank, year, month, today }: { bank: Bank; year: number; month: number; today: YMD }) {
-  const { profile, partner, conventions } = useProfile();
+  const { profile, partner, partnerLabel: otherName, conventions } = useProfile();
   const reading = useMemo(
-    () => composePairMonth(bank, profile!.birth, partner!.birth, year, month, conventions, partner!.label),
-    [bank, profile, partner, year, month, conventions],
+    () => composePairMonth(bank, profile!.birth, partner!.birth, year, month, conventions, otherName),
+    [bank, profile, partner, year, month, conventions, otherName],
   );
-  const otherName = partner!.label.trim() || DEFAULT_OTHER;
 
   return (
     <div className="space-y-10" data-testid="pair-month">

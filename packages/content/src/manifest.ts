@@ -93,6 +93,18 @@ export const PAIR_SAFETY_LINES = [
   'If you ever feel unsafe with someone, talk to a person you trust or a local support service.',
 ] as const;
 
+/** Name numbers can be read as a pair too: the same pair text, with a one-line frame saying what the lens is. */
+export const PAIR_LENSES = ['expression', 'soulUrge'] as const;
+export type PairLens = (typeof PAIR_LENSES)[number];
+
+/**
+ * An optional picker that only changes the questions. It never changes what is
+ * said about the numbers, and "no choice" is the default.
+ */
+export const PAIR_TYPES = ['friends', 'family', 'colleagues', 'couple'] as const;
+export type PairType = (typeof PAIR_TYPES)[number];
+export const PAIR_TYPE_QUESTIONS = ['q1', 'q2', 'q3', 'q4'] as const;
+
 /** The opt-in lint groups the pair families answer to (see rules.ts). */
 export const PAIR_RULE_GROUPS = ['pairVerdict', 'pairPerson', 'pairFeeling'] as const;
 
@@ -142,7 +154,7 @@ export type Family = {
   variants?: Record<string, number>;
   /** Word budget per snippet: [min, max]. */
   words: readonly [number, number];
-  /** Snippets whose key at `axis` equals `value` must end on a question. */
+  /** Snippets whose key at `axis` equals `value` (or every snippet, when `value` is "*") must end on a question. */
   question?: { axis: number; value: string };
   /**
    * When set, each snippet is an object with exactly these fields (all plain
@@ -349,6 +361,25 @@ export const FAMILIES: readonly Family[] = [
     question: { axis: 1, value: 'talk' },
     also: PAIR_RULE_GROUPS,
   },
+  {
+    id: 'pair.lens',
+    layer: 'pair',
+    file: 'pair/lens.json',
+    path: ['lens'],
+    axes: [str(PAIR_LENSES)],
+    words: [18, 55],
+    also: PAIR_RULE_GROUPS,
+  },
+  {
+    id: 'pair.type',
+    layer: 'pair',
+    file: 'pair/type.json',
+    path: ['type'],
+    axes: [str(PAIR_TYPES), str(PAIR_TYPE_QUESTIONS)],
+    words: [10, 40],
+    question: { axis: 1, value: '*' },
+    also: PAIR_RULE_GROUPS,
+  },
 ];
 
 export const LAYERS: readonly Layer[] = ['life', 'year', 'month', 'day', 'pair'];
@@ -454,6 +485,12 @@ export function flattenFamily(family: Family, data: unknown): Snippet[] {
   };
   walk(0, [], root);
   return out;
+}
+
+/** True when a snippet in `family` with these keys must end on a question. */
+export function mustEndOnQuestion(family: Pick<Family, 'question'>, keys: readonly string[]): boolean {
+  const q = family.question;
+  return q !== undefined && (q.value === '*' || keys[q.axis] === q.value);
 }
 
 export function expectedCount(): number {

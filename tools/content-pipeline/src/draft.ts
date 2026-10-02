@@ -1,6 +1,6 @@
 import { existsSync, readFileSync } from 'node:fs';
 import { join } from 'node:path';
-import { RULES, wordCount } from '@numerology/content';
+import { mustEndOnQuestion, RULES, wordCount } from '@numerology/content';
 import { buildCautionRequest } from './caution-draft';
 import { buildPairRequest } from './pair-draft';
 import { parseId } from './edit';
@@ -88,7 +88,7 @@ export function buildDraftRequest(id: string, contentRoot = CONTENT_ROOT): Draft
     `Write the text for the slot ${id}.`,
     `Layer: ${slot.layer}. Family: ${slot.family}. Keys: ${slot.keys.join(' / ')}${slot.variant ? `. This is variant ${slot.variant}: make it clearly different from the others.` : '.'}`,
     `Length: ${min} to ${max} words.`,
-    parsed.family.question && slot.keys[parsed.family.question.axis] === parsed.family.question.value
+    mustEndOnQuestion(parsed.family, slot.keys)
       ? 'This snippet ends the reading, so it must end on a reflection question.'
       : '',
     '',

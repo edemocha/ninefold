@@ -62,6 +62,10 @@ export type PairLayer = {
   master: Record<string, string>;
   /** The gap between two people's cycles, by the shorter way round the nine ("0" to "4"). */
   rhythm: Record<string, Sections<'meaning' | 'use' | 'talk'>>;
+  /** One line on what a name lens (expression, soul urge) is, shown above the pair text read through it. */
+  lens: Record<string, string>;
+  /** Four questions for each relationship type, chosen by the visitor. */
+  type: Record<string, Sections<'q1' | 'q2' | 'q3' | 'q4'>>;
 };
 
 export type ReleaseManifest = {

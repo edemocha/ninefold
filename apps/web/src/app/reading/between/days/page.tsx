@@ -1,7 +1,7 @@
 'use client';
 
 import { useId, useMemo } from 'react';
-import { composePairDay, DEFAULT_OTHER, type Bank } from '@numerology/composer';
+import { composePairDay, type Bank } from '@numerology/composer';
 import { addDays, isValidYMD, sameYMD, type YMD } from '@numerology/engine';
 import { AppLink } from '@/components/app-link';
 import { Icon } from '@/components/icon';
@@ -76,12 +76,11 @@ export default function PairDaysPage() {
 }
 
 function PairDayView({ bank, date }: { bank: Bank; date: YMD }) {
-  const { profile, partner, conventions } = useProfile();
+  const { profile, partner, partnerLabel: otherName, conventions } = useProfile();
   const day = useMemo(
-    () => composePairDay(bank, profile!.birth, partner!.birth, date, conventions, partner!.label),
-    [bank, profile, partner, date, conventions],
+    () => composePairDay(bank, profile!.birth, partner!.birth, date, conventions, otherName),
+    [bank, profile, partner, date, conventions, otherName],
   );
-  const otherName = partner!.label.trim() || DEFAULT_OTHER;
   const [a, b] = day.sides;
 
   return (

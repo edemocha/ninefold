@@ -13,6 +13,8 @@ import {
   type NameProfile,
   type YMD,
 } from '@numerology/engine';
+import { DEFAULT_OTHER, MAX_PEOPLE } from '@numerology/composer';
+import type { PairType } from '@numerology/content';
 import { blockAnalytics } from './analytics';
 import { parseHash, setHash, useHash } from './hash';
 import { localYMD } from './today';
@@ -28,7 +30,20 @@ export type Profile = { birthName: string; usedName: string; birth: YMD };
  * exactly like the first profile (React state, this tab only). The nickname is
  * only ever shown on screen. It is never in an image, a link or a request.
  */
-export type Partner = { label: string; birth: YMD };
+export type Partner = {
+  label: string;
+  birth: YMD;
+  /**
+   * Their full name, only if the visitor gave it, only for the Names section. It is held like everything
+   * else here and never leaves the tab.
+   */
+  name?: string;
+  /** An optional kind of relationship. It only changes the questions on the Overview. */
+  type?: PairType;
+};
+
+/** You and up to four others. */
+export const MAX_OTHERS = MAX_PEOPLE - 1;
 
 type Who = 'birth' | 'current';
 
@@ -59,12 +74,27 @@ type ProfileContextValue = {
   /** Whole years old today, or null before a profile exists. */
   age: number | null;
   under16: boolean;
-  /** The second person added on the Between us tab, or null. */
+  /** Everyone added on the Between us tab (at most four), in the order they were added. */
+  partners: Partner[];
+  /** Which of them the pair screens are showing. */
+  selected: number;
+  /** The selected person, or null. */
   partner: Partner | null;
-  /** True when the second person is under 16. */
+  /** How each person is named on screen: their nickname, or "the other person", or "person 3" when there are several. */
+  partnerLabels: string[];
+  /** The selected person's name on screen. */
+  partnerLabel: string;
+  /** True when anyone added is under 16. */
   partnerUnder16: boolean;
+  /** Changes the selected person, or adds the first one. */
   setPartner: (partner: Partner) => void;
+  /** Adds another person and selects them. False when there are already four. */
+  addPartner: (partner: Partner) => boolean;
+  selectPartner: (index: number) => void;
+  /** Removes the selected person. */
   clearPartner: () => void;
+  /** Sets or clears the kind of relationship for the selected person. */
+  setPartnerType: (type: PairType | undefined) => void;
   submit: (profile: Profile, conventions: Conventions) => void;
   setConventions: (next: Conventions) => void;
   setWho: (who: Who) => void;
@@ -79,7 +109,8 @@ const Ctx = createContext<ProfileContextValue | null>(null);
 
 export function ProfileProvider({ children }: { children: ReactNode }) {
   const [profile, setProfile] = useState<Profile | null>(null);
-  const [partner, setPartnerState] = useState<Partner | null>(null);
+  const [partners, setPartners] = useState<Partner[]>([]);
+  const [selected, setSelected] = useState(0);
   const [view, setViewState] = useState<View>({});
   const hash = useHash();
 
@@ -116,23 +147,59 @@ export function ProfileProvider({ children }: { children: ReactNode }) {
     [setConventions],
   );
 
-  // Analytics stay off for the rest of the visit once either person is under 16.
-  const setPartner = useCallback(
+  // Analytics stay off for the rest of the visit once anyone added is under 16.
+  const guardAge = useCallback(
     (p: Partner) => {
-      setPartnerState(p);
       if (ageOn(p.birth, localYMD(), conventions) < 16) blockAnalytics();
     },
     [conventions],
   );
-  const clearPartner = useCallback(() => setPartnerState(null), []);
+  const setPartner = useCallback(
+    (p: Partner) => {
+      guardAge(p);
+      setPartners((list) => (list.length === 0 ? [p] : list.map((x, i) => (i === selected ? p : x))));
+    },
+    [guardAge, selected],
+  );
+  const addPartner = useCallback(
+    (p: Partner): boolean => {
+      if (partners.length >= MAX_OTHERS) return false;
+      guardAge(p);
+      setPartners((list) => (list.length >= MAX_OTHERS ? list : [...list, p]));
+      setSelected(partners.length);
+      return true;
+    },
+    [guardAge, partners.length],
+  );
+  const selectPartner = useCallback((index: number) => setSelected(index), []);
+  const clearPartner = useCallback(() => {
+    setPartners((list) => list.filter((_, i) => i !== selected));
+    setSelected((i) => Math.max(0, i - 1));
+  }, [selected]);
+  const setPartnerType = useCallback(
+    (type: PairType | undefined) => {
+      setPartners((list) =>
+        list.map((x, i) => {
+          if (i !== selected) return x;
+          const { type: _old, ...rest } = x;
+          return type ? { ...rest, type } : rest;
+        }),
+      );
+    },
+    [selected],
+  );
 
   // Forgetting clears both people.
   const forget = useCallback(() => {
     setProfile(null);
-    setPartnerState(null);
+    setPartners([]);
+    setSelected(0);
     setViewState({});
     setHash({ who: null });
   }, []);
+
+  const current = Math.min(selected, Math.max(0, partners.length - 1));
+  const partnerLabels = partners.map((p, i) => p.label.trim() || (partners.length > 1 ? `person ${i + 2}` : DEFAULT_OTHER));
 
   const value = useMemo<ProfileContextValue>(() => {
     const activeName = profile ? (who === 'current' && profile.usedName.trim() ? profile.usedName : profile.birthName) : '';
@@ -148,10 +215,17 @@ export function ProfileProvider({ children }: { children: ReactNode }) {
       core,
       age,
       under16: age !== null && age < 16,
-      partner,
-      partnerUnder16: partner !== null && ageOn(partner.birth, localYMD(), conventions) < 16,
+      partners,
+      selected: current,
+      partner: partners[current] ?? null,
+      partnerLabels,
+      partnerLabel: partnerLabels[current] ?? DEFAULT_OTHER,
+      partnerUnder16: partners.some((p) => ageOn(p.birth, localYMD(), conventions) < 16),
       setPartner,
+      addPartner,
+      selectPartner,
       clearPartner,
+      setPartnerType,
       submit,
       setConventions,
       setWho,
@@ -160,7 +234,7 @@ export function ProfileProvider({ children }: { children: ReactNode }) {
       setView,
       hash,
     };
-  }, [profile, partner, conventions, who, submit, setConventions, setWho, setPartner, clearPartner, forget, view, setView, hash]);
+  }, [profile, partners, current, conventions, who, submit, setConventions, setWho, setPartner, addPartner, selectPartner, clearPartner, setPartnerType, forget, view, setView, hash]);
 
   return <Ctx.Provider value={value}>{children}</Ctx.Provider>;
 }

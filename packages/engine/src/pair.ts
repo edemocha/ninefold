@@ -35,16 +35,25 @@ export type LifePathPair = {
   overlay: MasterOverlay;
 };
 
-export function lifePathPair(birthA: YMD, birthB: YMD, c: Conventions): LifePathPair {
-  const a = lifePath(birthA, c);
-  const b = lifePath(birthB, c);
+/**
+ * Any two numbers read as a pair: a life path, an expression or a soul urge. The
+ * key is the two single-digit roots, smaller first, and a master number on
+ * either side adds one note.
+ */
+export function numberPair(a: Pick<Result, 'value'>, b: Pick<Result, 'value'>): { key: string; overlay: MasterOverlay } {
   const masterA = a.value > 9;
   const masterB = b.value > 9;
   let overlay: MasterOverlay = 'none';
   if (masterA && masterB) overlay = 'both';
   else if (masterA) overlay = String(a.value) as MasterOverlay;
   else if (masterB) overlay = String(b.value) as MasterOverlay;
-  return { a, b, key: pairKey(a.value, b.value), overlay };
+  return { key: pairKey(a.value, b.value), overlay };
+}
+
+export function lifePathPair(birthA: YMD, birthB: YMD, c: Conventions): LifePathPair {
+  const a = lifePath(birthA, c);
+  const b = lifePath(birthB, c);
+  return { a, b, ...numberPair(a, b) };
 }
 
 export type PairLabels = { a: string; b: string };

@@ -14,10 +14,10 @@ const pairFamilies = loaded.filter((l) => l.family.layer === 'pair');
 const pair = pairFamilies.flatMap((l) => l.snippets);
 
 describe('Between us: the bank', () => {
-  it('has three families and 154 snippets, every slot filled', () => {
-    expect(FAMILIES.filter((f) => f.layer === 'pair').map((f) => f.id)).toEqual(['pair.core', 'pair.master', 'pair.rhythm']);
+  it('has five families and 172 snippets, every slot filled', () => {
+    expect(FAMILIES.filter((f) => f.layer === 'pair').map((f) => f.id)).toEqual(['pair.core', 'pair.master', 'pair.rhythm', 'pair.lens', 'pair.type']);
     expect(PAIR_KEYS).toHaveLength(45);
-    expect(pairFamilies.map((l) => l.snippets.length)).toEqual([135, 4, 15]);
+    expect(pairFamilies.map((l) => l.snippets.length)).toEqual([135, 4, 15, 2, 16]);
     const present = new Set(pair.map((s) => s.id));
     expect(FAMILIES.filter((f) => f.layer === 'pair').flatMap(expectedIds).filter((id) => !present.has(id))).toEqual([]);
   });
@@ -27,8 +27,9 @@ describe('Between us: the bank', () => {
     expect(report.errors.map((e) => `${e.rule} ${e.id}: ${e.message}`)).toEqual([]);
   });
 
-  it('ends every talk snippet on a question', () => {
-    for (const s of pair.filter((x) => x.keys[x.keys.length - 1] === 'talk')) expect(s.text.trim().endsWith('?'), s.id).toBe(true);
+  it('ends every talk snippet and every type question on a question', () => {
+    for (const s of pair.filter((x) => x.keys[x.keys.length - 1] === 'talk' || x.family === 'pair.type')) expect(s.text.trim().endsWith('?'), s.id).toBe(true);
+    expect(pair.filter((x) => x.family === 'pair.type')).toHaveLength(16);
   });
 
   it('is released as its own layer that the schema accepts', () => {
@@ -46,6 +47,9 @@ describe('Between us: the bank', () => {
     expect(parseId('pair.core.3-7.meet')).toMatchObject({ keys: ['3-7', 'meet'] });
     expect(parseId('pair.master.both')?.family.id).toBe('pair.master');
     expect(parseId('pair.rhythm.4.use')?.family.id).toBe('pair.rhythm');
+    expect(parseId('pair.lens.soulUrge')?.family.id).toBe('pair.lens');
+    expect(parseId('pair.type.couple.q3')).toMatchObject({ keys: ['couple', 'q3'] });
+    expect(parseId('pair.type.couple.q5')).toBeNull();
     expect(parseId('pair.core.7-3.meet')).toBeNull();
   });
 });
@@ -146,6 +150,15 @@ describe('Between us: the drafting prompt', () => {
 
   it('does not put the pair ban list in the prompt for the rest of the bank', () => {
     expect(buildDraftRequest('life.core.lifePath.8.shadow').system).not.toContain('pairVerdict:');
+  });
+
+  it('briefs a lens frame and a type question', () => {
+    const lens = buildDraftRequest('pair.lens.soulUrge');
+    expect(lens.user).toContain('soul urge');
+    expect(lens.user).toContain('18 to 55 words');
+    const question = buildDraftRequest('pair.type.family.q2');
+    expect(question.user).toContain('question 2 of 4 for two people who are family');
+    expect(question.user).toContain('must end on a question');
   });
 
   it('briefs a gap slot and a master overlay', () => {

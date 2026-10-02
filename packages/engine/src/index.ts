@@ -23,7 +23,7 @@ export {
 export type { NormalizedName } from './names';
 export { coreProfile, maturity, lifeStage } from './profile';
 export type { LifeStage } from './profile';
-export { pairKey, lifePathPair, cycleGap, cycleGapSegments, cycleStrip } from './pair';
+export { pairKey, numberPair, lifePathPair, cycleGap, cycleGapSegments, cycleStrip } from './pair';
 export type { MasterOverlay, LifePathPair, PairLabels, CycleGap, GapSegment, StripRow } from './pair';
 export { variantIndex, variantIndexRange, yearVariantIndex, monthVariantIndex, VARIANT_EPOCH } from './variants';
 export type { DayIndex } from './variants';

@@ -3,7 +3,7 @@ import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import Ajv from 'ajv';
 import { afterAll, beforeAll, describe, expect, it } from 'vitest';
-import { allSchemas, expectedCount, expectedIds, FAMILIES, flattenFamily, wordCount } from '@numerology/content';
+import { allSchemas, expectedCount, expectedIds, FAMILIES, flattenFamily, mustEndOnQuestion, wordCount } from '@numerology/content';
 import { buildLayers } from '../src/build';
 import { buildDraftRequest, callClaude } from '../src/draft';
 import { parseId, setSnippetText } from '../src/edit';
@@ -25,15 +25,15 @@ describe('the content bank', () => {
     expect(present.size).toBe(expectedCount());
   });
 
-  it('is the size the plan sized (about 1,279 snippets) plus 810 cautions and 154 for Between us', () => {
+  it('is the size the plan sized (about 1,279 snippets) plus 810 cautions and 172 for Between us', () => {
     const cautions = FAMILIES.filter((f) => f.caution).flatMap(expectedIds).length;
     const pair = FAMILIES.filter((f) => f.layer === 'pair').flatMap(expectedIds).length;
     const base = expectedCount() - cautions - pair;
     expect(base).toBeGreaterThanOrEqual(1270);
     expect(base).toBeLessThanOrEqual(1290);
     expect(cautions).toBe(810);
-    expect(pair).toBe(154);
-    expect(expectedCount()).toBe(base + 810 + 154);
+    expect(pair).toBe(172);
+    expect(expectedCount()).toBe(base + 810 + 172);
   });
 
   it('has lint clean: no banned claims, certainty words, fear hooks or missing reflection prompts', () => {
@@ -44,7 +44,7 @@ describe('the content bank', () => {
   it('every reflection slot ends on a question', () => {
     for (const { family, snippets } of loaded) {
       if (!family.question) continue;
-      for (const s of snippets.filter((x) => x.keys[family.question!.axis] === family.question!.value)) {
+      for (const s of snippets.filter((x) => mustEndOnQuestion(family, x.keys))) {
         expect(s.text.trim().endsWith('?'), s.id).toBe(true);
       }
     }

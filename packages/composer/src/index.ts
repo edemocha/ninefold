@@ -8,3 +8,4 @@ export { specialDateKey } from './special';
 export * from './cautions';
 export * from './pair';
 export * from './pair-time';
+export * from './pair-extras';

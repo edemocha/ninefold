@@ -42,12 +42,12 @@ export const RHYTHM_SECTION_TITLES: Record<(typeof RHYTHM_SECTIONS)[number], str
 
 export const DEFAULT_OTHER = 'the other person';
 
-const cap = (s: string): string => s.charAt(0).toUpperCase() + s.slice(1);
+export const cap = (s: string): string => s.charAt(0).toUpperCase() + s.slice(1);
 const stepsText = (n: number): string => `${n} ${n === 1 ? 'step' : 'steps'}`;
 const yearsText = (n: number, approx: boolean): string => `${approx ? 'about ' : ''}${n} ${n === 1 ? 'year' : 'years'}`;
 
 /** "a 3", "an 8", "an 11/2". */
-function numberWithArticle(display: string): string {
+export function numberWithArticle(display: string): string {
   return `${/^(8|11)/.test(display) ? 'an' : 'a'} ${display}`;
 }
 

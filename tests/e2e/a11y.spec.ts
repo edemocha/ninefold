@@ -1,6 +1,6 @@
 import AxeBuilder from '@axe-core/playwright';
 import { expect, test, type Page } from '@playwright/test';
-import { addPartner, enter, go, SAM } from './helpers';
+import { addAnother, addPartner, enter, go, SAM } from './helpers';
 
 /*
  * axe on every screen, with the build failing on any serious or critical
@@ -112,6 +112,47 @@ for (const scheme of ['light'] as const) {
       await nav.getByRole('link', { name: 'Life stages', exact: true }).click();
       await expect(page.getByTestId('between-under16-notice')).toBeVisible();
       await audit(page, `${scheme} between us, life stages with a child`);
+    });
+
+    test('Between us: names, kinds of relationship and a circle', async ({ page }) => {
+      test.setTimeout(120_000);
+      await enter(page);
+      await go(page, 'Between us');
+      await addPartner(page, { label: 'Dav', name: 'David', day: 2, month: 11, year: 1988 });
+      const nav = page.getByRole('navigation', { name: 'Between us sections' });
+
+      await page.getByTestId('pair-type').getByRole('radio', { name: 'Colleagues' }).check();
+      await expect(page.getByTestId('pair-type-questions')).toBeVisible();
+      await audit(page, `${scheme} between us, a kind of relationship chosen`);
+
+      await nav.getByRole('link', { name: 'Names', exact: true }).click();
+      await expect(page.getByTestId('pair-names')).toBeVisible();
+      await audit(page, `${scheme} between us, names`);
+      await page.getByTestId('pair-names-expression-other').getByText('Why this number').click();
+      await page.getByTestId('pair-names-soulUrge-you').getByText('Why this number').click();
+      await audit(page, `${scheme} between us, names with the arithmetic open`);
+
+      await page.getByRole('button', { name: 'Add someone else' }).click();
+      await expect(page.getByTestId('pair-form')).toBeVisible();
+      await page.getByTestId('pair-form').getByRole('button', { name: 'Show us side by side' }).click();
+      await expect(page.getByText('Choose a day, month and year.')).toBeVisible();
+      await audit(page, `${scheme} between us, adding another person with an error`);
+      await page.getByTestId('pair-form').getByLabel(/^Their full name/).fill('张伟');
+      await addPartner(page, { label: 'Kit', day: 10, month: 3, year: 2014 });
+      await expect(page.getByTestId('pair-form').getByRole('alert')).toBeVisible();
+      await audit(page, `${scheme} between us, a name that cannot be read`);
+      await page.getByTestId('pair-form').getByLabel(/^Their full name/).fill('');
+      await page.getByTestId('pair-form').getByRole('button', { name: 'Show us side by side' }).click();
+      await expect(page.getByTestId('pair-people')).toBeVisible();
+      await audit(page, `${scheme} between us, two people added`);
+
+      for (const p of [
+        { label: 'Ro', day: 3, month: 3, year: 2003 },
+        { label: 'Lee', day: 21, month: 9, year: 1970 },
+      ]) await addAnother(page, p);
+      await nav.getByRole('link', { name: 'Circle', exact: true }).click();
+      await expect(page.getByTestId('pair-circle')).toBeVisible();
+      await audit(page, `${scheme} between us, a circle of five`);
     });
 
     test('Between us in every state', async ({ page }) => {
