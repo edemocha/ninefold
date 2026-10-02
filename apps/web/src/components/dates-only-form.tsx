@@ -53,7 +53,7 @@ export function DatesOnlyForm({ className = '' }: { className?: string }) {
   return (
     <form onSubmit={onSubmit} noValidate aria-labelledby={`${uid}-title`} className={`card space-y-6 p-6 sm:p-8 ${className}`} data-testid="dates-only-form">
       <div className="space-y-1">
-        <h2 id={`${uid}-title`} className="font-serif text-2xl text-ink-strong">
+        <h2 id={`${uid}-title`} className="font-display text-2xl text-ink-strong">
           {t('pairs.form.title')}
         </h2>
         <p className="max-w-[56ch] text-sm text-muted">{t('pairs.form.help')}</p>

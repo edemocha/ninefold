@@ -9,6 +9,7 @@ import { LayerGate } from '@/components/layer-gate';
 import { ConventionChips, WhyThisNumber } from '@/components/number';
 import { TimelineChart } from '@/components/timeline-chart';
 import { useProfile } from '@/lib/profile-context';
+import { rootOf } from '@/lib/site';
 import { useToday } from '@/lib/use-today';
 
 export default function TimelinePage() {
@@ -50,7 +51,7 @@ function Timeline({ bank, today }: { bank: Parameters<typeof composeTimeline>[0]
       <section aria-live="polite" aria-atomic="true" className="card-flat grid gap-5 p-6 md:grid-cols-3" data-testid="timeline-readout">
         <div>
           <p className="eyebrow mb-2">{here ? 'You are here' : 'Age'}</p>
-          <p className="font-serif text-3xl text-ink-strong">
+          <p className="font-display text-3xl text-ink-strong">
             Age {age} <span className="text-muted">· {tick.year}</span>
           </p>
           {!here ? (
@@ -61,7 +62,7 @@ function Timeline({ bank, today }: { bank: Parameters<typeof composeTimeline>[0]
         </div>
         <div>
           <p className="eyebrow mb-2">Personal year</p>
-          <p className="font-serif text-3xl text-ink-strong">
+          <p className="font-display text-3xl text-ink-strong">
             {tick.display} <span className="text-muted">· {tick.tile}</span>
           </p>
           <AppLink to="/reading/year" view={{ yr: tick.year }} className="mt-3 inline-flex min-h-11 items-center gap-1.5 text-sm font-medium text-ink-strong underline-offset-4 hover:underline">
@@ -94,15 +95,17 @@ function Timeline({ bank, today }: { bank: Parameters<typeof composeTimeline>[0]
         </div>
         <ol className="grid gap-4 md:grid-cols-2">
           {timeline.pinnacles.map((p) => (
-            <li key={p.n} aria-current={pinnacle.n === p.n ? 'true' : undefined} className={`card p-6 ${pinnacle.n === p.n ? 'bg-mark' : ''}`}>
+            <li key={p.n} aria-current={pinnacle.n === p.n ? 'true' : undefined} className={`card card-hue hue-${rootOf(p.value)} p-6 ${pinnacle.n === p.n ? 'border-ink-strong' : ''}`}>
               <div className="flex items-baseline justify-between gap-3">
                 <h3 className="section-title">{p.label}</h3>
-                <span className="font-mono text-xs text-muted">
+                <span className="text-xs font-medium text-muted">
                   {p.agesText} · {p.yearFrom}
                   {p.yearTo ? ` to ${p.yearTo}` : ' on'}
                 </span>
               </div>
-              <p className={`numeral numeral-hue hue-${p.value > 9 ? p.value === 11 ? 2 : 4 : p.value} mt-3 text-6xl`}>{p.display}</p>
+              <p className="mt-3">
+                <span className="numeral inline-block rounded-3xl bg-hue-b px-5 py-3 text-6xl">{p.display}</span>
+              </p>
               <p className="reading mt-4 text-[1rem] leading-relaxed">{p.text}</p>
               {p.guidance ? <p className="reading mt-3 text-[1rem] leading-relaxed">{p.guidance}</p> : null}
               <WhyThisNumber steps={p.steps} />
@@ -117,12 +120,14 @@ function Timeline({ bank, today }: { bank: Parameters<typeof composeTimeline>[0]
         </h2>
         <ol className="grid gap-4 md:grid-cols-2">
           {timeline.challenges.map((p) => (
-            <li key={p.n} aria-current={challenge.n === p.n ? 'true' : undefined} className={`card p-6 ${challenge.n === p.n ? 'bg-mark' : ''}`}>
+            <li key={p.n} aria-current={challenge.n === p.n ? 'true' : undefined} className={`card card-hue hue-${p.value} p-6 ${challenge.n === p.n ? 'border-ink-strong' : ''}`}>
               <div className="flex items-baseline justify-between gap-3">
                 <h3 className="section-title">{p.label}</h3>
-                <span className="font-mono text-xs text-muted">{p.agesText}</span>
+                <span className="text-xs font-medium text-muted">{p.agesText}</span>
               </div>
-              <p className={`numeral numeral-hue hue-${p.value} mt-3 text-6xl`}>{p.display}</p>
+              <p className="mt-3">
+                <span className="numeral inline-block rounded-3xl bg-hue-b px-5 py-3 text-6xl">{p.display}</span>
+              </p>
               <p className="reading mt-4 text-[1rem] leading-relaxed">{p.text}</p>
               <WhyThisNumber steps={p.steps} />
             </li>

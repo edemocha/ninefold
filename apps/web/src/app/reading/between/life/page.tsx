@@ -63,7 +63,7 @@ function SideCard({ side }: { side: PairLifeSide }) {
       <div className="space-y-1">
         <p className="section-title">Pinnacle now</p>
         <p aria-label={`Pinnacle ${pinnacle.display}`}>
-          <BigNumber result={{ value: pinnacle.value, root: rootOf(pinnacle.value) }} className="text-6xl" />
+          <BigNumber tile result={{ value: pinnacle.value, root: rootOf(pinnacle.value) }} className="text-6xl" />
         </p>
         <p className="text-sm text-ink" data-testid={`pair-life-${side.who}-now`}>
           {pinnacle.label}: {pinnacle.stage}, {pinnacle.agesText} ({years(pinnacle)})
@@ -83,17 +83,17 @@ function SideCard({ side }: { side: PairLifeSide }) {
           <table className="mt-3 w-full min-w-[20rem] text-left text-sm" data-testid={`pair-life-${side.who}-table`}>
             <caption className="sr-only">Pinnacles and challenges for {side.label}, with ages and calendar years</caption>
             <thead>
-              <tr className="text-xs uppercase tracking-wider text-muted">
-                <th scope="col" className="py-1 pr-3 font-mono font-normal">
+              <tr className="text-sm font-semibold text-muted">
+                <th scope="col" className="py-1 pr-3 font-semibold">
                   Period
                 </th>
-                <th scope="col" className="py-1 pr-3 font-mono font-normal">
+                <th scope="col" className="py-1 pr-3 font-semibold">
                   Number
                 </th>
-                <th scope="col" className="py-1 pr-3 font-mono font-normal">
+                <th scope="col" className="py-1 pr-3 font-semibold">
                   Ages
                 </th>
-                <th scope="col" className="py-1 font-mono font-normal">
+                <th scope="col" className="py-1 font-semibold">
                   Years
                 </th>
               </tr>
@@ -104,7 +104,7 @@ function SideCard({ side }: { side: PairLifeSide }) {
                   <th scope="row" className="py-1.5 pr-3 font-normal text-ink-strong">
                     {p.label}
                   </th>
-                  <td className="py-1.5 pr-3 font-serif text-lg text-ink-strong">{p.display}</td>
+                  <td className="py-1.5 pr-3 font-display text-lg text-ink-strong">{p.display}</td>
                   <td className="py-1.5 pr-3 text-muted">{p.agesText.replace(/^ages /, '')}</td>
                   <td className="py-1.5 text-muted">{years(p)}</td>
                 </tr>

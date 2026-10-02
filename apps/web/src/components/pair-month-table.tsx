@@ -4,7 +4,9 @@ import { useEffect, useMemo, useState } from 'react';
 import type { PairMonthDay, PairMonthRow } from '@numerology/composer';
 import { sameYMD, WEEKDAY_NAMES, MONTH_NAMES, type YMD } from '@numerology/engine';
 import { AppLink } from './app-link';
+import { NumberChip } from './cycle-strip';
 import { localeFirstDay } from './month-grid';
+import { rootOf } from '@/lib/site';
 import { t } from '@/lib/t';
 
 /**
@@ -43,7 +45,7 @@ export function PairMonthTable({
       <thead>
         <tr>
           {headers.map((wd) => (
-            <th key={wd} scope="col" className="pb-1 text-center font-mono text-[0.7rem] font-normal uppercase tracking-wider text-muted">
+            <th key={wd} scope="col" className="pb-1 text-center text-xs font-semibold text-muted">
               <abbr title={WEEKDAY_NAMES[wd]} className="no-underline">
                 {(WEEKDAY_NAMES[wd] as string).slice(0, 3)}
               </abbr>
@@ -65,12 +67,12 @@ export function PairMonthTable({
                     view={{ dt: cell.date }}
                     aria-label={label}
                     aria-current={isToday ? 'date' : undefined}
-                    className={`relative flex min-h-16 w-full flex-col overflow-hidden border text-ink-strong hover:border-ink-strong ${isToday ? 'border-ink-strong bg-mark' : 'border-line'}`}
+                    className={`tile relative flex min-h-16 w-full flex-col overflow-hidden border-[3px] bg-surface-2 text-ink-strong ${isToday ? 'border-ink-strong' : 'border-transparent'}`}
                   >
-                    <span className="px-1.5 pt-1 font-mono text-[0.65rem] text-muted">{cell.date.day}</span>
+                    <span className="px-2 pt-1 font-mono text-[0.65rem] text-muted">{cell.date.day}</span>
                     <span className="mt-auto grid grid-cols-2">
-                      <span className="py-1 text-center font-serif text-xl sm:text-2xl">{cell.you}</span>
-                      <span className="border-l border-line py-1 text-center font-serif text-xl text-accent sm:text-2xl">{cell.other}</span>
+                      <span className={`hue-${rootOf(cell.you)} bg-hue-b py-1 text-center font-display text-xl font-extrabold sm:text-2xl`}>{cell.you}</span>
+                      <span className={`hue-${rootOf(cell.other)} bg-hue-b py-1 text-center font-display text-xl font-extrabold sm:text-2xl`}>{cell.other}</span>
                     </span>
                   </AppLink>
                 </td>
@@ -92,14 +94,14 @@ export function PairYearTable({ rows, year, otherLabel, currentMonth }: { rows: 
           {t('between.month.yearCaption')}, {year}
         </caption>
         <thead>
-          <tr className="text-xs uppercase tracking-wider text-muted">
-            <th scope="col" className="px-3 pb-1 font-mono font-normal">
+          <tr className="text-sm font-semibold text-muted">
+            <th scope="col" className="px-4 pb-1 font-semibold">
               Month
             </th>
-            <th scope="col" className="px-3 pb-1 font-mono font-normal">
+            <th scope="col" className="px-4 pb-1 font-semibold">
               You
             </th>
-            <th scope="col" className="px-3 pb-1 font-mono font-normal">
+            <th scope="col" className="px-4 pb-1 font-semibold">
               {otherLabel}
             </th>
           </tr>
@@ -109,17 +111,17 @@ export function PairYearTable({ rows, year, otherLabel, currentMonth }: { rows: 
             const current = row.month === currentMonth;
             return (
               <tr key={row.month} aria-current={current ? 'true' : undefined}>
-                <th scope="row" className="rounded-l-md border-y border-l border-line bg-surface px-3 py-1.5 text-sm font-normal text-ink-strong">
+                <th scope="row" className={`rounded-l-2xl px-4 py-2 text-sm font-medium ${current ? 'bg-ink-strong text-white' : 'bg-surface-2 text-ink-strong'}`}>
                   {row.name}
                   {current ? <span className="ml-2 chip chip-info">{t('between.now')}</span> : null}
                 </th>
-                <td className="border-y border-line bg-surface px-3 py-1.5">
-                  <span className="mr-2 inline-block min-w-10 py-0.5 text-center font-serif text-lg text-ink-strong">{row.you.value}</span>
-                  <span className="text-sm text-muted">{row.you.tile}</span>
+                <td className={`px-4 py-2 ${current ? 'bg-ink-strong text-white' : 'bg-surface-2'}`}>
+                  <NumberChip value={row.you.value} className="mr-2" />
+                  <span className={`text-sm ${current ? 'text-white' : 'text-muted'}`}>{row.you.tile}</span>
                 </td>
-                <td className="rounded-r-md border-y border-r border-line bg-surface px-3 py-1.5">
-                  <span className="mr-2 inline-block min-w-10 py-0.5 text-center font-serif text-lg text-accent">{row.other.value}</span>
-                  <span className="text-sm text-muted">{row.other.tile}</span>
+                <td className={`rounded-r-2xl px-4 py-2 ${current ? 'bg-ink-strong text-white' : 'bg-surface-2'}`}>
+                  <NumberChip value={row.other.value} className="mr-2" />
+                  <span className={`text-sm ${current ? 'text-white' : 'text-muted'}`}>{row.other.tile}</span>
                 </td>
               </tr>
             );

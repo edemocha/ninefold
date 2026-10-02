@@ -3,6 +3,7 @@
 import { useEffect, useMemo, useRef, useState, type KeyboardEvent } from 'react';
 import { daysInMonth, sameYMD, WEEKDAY_NAMES, MONTH_NAMES, type YMD } from '@numerology/engine';
 import type { MonthReading } from '@numerology/composer';
+import { rootOf } from '@/lib/site';
 
 /** First day of the week from the visitor's locale: 0 is Sunday, 1 is Monday. */
 export function localeFirstDay(): number {
@@ -95,7 +96,7 @@ export function MonthGrid({
       <thead>
         <tr>
           {headers.map((wd) => (
-            <th key={wd} scope="col" className="pb-1 text-center font-mono text-[0.7rem] font-normal uppercase tracking-wider text-muted">
+            <th key={wd} scope="col" className="pb-1 text-center text-xs font-semibold text-muted">
               <abbr title={WEEKDAY_NAMES[wd]} className="no-underline">
                 {(WEEKDAY_NAMES[wd] as string).slice(0, 3)}
               </abbr>
@@ -122,9 +123,9 @@ export function MonthGrid({
                     aria-current={isToday ? 'date' : undefined}
                     onFocus={() => setFocus(cell.date.day)}
                     onClick={() => onOpen(cell.date)}
-                    className={`relative flex aspect-square w-full flex-col items-center justify-center border text-ink-strong hover:border-ink-strong ${isToday ? 'border-ink-strong bg-mark' : 'border-line'} ${cell.loopStart ? 'outline outline-2 outline-offset-2 outline-[var(--ink-strong)]' : ''}`}
+                    className={`tile hue-${rootOf(cell.personalDay)} relative flex aspect-square w-full flex-col items-center justify-center border-[3px] text-ink-strong ${isToday ? 'border-ink-strong bg-hue-b' : 'border-transparent bg-hue-n'} ${cell.loopStart ? 'outline outline-2 outline-offset-2 outline-[var(--ink-strong)]' : ''}`}
                   >
-                    <span className="absolute left-1.5 top-1 font-mono text-[0.65rem] text-muted">{cell.date.day}</span>
+                    <span className={`absolute left-2 top-1 font-mono text-[0.65rem] ${isToday ? "text-ink-strong" : "text-muted"}`}>{cell.date.day}</span>
                     <span className="numeral numeral-hue text-2xl sm:text-3xl">{cell.personalDay}</span>
                   </button>
                 </td>

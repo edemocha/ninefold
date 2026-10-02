@@ -76,7 +76,7 @@ function PairMonthView({ bank, year, month, today }: { bank: Bank; year: number;
           <article key={side.who} className={`card card-hue hue-${side.personalMonth.root} space-y-3 p-6`} data-testid={`pair-month-${side.who}`}>
             <p className={`eyebrow ${side.who === 'other' ? '!text-accent' : ''}`}>{side.label}</p>
             <p aria-label={`Personal month ${side.display}`}>
-              <BigNumber result={side.personalMonth} className="text-7xl" />
+              <BigNumber tile result={side.personalMonth} className="text-7xl" />
             </p>
             <p className="text-sm text-muted">{cap(side.context)}.</p>
             {side.theme ? (

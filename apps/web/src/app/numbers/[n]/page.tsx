@@ -3,6 +3,7 @@ import Link from '@/components/link';
 import { notFound } from 'next/navigation';
 import { cap, numberWithArticle } from '@numerology/composer';
 import { Disclaimer } from '@/components/disclaimer';
+import { Icon } from '@/components/icon';
 import { readCore, readLife } from '@/lib/content-fs';
 import { ALL_VALUES, pairSlug, rootOf } from '@/lib/site';
 
@@ -55,38 +56,37 @@ export default async function NumberMeaning({ params }: { params: Promise<{ n: s
 
   return (
     <article className="mx-auto max-w-4xl px-5 py-14">
-      <Link href="/numbers" className="inline-flex min-h-11 items-center text-sm text-muted hover:text-ink-strong">
-        All the numbers
+      <Link href="/numbers" className="inline-flex min-h-11 items-center gap-2 rounded-full bg-surface-2 px-4 text-sm font-semibold text-ink-strong hover:bg-mark">
+        <Icon name="left" size={14} /> All the numbers
       </Link>
-      <header className="mt-4 grid gap-6 sm:grid-cols-[auto_1fr] sm:items-end">
-        <div className={`tint-${rootOf(value)} hue-${rootOf(value)} flex min-w-44 items-center justify-center rounded-xl border border-line border-t-[3px] border-t-[var(--hue)] px-8 py-8`}>
-          <span className="numeral numeral-hue text-9xl">
+      <header className="mt-5 grid gap-6 sm:grid-cols-[auto_1fr] sm:items-end">
+        <div className={`bright-${rootOf(value)} flex min-w-48 items-center justify-center rounded-3xl px-10 py-9`}>
+          <span className="numeral text-9xl">
             {value}
-            {value > 9 ? <span className="text-5xl text-muted">/{rootOf(value)}</span> : null}
+            {value > 9 ? <span className="text-5xl">/{rootOf(value)}</span> : null}
           </span>
         </div>
         <div>
-          <p className="eyebrow mb-3">Numerology</p>
-          <h1 className="text-5xl">The number {value}</h1>
-          <p className="mt-4 text-lg text-muted">
+          <h1 className="text-[clamp(2.6rem,6vw,4.5rem)]">The number {value}</h1>
+          <p className="mt-4 max-w-[52ch] text-lg text-ink">
             A theme of {theme.activity}.{value > 9 ? ` A master number: it reduces to ${rootOf(value)}, and the tradition treats it as a heightened version of that theme, not a rank.` : ''}
           </p>
         </div>
       </header>
 
-      <div className="reading mt-14 space-y-9">
-        {SECTIONS.map(([id, title]) => (
-          <section key={id} aria-labelledby={`m-${id}`}>
+      <div className={`reading hue-${rootOf(value)} mt-12 grid gap-3 md:grid-cols-2`}>
+        {SECTIONS.map(([id, title], i) => (
+          <section key={id} aria-labelledby={`m-${id}`} className={`rounded-3xl p-6 sm:p-7 ${i === 0 ? 'bg-hue-n md:col-span-2' : 'bg-surface-2'}`}>
             <h2 id={`m-${id}`} className="section-title mb-2">
               {title}
             </h2>
-            <p className="text-[1.08rem] leading-relaxed">{road[id]}</p>
+            <p className={i === 0 ? 'max-w-[62ch] text-[1.15rem] leading-relaxed' : 'text-[1.02rem] leading-relaxed'}>{road[id]}</p>
           </section>
         ))}
       </div>
 
-      <section className="mt-16 border-t border-line pt-10" aria-labelledby="lenses-title">
-        <h2 id="lenses-title" className="text-3xl">
+      <section className="mt-20" aria-labelledby="lenses-title">
+        <h2 id="lenses-title" className="text-3xl sm:text-4xl">
           The same number in different places
         </h2>
         <p className="mt-3 max-w-[56ch] text-muted">A {value} reads differently depending on where it turns up in a profile.</p>
@@ -126,7 +126,7 @@ export default async function NumberMeaning({ params }: { params: Promise<{ n: s
               <Link
                 href={`/between/${pairSlug(value, other)}`}
                 aria-label={cap(`${numberWithArticle(String(rootOf(value)))} and ${numberWithArticle(String(other))}`)}
-                className={`tint-${other} inline-flex min-h-11 min-w-16 items-center justify-center rounded-md border border-line px-3 font-mono text-sm text-ink-strong hover:border-[var(--primary)]`}
+                className={`bright-${other} tile inline-flex min-h-11 min-w-16 items-center justify-center rounded-full px-4 font-mono text-sm font-medium`}
               >
                 {rootOf(value)}·{other}
               </Link>
@@ -135,9 +135,9 @@ export default async function NumberMeaning({ params }: { params: Promise<{ n: s
         </ul>
       </section>
 
-      <section className="card-flat mt-16 flex flex-wrap items-center justify-between gap-5 p-7">
+      <section className="card-flat mt-16 flex flex-wrap items-center justify-between gap-5 p-7 sm:p-9">
         <div>
-          <h2 className="font-serif text-2xl text-ink-strong">Where does a {value} turn up for you?</h2>
+          <h2 className="font-display text-2xl font-bold tracking-tight text-ink-strong">Where does a {value} turn up for you?</h2>
           <p className="mt-1 text-sm text-muted">Work out your own numbers, with the arithmetic shown. Nothing you type leaves your browser.</p>
         </div>
         <Link href="/" className="btn">
@@ -145,12 +145,12 @@ export default async function NumberMeaning({ params }: { params: Promise<{ n: s
         </Link>
       </section>
 
-      <nav aria-label="Other numbers" className="mt-10 flex items-center justify-between border-t border-line pt-6 text-sm">
-        <Link href={`/numbers/${prev}`} className="flex min-h-11 items-center text-muted hover:text-ink-strong">
-          Number {prev}
+      <nav aria-label="Other numbers" className="mt-10 flex items-center justify-between gap-3 text-sm">
+        <Link href={`/numbers/${prev}`} className={`bright-${rootOf(prev)} tile inline-flex min-h-11 items-center gap-2 rounded-full px-5 font-semibold`}>
+          <Icon name="left" size={14} /> Number {prev}
         </Link>
-        <Link href={`/numbers/${next}`} className="flex min-h-11 items-center text-muted hover:text-ink-strong">
-          Number {next}
+        <Link href={`/numbers/${next}`} className={`bright-${rootOf(next)} tile inline-flex min-h-11 items-center gap-2 rounded-full px-5 font-semibold`}>
+          Number {next} <Icon name="right" size={14} />
         </Link>
       </nav>
       <Disclaimer className="mt-10" />

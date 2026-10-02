@@ -2,6 +2,7 @@
 
 import Link from '@/components/link';
 import { usePathname } from 'next/navigation';
+import { Mark } from '@/components/icon';
 import { t } from '@/lib/t';
 
 const LINKS = [
@@ -10,22 +11,23 @@ const LINKS = [
   { href: '/method', label: 'nav.methods' as const },
 ];
 
-/** A masthead: the name set in type, a heavy rule under it, and plain links. */
+/** The name with its nine-colour mark, and three plain links. The page you are on is a solid pill. */
 export function SiteHeader() {
   const path = usePathname();
   return (
-    <header role="banner" className="border-b-2 border-ink-strong">
-      <div className="mx-auto flex max-w-5xl flex-col gap-0.5 px-5 py-3 sm:flex-row sm:items-baseline sm:justify-between sm:gap-4">
-        <Link href="/" className="font-serif text-2xl font-semibold tracking-tight text-ink-strong" aria-label={`${t('site.name')}, home`}>
-          {t('site.name')}
+    <header role="banner">
+      <div className="mx-auto flex max-w-6xl flex-col gap-2 px-5 py-4 sm:flex-row sm:items-center sm:justify-between sm:gap-4">
+        <Link href="/" className="inline-flex items-center gap-2.5 self-start rounded-full" aria-label={`${t('site.name')}, home`}>
+          <Mark size={32} />
+          <span className="font-display text-[1.65rem] font-extrabold tracking-tight text-ink-strong">{t('site.name')}</span>
         </Link>
-        <nav aria-label="Site" className="-mx-2 flex flex-wrap items-center gap-x-0.5 text-sm sm:mx-0 sm:justify-end sm:gap-x-1">
+        <nav aria-label="Site" className="-mx-1 flex flex-wrap items-center gap-1 text-[0.95rem] sm:mx-0 sm:justify-end">
           {LINKS.map((l) => (
             <Link
               key={l.href}
               href={l.href}
               aria-current={path.startsWith(l.href) ? 'page' : undefined}
-              className="px-2 py-2 text-ink underline-offset-4 hover:underline sm:px-3 aria-[current=page]:bg-mark aria-[current=page]:text-ink-strong"
+              className="inline-flex min-h-11 items-center rounded-full px-4 font-semibold text-ink-strong hover:bg-surface-2 aria-[current=page]:bg-ink-strong aria-[current=page]:text-white"
             >
               {t(l.label)}
             </Link>

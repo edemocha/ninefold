@@ -69,7 +69,7 @@ export function PairLifeChart({ life }: { life: PairLife }) {
           return (
             <g key={`${side.who}-${kind}`}>
               {kind === 'pinnacle' ? (
-                <text x={PAD} y={y - 10} className="fill-[var(--muted)] font-mono text-[11px] uppercase tracking-widest">
+                <text x={PAD} y={y - 10} className="fill-[var(--muted)] text-[12px] font-semibold">
                   {side.label} · pinnacles and challenges
                 </text>
               ) : null}
@@ -84,9 +84,10 @@ export function PairLifeChart({ life }: { life: PairLife }) {
                       y={y}
                       width={Math.max(2, x1 - x0 - 2)}
                       height={h}
-                      style={{ fill: active ? 'var(--mark)' : kind === 'pinnacle' ? `var(--n${digit})` : 'var(--n0)', stroke: active ? 'var(--ink-strong)' : 'var(--line-strong)', strokeWidth: active ? 2.5 : 1 }}
+                      rx={kind === 'pinnacle' ? 12 : 9}
+                      style={{ fill: active ? `var(--b${digit})` : `var(--n${digit})`, stroke: active ? 'var(--ink-strong)' : 'none', strokeWidth: active ? 3 : 0 }}
                     />
-                    <text x={x0 + 10} y={y + (kind === 'pinnacle' ? 30 : 20)} style={{ fill: `var(--d${digit})` }} className={`font-serif ${kind === 'pinnacle' ? 'text-[24px]' : 'text-[18px]'}`}>
+                    <text x={x0 + 14} y={y + (kind === 'pinnacle' ? 31 : 21)} style={{ fill: active ? 'var(--ink-strong)' : `var(--d${digit})` }} className={`font-display font-extrabold ${kind === 'pinnacle' ? 'text-[26px]' : 'text-[19px]'}`}>
                       {kind === 'pinnacle' ? p.display : p.value}
                     </text>
                     <text x={Math.max(x0 + 40, x1 - 12)} y={y + 14} textAnchor="end" className="fill-[var(--muted)] font-mono text-[10px]">
@@ -112,8 +113,8 @@ export function PairLifeChart({ life }: { life: PairLife }) {
 
         <g aria-hidden="true" data-testid="pair-life-now">
           <line x1={nowX} x2={nowX} y1={26} y2={AXIS} stroke="var(--primary)" strokeWidth={1.5} strokeDasharray="3 3" />
-          <rect x={nowX - 20} y={4} width={40} height={20} style={{ fill: 'var(--primary)' }} />
-          <text x={nowX} y={19} textAnchor="middle" style={{ fill: '#ffffff' }} className="font-mono text-[11px] uppercase tracking-widest">
+          <rect x={nowX - 22} y={4} width={44} height={20} rx={10} style={{ fill: 'var(--primary)' }} />
+          <text x={nowX} y={19} textAnchor="middle" style={{ fill: '#ffffff' }} className="text-[12px] font-bold">
             now
           </text>
         </g>

@@ -187,7 +187,7 @@ test.describe('Between us: a circle', () => {
     await expect(cell(1, 0)).toHaveText('1');
     await expect(cell(1, 2)).toHaveText('0');
     await expect(cell(2, 1)).toHaveText('0');
-    await expect(cell(0, 0)).toHaveText('–');
+    await expect(cell(0, 0)).toHaveText('·');
   });
 
   test('opens the pair for anyone from the circle', async ({ page }) => {

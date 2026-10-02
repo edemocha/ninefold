@@ -76,7 +76,7 @@ export default function ReportPage() {
                     <h2 className="text-3xl">
                       {MONTH_NAMES[m.month - 1]} {m.year}
                     </h2>
-                    <p className="font-serif text-3xl">
+                    <p className="font-display text-3xl">
                       <span className="text-muted text-lg">month</span> {m.personalMonth.value}
                     </p>
                   </div>
@@ -92,9 +92,9 @@ export default function ReportPage() {
                   </div>
                   <ol className="grid grid-cols-7 gap-1" aria-label={`Personal days in ${MONTH_NAMES[m.month - 1]}`}>
                     {m.days.map((d) => (
-                      <li key={d.date.day} className={`tint-${d.personalDay} flex items-center justify-between rounded border border-line px-1.5 py-0.5 text-xs`}>
+                      <li key={d.date.day} className={`tint-${d.personalDay} flex items-center justify-between rounded-lg px-2 py-0.5 text-xs`}>
                         <span className="font-mono text-muted">{d.date.day}</span>
-                        <span className="font-serif text-base text-ink-strong">{d.personalDay}</span>
+                        <span className="font-display text-base text-ink-strong">{d.personalDay}</span>
                       </li>
                     ))}
                   </ol>
@@ -103,7 +103,7 @@ export default function ReportPage() {
 
               <footer className="border-t border-line pt-6 text-sm text-muted">
                 <p data-testid="report-disclaimer">{DISCLAIMER}</p>
-                <p className="mt-3 font-serif italic text-primary" data-testid="report-credit">
+                <p className="mt-3 font-display italic text-primary" data-testid="report-credit">
                   {CREDIT}
                 </p>
               </footer>

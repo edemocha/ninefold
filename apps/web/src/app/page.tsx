@@ -1,14 +1,15 @@
 import Link from '@/components/link';
 import { ProfileForm } from '@/components/profile-form';
+import { readCore } from '@/lib/content-fs';
 import { t } from '@/lib/t';
 
-/** What it works out, in the order the reading tabs come. */
+/** What it works out, in the order the reading tabs come. Each card borrows one colour from the palette. */
 const CONTENTS = [
-  { n: '1', title: 'Core profile', text: 'Life path, expression, soul urge, personality, birth day and maturity, with karmic debt flags.' },
-  { n: '2', title: 'Name grid', text: 'Your letters, vowels against consonants, the numbers your name lacks and the one it repeats.' },
-  { n: '3', title: 'Life timeline', text: 'Four pinnacles and four challenges on an age axis. Drag the marker to any age from 0 to 100.' },
-  { n: '4', title: 'Year, month and day', text: 'A personal year with twelve month tiles, a calendar of personal days and a short card for any date.' },
-  { n: '5', title: 'Between us', text: 'Add someone to see two life paths side by side, and the fixed gap between your cycles, with the arithmetic. No score, only things to talk about.' },
+  { hue: 7, span: 'lg:col-span-4', title: 'Core profile', text: 'Life path, expression, soul urge, personality, birth day and maturity, with karmic debt flags.' },
+  { hue: 3, span: 'lg:col-span-2', title: 'Name grid', text: 'Your letters, vowels against consonants, the numbers your name lacks and the one it repeats.' },
+  { hue: 5, span: 'lg:col-span-2', title: 'Life timeline', text: 'Four pinnacles and four challenges on an age axis. Drag the marker to any age from 0 to 100.' },
+  { hue: 2, span: 'lg:col-span-2', title: 'Year, month and day', text: 'A personal year with twelve month tiles, a calendar of personal days and a short card for any date.' },
+  { hue: 9, span: 'lg:col-span-2', title: 'Between us', text: 'Add someone to see two life paths side by side, and the fixed gap between your cycles, with the arithmetic. No score, only things to talk about.' },
 ];
 
 /**
@@ -17,76 +18,127 @@ const CONTENTS = [
  * It matches what the app produces for 17 June 1985 under the default rule.
  */
 const WORKING = [
-  { label: 'Day', given: '17', working: '1 + 7 = 8' },
-  { label: 'Month', given: 'June', working: '6' },
-  { label: 'Year', given: '1985', working: '1 + 9 + 8 + 5 = 23 → 5' },
-  { label: 'Add', given: '', working: '8 + 6 + 5 = 19 → 10 → 1' },
+  { label: 'Day', given: '17', working: '1 + 7 =', result: 8 },
+  { label: 'Month', given: 'June', working: '', result: 6 },
+  { label: 'Year', given: '1985', working: '1 + 9 + 8 + 5 = 23 →', result: 5 },
+  { label: 'Add', given: '', working: '8 + 6 + 5 = 19 → 10 →', result: 1 },
 ];
 
-export default function HomePage() {
+/** The headline's own words, with the middle phrase marked like a highlighter stroke. */
+function Headline() {
+  const title = t('form.title');
+  const phrase = 'worked out';
+  const at = title.indexOf(phrase);
+  if (at < 0) return <>{title}</>;
   return (
-    <div className="mx-auto max-w-5xl px-5">
-      <section className="grid gap-14 pb-16 pt-12 lg:grid-cols-[1fr_27rem] lg:items-start lg:pt-16">
-        <div>
-          <p className="eyebrow mb-6">Numerology, with the working shown</p>
-          <h1 className="max-w-[13ch] text-5xl sm:text-6xl lg:text-[4.5rem]">{t('form.title')}</h1>
-          <p className="mt-6 max-w-[46ch] font-serif text-[1.2rem] leading-relaxed text-ink">{t('form.intro')}</p>
+    <>
+      {title.slice(0, at)}
+      <span className="rounded-[0.16em] bg-b3 px-[0.12em] [box-decoration-break:clone]">{phrase}</span>
+      {title.slice(at + phrase.length)}
+    </>
+  );
+}
 
-          <figure className="mt-12 max-w-[34rem]" aria-labelledby="example-caption">
-            <figcaption id="example-caption" className="mb-2 flex items-baseline justify-between border-b-2 border-ink-strong pb-1.5 font-mono text-sm text-ink-strong">
-              <span>Life path, worked out</span>
-              <span className="text-muted">17 June 1985</span>
-            </figcaption>
-            <table className="w-full border-collapse text-left font-mono text-[0.95rem]">
-              <tbody>
-                {WORKING.map((row) => (
-                  <tr key={row.label} className="border-b border-line align-baseline">
-                    <th scope="row" className="w-28 py-2 pr-3 font-normal text-muted">
-                      {row.label}
-                    </th>
-                    <td className="w-20 py-2 pr-3 text-ink-strong">{row.given}</td>
-                    <td className="py-2 text-ink-strong">{row.working}</td>
-                  </tr>
-                ))}
-                <tr>
-                  <th scope="row" className="py-3 pr-3 align-baseline font-normal text-muted">
-                    Life path
-                  </th>
-                  <td colSpan={2} className="py-3">
-                    <span className="numeral bg-mark px-2 text-6xl">1</span>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-            <p className="mt-2 text-sm text-muted">Yours is worked out the same way, and every convention behind it can be changed.</p>
-          </figure>
-        </div>
+export default function HomePage() {
+  const themes = readCore().themes;
+  return (
+    <>
+      <section className="mx-auto max-w-6xl px-5 pt-4 sm:pt-8">
+        <h1 className="max-w-[18ch] text-[clamp(2.6rem,7vw,5.6rem)] leading-[1] sm:max-w-[24ch]">
+          <Headline />
+        </h1>
 
-        <div>
-          <ProfileForm />
+        <div className="mt-10 grid gap-x-10 gap-y-10 lg:grid-cols-[1fr_28rem] lg:grid-rows-[auto_1fr] lg:items-start">
+          <p className="max-w-[40ch] text-xl font-medium leading-snug text-ink-strong sm:text-2xl lg:col-start-1 lg:row-start-1">{t('site.tagline')}</p>
+
+          <div className="lg:col-start-2 lg:row-span-2 lg:row-start-1">
+            <p className="mb-3 max-w-[44ch] text-[0.95rem] text-muted">{t('form.intro')}</p>
+            <ProfileForm />
+          </div>
+
+          <div className="lg:col-start-1 lg:row-start-2">
+            <figure className="rounded-3xl bg-surface-2 p-5 sm:p-7" aria-labelledby="example-caption">
+              <figcaption id="example-caption" className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
+                <span className="font-display text-xl font-bold tracking-tight text-ink-strong">Life path, worked out</span>
+                <span className="font-mono text-sm text-muted">17 June 1985</span>
+              </figcaption>
+              <table className="mt-4 w-full border-collapse text-left">
+                <tbody>
+                  {WORKING.map((row) => (
+                    <tr key={row.label} className="border-t border-line align-middle">
+                      <th scope="row" className="w-[4.5rem] py-3 pr-2 text-sm font-semibold text-muted sm:w-24">
+                        {row.label}
+                      </th>
+                      <td className="w-14 py-3 pr-2 font-mono text-[0.95rem] text-ink-strong sm:w-20">{row.given}</td>
+                      <td className="py-3 font-mono text-[0.95rem] text-ink-strong">
+                        <span className="inline-flex flex-wrap items-center gap-x-2 gap-y-1">
+                          {row.working}
+                          <span className={`bright-${row.result} inline-flex size-9 items-center justify-center rounded-xl font-display text-xl font-extrabold`}>{row.result}</span>
+                        </span>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+              <div className="bright-1 mt-2 flex items-center gap-5 rounded-2xl px-5 py-4">
+                <span className="numeral text-7xl">1</span>
+                <div>
+                  <p className="font-display text-xl font-bold tracking-tight">Life path 1</p>
+                  <p className="text-sm">Yours is worked out the same way, and every convention behind it can be changed.</p>
+                </div>
+              </div>
+            </figure>
+          </div>
         </div>
       </section>
 
-      <section className="border-t-2 border-ink-strong py-14" aria-labelledby="contents-title">
-        <h2 id="contents-title" className="text-3xl sm:text-4xl">
+      <section className="mx-auto mt-24 max-w-6xl px-5" aria-labelledby="nine-title">
+        <div className="flex flex-wrap items-end justify-between gap-x-8 gap-y-3">
+          <h2 id="nine-title" className="max-w-[16ch] text-4xl sm:text-5xl">
+            Nine numbers, nine colours
+          </h2>
+          <p className="max-w-[40ch] text-muted">Each number keeps its colour on every screen. Tap one to read what it is about.</p>
+        </div>
+        <ul className="mt-8 grid grid-cols-3 gap-3 sm:grid-cols-5 lg:grid-cols-9">
+          {Array.from({ length: 9 }, (_, i) => i + 1).map((n) => (
+            <li key={n} className="flex">
+              <Link
+                href={`/numbers/${n}`}
+                aria-label={`Number ${n}: ${themes[String(n)]?.activity ?? ''}`}
+                className={`bright-${n} tile flex min-h-40 w-full flex-col justify-between p-4 lg:min-h-52`}
+              >
+                <span className="numeral text-6xl lg:text-7xl">{n}</span>
+                <span className="text-[0.82rem] font-medium leading-snug">{themes[String(n)]?.activity}</span>
+              </Link>
+            </li>
+          ))}
+        </ul>
+        <p className="mt-5 text-sm text-muted">
+          Master numbers 11, 22 and 33 are covered too.{' '}
+          <Link href="/numbers" className="font-semibold text-ink-strong underline underline-offset-4 hover:text-accent">
+            See all twelve
+          </Link>
+        </p>
+      </section>
+
+      <section className="mx-auto mt-24 max-w-6xl px-5" aria-labelledby="contents-title">
+        <h2 id="contents-title" className="text-4xl sm:text-5xl">
           What it works out
         </h2>
-        <ol className="mt-8 border-t border-ink-strong">
+        <ol className="mt-8 grid gap-3 lg:grid-cols-6">
           {CONTENTS.map((row) => (
-            <li key={row.n} className="grid grid-cols-[2.5rem_1fr] gap-x-4 border-b border-line py-4 sm:grid-cols-[3rem_14rem_1fr]">
-              <span className="numeral text-3xl text-muted" aria-hidden="true">
-                {row.n}
-              </span>
-              <h3 className="font-serif text-xl">{row.title}</h3>
-              <p className="col-start-2 mt-1 max-w-[52ch] text-[0.98rem] text-ink sm:col-start-3 sm:mt-0">{row.text}</p>
+            <li key={row.title} className={`hue-${row.hue} relative flex min-h-64 flex-col justify-end overflow-hidden rounded-3xl bg-hue-n p-6 pt-28 sm:p-7 sm:pt-28 ${row.span}`}>
+              <span className="absolute -right-8 -top-8 size-32 rounded-full bg-hue-b" aria-hidden="true" />
+              <h3 className="relative text-2xl">{row.title}</h3>
+              <p className="relative mt-2 max-w-[46ch] text-[0.98rem] text-ink">{row.text}</p>
             </li>
           ))}
         </ol>
       </section>
 
-      <section className="border-t-2 border-ink-strong py-14" aria-labelledby="honest-title">
-        <div className="grid gap-10 md:grid-cols-[1fr_1.4fr]">
-          <h2 id="honest-title" className="text-3xl sm:text-4xl">
+      <section className="mx-auto mt-24 max-w-6xl px-5" aria-labelledby="honest-title">
+        <div className="grid gap-8 rounded-3xl bg-surface-2 p-7 sm:p-10 md:grid-cols-[1fr_1.4fr] md:gap-12">
+          <h2 id="honest-title" className="text-4xl sm:text-5xl">
             What this is, and is not
           </h2>
           <div className="reading space-y-4">
@@ -98,7 +150,7 @@ export default function HomePage() {
               There is no credible controlled evidence that numerology predicts anything. Use it to reflect, or for fun, and not to decide anything about health, money, legal matters or relationships.
             </p>
             <p>
-              <Link href="/method" className="underline underline-offset-4 hover:text-accent">
+              <Link href="/method" className="font-semibold text-ink-strong underline underline-offset-4 hover:text-accent">
                 See exactly how each number is worked out
               </Link>
               .
@@ -106,6 +158,6 @@ export default function HomePage() {
           </div>
         </div>
       </section>
-    </div>
+    </>
   );
 }

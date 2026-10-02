@@ -23,11 +23,11 @@ export function NumberDetail({ coreKey }: { coreKey: CoreKey }) {
   return (
     <article className="space-y-10">
       <header className="rise grid gap-6 sm:grid-cols-[auto_1fr] sm:items-end">
-        <div className={`card card-hue ${result ? `tint-${result.root} hue-${result.root}` : 'tint-0'} flex min-w-40 flex-col items-center justify-center px-8 py-8`}>
-          {result ? <BigNumber result={result} className="text-8xl" /> : <span className="numeral text-6xl text-muted">?</span>}
+        <div className="flex min-w-40 items-center justify-center">
+          {result ? <BigNumber tile result={result} className="text-9xl" /> : <span className="numeral rounded-3xl bg-surface-2 px-10 py-8 text-7xl text-muted">?</span>}
         </div>
         <div className="space-y-3">
-          <AppLink to="/reading" className="inline-flex min-h-11 items-center gap-1.5 text-sm text-muted hover:text-ink-strong">
+          <AppLink to="/reading" className="inline-flex min-h-11 items-center gap-2 rounded-full bg-surface-2 px-4 text-sm font-semibold text-ink-strong hover:bg-mark">
             <Icon name="left" size={14} /> All core numbers
           </AppLink>
           <h1 className="text-4xl sm:text-5xl">{label.title}</h1>
@@ -79,11 +79,11 @@ export function NumberDetail({ coreKey }: { coreKey: CoreKey }) {
         <p className="card-flat p-6 text-sm text-muted">This number needs a valid birth name.</p>
       )}
 
-      <nav aria-label="Other numbers" className="no-print flex items-center justify-between border-t border-line pt-6 text-sm">
-        <AppLink to={`/reading/number/${prev}`} className="flex min-h-11 items-center gap-2 text-muted hover:text-ink-strong">
+      <nav aria-label="Other numbers" className="no-print flex items-center justify-between gap-3 text-sm">
+        <AppLink to={`/reading/number/${prev}`} className="inline-flex min-h-11 items-center gap-2 rounded-full bg-surface-2 px-5 font-semibold text-ink-strong hover:bg-mark">
           <Icon name="left" size={14} /> {CORE_LABELS[prev].title}
         </AppLink>
-        <AppLink to={`/reading/number/${next}`} className="flex min-h-11 items-center gap-2 text-muted hover:text-ink-strong">
+        <AppLink to={`/reading/number/${next}`} className="inline-flex min-h-11 items-center gap-2 rounded-full bg-surface-2 px-5 font-semibold text-ink-strong hover:bg-mark">
           {CORE_LABELS[next].title} <Icon name="right" size={14} />
         </AppLink>
       </nav>

@@ -1,47 +1,56 @@
-# Design: a printed worksheet
+# Design: nine numbers, nine colours
 
-The one idea in this product is that it **shows its working**. The design follows from that: the site is typeset like a worksheet or an almanac, not styled like an app. This page records the rules, so the look does not drift back to a template.
+The product shows its working, and the design shows the numbers. Each of the nine numbers owns one colour and keeps it on every screen, so colour on this site always means a number. Everything else is a white page and one ink. This page records the rules so the look does not drift into a template.
 
 ## What it replaced, and why
 
-The first look was the stock template: a lavender wash with soft radial gradients, a violet italic phrase in the headline, white rounded cards with a tinted shadow, a checkmark bullet list, pill chips, pastel candy tints for the nine numbers, staggered fade-up entrances, and a mono uppercase label over every section. Nothing in it came from the product. It is gone.
+1. A lavender template: soft gradient wash, a violet italic phrase in the headline, white shadowed cards, pastel tints and staggered fade-ups. Nothing in it came from the product.
+2. A printed worksheet: grey paper, ink, ruled lines, one yellow mark and one red mark, no colour at all for the numbers. It was honest, but the owner found it joyless and wanted colour.
+
+The current look keeps what was right about both: colour is not decoration. It is a system with one meaning, and it is checked by tests.
 
 ## The rules
 
 | | Rule |
 | --- | --- |
-| Surface | One flat paper, `#f3f3ee`, a warm-neutral grey (not cream, not tinted). No gradients, no blurs, no textures. |
-| Ink | Near-black. Body `#1b1b18`, headings `#0d0d0b`, secondary `#4a4a44`. Links are underlined or set in ink, never a brand colour. |
-| Structure | Ruled lines. A heavy 2px ink rule under the masthead, over each major section and over the footer; hairlines between rows. A boxed slip (1px ink) is for a thing you act on; a hairline box is for what sits beside the text. |
-| Marks | Two, each with a job. **Highlighter yellow** `#ffe83d` marks what is *current*: the tab you are on, today, the period you are in, the result of a calculation. **Signal red** `#c62d0c` marks *the other person* when two people sit side by side, and errors. Nothing else is coloured. |
-| The nine numbers | Told apart by their digit, never by a colour. The `--n1`..`--n9` and `--d1`..`--d9` tokens still exist so charts resolve, but they are one value. |
-| Corners and depth | Square. No shadows. `rounded-full` is kept only for true circles. |
-| Motion | None on load. No entrance animation, no hover growth. Colour changes only, in 120ms. Loading placeholders may pulse. |
-| Type | IBM Plex, three cuts. **Serif** for headings and for reading text (`.reading`), set at a book's measure (62ch). **Mono** for the working: sums, dates, labels, tags. **Sans** for controls and short interface text. Figures are lining. |
-| Tags | A small label in a hard box, never a pill. |
-| Icons | Used sparingly, only where they carry meaning (a lock, an arrow, a plus). No decorative icons, no icon-in-a-circle. |
-| Copy | Plain. No "Elevate", no "Seamless", no section called "Straight talk". The product's claim is demonstrated, not announced: the home page opens with a real calculation. |
+| Page | White, `#ffffff`. Secondary surface `#f2f3f8` (a cool grey, never cream). No gradients, no textures, no background images. |
+| Ink | One blue-black. Text `#15152b`, headings `#0b0b1e`, secondary `#50536b`. |
+| The nine colours | Each number has three tones. **Bright** is a flat fill with ink on it (`--b1` to `--b9`). **Deep** is for text, strokes and fills with white text (`--d1` to `--d9`). **Tint** is a pale background that ink or the deep tone sits on (`--n1` to `--n9`). `.hue-N` points `bg-hue-b`, `bg-hue-n` and `text-hue-d` at one number. A master number takes the colour of its root: 11 is a 2, 22 a 4, 33 a 6. |
+| Where colour appears | Only where a number does: tiles, rings, chart bands, calendar cells, the nine-colour logo and the bar above the footer. Pages describing a feature (the home cards) borrow the palette for variety but never put a colour on a number that is not its own. |
+| Current | Marked with ink, never with a colour that could be a number: the page tab is a solid ink pill, today is a dark 3px frame, the current period in a chart is its bright fill with a heavy ink outline, the current row in a table is ink. |
+| Two people | Told apart by position and a label (you on the left, them on the right), never by a colour that means something else. |
+| Pairs are not ranked | In the pair grid every cell is the same grey. Colour appears only on the row and column headings, where it names the number. A test checks that all 81 cells look alike. |
+| Shape | One rule. Things you act on (buttons, tabs, chips, links to a page) are pills. Containers are soft: panels 36px, cards 28px, tiles 18 to 22px. Fields are 14px. Nothing is square. |
+| Depth | None. No shadows. Separation is by fill. |
+| Type | **Bricolage Grotesque** for headings and the big numerals, set heavy and tight. **Geist** for everything you read. **Geist Mono** for the working (sums, dates, convention tags). No serif. Figures are lining. |
+| Icons | Phosphor, bold weight, one set. No hand-drawn icons. The logo is the nine colours as a 3 by 3 block. |
+| Motion | Hover lift on tiles (3px), a 1px press on buttons, colour changes in 140ms. No entrance animation. `prefers-reduced-motion` turns the lift off. |
+| Copy | Plain. No dashes in visible text, no "Elevate" or "Seamless". The headline marks one phrase like a highlighter stroke, in the same face. |
+| Home | Headline over two lines, the form beside a real worked example (17 June 1985 gives life path 1, each result chip in its own colour), the nine tiles, a bento of what it works out, an honest note. |
 
 ## Contrast
 
-Every text pair is computed, not eyeballed:
+Every pair is computed, not eyeballed, and `tests/e2e/theme.spec.ts` recomputes them on every run:
 
-- ink on paper 16.9, secondary on paper 8.0, signal red on paper 5.0
-- white on signal red 5.6, ink on highlighter 15.1
-- control borders (`#8a8a80`) 3.1 against paper
+- heading ink on a bright fill: 8.4 (number 9) to 14.6 (number 3)
+- white on a deep tone: 5.2 to 5.5
+- a deep tone on its own tint: 4.7 to 4.8
+- a deep tone on white: 5.2 to 5.5
+- body ink on white 17.9, secondary text on white 7.5 and on the grey surface 6.8, links and hover blue (`#3065cc`) on white 5.4, control borders (`#7f8399`) 3.7 on white
 
-Signal red text is never set on the highlighter (4.46, just under AA). axe runs on every screen in the end-to-end suite.
+axe runs on every screen in the end-to-end suite.
 
 ## How it is held in place
 
-`tests/e2e/theme.spec.ts` fails if any page gains a gradient or background image, a box shadow, a rounded corner (other than a true circle) or an entrance animation; if a number picks up a colour of its own; if the highlighter or signal red stop meaning what they mean; or if the three type cuts change. `a11y.spec.ts` checks nothing animates on load.
+`tests/e2e/theme.spec.ts` fails if: the page is not light and white; the nine colours are not nine different colours or any text pair drops under 4.5; a page gains a gradient, a shadow or an entrance animation; a button is not a pill or a container is square; the three type families change; a number changes colour between screens (index, its own page, the reading); the current tab or today stop being ink; or the pair grid starts to rank pairs. `a11y.spec.ts` checks nothing animates on load.
 
 ## Where it lives
 
 - Tokens, components and print rules: `apps/web/src/app/globals.css` (one file)
-- Fonts: `apps/web/src/app/layout.tsx` (`next/font`, downloaded at build time and served from this site)
-- The share image uses the same paper, ink and rules: `apps/web/src/lib/share-image.ts`
+- Fonts: `apps/web/src/app/layout.tsx` (`next/font`, downloaded at build time and served from this site, so a visit calls no font host)
+- Icons and the logo: `apps/web/src/components/icon.tsx`; the nine-colour bar: `spectrum.tsx`
+- The share image uses the same colours and fonts: `apps/web/src/lib/share-image.ts` (it reads the tokens from the page, so there is one source)
 
 ## Changing it
 
-To bring back a colour for the numbers, change the `--n` and `--d` tokens in `globals.css`; every chart and cell reads them. To change the two marks, change `--mark` and `--accent`, then rerun `node` against the contrast table at the top of `globals.css` before shipping.
+To change a number's colour, edit its three tokens in `globals.css` (`--bN`, `--dN`, `--nN`) and rerun the theme spec: it recomputes the contrast and fails if a pair drops under AA. The share image and every chart pick the change up by themselves.

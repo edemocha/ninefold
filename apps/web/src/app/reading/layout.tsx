@@ -29,7 +29,7 @@ export default function ReadingLayout({ children }: { children: ReactNode }) {
 
   if (!profile) {
     return (
-      <div className="mx-auto max-w-5xl px-5 py-16" aria-busy="true">
+      <div className="mx-auto max-w-6xl px-5 py-16" aria-busy="true">
         <p className="text-muted">{t('form.redirect')}</p>
       </div>
     );
@@ -38,15 +38,15 @@ export default function ReadingLayout({ children }: { children: ReactNode }) {
   const hasUsedName = profile.usedName.trim().length > 0;
 
   return (
-    <div className="mx-auto max-w-5xl px-5 pb-6">
-      <div className="no-print sticky top-0 z-20 -mx-5 border-b border-ink-strong bg-bg px-5">
+    <div className="mx-auto max-w-6xl px-5 pb-6">
+      <div className="no-print sticky top-0 z-20 -mx-5 border-b border-line bg-bg px-5">
         <nav aria-label="Your reading" className="flex items-center gap-1 overflow-x-auto py-2 text-sm">
           {TABS.map((tab) => (
             <AppLink
               key={tab.href}
               to={tab.href}
               aria-current={path === tab.href || (tab.href !== '/reading' && path.startsWith(tab.href)) ? 'page' : undefined}
-              className="whitespace-nowrap px-3 py-2.5 text-ink underline-offset-4 hover:underline aria-[current=page]:bg-mark aria-[current=page]:text-ink-strong"
+              className="inline-flex min-h-11 items-center whitespace-nowrap rounded-full px-4 font-semibold text-ink-strong hover:bg-surface-2 aria-[current=page]:bg-ink-strong aria-[current=page]:text-white"
             >
               {t(tab.label)}
             </AppLink>

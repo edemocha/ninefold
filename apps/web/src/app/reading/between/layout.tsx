@@ -106,13 +106,13 @@ export default function BetweenLayout({ children }: { children: ReactNode }) {
             </div>
           </div>
 
-          <nav aria-label={t('between.nav.label')} className="no-print -mt-4 flex flex-wrap gap-1 border-b border-line pb-2 text-sm">
+          <nav aria-label={t('between.nav.label')} className="no-print -mt-2 flex w-fit max-w-full flex-wrap gap-1 rounded-3xl bg-surface-2 p-1.5 text-sm">
             {sections.map((s) => (
               <AppLink
                 key={s.href}
                 to={s.href}
                 aria-current={path === s.href ? 'page' : undefined}
-                className="px-3 py-2.5 text-ink underline-offset-4 hover:underline aria-[current=page]:bg-mark aria-[current=page]:text-ink-strong"
+                className="inline-flex min-h-10 items-center rounded-full border-2 border-transparent px-4 font-semibold text-ink-strong hover:bg-white aria-[current=page]:border-ink-strong aria-[current=page]:bg-white"
               >
                 {t(s.label)}
               </AppLink>

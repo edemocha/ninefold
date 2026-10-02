@@ -42,7 +42,7 @@ tests/e2e            Playwright
 
 ## Design
 
-A printed worksheet: paper, ink, ruled lines, IBM Plex (serif for reading, mono for the working, sans for controls), one highlighter yellow for what is current and one signal red for the other person. No gradients, shadows, rounded corners or entrance animation, and the nine numbers are told apart by their digit, never by a colour. The rules, the contrast figures and how they are held in place are in [docs/design.md](docs/design.md); `tests/e2e/theme.spec.ts` fails if a page drifts back to a template look.
+Nine numbers, nine colours. Each number owns one hue (a bright fill, a deep tone and a pale tint) and keeps it on every screen, so colour on this site always means a number. The rest is a white page and one blue-black ink. Bricolage Grotesque for headings and the big numerals, Geist for text, Geist Mono for the working, Phosphor icons. Controls are pills, containers are soft, and there are no gradients, shadows or entrance animation. The rules, the contrast figures and how they are held in place are in [docs/design.md](docs/design.md); `tests/e2e/theme.spec.ts` fails if a page drifts back to a template look.
 
 ## The engine
 

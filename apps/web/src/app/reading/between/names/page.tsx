@@ -79,7 +79,7 @@ function Lens({ reading, conventions }: { reading: NamePairReading; conventions:
               {side.result.karmicDebt ? <KarmicFlag debt={side.result.karmicDebt} /> : null}
             </div>
             <p className="mt-3" aria-label={`${reading.title} ${side.display}`}>
-              <BigNumber result={side.result} className="text-7xl" />
+              <BigNumber tile result={side.result} className="text-7xl" />
             </p>
             <div className="mt-3">
               <ConventionChips kind={reading.lens} conventions={conventions} />
@@ -90,7 +90,7 @@ function Lens({ reading, conventions }: { reading: NamePairReading; conventions:
       </div>
 
       <div className="card-flat space-y-6 p-6">
-        <h4 className="font-serif text-2xl text-ink-strong" data-testid={`pair-names-${reading.lens}-numbers`}>
+        <h4 className="font-display text-2xl text-ink-strong" data-testid={`pair-names-${reading.lens}-numbers`}>
           {reading.numbers.charAt(0).toUpperCase() + reading.numbers.slice(1)}
         </h4>
         <Sections sections={reading.sections} headingLevel={4} idPrefix={`${reading.lens}-`} />

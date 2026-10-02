@@ -60,7 +60,7 @@ export default function PairCirclePage() {
           <ul className="space-y-1.5 text-[0.98rem]" data-testid="pair-circle-legend">
             {circle.members.map((m) => (
               <li key={m.letter} className="flex items-center gap-3">
-                <span className="inline-flex size-8 items-center justify-center rounded-full border border-ink-strong font-mono text-sm font-semibold text-ink-strong" aria-hidden="true">
+                <span className="inline-flex size-9 items-center justify-center rounded-full bg-ink-strong font-sans text-sm font-bold text-white" aria-hidden="true">
                   {m.letter}
                 </span>
                 <span>
@@ -80,14 +80,14 @@ export default function PairCirclePage() {
           <table className="w-full min-w-[20rem] border-separate border-spacing-y-1.5 text-left" data-testid="pair-circle-members">
             <caption className="sr-only">{t('between.circle.membersCaption')}</caption>
             <thead>
-              <tr className="text-xs uppercase tracking-wider text-muted">
-                <th scope="col" className="px-3 pb-1 font-mono font-normal">
+              <tr className="text-sm font-semibold text-muted">
+                <th scope="col" className="px-4 pb-1 font-semibold">
                   Person
                 </th>
-                <th scope="col" className="px-3 pb-1 font-mono font-normal">
+                <th scope="col" className="px-4 pb-1 font-semibold">
                   Life path
                 </th>
-                <th scope="col" className="px-3 pb-1 font-mono font-normal">
+                <th scope="col" className="px-4 pb-1 font-semibold">
                   Year number
                 </th>
               </tr>
@@ -95,14 +95,14 @@ export default function PairCirclePage() {
             <tbody>
               {circle.members.map((m) => (
                 <tr key={m.letter}>
-                  <th scope="row" className="rounded-l-md border-y border-l border-line bg-surface px-3 py-1.5 text-sm font-normal text-ink-strong">
+                  <th scope="row" className="rounded-l-2xl bg-surface-2 px-4 py-2 text-sm font-medium text-ink-strong">
                     {m.letter} · {m.label}
                   </th>
-                  <td className="border-y border-line bg-surface px-3 py-1.5">
-                    <span className={`tint-${m.lifePath.root} inline-block min-w-12 rounded px-2 py-0.5 text-center font-serif text-lg text-ink-strong`}>{m.display}</span>
+                  <td className="bg-surface-2 px-4 py-2">
+                    <span className={`bright-${m.lifePath.root} inline-block min-w-11 rounded-xl px-2 py-0.5 text-center font-display text-xl font-extrabold`}>{m.display}</span>
                   </td>
-                  <td className="rounded-r-md border-y border-r border-line bg-surface px-3 py-1.5">
-                    <span className={`tint-${m.year} inline-block min-w-12 rounded px-2 py-0.5 text-center font-serif text-lg text-ink-strong`}>{m.year}</span>
+                  <td className="rounded-r-2xl bg-surface-2 px-4 py-2">
+                    <span className={`bright-${m.year} inline-block min-w-11 rounded-xl px-2 py-0.5 text-center font-display text-xl font-extrabold`}>{m.year}</span>
                   </td>
                 </tr>
               ))}
@@ -125,7 +125,7 @@ export default function PairCirclePage() {
               <tr>
                 <td />
                 {circle.members.map((m) => (
-                  <th key={m.letter} scope="col" className="px-2 pb-1 font-mono text-xs font-normal text-muted" title={m.label}>
+                  <th key={m.letter} scope="col" className="px-2 pb-1 text-xs font-bold text-ink-strong" title={m.label}>
                     {m.letter}
                     <span className="sr-only"> {m.label}</span>
                   </th>
@@ -135,13 +135,13 @@ export default function PairCirclePage() {
             <tbody>
               {circle.members.map((row, i) => (
                 <tr key={row.letter}>
-                  <th scope="row" className="pr-2 text-left font-mono text-xs font-normal text-muted" title={row.label}>
+                  <th scope="row" className="pr-2 text-left text-xs font-bold text-ink-strong" title={row.label}>
                     {row.letter}
                     <span className="sr-only"> {row.label}</span>
                   </th>
                   {circle.members.map((col, j) => (
-                    <td key={col.letter} className={`size-12 rounded-md border border-line font-serif text-xl ${i === j ? 'bg-surface-2 text-muted' : 'bg-surface text-ink-strong'}`}>
-                      {i === j ? <span aria-label="the same person">–</span> : circle.distances[i]?.[j]}
+                    <td key={col.letter} className={`size-12 rounded-xl font-display text-xl font-bold ${i === j ? 'bg-transparent text-muted' : 'bg-surface-2 text-ink-strong'}`}>
+                      {i === j ? <span aria-label="the same person">·</span> : circle.distances[i]?.[j]}
                     </td>
                   ))}
                 </tr>

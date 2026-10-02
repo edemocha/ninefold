@@ -17,12 +17,12 @@ export function NineDots({ size = 220 }: { size?: number }) {
       {nodes.map((node) => (
         <g key={node.n}>
           <circle cx={node.x} cy={node.y} r={size * 0.085} style={{ fill: `var(--n${node.n})`, stroke: `var(--d${node.n})`, strokeWidth: 1.5 }} />
-          <text x={node.x} y={node.y + size * 0.03} textAnchor="middle" className="font-serif" style={{ fill: `var(--d${node.n})`, fontSize: size * 0.085 }}>
+          <text x={node.x} y={node.y + size * 0.03} textAnchor="middle" className="font-display" style={{ fill: `var(--d${node.n})`, fontSize: size * 0.085 }}>
             {node.n}
           </text>
         </g>
       ))}
-      <text x={c} y={c + size * 0.045} textAnchor="middle" className="font-serif" style={{ fill: 'var(--primary)', fontSize: size * 0.13 }}>
+      <text x={c} y={c + size * 0.045} textAnchor="middle" className="font-display" style={{ fill: 'var(--primary)', fontSize: size * 0.13 }}>
         9
       </text>
     </svg>

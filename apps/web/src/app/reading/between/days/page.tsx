@@ -85,7 +85,7 @@ function PairDayView({ bank, date }: { bank: Bank; date: YMD }) {
 
   return (
     <div className="space-y-6" data-testid="pair-day">
-      <p className="font-serif text-2xl text-ink-strong" data-testid="pair-day-label">
+      <p className="font-display text-2xl text-ink-strong" data-testid="pair-day-label">
         {day.label}
       </p>
 
@@ -94,12 +94,12 @@ function PairDayView({ bank, date }: { bank: Bank; date: YMD }) {
           <article key={side.who} className={`card card-hue hue-${side.personalDay.root} space-y-3 p-6`} data-testid={`pair-day-${side.who}`}>
             <p className={`eyebrow ${side.who === 'other' ? '!text-accent' : ''}`}>{side.label}</p>
             <p aria-label={`Personal day ${side.personalDay.value}`}>
-              <BigNumber result={side.personalDay} className="text-7xl" />
+              <BigNumber tile result={side.personalDay} className="text-7xl" />
             </p>
             <p className="text-sm text-muted">
               Personal day <span className="text-muted">· month {side.personalMonth.value} · year {side.personalYear.value}</span>
             </p>
-            <h4 className="font-serif text-2xl leading-snug text-ink-strong" data-bank="true">
+            <h4 className="font-display text-2xl leading-snug text-ink-strong" data-bank="true">
               {side.headline}
             </h4>
             <p className="reading leading-relaxed" data-bank="true">
@@ -127,7 +127,7 @@ function PairDayView({ bank, date }: { bank: Bank; date: YMD }) {
       <div className="card-flat flex flex-wrap items-center gap-6 p-5">
         <RhythmDuo you={a.personalDay.root} other={b.personalDay.root} otherLabel={otherName} size={150} />
         <div className="min-w-48 flex-1 space-y-2">
-          <p className="font-serif text-2xl leading-tight text-ink-strong" data-testid="pair-day-gap">
+          <p className="font-display text-2xl leading-tight text-ink-strong" data-testid="pair-day-gap">
             {day.gap.headline}
           </p>
           <p className="text-sm text-muted">

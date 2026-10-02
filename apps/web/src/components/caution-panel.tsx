@@ -21,7 +21,7 @@ const LABEL_CLASS: Record<string, string> = {
  */
 export function SafetyLines({ className = '' }: { className?: string }) {
   return (
-    <div className={`rounded-lg border border-line bg-surface px-4 py-3 ${className}`} data-testid="caution-safety">
+    <div className={`rounded-2xl border-2 border-ink-strong bg-white px-5 py-4 ${className}`} data-testid="caution-safety">
       <p className="section-title mb-1.5">{t('caution.safety.heading')}</p>
       <ul className="space-y-1 text-sm text-ink-strong">
         {SAFETY_LINES.map((line) => (
@@ -60,12 +60,12 @@ export function CautionPanel({
               <span className={LABEL_CLASS[c.label] ?? 'chip'} data-testid="caution-label">
                 {c.label}
               </span>
-              <span className="font-mono text-[0.7rem] uppercase tracking-wider text-muted">{FACET_NAMES[c.facet]}</span>
+              <span className="text-xs font-semibold text-muted">{FACET_NAMES[c.facet]}</span>
             </div>
-            <h3 className="mt-3 font-serif text-xl leading-snug text-ink-strong">{c.headline}</h3>
+            <h3 className="mt-3 font-display text-xl font-bold leading-snug tracking-tight text-ink-strong">{c.headline}</h3>
             <p className="reading mt-2 text-[0.98rem] leading-relaxed">{c.body}</p>
             <p className="mt-3 text-xs text-muted">
-              <span className="font-mono uppercase tracking-wider">{t('caution.why')}</span> {c.link}
+              <span className="font-semibold">{t('caution.why')}</span> {c.link}
             </p>
           </li>
         ))}

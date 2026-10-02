@@ -45,16 +45,17 @@ export function RhythmDuo({
                 cy={node.y}
                 r={(lit ? 17 : 13) * k}
                 style={{
-                  fill: isYou ? `var(--d${node.n})` : isOther ? '#ffffff' : `var(--n${node.n})`,
-                  stroke: lit ? `var(--d${node.n})` : 'var(--line)',
+                  fill: isYou ? `var(--d${node.n})` : isOther ? '#ffffff' : `var(--b${node.n})`,
+                  stroke: isOther && !isYou ? `var(--d${node.n})` : 'none',
+                  strokeWidth: 2,
                 }}
               />
               <text
                 x={node.x}
                 y={node.y + 5 * k}
                 textAnchor="middle"
-                className="font-serif"
-                style={{ fill: isYou ? '#ffffff' : `var(--d${node.n})`, fontSize: (lit ? 16 : 13) * k }}
+                className="font-display"
+                style={{ fill: isYou ? '#ffffff' : 'var(--ink-strong)', fontSize: (lit ? 17 : 13) * k, fontWeight: 800 }}
               >
                 {node.n}
               </text>

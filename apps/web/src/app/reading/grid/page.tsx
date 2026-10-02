@@ -49,10 +49,10 @@ export default function GridPage() {
                     <li
                       key={`${l.letter}-${i}`}
                       aria-label={`${l.letter}, value ${l.value}, ${l.kind}`}
-                      className={`flex size-12 flex-col items-center justify-center rounded-md border border-line ${l.kind === 'vowel' ? 'tint-3' : 'tint-5'}`}
+                      className={`bright-${l.value} flex size-14 flex-col items-center justify-center ${l.kind === 'vowel' ? 'rounded-full' : 'rounded-xl'}`}
                     >
-                      <span className="font-serif text-lg leading-none text-ink-strong">{l.letter}</span>
-                      <span className="mt-0.5 font-mono text-[0.7rem] text-muted">{l.value}</span>
+                      <span className="font-display text-xl font-extrabold leading-none text-ink-strong">{l.letter}</span>
+                      <span className="mt-0.5 font-mono text-[0.7rem] text-ink-strong">{l.value}</span>
                     </li>
                   ))}
               </ul>
@@ -61,10 +61,10 @@ export default function GridPage() {
         </div>
         <p className="flex flex-wrap items-center gap-4 text-sm text-muted">
           <span className="flex items-center gap-2">
-            <span className="tint-3 inline-block size-4 rounded-sm border border-line" /> vowel
+            <span className="inline-block size-4 rounded-full bg-ink-strong" aria-hidden="true" /> vowel
           </span>
           <span className="flex items-center gap-2">
-            <span className="tint-5 inline-block size-4 rounded-sm border border-line" /> consonant
+            <span className="inline-block size-4 rounded-md bg-ink-strong" aria-hidden="true" /> consonant
           </span>
           {conventions.yRule === 'vowel-if-alone' ? <span>Y counts as a vowel when it is the only vowel in its word.</span> : <span>Y counts as a consonant.</span>}
         </p>
@@ -84,13 +84,13 @@ export default function GridPage() {
                 key={n}
                 role="listitem"
                 aria-label={`${n}: ${count} ${count === 1 ? 'time' : 'times'}${missing ? ', missing' : ''}${passion ? ', appears most often' : ''}`}
-                className={`rounded-lg border p-3 hue-${n} ${missing ? 'border-dashed border-line-strong bg-transparent' : passion ? `tint-${n} border-[var(--hue)] border-2` : `tint-${n} border-line`}`}
+                className={`rounded-2xl border-[3px] p-3 hue-${n} ${missing ? 'border-dashed border-line-strong bg-transparent' : passion ? 'border-ink-strong bg-hue-n' : 'border-transparent bg-hue-n'}`}
               >
                 <div className="flex items-baseline justify-between">
                   <span className="numeral numeral-hue text-3xl">{n}</span>
                   <span className="font-mono text-xs text-muted">{count}×</span>
                 </div>
-                <p className="mt-2 font-mono text-[0.68rem] uppercase tracking-wider text-muted">
+                <p className="mt-2 text-xs font-semibold text-muted">
                   {missing ? 'missing' : passion ? 'most often' : `${name.grid.vowelCounts[n]}v · ${name.grid.consonantCounts[n]}c`}
                 </p>
               </div>
@@ -113,8 +113,8 @@ export default function GridPage() {
                 ) : (
                   <ul className="grid gap-4 md:grid-cols-2">
                     {grid.lessons.map((l) => (
-                      <li key={l.n} className="card p-5">
-                        <p className="numeral text-4xl">{l.n}</p>
+                      <li key={l.n} className={`card card-hue hue-${l.n} p-5`}>
+                        <p><span className="numeral inline-block rounded-2xl bg-hue-b px-4 py-2 text-4xl">{l.n}</span></p>
                         <p className="reading mt-3 text-[1rem] leading-relaxed">{l.text}</p>
                       </li>
                     ))}
@@ -128,10 +128,10 @@ export default function GridPage() {
                 </h2>
                 <ul className="grid gap-4 md:grid-cols-2">
                   {grid.passion.map((p) => (
-                    <li key={p.n} className="card p-5">
-                      <p className="flex items-baseline gap-3">
-                        <span className="numeral text-4xl">{p.n}</span>
-                        <span className="font-mono text-xs text-muted">{grid.passionCount} times</span>
+                    <li key={p.n} className={`card card-hue hue-${p.n} p-5`}>
+                      <p className="flex items-center gap-3">
+                        <span className="numeral inline-block rounded-2xl bg-hue-b px-4 py-2 text-4xl">{p.n}</span>
+                        <span className="text-xs font-medium text-muted">{grid.passionCount} times</span>
                       </p>
                       <p className="reading mt-3 text-[1rem] leading-relaxed">{p.text}</p>
                     </li>
@@ -143,10 +143,10 @@ export default function GridPage() {
                 <h2 id="sub-title" className="text-2xl sm:text-3xl">
                   Subconscious self
                 </h2>
-                <div className="card p-5">
-                  <p className="flex items-baseline gap-3">
-                    <span className="numeral text-5xl">{grid.subconscious.value}</span>
-                    <span className="font-mono text-xs text-muted">9 minus {grid.subconscious.missing} missing</span>
+                <div className={`card card-hue hue-${grid.subconscious.value} p-5`}>
+                  <p className="flex items-center gap-3">
+                    <span className="numeral inline-block rounded-2xl bg-hue-b px-5 py-2 text-5xl">{grid.subconscious.value}</span>
+                    <span className="text-xs font-medium text-muted">9 minus {grid.subconscious.missing} missing</span>
                   </p>
                   <p className="reading mt-3 text-[1rem] leading-relaxed">{grid.subconscious.text}</p>
                   <WhyThisNumber steps={grid.subconscious.steps} />
@@ -169,10 +169,10 @@ export default function GridPage() {
               ['personality', 'Personality', name.personality],
             ] as const
           ).map(([key, label, result]) => (
-            <article key={key} className="card p-5">
+            <article key={key} className={`card card-hue hue-${result.root} p-5`}>
               <h3 className="section-title">{label}</h3>
               <p className="mt-3">
-                <BigNumber result={result} className="text-6xl" />
+                <BigNumber result={result} tile className="text-6xl" />
               </p>
               <WhyThisNumber steps={result.steps} chain={result.chain} label="reading.showMath" />
               <AppLink to={`/reading/number/${key}`} className="mt-4 inline-flex min-h-11 items-center text-sm font-medium text-ink-strong underline-offset-4 hover:underline">

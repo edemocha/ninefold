@@ -88,12 +88,12 @@ export default function MonthPage() {
                     <h2 className="section-title">{t('reading.rhythm')}</h2>
                     <p className="text-sm text-muted">{t('reading.rhythmNote')}</p>
                     <p className="flex items-center gap-2 text-sm">
-                      <span className="inline-block size-4 border border-line outline outline-2 outline-offset-2 outline-[var(--ink-strong)]" />
+                      <span className="inline-block size-4 rounded-md bg-surface-2 outline outline-2 outline-offset-2 outline-[var(--ink-strong)]" />
                       Outlined dates start a new loop.
                     </p>
                     <p className="flex items-center gap-2 text-sm">
-                      <span className="inline-block size-4 border border-ink-strong bg-mark" />
-                      Yellow marks today.
+                      <span className="inline-block size-4 rounded-md border-[3px] border-ink-strong" />
+                      A dark frame marks today.
                     </p>
                   </div>
                 </div>
@@ -103,7 +103,7 @@ export default function MonthPage() {
                 <div className={`card card-hue hue-${reading.personalMonth.root} rise space-y-4 p-6`}>
                   <h2 className="section-title">Personal month</h2>
                   <p aria-label={`Personal month ${reading.display}`} data-testid="personal-month">
-                    <BigNumber result={reading.personalMonth} className="text-8xl" />
+                    <BigNumber tile result={reading.personalMonth} className="text-8xl" />
                   </p>
                   <p className="text-sm text-muted">{reading.context.charAt(0).toUpperCase() + reading.context.slice(1)}.</p>
                   <ConventionChips kind="personalMonth" conventions={conventions} />

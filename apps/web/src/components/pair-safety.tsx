@@ -7,7 +7,7 @@ import { t } from '@/lib/t';
  */
 export function PairSafetyLines({ className = '' }: { className?: string }) {
   return (
-    <div className={`rounded-lg border border-line bg-surface px-4 py-3 ${className}`} data-testid="pair-safety">
+    <div className={`rounded-2xl border-2 border-ink-strong bg-white px-5 py-4 ${className}`} data-testid="pair-safety">
       <p className="section-title mb-1.5">{t('between.safety.heading')}</p>
       <ul className="space-y-1 text-sm text-ink-strong">
         {PAIR_SAFETY.map((line) => (

@@ -1,72 +1,81 @@
 @import 'tailwindcss';
 
 /*
- * A printed worksheet. The one idea in this product is that it shows its
- * working, so the page looks like typeset working: paper, ink, ruled lines,
- * and two marks. Signal red is for the second person and for warnings. A
- * highlighter yellow marks what is current: today, the period you are in, the
- * tab you are on. There are no gradients, no shadows, no rounded corners and
- * no entrance animation, and the nine numbers are told apart by their digit,
- * never by a colour. Every text pair is checked to WCAG AA.
+ * Nine numbers, nine colours. Each number owns one hue and keeps it on every
+ * screen: a bright flat fill (ink text on it), a deep tone (text, strokes, or a
+ * fill with white text) and a pale tint (a quiet background with ink or deep
+ * text). Everything else is a cool white canvas and one blue-black ink, so the
+ * colour you see always means a number. No gradients, no glow, no shadows.
  *
- *   ink on paper         16.9   ink on highlighter   15.1
- *   secondary on paper    8.0   white on signal red   5.6
- *   signal red on paper   5.0   control border        3.1
+ * Shape rule: things you act on (buttons, chips, tabs) are pills; panels are
+ * 36px, cards 28px, tiles 18 to 22px, fields 14px. Nothing is square.
+ *
+ * Every text pair is checked to WCAG AA (see docs/design.md):
+ *   ink on white 17.9   heading ink on a bright fill 8.4 to 14.6
+ *   white on a deep tone 5.2 to 5.5   a deep tone on its own tint 4.7 to 4.8
  */
 :root {
   color-scheme: light;
-  --bg: #f3f3ee;
-  --surface: #f3f3ee;
-  --surface-2: #e9e9e2;
-  --line: #cfcfc6;
-  --line-strong: #8a8a80;
-  --ink: #1b1b18;
-  --ink-strong: #0d0d0b;
-  --muted: #4a4a44;
-  --primary: #0d0d0b;
-  --primary-hover: #c62d0c;
-  --primary-soft: #ffe83d;
-  --accent: #c62d0c;
-  --mark: #ffe83d;
-  --gold: #0d0d0b;
-  --focus: #0d0d0b;
-  --btn: #0d0d0b;
-  --btn-ink: #f3f3ee;
-  --btn-hover: #c62d0c;
-  --warn-bg: #ffe83d;
-  --warn-ink: #0d0d0b;
-  --info-bg: #ffe83d;
-  --info-ink: #0d0d0b;
-  --good-bg: #e9e9e2;
-  --good-ink: #0d0d0b;
-  --bad-bg: #f6ded6;
-  --bad-ink: #a82308;
+  --bg: #ffffff;
+  --surface: #ffffff;
+  --surface-2: #f2f3f8;
+  --line: #e0e2ec;
+  --line-strong: #7f8399;
+  --ink: #15152b;
+  --ink-strong: #0b0b1e;
+  --muted: #50536b;
+  --primary: #15152b;
+  --primary-hover: #3065cc;
+  --primary-soft: #e9f1fe;
+  --accent: #3065cc;
+  --mark: #f9df5c;
+  --gold: #15152b;
+  --focus: #15152b;
+  --btn: #15152b;
+  --btn-ink: #ffffff;
+  --btn-hover: #3065cc;
+  --warn-bg: #f8f1cf;
+  --warn-ink: #15152b;
+  --info-bg: #e9f1fe;
+  --info-ink: #15152b;
+  --good-bg: #e2f8db;
+  --good-ink: #15152b;
+  --bad-bg: #ffebe8;
+  --bad-ink: #b3261e;
 
-  /*
-   * The nine numbers keep their token names so every chart and cell still
-   * resolves, but they are one value: paper for a number that is not lit, ink
-   * for one that is. The digit does the telling.
-   */
-  --n0: #ecece5;
-  --n1: #ecece5;
-  --n2: #ecece5;
-  --n3: #ecece5;
-  --n4: #ecece5;
-  --n5: #ecece5;
-  --n6: #ecece5;
-  --n7: #ecece5;
-  --n8: #ecece5;
-  --n9: #ecece5;
-  --d0: #4a4a44;
-  --d1: #0d0d0b;
-  --d2: #0d0d0b;
-  --d3: #0d0d0b;
-  --d4: #0d0d0b;
-  --d5: #0d0d0b;
-  --d6: #0d0d0b;
-  --d7: #0d0d0b;
-  --d8: #0d0d0b;
-  --d9: #0d0d0b;
+  /* bright: a flat fill, always with ink on it */
+  --b0: #e3e5ef;
+  --b1: #fe8b7d;
+  --b2: #ffa154;
+  --b3: #f9df5c;
+  --b4: #98e17f;
+  --b5: #36e6bc;
+  --b6: #04c4ed;
+  --b7: #86b1ff;
+  --b8: #c697fe;
+  --b9: #f587c2;
+  /* tint: a pale background; ink or the deep tone on it */
+  --n0: #f2f3f8;
+  --n1: #ffebe8;
+  --n2: #feece0;
+  --n3: #f8f1cf;
+  --n4: #e2f8db;
+  --n5: #d3fbed;
+  --n6: #dbf5fe;
+  --n7: #e9f1fe;
+  --n8: #f4ecff;
+  --n9: #fee9f3;
+  /* deep: text and strokes on white or on the tint; white text on a fill of it */
+  --d0: #50536b;
+  --d1: #bd3931;
+  --d2: #a05602;
+  --d3: #7a6900;
+  --d4: #2f7900;
+  --d5: #047b62;
+  --d6: #03758e;
+  --d7: #3065cc;
+  --d8: #854ebd;
+  --d9: #b13a80;
 }
 
 @theme inline {
@@ -86,18 +95,30 @@
   --color-warn-bg: var(--warn-bg);
   --color-good-bg: var(--good-bg);
   --color-bad-bg: var(--bad-bg);
-  --font-sans: var(--font-plex-sans), 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  --font-serif: var(--font-plex-serif), 'Iowan Old Style', Georgia, serif;
-  --font-mono: var(--font-plex-mono), ui-monospace, 'SF Mono', Menlo, monospace;
+  /* the colour of whichever number the nearest .hue-N names */
+  --color-hue-b: var(--hue-b);
+  --color-hue-n: var(--hue-n);
+  --color-hue-d: var(--hue-d);
+  --color-b1: var(--b1);
+  --color-b2: var(--b2);
+  --color-b3: var(--b3);
+  --color-b4: var(--b4);
+  --color-b5: var(--b5);
+  --color-b6: var(--b6);
+  --color-b7: var(--b7);
+  --color-b8: var(--b8);
+  --color-b9: var(--b9);
+  --font-sans: var(--font-geist), 'Helvetica Neue', Arial, sans-serif;
+  --font-display: var(--font-bricolage), var(--font-geist), 'Helvetica Neue', Arial, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, 'SF Mono', Menlo, monospace;
 
-  /* Square corners everywhere. rounded-full stays, for the few true circles. */
-  --radius-xs: 0;
-  --radius-sm: 0;
-  --radius-md: 0;
-  --radius-lg: 0;
-  --radius-xl: 0;
-  --radius-2xl: 0;
-  --radius-3xl: 0;
+  --radius-xs: 0.375rem;
+  --radius-sm: 0.625rem;
+  --radius-md: 0.875rem;
+  --radius-lg: 1.125rem;
+  --radius-xl: 1.375rem;
+  --radius-2xl: 1.75rem;
+  --radius-3xl: 2.25rem;
   --shadow-xs: none;
   --shadow-sm: none;
   --shadow-md: none;
@@ -105,269 +126,404 @@
   --shadow-xl: none;
 }
 
-html {
-  background: var(--bg);
-  -webkit-text-size-adjust: 100%;
-}
+@layer base {
+  html {
+    background: var(--bg);
+    -webkit-text-size-adjust: 100%;
+  }
 
-body {
-  background: var(--bg);
-  color: var(--ink);
-  font-family: var(--font-sans);
-  font-size: 1rem;
-  line-height: 1.6;
-  -webkit-font-smoothing: antialiased;
-}
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
 
-h1,
-h2,
-h3 {
-  font-family: var(--font-serif);
-  color: var(--ink-strong);
-  letter-spacing: -0.015em;
-  line-height: 1.1;
-  font-weight: 500;
-}
-h3 {
-  font-weight: 600;
-}
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-display);
+    color: var(--ink-strong);
+    letter-spacing: -0.035em;
+    line-height: 1.04;
+    font-weight: 700;
+  }
+  h2 {
+    line-height: 1.08;
+  }
+  h3 {
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+    font-weight: 650;
+  }
 
-:focus-visible {
-  outline: 3px solid var(--focus);
-  outline-offset: 2px;
-}
+  :focus-visible {
+    outline: 3px solid var(--focus);
+    outline-offset: 3px;
+  }
 
-::selection {
-  background: var(--mark);
-  color: var(--ink-strong);
-}
-
-/* ---- components -------------------------------------------------------- */
-
-/* A slip: a hard 1px edge in ink and nothing else. */
-.card {
-  background: var(--surface);
-  border: 1px solid var(--ink-strong);
-}
-
-/* A quiet box: a hairline, for what sits beside the main text. */
-.card-flat {
-  background: transparent;
-  border: 1px solid var(--line);
-}
-
-/* A block that belongs to one number: a heavy rule on top, the way a ledger heads a column. */
-.card-hue {
-  border-top: 4px solid var(--ink-strong);
-}
-
-.eyebrow {
-  font-family: var(--font-mono);
-  font-size: 0.8rem;
-  color: var(--muted);
-}
-
-.section-title {
-  font-family: var(--font-sans);
-  font-size: 0.95rem;
-  font-weight: 600;
-  color: var(--ink-strong);
-  line-height: 1.4;
-}
-
-.btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  min-height: 44px;
-  padding: 0.55rem 1.1rem;
-  border: 1px solid var(--btn);
-  background: var(--btn);
-  color: var(--btn-ink);
-  font-weight: 500;
-  font-size: 0.95rem;
-  cursor: pointer;
-  transition:
-    background-color 120ms,
-    border-color 120ms;
-}
-.btn:hover {
-  background: var(--btn-hover);
-  border-color: var(--btn-hover);
-  color: #ffffff;
-}
-.btn:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
-}
-
-.btn-quiet {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  min-height: 44px;
-  padding: 0.5rem 0.9rem;
-  border: 1px solid var(--ink-strong);
-  background: transparent;
-  color: var(--ink-strong);
-  font-size: 0.92rem;
-  cursor: pointer;
-  transition:
-    background-color 120ms,
-    color 120ms;
-}
-.btn-quiet:hover {
-  background: var(--ink-strong);
-  color: var(--bg);
-}
-.btn-quiet[aria-pressed='true'] {
-  background: var(--ink-strong);
-  color: var(--bg);
-}
-
-/* A tag: a small label in a hard box. Never a pill. */
-.chip {
-  display: inline-flex;
-  align-items: center;
-  min-height: 24px;
-  padding: 0.1rem 0.5rem;
-  border: 1px solid var(--ink-strong);
-  background: transparent;
-  color: var(--ink-strong);
-  font-family: var(--font-mono);
-  font-size: 0.72rem;
-  white-space: nowrap;
-}
-a.chip:hover {
-  background: var(--ink-strong);
-  color: var(--bg);
-}
-.chip-warn {
-  background: var(--mark);
-  border-color: var(--ink-strong);
-  color: var(--ink-strong);
-}
-.chip-bad {
-  background: var(--accent);
-  border-color: var(--accent);
-  color: #ffffff;
-}
-.chip-info {
-  background: transparent;
-  border-color: var(--ink-strong);
-  color: var(--ink-strong);
-}
-
-kbd {
-  font-family: var(--font-mono);
-  font-size: 0.8em;
-  border: 1px solid var(--line-strong);
-  background: var(--surface-2);
-  padding: 0.05rem 0.35rem;
-}
-
-.field {
-  width: 100%;
-  min-height: 44px;
-  padding: 0.55rem 0.75rem;
-  background: #fbfbf8;
-  color: var(--ink-strong);
-  border: 1px solid var(--line-strong);
-  font: inherit;
-}
-.field:focus-visible {
-  outline-offset: 0;
-}
-.field[aria-invalid='true'] {
-  border-color: var(--bad-ink);
-  border-width: 2px;
-}
-
-/* A figure: set in the serif, lining, close. The digit is the whole identity of a number. */
-.numeral {
-  font-family: var(--font-serif);
-  font-weight: 500;
-  font-feature-settings: 'lnum' 1;
-  letter-spacing: -0.03em;
-  color: var(--ink-strong);
-  line-height: 1;
-}
-
-/* Kept so every component still resolves; a number no longer has a colour. */
-.hue-1,
-.hue-2,
-.hue-3,
-.hue-4,
-.hue-5,
-.hue-6,
-.hue-7,
-.hue-8,
-.hue-9,
-.hue-0 {
-  --hue: var(--ink-strong);
-}
-.numeral-hue {
-  color: var(--ink-strong);
-}
-
-.tint-1,
-.tint-2,
-.tint-3,
-.tint-4,
-.tint-5,
-.tint-6,
-.tint-7,
-.tint-8,
-.tint-9,
-.tint-0 {
-  background: transparent;
-}
-
-/* Reading text is set in the serif, at a book's measure. */
-.reading {
-  font-family: var(--font-serif);
-  font-size: 1.0625rem;
-  line-height: 1.7;
-  color: var(--ink);
-}
-.reading p {
-  max-width: 62ch;
-}
-
-details > summary {
-  cursor: pointer;
-  list-style: none;
-}
-details > summary::-webkit-details-marker {
-  display: none;
-}
-
-/* No entrance animation. Kept as a class so markup does not need to change. */
-.rise {
-  animation: none;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  * {
-    scroll-behavior: auto !important;
-    transition-duration: 0.01ms !important;
+  ::selection {
+    background: var(--mark);
+    color: var(--ink-strong);
   }
 }
 
-.skip-link {
-  position: absolute;
-  left: 0.75rem;
-  top: -4rem;
-  z-index: 100;
-  background: var(--btn);
-  color: var(--btn-ink);
-  padding: 0.6rem 0.9rem;
-}
-.skip-link:focus {
-  top: 0.75rem;
+@layer components {
+  /* ---- the nine hues ---------------------------------------------------------- */
+
+  .hue-0 {
+    --hue-b: var(--b0);
+    --hue-n: var(--n0);
+    --hue-d: var(--d0);
+  }
+  .hue-1 {
+    --hue-b: var(--b1);
+    --hue-n: var(--n1);
+    --hue-d: var(--d1);
+  }
+  .hue-2 {
+    --hue-b: var(--b2);
+    --hue-n: var(--n2);
+    --hue-d: var(--d2);
+  }
+  .hue-3 {
+    --hue-b: var(--b3);
+    --hue-n: var(--n3);
+    --hue-d: var(--d3);
+  }
+  .hue-4 {
+    --hue-b: var(--b4);
+    --hue-n: var(--n4);
+    --hue-d: var(--d4);
+  }
+  .hue-5 {
+    --hue-b: var(--b5);
+    --hue-n: var(--n5);
+    --hue-d: var(--d5);
+  }
+  .hue-6 {
+    --hue-b: var(--b6);
+    --hue-n: var(--n6);
+    --hue-d: var(--d6);
+  }
+  .hue-7 {
+    --hue-b: var(--b7);
+    --hue-n: var(--n7);
+    --hue-d: var(--d7);
+  }
+  .hue-8 {
+    --hue-b: var(--b8);
+    --hue-n: var(--n8);
+    --hue-d: var(--d8);
+  }
+  .hue-9 {
+    --hue-b: var(--b9);
+    --hue-n: var(--n9);
+    --hue-d: var(--d9);
+  }
+
+  /* A pale background in a number's colour. Text on it is ink or the deep tone. */
+  .tint-0 {
+    background: var(--n0);
+  }
+  .tint-1 {
+    background: var(--n1);
+  }
+  .tint-2 {
+    background: var(--n2);
+  }
+  .tint-3 {
+    background: var(--n3);
+  }
+  .tint-4 {
+    background: var(--n4);
+  }
+  .tint-5 {
+    background: var(--n5);
+  }
+  .tint-6 {
+    background: var(--n6);
+  }
+  .tint-7 {
+    background: var(--n7);
+  }
+  .tint-8 {
+    background: var(--n8);
+  }
+  .tint-9 {
+    background: var(--n9);
+  }
+
+  /* A flat bright fill in a number's colour. Text on it is always ink. */
+  .bright-0 {
+    background: var(--b0);
+  }
+  .bright-1 {
+    background: var(--b1);
+  }
+  .bright-2 {
+    background: var(--b2);
+  }
+  .bright-3 {
+    background: var(--b3);
+  }
+  .bright-4 {
+    background: var(--b4);
+  }
+  .bright-5 {
+    background: var(--b5);
+  }
+  .bright-6 {
+    background: var(--b6);
+  }
+  .bright-7 {
+    background: var(--b7);
+  }
+  .bright-8 {
+    background: var(--b8);
+  }
+  .bright-9 {
+    background: var(--b9);
+  }
+
+  /* ---- components -------------------------------------------------------------- */
+
+  /* A container: white, a hairline, a big soft corner. */
+  .card {
+    background: var(--surface);
+    border: 1.5px solid var(--line);
+    border-radius: var(--radius-2xl);
+  }
+
+  /* A quiet container: a cool grey fill and no line, for what sits beside the main text. */
+  .card-flat {
+    background: var(--surface-2);
+    border: 0;
+    border-radius: var(--radius-2xl);
+  }
+
+  /* A container that belongs to one number takes that number's tint. */
+  .card-hue {
+    background: var(--hue-n, var(--n0));
+    border: 3px solid transparent;
+  }
+
+  .eyebrow {
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0;
+    color: var(--muted);
+  }
+
+  .section-title {
+    font-family: var(--font-display);
+    font-size: 1.05rem;
+    font-weight: 650;
+    letter-spacing: -0.01em;
+    color: var(--ink-strong);
+    line-height: 1.3;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    min-height: 48px;
+    padding: 0.6rem 1.4rem;
+    border: 2px solid var(--btn);
+    border-radius: 999px;
+    background: var(--btn);
+    color: var(--btn-ink);
+    font-weight: 600;
+    font-size: 0.97rem;
+    cursor: pointer;
+    transition:
+      background-color 140ms,
+      border-color 140ms,
+      transform 140ms;
+  }
+  .btn:hover {
+    background: var(--btn-hover);
+    border-color: var(--btn-hover);
+    color: #ffffff;
+  }
+  .btn:active {
+    transform: translateY(1px);
+  }
+  .btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  .btn-quiet {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    min-height: 44px;
+    padding: 0.5rem 1.05rem;
+    border: 2px solid var(--ink-strong);
+    border-radius: 999px;
+    background: #ffffff;
+    color: var(--ink-strong);
+    font-size: 0.92rem;
+    font-weight: 550;
+    cursor: pointer;
+    transition:
+      background-color 140ms,
+      color 140ms,
+      transform 140ms;
+  }
+  .btn-quiet:hover {
+    background: var(--mark);
+  }
+  .btn-quiet:active {
+    transform: translateY(1px);
+  }
+  .btn-quiet[aria-pressed='true'] {
+    background: var(--ink-strong);
+    color: #ffffff;
+  }
+
+  /* A tag: a small pill. */
+  .chip {
+    display: inline-flex;
+    align-items: center;
+    min-height: 26px;
+    padding: 0.1rem 0.7rem;
+    border-radius: 999px;
+    background: var(--surface-2);
+    color: var(--ink-strong);
+    font-family: var(--font-mono);
+    font-size: 0.74rem;
+    white-space: nowrap;
+  }
+  a.chip:hover {
+    background: var(--mark);
+  }
+  .chip-warn {
+    background: var(--b2);
+    color: var(--ink-strong);
+  }
+  .chip-bad {
+    background: var(--d1);
+    color: #ffffff;
+  }
+  .chip-info {
+    background: var(--n7);
+    color: var(--ink-strong);
+  }
+
+  kbd {
+    font-family: var(--font-mono);
+    font-size: 0.8em;
+    border-radius: 0.375rem;
+    background: var(--surface-2);
+    padding: 0.05rem 0.4rem;
+  }
+
+  .field {
+    width: 100%;
+    min-height: 48px;
+    padding: 0.55rem 0.85rem;
+    background: #ffffff;
+    color: var(--ink-strong);
+    border: 2px solid var(--line-strong);
+    border-radius: var(--radius-md);
+    font: inherit;
+    transition: border-color 140ms;
+  }
+  .field:hover {
+    border-color: var(--ink);
+  }
+  .field:focus-visible {
+    border-color: var(--ink-strong);
+    outline-offset: 2px;
+  }
+  .field[aria-invalid='true'] {
+    border-color: var(--bad-ink);
+  }
+
+  /* A figure: the display face at its heaviest, lining and close. */
+  .numeral {
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-feature-settings: 'lnum' 1;
+    letter-spacing: -0.05em;
+    color: var(--ink-strong);
+    line-height: 0.95;
+  }
+  .numeral-hue {
+    color: var(--hue-d, var(--ink-strong));
+  }
+
+  /* A tile that goes somewhere: it lifts a little under the pointer. */
+  .tile {
+    border-radius: var(--radius-lg);
+    transition: transform 160ms;
+  }
+  a.tile:hover,
+  button.tile:hover {
+    transform: translateY(-3px);
+  }
+  a.tile:active,
+  button.tile:active {
+    transform: translateY(0);
+  }
+
+  /* Reading text is set in the body face, at a comfortable measure. */
+  .reading {
+    font-size: 1.0625rem;
+    line-height: 1.7;
+    color: var(--ink);
+  }
+  .reading p {
+    max-width: 62ch;
+  }
+
+  details > summary {
+    cursor: pointer;
+    list-style: none;
+  }
+  details > summary::-webkit-details-marker {
+    display: none;
+  }
+
+  /* No entrance animation. Kept as a class so markup does not need to change. */
+  .rise {
+    animation: none;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    * {
+      scroll-behavior: auto !important;
+      transition-duration: 0.01ms !important;
+    }
+    a.tile:hover,
+    button.tile:hover {
+      transform: none;
+    }
+  }
+
+  .skip-link {
+    position: absolute;
+    left: 0.75rem;
+    top: -4rem;
+    z-index: 100;
+    background: var(--btn);
+    color: var(--btn-ink);
+    padding: 0.6rem 1rem;
+    border-radius: 999px;
+  }
+  .skip-link:focus {
+    top: 0.75rem;
+  }
 }
 
-/* ---- print: the year report becomes a clean PDF ------------------------- */
+/* ---- print: the year report becomes a clean PDF ------------------------------- */
 
 @media print {
   body {

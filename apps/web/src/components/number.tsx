@@ -5,13 +5,17 @@ import { AppLink } from './app-link';
 import { Icon } from './icon';
 import { t } from '@/lib/t';
 
-/** A number in the display serif. Masters always show their root: "11/2". */
-export function BigNumber({ result, className = 'text-7xl' }: { result: Pick<Result, 'value' | 'root'>; className?: string }) {
+/**
+ * A number in the display face. Masters always show their root: "11/2".
+ * With `tile` it sits on a flat bright fill in its own colour; otherwise it is set in the deep tone.
+ */
+export function BigNumber({ result, className = 'text-7xl', tile = false }: { result: Pick<Result, 'value' | 'root'>; className?: string; tile?: boolean }) {
   const master = result.value > 9;
+  const tone = tile ? `bright-${result.root} inline-block rounded-3xl px-5 py-3` : `numeral-hue hue-${result.root}`;
   return (
-    <span className={`numeral numeral-hue hue-${result.root} ${className}`}>
+    <span className={`numeral ${tone} ${className}`} style={tile ? { color: 'var(--ink-strong)' } : undefined}>
       {result.value}
-      {master ? <span className="ml-0.5 text-[0.42em] text-muted">/{result.root}</span> : null}
+      {master ? <span className={`ml-0.5 text-[0.42em] ${tile ? '' : 'text-muted'}`}>/{result.root}</span> : null}
     </span>
   );
 }

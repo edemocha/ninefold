@@ -51,7 +51,7 @@ function Overview({ bank, today }: { bank: Bank; today: YMD }) {
           <article key={side.who} className={`card card-hue hue-${side.lifePath.root} p-6`} data-testid={`pair-side-${side.who}`}>
             <p className={`eyebrow ${side.who === 'other' ? '!text-accent' : ''}`}>{side.label}</p>
             <p className="mt-3" aria-label={`Life path ${side.display}`}>
-              <BigNumber result={side.lifePath} className="text-7xl" />
+              <BigNumber tile result={side.lifePath} className="text-7xl" />
             </p>
             <p className="mt-2 text-sm text-muted">Life path</p>
             <div className="mt-3">
@@ -69,7 +69,7 @@ function Overview({ bank, today }: { bank: Bank; today: YMD }) {
         <div className="grid gap-4 md:grid-cols-2">
           {reading.sides.map((side) => (
             <article key={side.who} className="card-flat p-5" data-testid={`pair-relate-${side.who}`} data-bank="true">
-              <h4 className="font-serif text-xl text-ink-strong">
+              <h4 className="font-display text-xl text-ink-strong">
                 {side.label}: {side.display}
               </h4>
               <p className="reading mt-2 leading-relaxed">{side.relationships}</p>
@@ -92,7 +92,7 @@ function Overview({ bank, today }: { bank: Bank; today: YMD }) {
         <div className="grid items-center gap-8 md:grid-cols-[auto_1fr]">
           <RhythmDuo you={r.you} other={r.other} otherLabel={otherName} />
           <div className="space-y-3">
-            <p className="font-serif text-3xl leading-tight text-ink-strong" data-testid="gap-headline">
+            <p className="font-display text-3xl leading-tight text-ink-strong" data-testid="gap-headline">
               {r.headline}
             </p>
             {r.lines.map((line) => (
@@ -182,7 +182,7 @@ function TypeQuestions({ bank }: { bank: Bank }) {
               <label
                 key={id}
                 htmlFor={id}
-                className={`inline-flex min-h-11 cursor-pointer items-center gap-2 rounded-md border px-3 text-sm ${checked ? 'border-[var(--primary)] bg-[var(--primary-soft)] text-[color:var(--info-ink)]' : 'border-line text-ink'}`}
+                className={`inline-flex min-h-11 cursor-pointer items-center gap-2 rounded-full border-2 px-4 text-sm font-medium ${checked ? 'border-ink-strong bg-mark text-ink-strong' : 'border-line-strong text-ink-strong hover:border-ink-strong'}`}
               >
                 <input
                   id={id}
@@ -201,7 +201,7 @@ function TypeQuestions({ bank }: { bank: Bank }) {
 
       {talk ? (
         <div className="space-y-3 border-t border-line pt-4" data-testid="pair-type-questions">
-          <h4 className="font-serif text-xl text-ink-strong">{t('between.type.heading', { kind: talk.title.toLowerCase() })}</h4>
+          <h4 className="font-display text-xl text-ink-strong">{t('between.type.heading', { kind: talk.title.toLowerCase() })}</h4>
           <ul className="reading space-y-2 leading-relaxed">
             {talk.questions.map((q) => (
               <li key={q.id}>

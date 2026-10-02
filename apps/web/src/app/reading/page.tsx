@@ -71,7 +71,7 @@ export default function SnapshotPage() {
         <section aria-label="Today" className="card rise flex flex-wrap items-center justify-between gap-4 p-5" style={{ ['--i' as string]: 1 }}>
           <div>
             <p className="eyebrow mb-1">Today, {dateLabel(today)}</p>
-            <p className="font-serif text-2xl text-ink-strong">
+            <p className="font-display text-2xl text-ink-strong">
               Personal day {todayNumbers.pd.value} <span className="text-muted">· month {todayNumbers.pm.value} · year {todayNumbers.py.value}</span>
             </p>
           </div>
@@ -100,7 +100,7 @@ export default function SnapshotPage() {
               {result ? (
                 <>
                   <p className="mt-4" aria-label={`${label.title} ${result.value}`}>
-                    <BigNumber result={result} className={span ? 'text-8xl' : 'text-7xl'} />
+                    <BigNumber result={result} tile className={span ? 'text-8xl' : 'text-7xl'} />
                   </p>
                   <p className="mt-3 text-sm text-muted">{label.lens}</p>
                   <div className="mt-4">

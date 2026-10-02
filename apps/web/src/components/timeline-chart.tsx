@@ -106,7 +106,7 @@ export function TimelineChart({
           onPointerCancel={onPointerUp}
           data-testid="timeline-svg"
         >
-          <text x={PAD} y={ROW.pinnacle.y - 12} className="fill-[var(--muted)] font-mono text-[11px] uppercase tracking-widest">
+          <text x={PAD} y={ROW.pinnacle.y - 12} className="fill-[var(--muted)] text-[12px] font-semibold">
             Pinnacles
           </text>
           {timeline.pinnacles.map((p) => {
@@ -120,9 +120,10 @@ export function TimelineChart({
                   y={ROW.pinnacle.y}
                   width={x1 - x0 - 2}
                   height={ROW.pinnacle.h}
-                  style={{ fill: active ? 'var(--mark)' : `var(--n${rootOf(p.value)})`, stroke: active ? 'var(--ink-strong)' : 'var(--line-strong)', strokeWidth: active ? 2.5 : 1 }}
+                  rx={12}
+                  style={{ fill: active ? `var(--b${rootOf(p.value)})` : `var(--n${rootOf(p.value)})`, stroke: active ? 'var(--ink-strong)' : 'none', strokeWidth: active ? 3 : 0 }}
                 />
-                <text x={x0 + 10} y={ROW.pinnacle.y + 33} style={{ fill: `var(--d${rootOf(p.value)})` }} className="font-serif text-[26px]">
+                <text x={x0 + 14} y={ROW.pinnacle.y + 34} style={{ fill: active ? 'var(--ink-strong)' : `var(--d${rootOf(p.value)})` }} className="font-display text-[28px] font-extrabold">
                   {p.display}
                 </text>
                 <text x={x1 - 12} y={ROW.pinnacle.y + 20} textAnchor="end" className="fill-[var(--muted)] font-mono text-[10px]">
@@ -132,7 +133,7 @@ export function TimelineChart({
             );
           })}
 
-          <text x={PAD} y={ROW.challenge.y - 12} className="fill-[var(--muted)] font-mono text-[11px] uppercase tracking-widest">
+          <text x={PAD} y={ROW.challenge.y - 12} className="fill-[var(--muted)] text-[12px] font-semibold">
             Challenges
           </text>
           {timeline.challenges.map((p) => {
@@ -146,9 +147,10 @@ export function TimelineChart({
                   y={ROW.challenge.y}
                   width={x1 - x0 - 2}
                   height={ROW.challenge.h}
-                  style={{ fill: active ? 'var(--mark)' : 'var(--n0)', stroke: active ? 'var(--ink-strong)' : 'var(--line-strong)', strokeWidth: active ? 2.5 : 1 }}
+                  rx={10}
+                  style={{ fill: active ? `var(--b${p.value})` : `var(--n${p.value})`, stroke: active ? 'var(--ink-strong)' : 'none', strokeWidth: active ? 3 : 0 }}
                 />
-                <text x={x0 + 10} y={ROW.challenge.y + 27} style={{ fill: `var(--d${p.value})` }} className="font-serif text-[22px]">
+                <text x={x0 + 14} y={ROW.challenge.y + 28} style={{ fill: active ? 'var(--ink-strong)' : `var(--d${p.value})` }} className="font-display text-[24px] font-extrabold">
                   {p.value}
                 </text>
                 <text x={x1 - 12} y={ROW.challenge.y + 16} textAnchor="end" className="fill-[var(--muted)] font-mono text-[10px]">
@@ -158,7 +160,7 @@ export function TimelineChart({
             );
           })}
 
-          <text x={PAD} y={ROW.years.y - 12} className="fill-[var(--muted)] font-mono text-[11px] uppercase tracking-widest">
+          <text x={PAD} y={ROW.years.y - 12} className="fill-[var(--muted)] text-[12px] font-semibold">
             Personal year
           </text>
           {timeline.years.map((y) => {
@@ -170,13 +172,13 @@ export function TimelineChart({
                   y={ROW.years.y}
                   width={Math.max(1, cell - 1)}
                   height={ROW.years.h}
-                  style={{ fill: `var(--n${digit})` }}
+                  style={{ fill: `var(--b${digit})` }}
                 />
                 <text
                   x={X(y.age) + cell / 2}
                   y={ROW.years.y + 28}
                   textAnchor="middle"
-                  style={{ fill: `var(--d${digit})` }}
+                  style={{ fill: 'var(--ink-strong)' }}
                   className="font-mono text-[9px]"
                 >
                   {digit}
@@ -204,7 +206,7 @@ export function TimelineChart({
             <g aria-hidden="true" data-testid="you-are-here">
               <rect x={X(currentAge)} y={ROW.years.y + ROW.years.h} width={Math.max(1, cell - 1)} height={4} fill="var(--primary)" />
               <line x1={X(currentAge) + cell / 2} x2={X(currentAge) + cell / 2} y1={ROW.years.y + ROW.years.h + 4} y2={318} stroke="var(--primary)" strokeWidth={1} />
-              <text x={X(currentAge) + cell / 2} y={338} textAnchor="middle" className="fill-[var(--primary)] font-mono text-[11px] uppercase tracking-widest">
+              <text x={X(currentAge) + cell / 2} y={338} textAnchor="middle" className="fill-[var(--primary)] text-[12px] font-semibold">
                 you are here
               </text>
             </g>
@@ -224,7 +226,7 @@ export function TimelineChart({
             data-testid="timeline-marker"
           >
             <line x1={markerX} x2={markerX} y1={30} y2={ROW.axis} stroke="var(--primary)" strokeWidth={1.5} strokeDasharray="3 3" />
-            <rect x={markerX - 22} y={6} width={44} height={24} className="handle" style={{ fill: 'var(--primary)', stroke: 'var(--primary)' }} />
+            <rect x={markerX - 22} y={6} width={44} height={24} rx={12} className="handle" style={{ fill: 'var(--primary)', stroke: 'var(--primary)' }} />
             <text x={markerX} y={22} textAnchor="middle" style={{ fill: '#ffffff' }} className="font-mono text-[12px]">
               {age}
             </text>

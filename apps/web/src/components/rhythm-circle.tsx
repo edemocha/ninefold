@@ -29,13 +29,13 @@ export function RhythmCircle({ circle, size = 280 }: { circle: Circle; size?: nu
                 cx={x}
                 cy={y}
                 r={(lit ? 19 : 14) * k}
-                style={{ fill: lit ? `var(--d${node.number})` : `var(--n${node.number})`, stroke: lit ? `var(--d${node.number})` : 'var(--line)' }}
+                style={{ fill: lit ? `var(--d${node.number})` : `var(--b${node.number})` }}
               />
-              <text x={x} y={y + 5 * k} textAnchor="middle" className="font-serif" style={{ fill: lit ? '#ffffff' : `var(--d${node.number})`, fontSize: (lit ? 17 : 13) * k }}>
+              <text x={x} y={y + 5 * k} textAnchor="middle" className="font-display" style={{ fill: lit ? '#ffffff' : 'var(--ink-strong)', fontSize: (lit ? 18 : 13) * k, fontWeight: 800 }}>
                 {node.number}
               </text>
               {lit ? (
-                <text x={lx} y={ly + 4 * k} textAnchor="middle" className="font-mono" style={{ fill: 'var(--ink-strong)', fontSize: 12 * k, fontWeight: 600 }}>
+                <text x={lx} y={ly + 4 * k} textAnchor="middle" className="font-sans" style={{ fill: 'var(--ink-strong)', fontSize: 13 * k, fontWeight: 700 }}>
                   {node.letters.join('·')}
                 </text>
               ) : null}

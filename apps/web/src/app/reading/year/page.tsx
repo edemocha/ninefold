@@ -10,6 +10,7 @@ import { BigNumber, ConventionChips, WhyThisNumber } from '@/components/number';
 import { Sections } from '@/components/sections';
 import { hrefWith } from '@/lib/hash';
 import { useProfile } from '@/lib/profile-context';
+import { rootOf } from '@/lib/site';
 import { t } from '@/lib/t';
 import { useToday } from '@/lib/use-today';
 
@@ -54,7 +55,7 @@ export default function YearPage() {
                 <div className={`card card-hue hue-${reading.personalYear.root} rise flex flex-col gap-4 p-6 lg:self-start`} style={{ ['--i' as string]: 1 }}>
                   <h2 className="section-title">Personal year</h2>
                   <p aria-label={`Personal year ${reading.display}`} data-testid="personal-year">
-                    <BigNumber result={reading.personalYear} className="text-8xl" />
+                    <BigNumber tile result={reading.personalYear} className="text-8xl" />
                   </p>
                   {reading.personalYear.overtone ? <span className="chip chip-info w-fit">{reading.personalYear.overtone} overtone</span> : null}
                   <p className="text-sm text-muted">
@@ -92,16 +93,16 @@ export default function YearPage() {
                           to="/reading/month"
                           view={{ my: m.year, mo: m.month }}
                           aria-current={isNow ? 'date' : undefined}
-                          className={`flex min-h-28 flex-col justify-between border p-4 hover:border-ink-strong ${isNow ? 'border-ink-strong bg-mark' : 'border-line'}`}
+                          className={`tile hue-${rootOf(m.value)} flex min-h-28 flex-col justify-between border-[3px] p-4 ${isNow ? 'border-ink-strong bg-hue-b' : 'border-transparent bg-hue-n'}`}
                           style={{ ['--i' as string]: i }}
                         >
-                          <span className="font-mono text-xs text-ink-strong">
+                          <span className="text-xs font-semibold text-ink-strong">
                             {m.name.slice(0, 3)}
                             {m.fromDay ? ` from day ${m.fromDay}` : ''}
                           </span>
                           <span className="flex items-end justify-between">
-                            <span className={`numeral numeral-hue hue-${m.value} text-5xl`}>{m.value}</span>
-                            <span className="text-sm text-ink-strong">{m.tile}</span>
+                            <span className={`numeral ${isNow ? '' : 'numeral-hue'} text-5xl`}>{m.value}</span>
+                            <span className="text-sm font-medium text-ink-strong">{m.tile}</span>
                           </span>
                         </AppLink>
                       </li>

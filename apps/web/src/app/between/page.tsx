@@ -13,17 +13,16 @@ export const metadata: Metadata = {
 
 export default function BetweenIndex() {
   return (
-    <div className="mx-auto max-w-5xl px-5 py-14">
-      <p className="eyebrow mb-4">Reference</p>
-      <h1 className="max-w-[20ch] text-5xl">Two numbers, side by side</h1>
+    <div className="mx-auto max-w-6xl px-5 pb-6 pt-6 sm:pt-10">
+      <h1 className="max-w-[18ch] text-[clamp(2.6rem,6.5vw,5rem)]">Two numbers, side by side</h1>
       <p className="mt-5 max-w-[60ch] text-lg text-muted">
         Numerology reads a number on its own. These pages read two together: a pair of life paths, of expression numbers or of soul urges. Each one says what the two numbers tend to bring, where each may stretch, and questions the
         two of you can answer.
       </p>
       <p className="mt-4 max-w-[60ch] text-muted">{t('between.stance')}</p>
 
-      <section className="mt-12 space-y-5" aria-labelledby="grid-title">
-        <h2 id="grid-title" className="text-3xl">
+      <section className="mt-12 space-y-5 rounded-3xl bg-surface-2 p-4 sm:p-9" aria-labelledby="grid-title">
+        <h2 id="grid-title" className="text-3xl sm:text-4xl">
           Pick a number for each of you
         </h2>
         <p className="max-w-[60ch] text-sm text-muted">
@@ -35,19 +34,19 @@ export default function BetweenIndex() {
 
       <section className="mt-16 grid gap-10 md:grid-cols-2">
         <div className="space-y-3">
-          <h2 className="text-3xl">What these pages are not</h2>
+          <h2 className="text-3xl sm:text-4xl">What these pages are not</h2>
           <p className="reading leading-relaxed">
             They do not rate a pair, say whether two people are right for each other, or predict anything. In a large 2020 analysis of couples, what predicted how happy people were was how they saw the relationship itself, such as how
             committed and appreciative they felt, and not their personality traits. So each page gives you something to talk about instead.
           </p>
           <p>
-            <Link href="/method#between" className="underline underline-offset-4 hover:text-ink-strong">
+            <Link href="/method#between" className="font-semibold text-ink-strong underline underline-offset-4 hover:text-accent">
               How it is worked out, and the research
             </Link>
           </p>
         </div>
         <div className="space-y-3">
-          <h2 className="text-3xl">Your own two dates</h2>
+          <h2 className="text-3xl sm:text-4xl">Your own two dates</h2>
           <p className="reading leading-relaxed">
             The gap between two people&apos;s cycles depends on their birth dates, and it never changes. To see yours, with the arithmetic, enter two dates below. No name is asked for, and nothing you type leaves your browser.
           </p>

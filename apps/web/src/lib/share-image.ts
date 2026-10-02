@@ -17,6 +17,30 @@ function family(variable: string, fallback: string): string {
   return raw ? `${raw}, ${fallback}` : fallback;
 }
 
+function token(name: string, fallback: string): string {
+  return getComputedStyle(document.documentElement).getPropertyValue(name).trim() || fallback;
+}
+
+/** The colour a value takes: its own number, with masters reduced to their root. Anything else is neutral. */
+function hueOf(value: string): number {
+  const n = Number.parseInt(value, 10);
+  if (!Number.isFinite(n) || n < 1) return 0;
+  if (n === 11) return 2;
+  if (n === 22) return 4;
+  if (n === 33) return 6;
+  return n > 9 ? 0 : n;
+}
+
+function roundedRect(ctx: CanvasRenderingContext2D, x: number, y: number, w: number, h: number, r: number): void {
+  ctx.beginPath();
+  ctx.moveTo(x + r, y);
+  ctx.arcTo(x + w, y, x + w, y + h, r);
+  ctx.arcTo(x + w, y + h, x, y + h, r);
+  ctx.arcTo(x, y + h, x, y, r);
+  ctx.arcTo(x, y, x + w, y, r);
+  ctx.closePath();
+}
+
 /**
  * Draws a share card on a canvas, in the browser. It is given numbers and
  * labels only, so the picture cannot carry a name or a birth date.
@@ -28,65 +52,62 @@ export function drawShareImage(canvas: HTMLCanvasElement, spec: ShareSpec): void
   const ctx = canvas.getContext('2d');
   if (!ctx) return;
 
-  const serif = family('--font-plex-serif', "Georgia, 'Times New Roman', serif");
-  const sans = family('--font-plex-sans', "'Helvetica Neue', Arial, sans-serif");
-  const mono = family('--font-plex-mono', 'ui-monospace, Menlo, monospace');
+  const display = family('--font-bricolage', "'Helvetica Neue', Arial, sans-serif");
+  const sans = family('--font-geist', "'Helvetica Neue', Arial, sans-serif");
 
-  // The same worksheet as the site: paper, ink, hard rules, one mark.
-  const PAPER = '#f3f3ee';
-  const INK = '#0d0d0b';
-  const MUTED = '#4a4a44';
-  ctx.fillStyle = PAPER;
+  // The same look as the site: a white page, blue-black ink, each number on its own colour.
+  const INK = token('--ink-strong', '#0b0b1e');
+  const MUTED = token('--muted', '#50536b');
+  ctx.fillStyle = '#ffffff';
   ctx.fillRect(0, 0, width, height);
-  ctx.strokeStyle = INK;
-  ctx.lineWidth = 3;
-  ctx.strokeRect(48, 48, width - 96, height - 96);
+
+  // The nine colours as nine bars along the top.
+  for (let n = 1; n <= 9; n += 1) {
+    ctx.fillStyle = token(`--b${n}`, '#cccccc');
+    ctx.fillRect(((n - 1) * width) / 9, 0, width / 9 + 1, 28);
+  }
 
   ctx.textBaseline = 'alphabetic';
   ctx.fillStyle = MUTED;
-  ctx.font = `400 26px ${mono}`;
+  ctx.font = `600 30px ${sans}`;
   ctx.fillText(spec.title, 96, 140);
-
-  // A heavy rule under the title, the way a ledger heads its columns.
-  ctx.fillStyle = INK;
-  ctx.fillRect(96, 160, width - 192, 6);
 
   if (spec.subtitle) {
     ctx.fillStyle = INK;
-    ctx.font = `600 64px ${serif}`;
-    ctx.fillText(spec.subtitle, 96, 250);
+    ctx.font = `800 76px ${display}`;
+    ctx.fillText(spec.subtitle, 96, 236);
   }
 
   const cols = 2;
-  const cellW = (width - 192) / cols;
+  const gap = 24;
+  const cellW = (width - 192 - gap) / cols;
   const cellH = 250;
-  const top = spec.subtitle ? 300 : 220;
+  const top = spec.subtitle ? 290 : 190;
   spec.rows.forEach((row, i) => {
-    const x = 96 + (i % cols) * cellW;
-    const y = top + Math.floor(i / cols) * cellH;
-    ctx.strokeStyle = INK;
-    ctx.lineWidth = 2;
-    ctx.strokeRect(x, y, cellW - 24, cellH - 24);
-    ctx.fillStyle = MUTED;
-    ctx.font = `400 24px ${mono}`;
-    ctx.fillText(row.label, x + 32, y + 56);
+    const x = 96 + (i % cols) * (cellW + gap);
+    const y = top + Math.floor(i / cols) * (cellH + gap);
+    ctx.fillStyle = token(`--b${hueOf(row.value)}`, '#e3e5ef');
+    roundedRect(ctx, x, y, cellW, cellH, 36);
+    ctx.fill();
     ctx.fillStyle = INK;
-    ctx.font = `500 120px ${serif}`;
-    ctx.fillText(row.value, x + 32, y + 175);
+    ctx.font = `600 28px ${sans}`;
+    ctx.fillText(row.label, x + 36, y + 62);
+    ctx.font = `800 128px ${display}`;
+    ctx.fillText(row.value, x + 36, y + 200);
   });
 
   ctx.fillStyle = MUTED;
-  ctx.font = `400 24px ${sans}`;
+  ctx.font = `400 26px ${sans}`;
   ctx.fillText('Numerology is a symbolic tradition, for reflection or fun.', 96, height - 150);
   ctx.fillStyle = INK;
-  ctx.font = `600 30px ${serif}`;
-  ctx.fillText(spec.footer, 96, height - 100);
+  ctx.font = `800 40px ${display}`;
+  ctx.fillText(spec.footer, 96, height - 92);
 
   // The maker's credit, bottom right.
   ctx.fillStyle = MUTED;
-  ctx.font = `italic 400 26px ${serif}`;
+  ctx.font = `600 26px ${sans}`;
   ctx.textAlign = 'right';
-  ctx.fillText(SHARE_CREDIT, width - 96, height - 100);
+  ctx.fillText(SHARE_CREDIT, width - 96, height - 92);
   ctx.textAlign = 'left';
 }
 
