@@ -92,10 +92,10 @@ export default function YearPage() {
                           to="/reading/month"
                           view={{ my: m.year, mo: m.month }}
                           aria-current={isNow ? 'date' : undefined}
-                          className={`rise tint-${m.value} flex min-h-28 flex-col justify-between rounded-xl border p-4 hover:border-[var(--primary)] ${isNow ? 'border-[var(--primary)] border-2' : 'border-line'}`}
+                          className={`flex min-h-28 flex-col justify-between border p-4 hover:border-ink-strong ${isNow ? 'border-ink-strong bg-mark' : 'border-line'}`}
                           style={{ ['--i' as string]: i }}
                         >
-                          <span className="font-mono text-xs uppercase tracking-wider text-muted">
+                          <span className="font-mono text-xs text-ink-strong">
                             {m.name.slice(0, 3)}
                             {m.fromDay ? ` from day ${m.fromDay}` : ''}
                           </span>

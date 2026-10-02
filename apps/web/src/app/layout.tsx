@@ -1,6 +1,6 @@
 import type { Metadata, Viewport } from 'next';
 import Script from 'next/script';
-import { Geist, Geist_Mono, Newsreader } from 'next/font/google';
+import { IBM_Plex_Mono, IBM_Plex_Sans, IBM_Plex_Serif } from 'next/font/google';
 import './globals.css';
 import { Providers } from '@/components/providers';
 import { SiteFooter } from '@/components/site-footer';
@@ -11,9 +11,10 @@ import { t } from '@/lib/t';
 
 // Fonts are downloaded at build time and served from this site, so a visit
 // makes no request to a font host.
-const serif = Newsreader({ subsets: ['latin'], variable: '--font-newsreader', style: ['normal', 'italic'], display: 'swap' });
-const sans = Geist({ subsets: ['latin'], variable: '--font-geist-sans', display: 'swap' });
-const mono = Geist_Mono({ subsets: ['latin'], variable: '--font-geist-mono', display: 'swap' });
+// One family, three cuts: a serif for reading and headings, a sans for controls, a mono for the working.
+const serif = IBM_Plex_Serif({ subsets: ['latin'], variable: '--font-plex-serif', weight: ['400', '500', '600'], style: ['normal', 'italic'], display: 'swap' });
+const sans = IBM_Plex_Sans({ subsets: ['latin'], variable: '--font-plex-sans', weight: ['400', '500', '600'], display: 'swap' });
+const mono = IBM_Plex_Mono({ subsets: ['latin'], variable: '--font-plex-mono', weight: ['400', '500'], display: 'swap' });
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -28,7 +29,7 @@ export const viewport: Viewport = {
   width: 'device-width',
   initialScale: 1,
   colorScheme: 'light',
-  themeColor: '#faf7ff',
+  themeColor: '#f3f3ee',
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

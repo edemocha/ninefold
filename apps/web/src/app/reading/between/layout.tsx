@@ -112,7 +112,7 @@ export default function BetweenLayout({ children }: { children: ReactNode }) {
                 key={s.href}
                 to={s.href}
                 aria-current={path === s.href ? 'page' : undefined}
-                className="rounded-md px-3 py-2.5 text-muted hover:text-primary aria-[current=page]:bg-[var(--primary-soft)] aria-[current=page]:text-[var(--info-ink)]"
+                className="px-3 py-2.5 text-ink underline-offset-4 hover:underline aria-[current=page]:bg-mark aria-[current=page]:text-ink-strong"
               >
                 {t(s.label)}
               </AppLink>

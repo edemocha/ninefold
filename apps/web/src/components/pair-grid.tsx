@@ -5,10 +5,10 @@ import { pairSlug } from '@/lib/site';
 const DIGITS = [1, 2, 3, 4, 5, 6, 7, 8, 9] as const;
 
 /**
- * Nine numbers by nine, every cell a link to the page for that pair. Only the
- * row and column headings take a number's hue: the cells are all alike, so the
- * grid cannot be read as a map of which pairs are better. Each pair is in the
- * grid twice, and both cells go to the same page.
+ * Nine numbers by nine, every cell a link to the page for that pair. The cells
+ * are all alike, and so are the headings, so the grid cannot be read as a map of
+ * which pairs are better. Each pair is in the grid twice, and both cells go to
+ * the same page.
  */
 export function PairGrid({ current }: { current?: string }) {
   return (
@@ -19,7 +19,7 @@ export function PairGrid({ current }: { current?: string }) {
           <tr>
             <td className="w-8" />
             {DIGITS.map((n) => (
-              <th key={n} scope="col" className={`tint-${n} hue-${n} rounded-md py-1.5 font-serif text-lg font-normal text-ink-strong`}>
+              <th key={n} scope="col" className="border-b-2 border-ink-strong py-1.5 font-serif text-lg font-normal text-ink-strong">
                 {n}
               </th>
             ))}
@@ -28,7 +28,7 @@ export function PairGrid({ current }: { current?: string }) {
         <tbody>
           {DIGITS.map((row) => (
             <tr key={row}>
-              <th scope="row" className={`tint-${row} hue-${row} rounded-md px-1 font-serif text-lg font-normal text-ink-strong`}>
+              <th scope="row" className="border-r-2 border-ink-strong px-1 font-serif text-lg font-normal text-ink-strong">
                 {row}
               </th>
               {DIGITS.map((col) => {

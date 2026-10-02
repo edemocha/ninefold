@@ -17,19 +17,20 @@ export default function NumbersIndex() {
       <p className="mt-5 max-w-[56ch] text-lg text-muted">
         Numerology works with the digits 1 to 9 and three master numbers, 11, 22 and 33. Each page describes one number as a theme, with its shadow side and a question to take away.
       </p>
-      <ul className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-        {ALL_VALUES.map((n, i) => (
-          <li key={n} className="rise" style={{ ['--i' as string]: i }}>
-            <Link href={`/numbers/${n}`} className={`tint-${rootOf(n)} flex h-full min-h-40 flex-col justify-between rounded-xl border border-line p-6 hover:border-[var(--primary)]`}>
-              <span className={`numeral numeral-hue hue-${rootOf(n)} text-6xl`}>
+      <ol className="mt-12 border-t-2 border-ink-strong">
+        {ALL_VALUES.map((n) => (
+          <li key={n} className="border-b border-line">
+            <Link href={`/numbers/${n}`} className="group grid grid-cols-[5.5rem_1fr] items-baseline gap-x-4 py-4 hover:bg-mark sm:grid-cols-[7rem_1fr_auto] sm:px-2">
+              <span className="numeral text-5xl">
                 {n}
-                {n > 9 ? <span className="text-3xl text-muted">/{rootOf(n)}</span> : null}
+                {n > 9 ? <span className="text-2xl text-muted">/{rootOf(n)}</span> : null}
               </span>
-              <span className="text-[0.95rem] text-ink-strong">{themes[String(n)]?.activity}</span>
+              <span className="font-serif text-xl text-ink-strong">{themes[String(n)]?.activity}</span>
+              <span className="hidden text-sm text-ink underline-offset-4 group-hover:underline sm:inline">Read</span>
             </Link>
           </li>
         ))}
-      </ul>
+      </ol>
     </div>
   );
 }

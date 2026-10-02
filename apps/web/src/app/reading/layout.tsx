@@ -39,14 +39,14 @@ export default function ReadingLayout({ children }: { children: ReactNode }) {
 
   return (
     <div className="mx-auto max-w-5xl px-5 pb-6">
-      <div className="no-print sticky top-0 z-20 -mx-5 border-b border-line bg-white/60 px-5 backdrop-blur-sm">
+      <div className="no-print sticky top-0 z-20 -mx-5 border-b border-ink-strong bg-bg px-5">
         <nav aria-label="Your reading" className="flex items-center gap-1 overflow-x-auto py-2 text-sm">
           {TABS.map((tab) => (
             <AppLink
               key={tab.href}
               to={tab.href}
               aria-current={path === tab.href || (tab.href !== '/reading' && path.startsWith(tab.href)) ? 'page' : undefined}
-              className="whitespace-nowrap rounded-md px-3 py-2.5 text-muted hover:text-primary aria-[current=page]:bg-[var(--primary-soft)] aria-[current=page]:text-[var(--info-ink)]"
+              className="whitespace-nowrap px-3 py-2.5 text-ink underline-offset-4 hover:underline aria-[current=page]:bg-mark aria-[current=page]:text-ink-strong"
             >
               {t(tab.label)}
             </AppLink>

@@ -94,7 +94,7 @@ function Timeline({ bank, today }: { bank: Parameters<typeof composeTimeline>[0]
         </div>
         <ol className="grid gap-4 md:grid-cols-2">
           {timeline.pinnacles.map((p) => (
-            <li key={p.n} aria-current={pinnacle.n === p.n ? 'true' : undefined} className={`card p-6 ${pinnacle.n === p.n ? '!border-[var(--primary)]' : ''}`}>
+            <li key={p.n} aria-current={pinnacle.n === p.n ? 'true' : undefined} className={`card p-6 ${pinnacle.n === p.n ? 'bg-mark' : ''}`}>
               <div className="flex items-baseline justify-between gap-3">
                 <h3 className="section-title">{p.label}</h3>
                 <span className="font-mono text-xs text-muted">
@@ -117,7 +117,7 @@ function Timeline({ bank, today }: { bank: Parameters<typeof composeTimeline>[0]
         </h2>
         <ol className="grid gap-4 md:grid-cols-2">
           {timeline.challenges.map((p) => (
-            <li key={p.n} aria-current={challenge.n === p.n ? 'true' : undefined} className={`card p-6 ${challenge.n === p.n ? '!border-[var(--primary)]' : ''}`}>
+            <li key={p.n} aria-current={challenge.n === p.n ? 'true' : undefined} className={`card p-6 ${challenge.n === p.n ? 'bg-mark' : ''}`}>
               <div className="flex items-baseline justify-between gap-3">
                 <h3 className="section-title">{p.label}</h3>
                 <span className="font-mono text-xs text-muted">{p.agesText}</span>

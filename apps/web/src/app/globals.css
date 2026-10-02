@@ -1,63 +1,72 @@
 @import 'tailwindcss';
 
 /*
- * Light only. A lavender-tinted paper, deep indigo ink, violet for actions and a
- * warm gold for emphasis. Every number from 1 to 9 has its own hue: a pale tint
- * for backgrounds and a deep tone for the numeral. The digit is always printed,
- * so colour never carries meaning alone, and every pair below is checked to
- * WCAG AA (see scratchpad palette check in the build notes).
+ * A printed worksheet. The one idea in this product is that it shows its
+ * working, so the page looks like typeset working: paper, ink, ruled lines,
+ * and two marks. Signal red is for the second person and for warnings. A
+ * highlighter yellow marks what is current: today, the period you are in, the
+ * tab you are on. There are no gradients, no shadows, no rounded corners and
+ * no entrance animation, and the nine numbers are told apart by their digit,
+ * never by a colour. Every text pair is checked to WCAG AA.
+ *
+ *   ink on paper         16.9   ink on highlighter   15.1
+ *   secondary on paper    8.0   white on signal red   5.6
+ *   signal red on paper   5.0   control border        3.1
  */
 :root {
   color-scheme: light;
-  --bg: #faf7ff;
-  --surface: #ffffff;
-  --surface-2: #f4effc;
-  --line: #e6def4;
-  --line-strong: #cfc3e8;
-  --ink: #3a2f55;
-  --ink-strong: #1f1640;
-  --muted: #5b5275;
-  --primary: #5b21b6;
-  --primary-hover: #4c1d95;
-  --primary-soft: #ede5ff;
-  --gold: #b7791f;
-  --gold-soft: #fef1c7;
-  --focus: #6d28d9;
-  --btn: var(--primary);
-  --btn-ink: #ffffff;
-  --btn-hover: var(--primary-hover);
-  --warn-bg: #fef1c7;
-  --warn-ink: #7a4a00;
-  --info-bg: #ede5ff;
-  --info-ink: #4c1d95;
-  --good-bg: #ddf5e4;
-  --good-ink: #166534;
-  --bad-bg: #ffe4e8;
-  --bad-ink: #9f1239;
+  --bg: #f3f3ee;
+  --surface: #f3f3ee;
+  --surface-2: #e9e9e2;
+  --line: #cfcfc6;
+  --line-strong: #8a8a80;
+  --ink: #1b1b18;
+  --ink-strong: #0d0d0b;
+  --muted: #4a4a44;
+  --primary: #0d0d0b;
+  --primary-hover: #c62d0c;
+  --primary-soft: #ffe83d;
+  --accent: #c62d0c;
+  --mark: #ffe83d;
+  --gold: #0d0d0b;
+  --focus: #0d0d0b;
+  --btn: #0d0d0b;
+  --btn-ink: #f3f3ee;
+  --btn-hover: #c62d0c;
+  --warn-bg: #ffe83d;
+  --warn-ink: #0d0d0b;
+  --info-bg: #ffe83d;
+  --info-ink: #0d0d0b;
+  --good-bg: #e9e9e2;
+  --good-ink: #0d0d0b;
+  --bad-bg: #f6ded6;
+  --bad-ink: #a82308;
 
-  /* pale tints, one per number */
-  --n1: #ffd9e0;
-  --n2: #cfebfa;
-  --n3: #fff0b3;
-  --n4: #ddf3c9;
-  --n5: #e3d9ff;
-  --n6: #ffddbf;
-  --n7: #c7f0ea;
-  --n8: #f4d6f0;
-  --n9: #d5daff;
-  --n0: #efeaf7;
-
-  /* deep tones, one per number, for numerals and accents */
-  --d1: #be123c;
-  --d2: #0369a1;
-  --d3: #a16207;
-  --d4: #4d7c0f;
-  --d5: #6d28d9;
-  --d6: #c2410c;
-  --d7: #0f766e;
-  --d8: #a21cad;
-  --d9: #4338ca;
-  --d0: #5b5275;
+  /*
+   * The nine numbers keep their token names so every chart and cell still
+   * resolves, but they are one value: paper for a number that is not lit, ink
+   * for one that is. The digit does the telling.
+   */
+  --n0: #ecece5;
+  --n1: #ecece5;
+  --n2: #ecece5;
+  --n3: #ecece5;
+  --n4: #ecece5;
+  --n5: #ecece5;
+  --n6: #ecece5;
+  --n7: #ecece5;
+  --n8: #ecece5;
+  --n9: #ecece5;
+  --d0: #4a4a44;
+  --d1: #0d0d0b;
+  --d2: #0d0d0b;
+  --d3: #0d0d0b;
+  --d4: #0d0d0b;
+  --d5: #0d0d0b;
+  --d6: #0d0d0b;
+  --d7: #0d0d0b;
+  --d8: #0d0d0b;
+  --d9: #0d0d0b;
 }
 
 @theme inline {
@@ -70,10 +79,30 @@
   --color-ink-strong: var(--ink-strong);
   --color-muted: var(--muted);
   --color-primary: var(--primary);
+  --color-accent: var(--accent);
+  --color-mark: var(--mark);
   --color-gold: var(--gold);
-  --font-sans: var(--font-geist-sans), 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  --font-serif: var(--font-newsreader), 'Iowan Old Style', Georgia, serif;
-  --font-mono: var(--font-geist-mono), ui-monospace, 'SF Mono', Menlo, monospace;
+  --color-info-bg: var(--info-bg);
+  --color-warn-bg: var(--warn-bg);
+  --color-good-bg: var(--good-bg);
+  --color-bad-bg: var(--bad-bg);
+  --font-sans: var(--font-plex-sans), 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  --font-serif: var(--font-plex-serif), 'Iowan Old Style', Georgia, serif;
+  --font-mono: var(--font-plex-mono), ui-monospace, 'SF Mono', Menlo, monospace;
+
+  /* Square corners everywhere. rounded-full stays, for the few true circles. */
+  --radius-xs: 0;
+  --radius-sm: 0;
+  --radius-md: 0;
+  --radius-lg: 0;
+  --radius-xl: 0;
+  --radius-2xl: 0;
+  --radius-3xl: 0;
+  --shadow-xs: none;
+  --shadow-sm: none;
+  --shadow-md: none;
+  --shadow-lg: none;
+  --shadow-xl: none;
 }
 
 html {
@@ -82,11 +111,7 @@ html {
 }
 
 body {
-  background:
-    radial-gradient(52rem 28rem at 88% -6%, #efe4ff 0%, rgba(239, 228, 255, 0) 70%),
-    radial-gradient(40rem 24rem at -8% 6%, #fff1cf 0%, rgba(255, 241, 207, 0) 68%),
-    var(--bg);
-  background-repeat: no-repeat;
+  background: var(--bg);
   color: var(--ink);
   font-family: var(--font-sans);
   font-size: 1rem;
@@ -99,58 +124,54 @@ h2,
 h3 {
   font-family: var(--font-serif);
   color: var(--ink-strong);
-  letter-spacing: -0.02em;
-  line-height: 1.12;
+  letter-spacing: -0.015em;
+  line-height: 1.1;
   font-weight: 500;
+}
+h3 {
+  font-weight: 600;
 }
 
 :focus-visible {
-  outline: 2px solid var(--focus);
+  outline: 3px solid var(--focus);
   outline-offset: 2px;
-  border-radius: 4px;
 }
 
 ::selection {
-  background: var(--n5);
+  background: var(--mark);
+  color: var(--ink-strong);
 }
 
 /* ---- components -------------------------------------------------------- */
 
+/* A slip: a hard 1px edge in ink and nothing else. */
 .card {
   background: var(--surface);
-  border: 1px solid var(--line);
-  border-radius: 14px;
-  box-shadow:
-    0 1px 2px rgba(76, 29, 149, 0.04),
-    0 10px 28px -16px rgba(76, 29, 149, 0.16);
+  border: 1px solid var(--ink-strong);
 }
 
+/* A quiet box: a hairline, for what sits beside the main text. */
 .card-flat {
-  background: var(--surface-2);
+  background: transparent;
   border: 1px solid var(--line);
-  border-radius: 14px;
 }
 
-/* A card that belongs to one number: its hue shows as a top edge. */
+/* A block that belongs to one number: a heavy rule on top, the way a ledger heads a column. */
 .card-hue {
-  border-top: 3px solid var(--hue);
+  border-top: 4px solid var(--ink-strong);
 }
 
 .eyebrow {
   font-family: var(--font-mono);
-  font-size: 0.72rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
+  font-size: 0.8rem;
   color: var(--muted);
 }
 
 .section-title {
-  font-family: var(--font-mono);
-  font-size: 0.72rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--muted);
-  font-weight: 400;
+  font-family: var(--font-sans);
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--ink-strong);
   line-height: 1.4;
 }
 
@@ -160,7 +181,6 @@ h3 {
   gap: 0.5rem;
   min-height: 44px;
   padding: 0.55rem 1.1rem;
-  border-radius: 6px;
   border: 1px solid var(--btn);
   background: var(--btn);
   color: var(--btn-ink);
@@ -168,15 +188,13 @@ h3 {
   font-size: 0.95rem;
   cursor: pointer;
   transition:
-    background-color 160ms,
-    transform 160ms;
+    background-color 120ms,
+    border-color 120ms;
 }
 .btn:hover {
   background: var(--btn-hover);
   border-color: var(--btn-hover);
-}
-.btn:active {
-  transform: scale(0.98);
+  color: #ffffff;
 }
 .btn:disabled {
   opacity: 0.5;
@@ -189,69 +207,61 @@ h3 {
   gap: 0.5rem;
   min-height: 44px;
   padding: 0.5rem 0.9rem;
-  border-radius: 6px;
-  border: 1px solid var(--line-strong);
-  background: var(--surface);
-  color: var(--primary);
+  border: 1px solid var(--ink-strong);
+  background: transparent;
+  color: var(--ink-strong);
   font-size: 0.92rem;
   cursor: pointer;
   transition:
-    background-color 160ms,
-    transform 160ms;
+    background-color 120ms,
+    color 120ms;
 }
 .btn-quiet:hover {
-  background: var(--primary-soft);
-  border-color: var(--primary);
-}
-.btn-quiet:active {
-  transform: scale(0.98);
+  background: var(--ink-strong);
+  color: var(--bg);
 }
 .btn-quiet[aria-pressed='true'] {
-  background: var(--primary);
-  color: #ffffff;
-  border-color: var(--primary);
+  background: var(--ink-strong);
+  color: var(--bg);
 }
 
+/* A tag: a small label in a hard box. Never a pill. */
 .chip {
   display: inline-flex;
   align-items: center;
   min-height: 24px;
-  padding: 0.1rem 0.6rem;
-  border-radius: 9999px;
-  background: var(--primary-soft);
-  border: 1px solid transparent;
-  color: var(--info-ink);
+  padding: 0.1rem 0.5rem;
+  border: 1px solid var(--ink-strong);
+  background: transparent;
+  color: var(--ink-strong);
   font-family: var(--font-mono);
-  font-size: 0.7rem;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
+  font-size: 0.72rem;
   white-space: nowrap;
 }
 a.chip:hover {
-  color: var(--primary);
-  border-color: var(--primary);
+  background: var(--ink-strong);
+  color: var(--bg);
 }
 .chip-warn {
-  background: var(--warn-bg);
-  color: var(--warn-ink);
-  border-color: transparent;
+  background: var(--mark);
+  border-color: var(--ink-strong);
+  color: var(--ink-strong);
 }
 .chip-bad {
-  background: var(--bad-bg);
-  color: var(--bad-ink);
-  border-color: transparent;
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #ffffff;
 }
 .chip-info {
-  background: var(--info-bg);
-  color: var(--info-ink);
-  border-color: transparent;
+  background: transparent;
+  border-color: var(--ink-strong);
+  color: var(--ink-strong);
 }
 
 kbd {
   font-family: var(--font-mono);
   font-size: 0.8em;
-  border: 1px solid var(--line);
-  border-radius: 4px;
+  border: 1px solid var(--line-strong);
   background: var(--surface-2);
   padding: 0.05rem 0.35rem;
 }
@@ -260,10 +270,9 @@ kbd {
   width: 100%;
   min-height: 44px;
   padding: 0.55rem 0.75rem;
-  background: var(--surface);
+  background: #fbfbf8;
   color: var(--ink-strong);
   border: 1px solid var(--line-strong);
-  border-radius: 6px;
   font: inherit;
 }
 .field:focus-visible {
@@ -271,39 +280,56 @@ kbd {
 }
 .field[aria-invalid='true'] {
   border-color: var(--bad-ink);
+  border-width: 2px;
 }
 
+/* A figure: set in the serif, lining, close. The digit is the whole identity of a number. */
 .numeral {
   font-family: var(--font-serif);
+  font-weight: 500;
   font-feature-settings: 'lnum' 1;
   letter-spacing: -0.03em;
   color: var(--ink-strong);
   line-height: 1;
 }
 
-.hue-1 { --hue: var(--d1); }
-.hue-2 { --hue: var(--d2); }
-.hue-3 { --hue: var(--d3); }
-.hue-4 { --hue: var(--d4); }
-.hue-5 { --hue: var(--d5); }
-.hue-6 { --hue: var(--d6); }
-.hue-7 { --hue: var(--d7); }
-.hue-8 { --hue: var(--d8); }
-.hue-9 { --hue: var(--d9); }
-.hue-0 { --hue: var(--d0); }
-.numeral-hue { color: var(--hue, var(--ink-strong)); }
+/* Kept so every component still resolves; a number no longer has a colour. */
+.hue-1,
+.hue-2,
+.hue-3,
+.hue-4,
+.hue-5,
+.hue-6,
+.hue-7,
+.hue-8,
+.hue-9,
+.hue-0 {
+  --hue: var(--ink-strong);
+}
+.numeral-hue {
+  color: var(--ink-strong);
+}
 
-.tint-1 { background: var(--n1); }
-.tint-2 { background: var(--n2); }
-.tint-3 { background: var(--n3); }
-.tint-4 { background: var(--n4); }
-.tint-5 { background: var(--n5); }
-.tint-6 { background: var(--n6); }
-.tint-7 { background: var(--n7); }
-.tint-8 { background: var(--n8); }
-.tint-9 { background: var(--n9); }
-.tint-0 { background: var(--n0); }
+.tint-1,
+.tint-2,
+.tint-3,
+.tint-4,
+.tint-5,
+.tint-6,
+.tint-7,
+.tint-8,
+.tint-9,
+.tint-0 {
+  background: transparent;
+}
 
+/* Reading text is set in the serif, at a book's measure. */
+.reading {
+  font-family: var(--font-serif);
+  font-size: 1.0625rem;
+  line-height: 1.7;
+  color: var(--ink);
+}
 .reading p {
   max-width: 62ch;
 }
@@ -316,25 +342,12 @@ details > summary::-webkit-details-marker {
   display: none;
 }
 
+/* No entrance animation. Kept as a class so markup does not need to change. */
 .rise {
-  animation: rise 600ms cubic-bezier(0.16, 1, 0.3, 1) both;
-  animation-delay: calc(var(--i, 0) * 70ms);
-}
-@keyframes rise {
-  from {
-    opacity: 0;
-    transform: translateY(12px);
-  }
-  to {
-    opacity: 1;
-    transform: none;
-  }
+  animation: none;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .rise {
-    animation: none;
-  }
   * {
     scroll-behavior: auto !important;
     transition-duration: 0.01ms !important;
@@ -349,7 +362,6 @@ details > summary::-webkit-details-marker {
   background: var(--btn);
   color: var(--btn-ink);
   padding: 0.6rem 0.9rem;
-  border-radius: 6px;
 }
 .skip-link:focus {
   top: 0.75rem;
@@ -364,7 +376,7 @@ details > summary::-webkit-details-marker {
   :root {
     --bg: #ffffff;
     --surface: #ffffff;
-    --surface-2: #f4f4f2;
+    --surface-2: #f2f2f0;
     --ink: #111111;
     --line: #cfcfcb;
   }

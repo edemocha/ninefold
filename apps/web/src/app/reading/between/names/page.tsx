@@ -75,7 +75,7 @@ function Lens({ reading, conventions }: { reading: NamePairReading; conventions:
         {reading.sides.map((side) => (
           <article key={side.who} className={`card card-hue hue-${side.result.root} p-6`} data-testid={`pair-names-${reading.lens}-${side.who}`}>
             <div className="flex items-start justify-between gap-3">
-              <p className="eyebrow">{side.label}</p>
+              <p className={`eyebrow ${side.who === 'other' ? '!text-accent' : ''}`}>{side.label}</p>
               {side.result.karmicDebt ? <KarmicFlag debt={side.result.karmicDebt} /> : null}
             </div>
             <p className="mt-3" aria-label={`${reading.title} ${side.display}`}>

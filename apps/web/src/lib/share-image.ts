@@ -28,59 +28,62 @@ export function drawShareImage(canvas: HTMLCanvasElement, spec: ShareSpec): void
   const ctx = canvas.getContext('2d');
   if (!ctx) return;
 
-  const serif = family('--font-newsreader', "Georgia, 'Times New Roman', serif");
-  const sans = family('--font-geist-sans', "'Helvetica Neue', Arial, sans-serif");
-  const mono = family('--font-geist-mono', 'ui-monospace, Menlo, monospace');
+  const serif = family('--font-plex-serif', "Georgia, 'Times New Roman', serif");
+  const sans = family('--font-plex-sans', "'Helvetica Neue', Arial, sans-serif");
+  const mono = family('--font-plex-mono', 'ui-monospace, Menlo, monospace');
 
-  ctx.fillStyle = '#faf7ff';
+  // The same worksheet as the site: paper, ink, hard rules, one mark.
+  const PAPER = '#f3f3ee';
+  const INK = '#0d0d0b';
+  const MUTED = '#4a4a44';
+  ctx.fillStyle = PAPER;
   ctx.fillRect(0, 0, width, height);
-  ctx.strokeStyle = '#e6def4';
-  ctx.lineWidth = 2;
+  ctx.strokeStyle = INK;
+  ctx.lineWidth = 3;
   ctx.strokeRect(48, 48, width - 96, height - 96);
 
-  ctx.fillStyle = '#5b21b6';
-  ctx.font = `500 26px ${mono}`;
   ctx.textBaseline = 'alphabetic';
-  ctx.fillText(spec.title.toUpperCase().split('').join(String.fromCharCode(8202)), 96, 140);
+  ctx.fillStyle = MUTED;
+  ctx.font = `400 26px ${mono}`;
+  ctx.fillText(spec.title, 96, 140);
+
+  // A heavy rule under the title, the way a ledger heads its columns.
+  ctx.fillStyle = INK;
+  ctx.fillRect(96, 160, width - 192, 6);
 
   if (spec.subtitle) {
-    ctx.fillStyle = '#1f1640';
-    ctx.font = `500 64px ${serif}`;
-    ctx.fillText(spec.subtitle, 96, 230);
+    ctx.fillStyle = INK;
+    ctx.font = `600 64px ${serif}`;
+    ctx.fillText(spec.subtitle, 96, 250);
   }
 
   const cols = 2;
   const cellW = (width - 192) / cols;
   const cellH = 250;
-  const top = spec.subtitle ? 300 : 230;
-  const tints = ['#ffd9e0', '#cfebfa', '#fff0b3', '#ddf3c9', '#e3d9ff', '#ffddbf'];
-  const deep = ['#be123c', '#0369a1', '#a16207', '#4d7c0f', '#6d28d9', '#c2410c'];
+  const top = spec.subtitle ? 300 : 220;
   spec.rows.forEach((row, i) => {
     const x = 96 + (i % cols) * cellW;
     const y = top + Math.floor(i / cols) * cellH;
-    ctx.fillStyle = tints[i % tints.length] as string;
-    ctx.fillRect(x, y, cellW - 24, cellH - 24);
-    ctx.strokeStyle = deep[i % deep.length] as string;
-    ctx.lineWidth = 3;
-    ctx.strokeRect(x, y, cellW - 24, cellH - 24);
+    ctx.strokeStyle = INK;
     ctx.lineWidth = 2;
-    ctx.fillStyle = '#5b5275';
-    ctx.font = `500 22px ${mono}`;
-    ctx.fillText(row.label.toUpperCase(), x + 32, y + 56);
-    ctx.fillStyle = deep[i % deep.length] as string;
+    ctx.strokeRect(x, y, cellW - 24, cellH - 24);
+    ctx.fillStyle = MUTED;
+    ctx.font = `400 24px ${mono}`;
+    ctx.fillText(row.label, x + 32, y + 56);
+    ctx.fillStyle = INK;
     ctx.font = `500 120px ${serif}`;
     ctx.fillText(row.value, x + 32, y + 175);
   });
 
-  ctx.fillStyle = '#5b5275';
+  ctx.fillStyle = MUTED;
   ctx.font = `400 24px ${sans}`;
   ctx.fillText('Numerology is a symbolic tradition, for reflection or fun.', 96, height - 150);
-  ctx.fillStyle = '#5b21b6';
-  ctx.font = `500 30px ${serif}`;
+  ctx.fillStyle = INK;
+  ctx.font = `600 30px ${serif}`;
   ctx.fillText(spec.footer, 96, height - 100);
 
   // The maker's credit, bottom right.
-  ctx.fillStyle = '#5b5275';
+  ctx.fillStyle = MUTED;
   ctx.font = `italic 400 26px ${serif}`;
   ctx.textAlign = 'right';
   ctx.fillText(SHARE_CREDIT, width - 96, height - 100);

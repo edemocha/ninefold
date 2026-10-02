@@ -55,7 +55,7 @@ function SideCard({ side }: { side: PairLifeSide }) {
   const { pinnacle, challenge } = side.current;
   return (
     <article className={`card card-hue hue-${rootOf(pinnacle.value)} space-y-4 p-6`} data-testid={`pair-life-${side.who}`}>
-      <p className="eyebrow">{side.label}</p>
+      <p className={`eyebrow ${side.who === 'other' ? '!text-accent' : ''}`}>{side.label}</p>
       <p className="text-sm text-muted">
         Age {side.age} · born {side.birthYear}
       </p>

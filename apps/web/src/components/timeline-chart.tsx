@@ -120,8 +120,7 @@ export function TimelineChart({
                   y={ROW.pinnacle.y}
                   width={x1 - x0 - 2}
                   height={ROW.pinnacle.h}
-                  rx={6}
-                  style={{ fill: `var(--n${rootOf(p.value)})`, stroke: active ? 'var(--primary)' : 'var(--line)', strokeWidth: active ? 2.5 : 1 }}
+                  style={{ fill: active ? 'var(--mark)' : `var(--n${rootOf(p.value)})`, stroke: active ? 'var(--ink-strong)' : 'var(--line-strong)', strokeWidth: active ? 2.5 : 1 }}
                 />
                 <text x={x0 + 10} y={ROW.pinnacle.y + 33} style={{ fill: `var(--d${rootOf(p.value)})` }} className="font-serif text-[26px]">
                   {p.display}
@@ -147,8 +146,7 @@ export function TimelineChart({
                   y={ROW.challenge.y}
                   width={x1 - x0 - 2}
                   height={ROW.challenge.h}
-                  rx={6}
-                  style={{ fill: 'var(--n0)', stroke: active ? 'var(--primary)' : 'var(--line)', strokeWidth: active ? 2.5 : 1 }}
+                  style={{ fill: active ? 'var(--mark)' : 'var(--n0)', stroke: active ? 'var(--ink-strong)' : 'var(--line-strong)', strokeWidth: active ? 2.5 : 1 }}
                 />
                 <text x={x0 + 10} y={ROW.challenge.y + 27} style={{ fill: `var(--d${p.value})` }} className="font-serif text-[22px]">
                   {p.value}
@@ -226,7 +224,7 @@ export function TimelineChart({
             data-testid="timeline-marker"
           >
             <line x1={markerX} x2={markerX} y1={30} y2={ROW.axis} stroke="var(--primary)" strokeWidth={1.5} strokeDasharray="3 3" />
-            <rect x={markerX - 22} y={6} width={44} height={24} rx={5} className="handle" style={{ fill: 'var(--primary)', stroke: 'var(--primary)' }} />
+            <rect x={markerX - 22} y={6} width={44} height={24} className="handle" style={{ fill: 'var(--primary)', stroke: 'var(--primary)' }} />
             <text x={markerX} y={22} textAnchor="middle" style={{ fill: '#ffffff' }} className="font-mono text-[12px]">
               {age}
             </text>

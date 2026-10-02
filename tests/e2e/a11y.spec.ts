@@ -202,11 +202,14 @@ for (const scheme of ['light'] as const) {
   });
 }
 
-test('reduced motion switches the entrance animation off', async ({ page }) => {
-  await page.emulateMedia({ reducedMotion: 'reduce' });
-  await page.goto('/');
-  const name = await page.locator('.rise').first().evaluate((el) => getComputedStyle(el).animationName);
-  expect(name).toBe('none');
+test('nothing animates in on load, with or without reduced motion', async ({ page }) => {
+  for (const reducedMotion of ['no-preference', 'reduce'] as const) {
+    await page.emulateMedia({ reducedMotion });
+    await page.goto('/');
+    await expect(page.getByRole('heading', { level: 1 })).toBeVisible();
+    const animated = await page.evaluate(() => Array.from(document.querySelectorAll('body *')).filter((el) => getComputedStyle(el).animationName !== 'none').length);
+    expect(animated, reducedMotion).toBe(0);
+  }
 });
 
 test('every control is reachable by keyboard and shows a focus ring', async ({ page }) => {

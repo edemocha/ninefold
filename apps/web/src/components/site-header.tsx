@@ -2,7 +2,6 @@
 
 import Link from '@/components/link';
 import { usePathname } from 'next/navigation';
-import { Mark } from './icon';
 import { t } from '@/lib/t';
 
 const LINKS = [
@@ -11,22 +10,22 @@ const LINKS = [
   { href: '/method', label: 'nav.methods' as const },
 ];
 
+/** A masthead: the name set in type, a heavy rule under it, and plain links. */
 export function SiteHeader() {
   const path = usePathname();
   return (
-    <header role="banner" className="border-b border-line">
-      <div className="mx-auto flex max-w-5xl items-center justify-between gap-2 px-5 py-4 sm:gap-4">
-        <Link href="/" className="flex items-center gap-2.5 text-primary" aria-label={`${t('site.name')}, home`}>
-          <Mark />
-          <span className="font-serif text-xl tracking-tight text-ink-strong">{t('site.name')}</span>
+    <header role="banner" className="border-b-2 border-ink-strong">
+      <div className="mx-auto flex max-w-5xl flex-col gap-0.5 px-5 py-3 sm:flex-row sm:items-baseline sm:justify-between sm:gap-4">
+        <Link href="/" className="font-serif text-2xl font-semibold tracking-tight text-ink-strong" aria-label={`${t('site.name')}, home`}>
+          {t('site.name')}
         </Link>
-        <nav aria-label="Site" className="flex flex-wrap items-center justify-end gap-x-0.5 text-sm sm:gap-x-1">
+        <nav aria-label="Site" className="-mx-2 flex flex-wrap items-center gap-x-0.5 text-sm sm:mx-0 sm:justify-end sm:gap-x-1">
           {LINKS.map((l) => (
             <Link
               key={l.href}
               href={l.href}
               aria-current={path.startsWith(l.href) ? 'page' : undefined}
-              className="rounded-md px-2 py-2 text-muted hover:text-primary sm:px-3 aria-[current=page]:bg-[var(--primary-soft)] aria-[current=page]:text-[var(--info-ink)]"
+              className="px-2 py-2 text-ink underline-offset-4 hover:underline sm:px-3 aria-[current=page]:bg-mark aria-[current=page]:text-ink-strong"
             >
               {t(l.label)}
             </Link>

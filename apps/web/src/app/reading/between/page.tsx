@@ -49,7 +49,7 @@ function Overview({ bank, today }: { bank: Bank; today: YMD }) {
       <section aria-label="Life paths" className="grid gap-4 md:grid-cols-2">
         {reading.sides.map((side) => (
           <article key={side.who} className={`card card-hue hue-${side.lifePath.root} p-6`} data-testid={`pair-side-${side.who}`}>
-            <p className="eyebrow">{side.label}</p>
+            <p className={`eyebrow ${side.who === 'other' ? '!text-accent' : ''}`}>{side.label}</p>
             <p className="mt-3" aria-label={`Life path ${side.display}`}>
               <BigNumber result={side.lifePath} className="text-7xl" />
             </p>

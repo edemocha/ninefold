@@ -92,7 +92,7 @@ function PairDayView({ bank, date }: { bank: Bank; date: YMD }) {
       <div className="grid gap-4 md:grid-cols-2">
         {day.sides.map((side) => (
           <article key={side.who} className={`card card-hue hue-${side.personalDay.root} space-y-3 p-6`} data-testid={`pair-day-${side.who}`}>
-            <p className="eyebrow">{side.label}</p>
+            <p className={`eyebrow ${side.who === 'other' ? '!text-accent' : ''}`}>{side.label}</p>
             <p aria-label={`Personal day ${side.personalDay.value}`}>
               <BigNumber result={side.personalDay} className="text-7xl" />
             </p>

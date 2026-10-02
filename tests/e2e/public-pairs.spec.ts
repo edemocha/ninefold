@@ -38,7 +38,7 @@ test.describe('the index', () => {
     await expect(at(3, 7)).toHaveAccessibleName('A 3 and a 7');
     await expect(at(8, 2)).toHaveAccessibleName('An 8 and a 2');
 
-    // Every cell has the same look: only the row and column headings take a number's colour.
+    // Every cell has the same look, and the headings are plain: no number is better than another.
     const classes = await cells.evaluateAll((els) => [...new Set(els.map((a) => a.className))]);
     expect(classes).toHaveLength(1);
     expect(await grid.locator('tbody td').evaluateAll((els) => els.filter((td) => /\btint-/.test(td.className)).length)).toBe(0);

@@ -32,10 +32,10 @@ export function CycleStrip({ rows, heading, otherLabel }: { rows: RhythmRow[]; h
                 {row.current ? <span className="ml-2 chip chip-info">{t('between.now')}</span> : null}
               </th>
               <td className="border-y border-line bg-surface px-3 py-1.5">
-                <span className={`tint-${row.aRoot} inline-block min-w-12 rounded px-2 py-0.5 text-center font-serif text-lg text-ink-strong`}>{row.a}</span>
+                <span className="inline-block min-w-12 py-0.5 text-center font-serif text-lg text-ink-strong">{row.a}</span>
               </td>
               <td className="rounded-r-md border-y border-r border-line bg-surface px-3 py-1.5">
-                <span className={`tint-${row.bRoot} inline-block min-w-12 rounded px-2 py-0.5 text-center font-serif text-lg text-ink-strong`}>{row.b}</span>
+                <span className="inline-block min-w-12 py-0.5 text-center font-serif text-lg text-accent">{row.b}</span>
               </td>
             </tr>
           ))}

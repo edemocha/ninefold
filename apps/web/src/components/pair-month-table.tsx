@@ -65,12 +65,12 @@ export function PairMonthTable({
                     view={{ dt: cell.date }}
                     aria-label={label}
                     aria-current={isToday ? 'date' : undefined}
-                    className={`relative flex min-h-16 w-full flex-col overflow-hidden rounded-lg border bg-surface text-ink-strong transition-transform hover:scale-[1.03] active:scale-[0.98] ${isToday ? 'border-[3px] border-[var(--gold)]' : 'border-line'}`}
+                    className={`relative flex min-h-16 w-full flex-col overflow-hidden border text-ink-strong hover:border-ink-strong ${isToday ? 'border-ink-strong bg-mark' : 'border-line'}`}
                   >
                     <span className="px-1.5 pt-1 font-mono text-[0.65rem] text-muted">{cell.date.day}</span>
                     <span className="mt-auto grid grid-cols-2">
-                      <span className={`tint-${cell.you} py-1 text-center font-serif text-xl sm:text-2xl`}>{cell.you}</span>
-                      <span className={`tint-${cell.other} py-1 text-center font-serif text-xl sm:text-2xl`}>{cell.other}</span>
+                      <span className="py-1 text-center font-serif text-xl sm:text-2xl">{cell.you}</span>
+                      <span className="border-l border-line py-1 text-center font-serif text-xl text-accent sm:text-2xl">{cell.other}</span>
                     </span>
                   </AppLink>
                 </td>
@@ -114,11 +114,11 @@ export function PairYearTable({ rows, year, otherLabel, currentMonth }: { rows: 
                   {current ? <span className="ml-2 chip chip-info">{t('between.now')}</span> : null}
                 </th>
                 <td className="border-y border-line bg-surface px-3 py-1.5">
-                  <span className={`tint-${row.you.value} mr-2 inline-block min-w-10 rounded px-2 py-0.5 text-center font-serif text-lg text-ink-strong`}>{row.you.value}</span>
+                  <span className="mr-2 inline-block min-w-10 py-0.5 text-center font-serif text-lg text-ink-strong">{row.you.value}</span>
                   <span className="text-sm text-muted">{row.you.tile}</span>
                 </td>
                 <td className="rounded-r-md border-y border-r border-line bg-surface px-3 py-1.5">
-                  <span className={`tint-${row.other.value} mr-2 inline-block min-w-10 rounded px-2 py-0.5 text-center font-serif text-lg text-ink-strong`}>{row.other.value}</span>
+                  <span className="mr-2 inline-block min-w-10 py-0.5 text-center font-serif text-lg text-accent">{row.other.value}</span>
                   <span className="text-sm text-muted">{row.other.tile}</span>
                 </td>
               </tr>

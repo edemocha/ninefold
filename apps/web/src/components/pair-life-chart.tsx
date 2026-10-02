@@ -84,8 +84,7 @@ export function PairLifeChart({ life }: { life: PairLife }) {
                       y={y}
                       width={Math.max(2, x1 - x0 - 2)}
                       height={h}
-                      rx={6}
-                      style={{ fill: kind === 'pinnacle' ? `var(--n${digit})` : 'var(--n0)', stroke: active ? 'var(--primary)' : 'var(--line)', strokeWidth: active ? 2.5 : 1 }}
+                      style={{ fill: active ? 'var(--mark)' : kind === 'pinnacle' ? `var(--n${digit})` : 'var(--n0)', stroke: active ? 'var(--ink-strong)' : 'var(--line-strong)', strokeWidth: active ? 2.5 : 1 }}
                     />
                     <text x={x0 + 10} y={y + (kind === 'pinnacle' ? 30 : 20)} style={{ fill: `var(--d${digit})` }} className={`font-serif ${kind === 'pinnacle' ? 'text-[24px]' : 'text-[18px]'}`}>
                       {kind === 'pinnacle' ? p.display : p.value}
@@ -113,7 +112,7 @@ export function PairLifeChart({ life }: { life: PairLife }) {
 
         <g aria-hidden="true" data-testid="pair-life-now">
           <line x1={nowX} x2={nowX} y1={26} y2={AXIS} stroke="var(--primary)" strokeWidth={1.5} strokeDasharray="3 3" />
-          <rect x={nowX - 20} y={4} width={40} height={20} rx={5} style={{ fill: 'var(--primary)' }} />
+          <rect x={nowX - 20} y={4} width={40} height={20} style={{ fill: 'var(--primary)' }} />
           <text x={nowX} y={19} textAnchor="middle" style={{ fill: '#ffffff' }} className="font-mono text-[11px] uppercase tracking-widest">
             now
           </text>

@@ -60,7 +60,7 @@ export default function PairCirclePage() {
           <ul className="space-y-1.5 text-[0.98rem]" data-testid="pair-circle-legend">
             {circle.members.map((m) => (
               <li key={m.letter} className="flex items-center gap-3">
-                <span className={`tint-${m.year} inline-flex size-8 items-center justify-center rounded-full font-mono text-sm font-semibold text-ink-strong`} aria-hidden="true">
+                <span className="inline-flex size-8 items-center justify-center rounded-full border border-ink-strong font-mono text-sm font-semibold text-ink-strong" aria-hidden="true">
                   {m.letter}
                 </span>
                 <span>

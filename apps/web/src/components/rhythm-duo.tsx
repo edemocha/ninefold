@@ -38,7 +38,7 @@ export function RhythmDuo({
           return (
             <g key={node.n}>
               {isOther ? (
-                <circle cx={node.x} cy={node.y} r={(isYou ? 23 : 19) * k} fill="none" style={{ stroke: `var(--d${node.n})`, strokeWidth: 3 }} />
+                <circle cx={node.x} cy={node.y} r={(isYou ? 23 : 19) * k} fill="none" style={{ stroke: 'var(--accent)', strokeWidth: 3 }} />
               ) : null}
               <circle
                 cx={node.x}
@@ -68,7 +68,7 @@ export function RhythmDuo({
           You: {you}
         </span>
         <span className="inline-flex items-center gap-2">
-          <span className="inline-block size-3.5 rounded-full bg-white" style={{ border: `3px solid var(--d${other})` }} aria-hidden="true" />
+          <span className="inline-block size-3.5 rounded-full bg-white" style={{ border: '3px solid var(--accent)' }} aria-hidden="true" />
           {otherLabel}: {other}
         </span>
       </figcaption>
