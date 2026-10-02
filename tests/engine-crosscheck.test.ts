@@ -1,8 +1,10 @@
 import { describe, expect, it } from 'vitest';
 import {
   challenges,
+  cycleGap,
   DEFAULT_CONVENTIONS,
   lifePath,
+  lifePathPair,
   nameNumbers,
   personalDay,
   personalMonthOn,
@@ -20,6 +22,8 @@ import {
   refKarmic,
   refLifePath,
   refDateChain,
+  refPairGap,
+  refSingle,
   refNameNumbers,
   refPersonalDay,
   refPersonalMonth,
@@ -127,6 +131,22 @@ describe('engine against the independent reference: 200 random profiles', () => 
       );
       expect(personalDay(p.birth, p.on, p.c).value).toBe(
         refPersonalDay(b, o, p.c.dateRule, p.c.cycleMasters, p.c.cycleYear, p.c.leapBirthday),
+      );
+    }
+  });
+
+  it('the cycle gap between two people agrees with the day-by-day reference, 200 random pairs', () => {
+    for (let i = 0; i < sample.length; i += 1) {
+      const p = sample[i] as Profile;
+      const q = sample[(i + 1) % sample.length] as Profile;
+      const c = p.c;
+      const gap = cycleGap(p.birth, q.birth, p.on, c);
+      const ref = refPairGap(ymd(p.birth), ymd(q.birth), ymd(p.on), c.dateRule, c.cycleMasters, c.cycleYear, c.leapBirthday);
+      expect(gap.forward, JSON.stringify({ a: p.birth, b: q.birth, on: p.on, c })).toBe(ref);
+      expect(lifePathPair(p.birth, q.birth, c).key).toBe(
+        [refSingle(refLifePath(ymd(p.birth), c.dateRule)), refSingle(refLifePath(ymd(q.birth), c.dateRule))]
+          .sort((x, y) => x - y)
+          .join('-'),
       );
     }
   });

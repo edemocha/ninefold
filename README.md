@@ -21,6 +21,7 @@ npm run verify         # typecheck, unit tests, content lint, production build, 
 | `npm run content:release` | Lint, validate against the JSON Schemas, write versioned static layers to `apps/web/public/content/` |
 | `npm run content:snapshot` / `content:diff` | Save the 30-profile by 20-date composed readings; show which snippets changed and how many readings they touch |
 | `npm run content:gate -- --level 3` | Check a launch gate from the plan |
+| `npm run content:gate -- --pair --level 2` | Check a Between us gate (P1 to P3) |
 | `npm run content:draft -- <id> [--run]` | Offline drafting prompt; `--run` calls the API when `ANTHROPIC_API_KEY` is set |
 | `npm run content:sheet -- export` / `import` | Review spreadsheet with draft, edited, approved statuses |
 | `npm run build` | Release content, then build the static site into `apps/web/out` |
@@ -55,13 +56,13 @@ Two readings the plan left open, so you know what the code does:
 
 ## The content bank
 
-2,091 snippets, 58,000 words, every slot filled, lint clean. The structure follows the plan (life 421, year 165, month 108, day 587: 1,281 snippets and 34,215 words) plus 810 cautions (see below). **Every snippet is a draft.** I wrote them from the meaning sheets and the voice guide, and the plan is explicit that a human edits and approves the text.
+2,245 snippets, 64,000 words, every slot filled, lint clean. The structure follows the plan (life 421, year 165, month 108, day 587: 1,281 snippets and 34,215 words) plus 810 cautions and 154 for Between us (see below). **Every snippet is a draft.** I wrote them from the meaning sheets and the voice guide, and the plan is explicit that a human edits and approves the text.
 
 - The plan-sized part is about 37% of the plan's 92,600-word sizing. The plan's own argument is that detail means layers and visible math, not word count, so I filled every slot at a shorter length instead of leaving any empty. Raising a family's word budget in `packages/content/src/manifest.ts` and drafting longer text is a normal editorial pass.
 - `meaning-sheets/` (one page per number) and `voice-guide.md` are drafts for the owner's approval. Per Gate 1, nothing further should be drafted until they are approved.
 - Statuses live in `packages/content/status.json` (empty: all draft). Release defaults to allowing drafts; set `CONTENT_MIN_STATUS=approved` for launch.
 
-Gate 3 fails today, correctly: 0 of 2,091 snippets are approved. The variety condition passes.
+Gate 3 fails today, correctly: 0 of 2,245 snippets are approved. The variety condition passes.
 
 ### Cautions
 
@@ -72,10 +73,25 @@ A caution is a short, practical nudge about a behavior to watch, never a forecas
 - Two safety lines show on every caution card, whatever the number: "Never drive tired, upset or impaired, on any day." and "For health, money or legal decisions, talk to a qualified person, not a number." They are fixed text in `manifest.ts`, not in the bank, and a test checks that they are identical on different numbers and contain no digit.
 - A day shows one caution (the facet rotates each time the same number comes round and the variant moves on every fifth, so none repeats for about nine months). A year or month shows five, one per facet.
 
+### Between us
+
+A tab in the reading that sets two people side by side. It works for any two people (friend, parent, colleague, someone you love) and it **never scores or rules on a pair**. The research and the plan behind it are in [docs/relationship-feature-plan.md](docs/relationship-feature-plan.md); phases 1 and 2 of that plan are built.
+
+- **What the visitor adds:** a birth date and an optional nickname. No full name. It is held in memory next to the first person, and "Forget my details" clears both.
+- **Life paths side by side.** Each person's life path with its arithmetic, each number's existing "relationships" text, then three pair sections: where you meet, where each may stretch, and questions to talk about. Text is about the *numbers* ("a 3 and a 7"), reads the same in either order, and names no relationship type.
+- **Your two cycles.** Two people's personal year, month and day numbers sit a fixed number of steps apart, because the year, month and day terms cancel. The page shows that with a ring, the arithmetic, a nine-year table, and a short text for the gap (0 to 4 steps the shorter way round). Under birthday cycles the gap moves by one step between the two birthdays, and the page says so.
+- **Verified, not assumed.** The gap rule is a property test (every day, all four date rules), is cross-checked against the independent reference implementation on 200 random pairs, and has hand-worked golden vectors in `tests/golden/pair.json`.
+- **Over time (phase 2).** Four sections under the tab: Overview (the above), **Day by day**, **Month** and **Life stages**. Day by day sets each person's own personal day for any date side by side, with the ring showing both and the gap. Month shows both personal months, a calendar with both numbers on every date (each date opens both days), and the twelve months of the year at a glance. Life stages draws both people's pinnacles and challenges on one calendar-year axis, says where each person is now, and lists every period in a table. All of it is the main bank's own text for each person's own number, so these screens add **no new text to approve**, only labels and the gap sentence. Date, month and year being explored are kept in memory with the other explored dates, never in the address.
+- **154 snippets** in a `pair` content layer, loaded only on this tab: 45 pairs of single digits by 3 sections, 4 master-number notes, and 15 for the five gap distances. They are drafts. The notes for writing them are `packages/content/meaning-sheets/pairs.md` and the "Between us" section of the voice guide.
+- **A stricter lint, opt-in per family.** The pair families also ban scores and verdicts (compatible, match, soulmate, perfect, rating, percent), relationship types and gendered pronouns (partner, husband, he, she), labels for a person (narcissist, abusive) and predicted feelings (attracted, fall in love). The rest of the bank is not held to them. A rendered-page test checks the same words across 300 random pairs and in the browser.
+- **Two fixed safety lines** on every Between us screen, outside the bank: numbers cannot say whether to begin, stay or leave, and what to do if someone feels unsafe.
+- **Gates P1 to P3** (`npm run content:gate -- --pair --level N`): P2 needs every pair snippet owner-approved. The page is also meant to be shown to 5 to 8 people in pairs before launch, asking what it said about whether they are right for each other.
+
 ## Privacy, and how it is proved
 
 - Nothing typed is stored: not in storage, cookies, IndexedDB or the address. A reload clears it, by design.
 - The address fragment holds only conventions. The date, year and month being explored are kept in memory, not in the address, because a date someone explores could be their own birthday. (The privacy test caught exactly that, and it is fixed.)
+- A second person added on Between us is held exactly like the first: never in storage, the address, a request, an export or the share image, which carries numbers only and never the nickname. `tests/e2e/between.spec.ts` checks that with a second distinctive name and date, and analytics stay off if either person is under 16.
 - `tests/e2e/privacy.spec.ts` types a distinctive name and birth date, visits every screen and export, and fails the build if either appears in any request URL, header or body or in any browser storage. It also asserts every request goes to this origin.
 - A Content-Security-Policy with `connect-src 'self'` (written by `apps/web/scripts/headers.mjs` for Cloudflare Pages/Netlify, Vercel and the test server) makes the browser itself refuse requests to other origins. `tests/e2e/csp.spec.ts` checks that, and that the whole app runs under it.
 - Analytics are off unless `NEXT_PUBLIC_PLAUSIBLE_DOMAIN` is set; they are cookieless, event-allowlisted, carry no properties, and stop for under-16s.
@@ -86,6 +102,8 @@ A caution is a short, practical nudge about a behavior to watch, never a forecas
 - UI strings use a keyed `messages/en.json` and a tiny `t()` rather than `next-intl`. The keys are stable, so `next-intl` is a drop-in when a second language arrives.
 - The day card puts the life-path overlay and life stage before the six facets, so every reading ends on the reflection prompt, as the guardrails require. The plan's sample put them after.
 - `Link` prefetching is off: some static hosts do not serve Next's per-segment prefetch files.
+- Between us is added. The plan listed compatibility as out of scope; this is not a compatibility score, and the guardrail of no relationship verdicts stands.
+- `vitest.config.ts` leaves half the logical cores free, and the two wall-clock speed tests take the best of five runs, so heavy test files running beside them on a laptop do not make them flaky.
 - The Next/Tailwind/Vitest versions are current as of this build (Next 16, Tailwind 4, Vitest 5, TypeScript 5.9).
 
 ## Not done, and needs a person
@@ -95,4 +113,6 @@ A caution is a short, practical nudge about a behavior to watch, never a forecas
 - **Legal review.** The privacy and terms pages say only what is true of this build. They are not legal advice. Check the US children threshold, any PDPA obligations if accounts are added, and fortune-telling laws before charging for anything.
 - **Speed on a mid-range phone.** The composer builds a year of day cards in a few milliseconds on a desktop; the plan's target of 50 ms on a phone still needs measuring there (Gate 4).
 - **A real host and domain** (`NEXT_PUBLIC_SITE_URL`), and a name.
-- Out of scope for v1, as in the plan: Chaldean toggle, compatibility, accounts, daily email or push, Malay translation, live LLM text.
+- **Between us:** approve `pairs.md`, the voice-guide addendum and the 154 snippets (Gates P1 and P2); get the second-person wording reviewed (the privacy and terms text, and under-16 handling for someone you add); run the 5 to 8 person check in gate P3; and check the Method page's research claim against a fuller literature search. The Joel et al. (2020) finding it cites was checked against the paper's text; the claim that no controlled test links birth numbers to how two people get on rests on the same limited search as the existing Method text.
+- Between us phases 3 and 4 are not built (names and more than two people, a relationship-type picker, and public pair pages), and neither is the optional phase 2 bridge line for each pair of day numbers (45 snippets). Those are choices for you. See the plan.
+- Out of scope for v1, as in the plan: Chaldean toggle, compatibility scores, accounts, daily email or push, Malay translation, live LLM text.

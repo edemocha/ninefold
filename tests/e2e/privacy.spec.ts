@@ -125,7 +125,7 @@ test('the content requests are fixed URLs: the same for everyone', async ({ page
   await go(page, 'Day');
   await expect(page.getByTestId('day-card')).toBeVisible();
   expect(urls.length).toBeGreaterThan(2);
-  for (const u of urls) expect(u).toMatch(/^\/content\/(current\.json|v[\w.-]+\/(core|life|year|month|day)\.json)$/);
+  for (const u of urls) expect(u).toMatch(/^\/content\/(current\.json|v[\w.-]+\/(core|life|year|month|day|pair)\.json)$/);
 });
 
 test('the page makes no analytics or third-party requests by default', async ({ page, baseURL }) => {

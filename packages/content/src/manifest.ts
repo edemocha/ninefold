@@ -71,6 +71,31 @@ export const CAUTION_SAFETY_LINES = [
   'For health, money or legal decisions, talk to a qualified person, not a number.',
 ] as const;
 
+/**
+ * "Between us": two people, side by side. The text is about numbers, not about
+ * the people, and it reads the same in either order, so a pair is keyed by the
+ * two single-digit roots, smaller first ("3-7").
+ */
+export const PAIR_KEYS: readonly string[] = DIGITS.flatMap((a) => DIGITS.filter((b) => b >= a).map((b) => `${a}-${b}`));
+export const PAIR_SECTIONS = ['meet', 'stretch', 'talk'] as const;
+/** A master number in a pair adds one short note: 11, 22 or 33 on one side, or masters on both. */
+export const PAIR_OVERLAYS = ['11', '22', '33', 'both'] as const;
+/** The shorter way round the nine: 0 (the same number) to 4. */
+export const RHYTHM_DISTANCES = ['0', '1', '2', '3', '4'] as const;
+export const RHYTHM_SECTIONS = ['meaning', 'use', 'talk'] as const;
+
+/**
+ * Fixed lines shown on every Between us screen, whatever the pair. Like the
+ * caution lines they are not in the bank and are never tied to a number.
+ */
+export const PAIR_SAFETY_LINES = [
+  "Numbers can't tell you whether to begin, stay or leave. That is for you to decide.",
+  'If you ever feel unsafe with someone, talk to a person you trust or a local support service.',
+] as const;
+
+/** The opt-in lint groups the pair families answer to (see rules.ts). */
+export const PAIR_RULE_GROUPS = ['pairVerdict', 'pairPerson', 'pairFeeling'] as const;
+
 /** Special dates, in the order the composer prefers them when several apply. */
 export const SPECIAL_DATES = [
   'birthday',
@@ -99,7 +124,7 @@ const str = (xs: readonly (string | number)[]): string[] => xs.map(String);
 const coreValues = (key: CoreKey): string[] =>
   str(key === 'birthDay' ? VALUES.filter((v) => v !== 33) : VALUES);
 
-export type Layer = 'life' | 'year' | 'month' | 'day';
+export type Layer = 'life' | 'year' | 'month' | 'day' | 'pair';
 
 export type Family = {
   /** e.g. life.core.lifePath. Also the first part of every snippet id. */
@@ -133,6 +158,8 @@ export type Family = {
   caution?: boolean;
   /** Lint rule groups relaxed for this family (see rules.ts). */
   allow?: readonly string[];
+  /** Opt-in rule groups that apply only to this family (see rules.ts). */
+  also?: readonly string[];
 };
 
 const coreFamily = (key: CoreKey): Family => ({
@@ -293,9 +320,38 @@ export const FAMILIES: readonly Family[] = [
     words: [18, 65],
   },
   cautionFamily('day'),
+  {
+    id: 'pair.core',
+    layer: 'pair',
+    file: 'pair/core.json',
+    path: ['core'],
+    axes: [PAIR_KEYS, str(PAIR_SECTIONS)],
+    words: [24, 75],
+    question: { axis: 1, value: 'talk' },
+    also: PAIR_RULE_GROUPS,
+  },
+  {
+    id: 'pair.master',
+    layer: 'pair',
+    file: 'pair/master.json',
+    path: ['master'],
+    axes: [str(PAIR_OVERLAYS)],
+    words: [22, 65],
+    also: PAIR_RULE_GROUPS,
+  },
+  {
+    id: 'pair.rhythm',
+    layer: 'pair',
+    file: 'pair/rhythm.json',
+    path: ['rhythm'],
+    axes: [str(RHYTHM_DISTANCES), str(RHYTHM_SECTIONS)],
+    words: [22, 70],
+    question: { axis: 1, value: 'talk' },
+    also: PAIR_RULE_GROUPS,
+  },
 ];
 
-export const LAYERS: readonly Layer[] = ['life', 'year', 'month', 'day'];
+export const LAYERS: readonly Layer[] = ['life', 'year', 'month', 'day', 'pair'];
 
 export type Snippet = {
   /** e.g. life.core.lifePath.1.overview or day.personalDay.8.headline.v3 */

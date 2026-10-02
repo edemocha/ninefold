@@ -18,6 +18,7 @@ export default function TermsPage() {
       <ul className="list-disc space-y-2 pl-5">
         <li>The site is free and offered for reflection and entertainment. It makes no predictions about events in anyone&apos;s life.</li>
         <li>It does not give medical, financial, legal or relationship advice, and nothing on it should be used to decide those matters.</li>
+        <li>Between us does not rate or rule on any pair, and it does not describe the person you add, who has not been asked. It says what the numbers tend to stand for and gives you things to talk about.</li>
         <li>The calculations follow published conventions that disagree with each other. Different conventions can give different numbers for the same person. The Method page shows exactly which one is in use.</li>
         <li>The site stores nothing about you, so there are no accounts to manage and no data to delete. See the Privacy page.</li>
         <li>The readings are provided as they are, without any promise that they are accurate, complete or suitable for a purpose.</li>

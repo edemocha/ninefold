@@ -22,7 +22,7 @@ export function refChain(n: number, keep: number[]): number[] {
   return out;
 }
 const last = (xs: number[]): number => xs[xs.length - 1]!;
-const refSingle = (n: number): number => last(refChain(n, []));
+export const refSingle = (n: number): number => last(refChain(n, []));
 
 const M2 = [11, 22];
 const M3 = [11, 22, 33];
@@ -139,6 +139,25 @@ export function refPersonalDay(
   leap: 'feb28' | 'mar1',
 ): number {
   return refSingle(refPersonalMonth(b, on, rule, masters, mode, leap) + on.d);
+}
+
+/**
+ * The gap between two people's personal-day numbers on one date, (A - B) mod 9.
+ * It goes through each person's own day-by-day reading, not through the
+ * fact that the terms cancel, so it checks that fact too.
+ */
+export function refPairGap(
+  a: RefDate,
+  b: RefDate,
+  on: RefDate,
+  rule: RefRule,
+  masters: RefMasters,
+  mode: 'calendar' | 'birthday',
+  leap: 'feb28' | 'mar1',
+): number {
+  const da = refPersonalDay(a, on, rule, masters, mode, leap);
+  const db = refPersonalDay(b, on, rule, masters, mode, leap);
+  return (((da - db) % 9) + 9) % 9;
 }
 
 // ---------------------------------------------------------------- names

@@ -23864,5 +23864,483 @@
    "year.personalYear.4.work",
    "year.yearLifePath.4.4"
   ]
+ },
+ {
+  "profile": "p01+p02",
+  "date": "2026-10-01",
+  "headline": "a 9 and a 5: Your numbers are 2 steps apart.",
+  "digest": "934789c2fda6",
+  "sources": [
+   "life.core.lifePath.5.relationships",
+   "life.core.lifePath.9.relationships",
+   "pair.core.5-9.meet",
+   "pair.core.5-9.stretch",
+   "pair.core.5-9.talk",
+   "pair.rhythm.2.meaning",
+   "pair.rhythm.2.talk",
+   "pair.rhythm.2.use"
+  ]
+ },
+ {
+  "profile": "p02+p03",
+  "date": "2026-10-01",
+  "headline": "a 5 and a 6: Your numbers are 2 steps apart.",
+  "digest": "7de83bc7e82e",
+  "sources": [
+   "life.core.lifePath.5.relationships",
+   "life.core.lifePath.6.relationships",
+   "pair.core.5-6.meet",
+   "pair.core.5-6.stretch",
+   "pair.core.5-6.talk",
+   "pair.rhythm.2.meaning",
+   "pair.rhythm.2.talk",
+   "pair.rhythm.2.use"
+  ]
+ },
+ {
+  "profile": "p03+p04",
+  "date": "2026-10-01",
+  "headline": "a 6 and a 5: Your numbers are the same.",
+  "digest": "c764e97f4d7f",
+  "sources": [
+   "life.core.lifePath.5.relationships",
+   "life.core.lifePath.6.relationships",
+   "pair.core.5-6.meet",
+   "pair.core.5-6.stretch",
+   "pair.core.5-6.talk",
+   "pair.rhythm.0.meaning",
+   "pair.rhythm.0.talk",
+   "pair.rhythm.0.use"
+  ]
+ },
+ {
+  "profile": "p04+p05",
+  "date": "2026-10-01",
+  "headline": "a 5 and a 3: Your numbers are 2 steps apart.",
+  "digest": "6b935ac1b609",
+  "sources": [
+   "life.core.lifePath.3.relationships",
+   "life.core.lifePath.5.relationships",
+   "pair.core.3-5.meet",
+   "pair.core.3-5.stretch",
+   "pair.core.3-5.talk",
+   "pair.rhythm.2.meaning",
+   "pair.rhythm.2.talk",
+   "pair.rhythm.2.use"
+  ]
+ },
+ {
+  "profile": "p05+p06",
+  "date": "2026-10-01",
+  "headline": "a 3 and a 5: Your numbers are the same.",
+  "digest": "2559092c1a00",
+  "sources": [
+   "life.core.lifePath.3.relationships",
+   "life.core.lifePath.5.relationships",
+   "pair.core.3-5.meet",
+   "pair.core.3-5.stretch",
+   "pair.core.3-5.talk",
+   "pair.rhythm.0.meaning",
+   "pair.rhythm.0.talk",
+   "pair.rhythm.0.use"
+  ]
+ },
+ {
+  "profile": "p06+p07",
+  "date": "2026-10-01",
+  "headline": "a 5 and a 6: Your numbers are 4 steps apart.",
+  "digest": "a104b78f5e2c",
+  "sources": [
+   "life.core.lifePath.5.relationships",
+   "life.core.lifePath.6.relationships",
+   "pair.core.5-6.meet",
+   "pair.core.5-6.stretch",
+   "pair.core.5-6.talk",
+   "pair.rhythm.4.meaning",
+   "pair.rhythm.4.talk",
+   "pair.rhythm.4.use"
+  ]
+ },
+ {
+  "profile": "p07+p08",
+  "date": "2026-10-01",
+  "headline": "a 6 and a 7: Your numbers are 3 steps apart.",
+  "digest": "722f1eceb61b",
+  "sources": [
+   "life.core.lifePath.6.relationships",
+   "life.core.lifePath.7.relationships",
+   "pair.core.6-7.meet",
+   "pair.core.6-7.stretch",
+   "pair.core.6-7.talk",
+   "pair.rhythm.3.meaning",
+   "pair.rhythm.3.talk",
+   "pair.rhythm.3.use"
+  ]
+ },
+ {
+  "profile": "p08+p09",
+  "date": "2026-10-01",
+  "headline": "a 7 and an 8: Your numbers are the same.",
+  "digest": "42e5c6341e87",
+  "sources": [
+   "life.core.lifePath.7.relationships",
+   "life.core.lifePath.8.relationships",
+   "pair.core.7-8.meet",
+   "pair.core.7-8.stretch",
+   "pair.core.7-8.talk",
+   "pair.rhythm.0.meaning",
+   "pair.rhythm.0.talk",
+   "pair.rhythm.0.use"
+  ]
+ },
+ {
+  "profile": "p09+p10",
+  "date": "2026-10-01",
+  "headline": "an 8 and an 8: Your numbers are 4 steps apart.",
+  "digest": "b4259acb2fac",
+  "sources": [
+   "life.core.lifePath.8.relationships",
+   "pair.core.8-8.meet",
+   "pair.core.8-8.stretch",
+   "pair.core.8-8.talk",
+   "pair.rhythm.4.meaning",
+   "pair.rhythm.4.talk",
+   "pair.rhythm.4.use"
+  ]
+ },
+ {
+  "profile": "p10+p11",
+  "date": "2026-10-01",
+  "headline": "an 8 and an 8: Your numbers are 1 step apart.",
+  "digest": "ebe7a0d63a65",
+  "sources": [
+   "life.core.lifePath.8.relationships",
+   "pair.core.8-8.meet",
+   "pair.core.8-8.stretch",
+   "pair.core.8-8.talk",
+   "pair.rhythm.1.meaning",
+   "pair.rhythm.1.talk",
+   "pair.rhythm.1.use"
+  ]
+ },
+ {
+  "profile": "p11+p12",
+  "date": "2026-10-01",
+  "headline": "an 8 and a 6: Your numbers are 4 steps apart.",
+  "digest": "e0c058f95eb0",
+  "sources": [
+   "life.core.lifePath.6.relationships",
+   "life.core.lifePath.8.relationships",
+   "pair.core.6-8.meet",
+   "pair.core.6-8.stretch",
+   "pair.core.6-8.talk",
+   "pair.rhythm.4.meaning",
+   "pair.rhythm.4.talk",
+   "pair.rhythm.4.use"
+  ]
+ },
+ {
+  "profile": "p12+p13",
+  "date": "2026-10-01",
+  "headline": "a 6 and a 7: Your numbers are 1 step apart.",
+  "digest": "f398a5013454",
+  "sources": [
+   "life.core.lifePath.6.relationships",
+   "life.core.lifePath.7.relationships",
+   "pair.core.6-7.meet",
+   "pair.core.6-7.stretch",
+   "pair.core.6-7.talk",
+   "pair.rhythm.1.meaning",
+   "pair.rhythm.1.talk",
+   "pair.rhythm.1.use"
+  ]
+ },
+ {
+  "profile": "p13+p14",
+  "date": "2026-10-01",
+  "headline": "a 7 and a 6: Your numbers are 1 step apart.",
+  "digest": "ce25db8d6bf1",
+  "sources": [
+   "life.core.lifePath.6.relationships",
+   "life.core.lifePath.7.relationships",
+   "pair.core.6-7.meet",
+   "pair.core.6-7.stretch",
+   "pair.core.6-7.talk",
+   "pair.rhythm.1.meaning",
+   "pair.rhythm.1.talk",
+   "pair.rhythm.1.use"
+  ]
+ },
+ {
+  "profile": "p14+p15",
+  "date": "2026-10-01",
+  "headline": "a 6 and a 1: Your numbers are 3 steps apart.",
+  "digest": "9ddad23017dc",
+  "sources": [
+   "life.core.lifePath.1.relationships",
+   "life.core.lifePath.6.relationships",
+   "pair.core.1-6.meet",
+   "pair.core.1-6.stretch",
+   "pair.core.1-6.talk",
+   "pair.rhythm.3.meaning",
+   "pair.rhythm.3.talk",
+   "pair.rhythm.3.use"
+  ]
+ },
+ {
+  "profile": "p15+p16",
+  "date": "2026-10-01",
+  "headline": "a 1 and an 11/2: Your numbers are 3 steps apart.",
+  "digest": "eb015c16cc41",
+  "sources": [
+   "life.core.lifePath.1.relationships",
+   "life.core.lifePath.11.relationships",
+   "pair.core.1-2.meet",
+   "pair.core.1-2.stretch",
+   "pair.core.1-2.talk",
+   "pair.master.11",
+   "pair.rhythm.3.meaning",
+   "pair.rhythm.3.talk",
+   "pair.rhythm.3.use"
+  ]
+ },
+ {
+  "profile": "p16+p17",
+  "date": "2026-10-01",
+  "headline": "an 11/2 and a 1: Your numbers are 3 steps apart.",
+  "digest": "2205acece269",
+  "sources": [
+   "life.core.lifePath.1.relationships",
+   "life.core.lifePath.11.relationships",
+   "pair.core.1-2.meet",
+   "pair.core.1-2.stretch",
+   "pair.core.1-2.talk",
+   "pair.master.11",
+   "pair.rhythm.3.meaning",
+   "pair.rhythm.3.talk",
+   "pair.rhythm.3.use"
+  ]
+ },
+ {
+  "profile": "p17+p18",
+  "date": "2026-10-01",
+  "headline": "a 1 and a 9: Your numbers are 4 steps apart.",
+  "digest": "43158fe41815",
+  "sources": [
+   "life.core.lifePath.1.relationships",
+   "life.core.lifePath.9.relationships",
+   "pair.core.1-9.meet",
+   "pair.core.1-9.stretch",
+   "pair.core.1-9.talk",
+   "pair.rhythm.4.meaning",
+   "pair.rhythm.4.talk",
+   "pair.rhythm.4.use"
+  ]
+ },
+ {
+  "profile": "p18+p19",
+  "date": "2026-10-01",
+  "headline": "a 9 and a 7: Your numbers are 3 steps apart.",
+  "digest": "66d65b22635d",
+  "sources": [
+   "life.core.lifePath.7.relationships",
+   "life.core.lifePath.9.relationships",
+   "pair.core.7-9.meet",
+   "pair.core.7-9.stretch",
+   "pair.core.7-9.talk",
+   "pair.rhythm.3.meaning",
+   "pair.rhythm.3.talk",
+   "pair.rhythm.3.use"
+  ]
+ },
+ {
+  "profile": "p19+p20",
+  "date": "2026-10-01",
+  "headline": "a 7 and a 4: Your numbers are 2 steps apart.",
+  "digest": "855b194b6b9d",
+  "sources": [
+   "life.core.lifePath.4.relationships",
+   "life.core.lifePath.7.relationships",
+   "pair.core.4-7.meet",
+   "pair.core.4-7.stretch",
+   "pair.core.4-7.talk",
+   "pair.rhythm.2.meaning",
+   "pair.rhythm.2.talk",
+   "pair.rhythm.2.use"
+  ]
+ },
+ {
+  "profile": "p20+p21",
+  "date": "2026-10-01",
+  "headline": "a 4 and a 1: Your numbers are 4 steps apart.",
+  "digest": "b22eb1227e78",
+  "sources": [
+   "life.core.lifePath.1.relationships",
+   "life.core.lifePath.4.relationships",
+   "pair.core.1-4.meet",
+   "pair.core.1-4.stretch",
+   "pair.core.1-4.talk",
+   "pair.rhythm.4.meaning",
+   "pair.rhythm.4.talk",
+   "pair.rhythm.4.use"
+  ]
+ },
+ {
+  "profile": "p21+p22",
+  "date": "2026-10-01",
+  "headline": "a 1 and an 8: Your numbers are 2 steps apart.",
+  "digest": "ff436a617fe4",
+  "sources": [
+   "life.core.lifePath.1.relationships",
+   "life.core.lifePath.8.relationships",
+   "pair.core.1-8.meet",
+   "pair.core.1-8.stretch",
+   "pair.core.1-8.talk",
+   "pair.rhythm.2.meaning",
+   "pair.rhythm.2.talk",
+   "pair.rhythm.2.use"
+  ]
+ },
+ {
+  "profile": "p22+p23",
+  "date": "2026-10-01",
+  "headline": "an 8 and a 9: Your numbers are 4 steps apart.",
+  "digest": "70dabaa553b7",
+  "sources": [
+   "life.core.lifePath.8.relationships",
+   "life.core.lifePath.9.relationships",
+   "pair.core.8-9.meet",
+   "pair.core.8-9.stretch",
+   "pair.core.8-9.talk",
+   "pair.rhythm.4.meaning",
+   "pair.rhythm.4.talk",
+   "pair.rhythm.4.use"
+  ]
+ },
+ {
+  "profile": "p23+p24",
+  "date": "2026-10-01",
+  "headline": "a 9 and a 5: Your numbers are 1 step apart.",
+  "digest": "8242270f5158",
+  "sources": [
+   "life.core.lifePath.5.relationships",
+   "life.core.lifePath.9.relationships",
+   "pair.core.5-9.meet",
+   "pair.core.5-9.stretch",
+   "pair.core.5-9.talk",
+   "pair.rhythm.1.meaning",
+   "pair.rhythm.1.talk",
+   "pair.rhythm.1.use"
+  ]
+ },
+ {
+  "profile": "p24+p25",
+  "date": "2026-10-01",
+  "headline": "a 5 and a 3: Your numbers are 4 steps apart.",
+  "digest": "47013c8b333d",
+  "sources": [
+   "life.core.lifePath.3.relationships",
+   "life.core.lifePath.5.relationships",
+   "pair.core.3-5.meet",
+   "pair.core.3-5.stretch",
+   "pair.core.3-5.talk",
+   "pair.rhythm.4.meaning",
+   "pair.rhythm.4.talk",
+   "pair.rhythm.4.use"
+  ]
+ },
+ {
+  "profile": "p25+p26",
+  "date": "2026-10-01",
+  "headline": "a 3 and a 3: Your numbers are 3 steps apart.",
+  "digest": "bd2065f2a529",
+  "sources": [
+   "life.core.lifePath.3.relationships",
+   "pair.core.3-3.meet",
+   "pair.core.3-3.stretch",
+   "pair.core.3-3.talk",
+   "pair.rhythm.3.meaning",
+   "pair.rhythm.3.talk",
+   "pair.rhythm.3.use"
+  ]
+ },
+ {
+  "profile": "p26+p27",
+  "date": "2026-10-01",
+  "headline": "a 3 and a 3: Your numbers are 4 steps apart.",
+  "digest": "85cd7c5339c5",
+  "sources": [
+   "life.core.lifePath.3.relationships",
+   "pair.core.3-3.meet",
+   "pair.core.3-3.stretch",
+   "pair.core.3-3.talk",
+   "pair.rhythm.4.meaning",
+   "pair.rhythm.4.talk",
+   "pair.rhythm.4.use"
+  ]
+ },
+ {
+  "profile": "p27+p28",
+  "date": "2026-10-01",
+  "headline": "a 3 and a 5: Your numbers are 2 steps apart.",
+  "digest": "3b11ddf96901",
+  "sources": [
+   "life.core.lifePath.3.relationships",
+   "life.core.lifePath.5.relationships",
+   "pair.core.3-5.meet",
+   "pair.core.3-5.stretch",
+   "pair.core.3-5.talk",
+   "pair.rhythm.2.meaning",
+   "pair.rhythm.2.talk",
+   "pair.rhythm.2.use"
+  ]
+ },
+ {
+  "profile": "p28+p29",
+  "date": "2026-10-01",
+  "headline": "a 5 and a 9: Your numbers are 3 steps apart.",
+  "digest": "e90ea2565533",
+  "sources": [
+   "life.core.lifePath.5.relationships",
+   "life.core.lifePath.9.relationships",
+   "pair.core.5-9.meet",
+   "pair.core.5-9.stretch",
+   "pair.core.5-9.talk",
+   "pair.rhythm.3.meaning",
+   "pair.rhythm.3.talk",
+   "pair.rhythm.3.use"
+  ]
+ },
+ {
+  "profile": "p29+p30",
+  "date": "2026-10-01",
+  "headline": "a 9 and a 4: Your numbers are 1 step apart.",
+  "digest": "bf229dfa8786",
+  "sources": [
+   "life.core.lifePath.4.relationships",
+   "life.core.lifePath.9.relationships",
+   "pair.core.4-9.meet",
+   "pair.core.4-9.stretch",
+   "pair.core.4-9.talk",
+   "pair.rhythm.1.meaning",
+   "pair.rhythm.1.talk",
+   "pair.rhythm.1.use"
+  ]
+ },
+ {
+  "profile": "p30+p01",
+  "date": "2026-10-01",
+  "headline": "a 4 and a 9: Your numbers are 3 steps apart.",
+  "digest": "0aa7225b51bc",
+  "sources": [
+   "life.core.lifePath.4.relationships",
+   "life.core.lifePath.9.relationships",
+   "pair.core.4-9.meet",
+   "pair.core.4-9.stretch",
+   "pair.core.4-9.talk",
+   "pair.rhythm.3.meaning",
+   "pair.rhythm.3.talk",
+   "pair.rhythm.3.use"
+  ]
  }
 ]

@@ -19,6 +19,10 @@ export default function PrivacyPage() {
         <li>They live in the memory of the open tab. Reloading the page or pressing &ldquo;Forget my details&rdquo; clears them.</li>
         <li>The page address after the # holds only your view and the conventions you chose, such as the date rule. It never holds a name or a birth date, and the part after # is not sent to a server.</li>
         <li>No cookies, local storage or similar are used to remember you.</li>
+        <li>
+          If you add someone on Between us, their birth date and nickname are treated exactly like yours: they stay in the memory of the open tab, and they are not sent, saved, put in the page address or put in the share image.
+          &ldquo;Forget my details&rdquo; clears both of you. Only add details you are comfortable using, and ask the person first if you can.
+        </li>
       </ul>
 
       <h2 className="mt-12 mb-3 text-2xl">What is loaded</h2>
@@ -30,7 +34,7 @@ export default function PrivacyPage() {
       <h2 className="mt-12 mb-3 text-2xl">Counting visits</h2>
       <p>
         If counts are switched on, they come from a cookieless tool that records page views and a short list of events, such as that a calculation was run. Events carry no details, and the page address is sent without
-        anything after the #. If your birth date shows that you are under 16, nothing more is sent.
+        anything after the #. If your birth date, or the birth date of anyone you add, shows that someone is under 16, nothing more is sent.
       </p>
 
       <h2 className="mt-12 mb-3 text-2xl">The host</h2>

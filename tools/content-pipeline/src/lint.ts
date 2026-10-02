@@ -62,6 +62,8 @@ function checkSnippet(family: Family, s: Snippet, report: LintReport): void {
   const haystack = s.fields ? Object.values(s.fields).join(' | ') : text;
   const facet = family.caution ? s.keys[1] : undefined;
   for (const group of RULES) {
+    // An opt-in group (the pair rules) applies only to the families that name it.
+    if (group.optIn && !family.also?.includes(group.id)) continue;
     // A family can relax a group, and the spending group only applies to the money facet.
     if (family.allow?.includes(group.id) && (group.id !== 'spending' || facet === 'money')) continue;
     for (const pattern of group.patterns) {

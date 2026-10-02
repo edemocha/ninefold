@@ -25,11 +25,15 @@ describe('the content bank', () => {
     expect(present.size).toBe(expectedCount());
   });
 
-  it('is the size the plan sized (about 1,279 snippets) plus 810 cautions', () => {
-    const base = expectedCount() - FAMILIES.filter((f) => f.caution).flatMap(expectedIds).length;
+  it('is the size the plan sized (about 1,279 snippets) plus 810 cautions and 154 for Between us', () => {
+    const cautions = FAMILIES.filter((f) => f.caution).flatMap(expectedIds).length;
+    const pair = FAMILIES.filter((f) => f.layer === 'pair').flatMap(expectedIds).length;
+    const base = expectedCount() - cautions - pair;
     expect(base).toBeGreaterThanOrEqual(1270);
     expect(base).toBeLessThanOrEqual(1290);
-    expect(expectedCount()).toBe(base + 810);
+    expect(cautions).toBe(810);
+    expect(pair).toBe(154);
+    expect(expectedCount()).toBe(base + 810 + 154);
   });
 
   it('has lint clean: no banned claims, certainty words, fear hooks or missing reflection prompts', () => {
@@ -124,7 +128,7 @@ describe('release', () => {
     expect(manifest.snippets).toBe(expectedCount());
     expect(manifest.version).toMatch(/^v\d+\.\d+\.\d+-[0-9a-f]{8}$/);
     expect(JSON.parse(readFileSync(join(dir, 'current.json'), 'utf8'))).toEqual({ version: manifest.version });
-    for (const layer of ['core', 'life', 'year', 'month', 'day']) {
+    for (const layer of ['core', 'life', 'year', 'month', 'day', 'pair']) {
       expect(existsSync(join(dir, manifest.version, `${layer}.json`))).toBe(true);
     }
     expect(manifest.status).toEqual({ draft: expectedCount(), edited: 0, approved: 0 });

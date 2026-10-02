@@ -1,6 +1,6 @@
 import AxeBuilder from '@axe-core/playwright';
 import { expect, test, type Page } from '@playwright/test';
-import { enter, go } from './helpers';
+import { addPartner, enter, go, SAM } from './helpers';
 
 /*
  * axe on every screen, with the build failing on any serious or critical
@@ -75,6 +75,79 @@ for (const scheme of ['light'] as const) {
       await page.getByRole('link', { name: /Year report/ }).click();
       await expect(page.getByTestId('report')).toBeVisible();
       await audit(page, `${scheme} report`);
+    });
+
+    test('Between us over time: day by day, month and life stages', async ({ page }) => {
+      test.setTimeout(120_000);
+      await enter(page);
+      await go(page, 'Between us');
+      await addPartner(page, SAM);
+      const nav = page.getByRole('navigation', { name: 'Between us sections' });
+
+      await nav.getByRole('link', { name: 'Day by day', exact: true }).click();
+      await expect(page.getByTestId('pair-day')).toBeVisible();
+      await audit(page, `${scheme} between us, day by day`);
+      await page.getByTestId('pair-date-picker').fill('2026-12-25');
+      await expect(page.getByTestId('pair-day-label')).toHaveText('Friday 25 Dec 2026');
+      await audit(page, `${scheme} between us, another day`);
+
+      await nav.getByRole('link', { name: 'Month', exact: true }).click();
+      await expect(page.getByTestId('pair-month-table')).toBeVisible();
+      await audit(page, `${scheme} between us, month`);
+      await page.getByRole('link', { name: 'Next month' }).click();
+      await expect(page.getByTestId('pair-month-title')).toHaveText('November 2026');
+      await audit(page, `${scheme} between us, next month`);
+
+      await nav.getByRole('link', { name: 'Life stages', exact: true }).click();
+      await expect(page.getByTestId('pair-life-chart')).toBeVisible();
+      await audit(page, `${scheme} between us, life stages`);
+      await page.getByTestId('pair-life-you').getByText(/Every period for/).click();
+      await page.getByTestId('pair-life-other').getByText(/Every period for/).click();
+      await audit(page, `${scheme} between us, life stages with every period open`);
+
+      // A parent and a child: the under-16 notice shows on the new sections too.
+      await page.getByRole('button', { name: 'Change their details' }).click();
+      await page.getByTestId('pair-form').getByLabel('Year', { exact: true }).selectOption('2014');
+      await page.getByTestId('pair-form').getByRole('button', { name: 'Show us side by side' }).click();
+      await nav.getByRole('link', { name: 'Life stages', exact: true }).click();
+      await expect(page.getByTestId('between-under16-notice')).toBeVisible();
+      await audit(page, `${scheme} between us, life stages with a child`);
+    });
+
+    test('Between us in every state', async ({ page }) => {
+      test.setTimeout(120_000);
+      await enter(page);
+      await go(page, 'Between us');
+      await expect(page.getByTestId('pair-form')).toBeVisible();
+      await audit(page, `${scheme} between us, empty`);
+
+      await page.getByTestId('pair-form').getByRole('button', { name: 'Show us side by side' }).click();
+      await expect(page.getByText('Choose a day, month and year.')).toBeVisible();
+      await audit(page, `${scheme} between us, form error`);
+
+      await addPartner(page, SAM);
+      await expect(page.getByTestId('pair-result')).toBeVisible();
+      await audit(page, `${scheme} between us, filled`);
+
+      await page.getByTestId('pair-side-you').getByText('Why this number').click();
+      await page.getByTestId('pair-cycles').getByText('Show the math').click();
+      await audit(page, `${scheme} between us, with the math open`);
+
+      await page.getByRole('button', { name: 'Change their details' }).click();
+      await audit(page, `${scheme} between us, editing`);
+      await page.getByTestId('pair-form').getByRole('button', { name: 'Cancel' }).click();
+
+      // A master number, the same number, and someone under 16.
+      for (const p of [
+        { label: 'Ro', day: 3, month: 3, year: 2003 },
+        { label: 'Twin', day: 17, month: 6, year: 1999 },
+        { label: 'Kit', day: 10, month: 3, year: 2014 },
+      ]) {
+        await page.getByRole('button', { name: 'Remove them' }).click();
+        await addPartner(page, p);
+        await expect(page.getByTestId('pair-result')).toBeVisible();
+        await audit(page, `${scheme} between us, ${p.label}`);
+      }
     });
   });
 }

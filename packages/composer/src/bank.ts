@@ -1,4 +1,4 @@
-import type { CoreLayer, DayLayer, LifeLayer, MonthLayer, YearLayer } from '@numerology/content';
+import type { CoreLayer, DayLayer, LifeLayer, MonthLayer, PairLayer, YearLayer } from '@numerology/content';
 
 /** The released content, loaded layer by layer. A layer can be missing until it is needed. */
 export type Bank = {
@@ -7,6 +7,7 @@ export type Bank = {
   year?: YearLayer;
   month?: MonthLayer;
   day?: DayLayer;
+  pair?: PairLayer;
 };
 
 export class MissingLayerError extends Error {

@@ -117,5 +117,6 @@ export function allSchemas(): Record<'core' | Layer, Schema> {
     year: layerSchema('year'),
     month: layerSchema('month'),
     day: layerSchema('day'),
+    pair: layerSchema('pair'),
   };
 }

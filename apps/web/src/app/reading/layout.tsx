@@ -14,6 +14,7 @@ const TABS: { href: string; label: MessageKey }[] = [
   { href: '/reading/year', label: 'nav.year' },
   { href: '/reading/month', label: 'nav.month' },
   { href: '/reading/day', label: 'nav.day' },
+  { href: '/reading/between', label: 'nav.between' },
 ];
 
 export default function ReadingLayout({ children }: { children: ReactNode }) {

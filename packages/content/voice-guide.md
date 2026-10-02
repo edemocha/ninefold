@@ -45,6 +45,21 @@ Money moves: buy, sell, invest, quit, resign, purchase, lottery, gamble, stock, 
 Legal: lawsuit, court, sue, verdict, legal, lawyer.
 Relationship verdicts: leave, leaving, marry, marriage, divorce, break up, cheat, affair, soulmate.
 
+## Between us (addendum, draft for the owner's approval)
+
+Between us sets two people's numbers side by side. It follows every rule above, and adds these. The notes for each number pair are in `meaning-sheets/pairs.md`.
+
+1. **Write about numbers, not people.** "A 3 and a 7", "the two of you", "each of you". Never "your partner is...". The other person did not agree to be described.
+2. **Read right for any two people.** No partner, husband, wife, boyfriend, girlfriend, spouse or lover. No "he", "she", "him" or "her". The same text has to work for two friends, a parent and child, or two colleagues.
+3. **No scores and no verdicts.** No percentage, rating, ranking or "match". No "compatible" or "incompatible", "soulmate", "perfect" or "ideal". Never say whether two people should begin, stay or part.
+4. **Differences are where each may stretch.** Not problems, not red flags. Say what each side could try.
+5. **Questions each person answers about themselves.** "What do you need before...?" never "Why do you always...?". A pair's text ends on a question.
+6. **The text reads the same in either order.** Never "the first" or "the second" person; the page shows who is who.
+7. **A master number is a theme.** It adds one short note. It never makes a pair special, rarer or better.
+8. **Two fixed safety lines** show on every Between us screen, outside the bank: "Numbers can't tell you whether to begin, stay or leave. That is for you to decide." and "If you ever feel unsafe with someone, talk to a person you trust or a local support service."
+
+Banned only here (enforced by the lint): compatible, incompatible, match, soulmate, twin flame, meant to be, destiny, perfect, ideal, toxic, red flag, score, rating, rank, percent; partner, husband, wife, boyfriend, girlfriend, spouse, lover, romantic; he, she, him, her, his; narcissist, abusive, manipulative; attract, in love, fall for.
+
 ## Disclaimer
 
 Shown on onboarding, under every reading and on the PDF, word for word:

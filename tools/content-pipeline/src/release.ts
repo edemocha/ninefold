@@ -70,7 +70,7 @@ export function release(options: ReleaseOptions = {}): ReleaseManifest {
   const pkg = JSON.parse(readFileSync(PACKAGE_JSON, 'utf8')) as { version: string };
   const version = `v${pkg.version}-${hash}`;
 
-  const perLayer = (loadedLayer: 'life' | 'year' | 'month' | 'day') => {
+  const perLayer = (loadedLayer: 'life' | 'year' | 'month' | 'day' | 'pair') => {
     const rows = loaded.filter((l) => l.family.layer === loadedLayer).flatMap((l) => l.snippets);
     return { snippets: rows.length, words: rows.reduce((n, s) => n + wordCount(s.text), 0) };
   };
@@ -87,6 +87,7 @@ export function release(options: ReleaseOptions = {}): ReleaseManifest {
       year: { file: 'year.json', ...perLayer('year'), sha256: sha(bodies.year) },
       month: { file: 'month.json', ...perLayer('month'), sha256: sha(bodies.month) },
       day: { file: 'day.json', ...perLayer('day'), sha256: sha(bodies.day) },
+      pair: { file: 'pair.json', ...perLayer('pair'), sha256: sha(bodies.pair) },
     },
   };
 

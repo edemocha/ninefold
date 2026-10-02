@@ -13,6 +13,7 @@ import {
 import { CAUTION_FACETS, CAUTION_SAFETY_LINES, expectedIds, FAMILIES } from '@numerology/content';
 import {
   composeDay,
+  composeHeadlines,
   composeMonth,
   composeYear,
   DAY_CAUTION_LOOP,
@@ -157,11 +158,18 @@ describe('speed', () => {
   it('a year of day cards, with their cautions, is still well under 50 ms', () => {
     const from: YMD = { year: 2026, month: 1, day: 1 };
     const to: YMD = { year: 2026, month: 12, day: 31 };
+    // Warm up the whole path, as composer.test.ts does, so the first sample is not a cold start.
+    composeHeadlines(bank, birth, from, to, c);
     variantIndexRange(birth, from, to, c);
-    const start = performance.now();
-    const rows = variantIndexRange(birth, from, to, c);
-    const cards = rows.map((r) => composeDay(bank, birth, r.date, c, { variantIndex: r.variantIndex }));
-    const ms = performance.now() - start;
+    // Best of five, as in composer.test.ts: a shared machine can make one sample slow.
+    let ms = Infinity;
+    let cards: ReturnType<typeof composeDay>[] = [];
+    for (let run = 0; run < 5; run += 1) {
+      const start = performance.now();
+      const rows = variantIndexRange(birth, from, to, c);
+      cards = rows.map((r) => composeDay(bank, birth, r.date, c, { variantIndex: r.variantIndex }));
+      ms = Math.min(ms, performance.now() - start);
+    }
     expect(cards.every((card) => card.caution)).toBe(true);
     expect(ms).toBeLessThan(50);
   });

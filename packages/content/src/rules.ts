@@ -4,9 +4,11 @@
  */
 
 export type RuleGroup = {
-  id: 'certainty' | 'fear' | 'health' | 'money' | 'spending' | 'legal' | 'relationship';
+  id: 'certainty' | 'fear' | 'health' | 'money' | 'spending' | 'legal' | 'relationship' | 'pairVerdict' | 'pairPerson' | 'pairFeeling';
   /** Why the rule exists, shown with every finding. */
   reason: string;
+  /** Applies only to families that name this group in `also` (see manifest.ts). */
+  optIn?: boolean;
   /** Case-insensitive whole-word patterns. */
   patterns: RegExp[];
   suggest: string;
@@ -140,6 +142,76 @@ export const RULES: readonly RuleGroup[] = [
       'soul ?mates?',
     ]),
     suggest: 'Describe how someone tends to relate. Do not rule on what they should do.',
+  },
+  {
+    id: 'pairVerdict',
+    optIn: true,
+    reason: 'No scores, matches or verdicts about two people: the research does not support them and a verdict can do harm.',
+    patterns: words([
+      'compatib\\w*',
+      'incompatib\\w*',
+      'match(?:es|ed|ing)?',
+      'mismatch\\w*',
+      'twin flames?',
+      'meant to be',
+      'made for each other',
+      'destiny',
+      'perfect(?:ly)?',
+      'ideal',
+      '(?:best|worst) (?:pair|couple|fit|combination)',
+      '(?:good|bad) for each other',
+      '(?:right|wrong) (?:person|one)',
+      'toxic',
+      'red flags?',
+      'scores?',
+      'scored',
+      'rating',
+      'rank(?:s|ed|ing)?',
+      'per ?cent',
+      'out of (?:10|100|ten)',
+    ]),
+    suggest: 'Describe what each number tends to bring and where the two meet. Do not rate or rule on the pair.',
+  },
+  {
+    id: 'pairPerson',
+    optIn: true,
+    reason: 'Describe numbers, not the other person: no relationship-type nouns, no gendered pronouns, no labels for a person.',
+    patterns: words([
+      'partners?',
+      'husbands?',
+      'wife',
+      'wives',
+      'boyfriends?',
+      'girlfriends?',
+      'spouses?',
+      'lovers?',
+      'fianc\\w*',
+      'exes',
+      'ex',
+      'romance',
+      'romantic',
+      'he',
+      'she',
+      'him',
+      'her',
+      'hers',
+      'his',
+      'himself',
+      'herself',
+      'narciss\\w*',
+      'abus(?:e|es|ed|ive|er)',
+      'manipulat\\w*',
+      'gaslight\\w*',
+      'codependen\\w*',
+    ]),
+    suggest: 'Write "a 3" and "a 7", or "the two of you", so it reads right for any two people.',
+  },
+  {
+    id: 'pairFeeling',
+    optIn: true,
+    reason: 'Do not predict what two people will feel for each other.',
+    patterns: words(['attract\\w*', 'in love', 'love at first sight', 'fall(?:s|ing)? for', 'infatuat\\w*']),
+    suggest: 'Describe how the two numbers tend to meet. Leave feelings between people to them.',
   },
 ];
 

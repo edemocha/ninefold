@@ -141,6 +141,24 @@ export default function MethodPage() {
         why a number comes back.
       </p>
 
+      <H2 id="between">Between us: two people, side by side</H2>
+      <p>
+        Between us sets two people&apos;s life paths next to each other and shows the gap between their cycles. A pair of life paths is the two single-digit roots, smaller first, so a 3 and a 7 read the same in either order.
+        A master number (11, 22 or 33) uses its root and adds one short note.
+      </p>
+      <p className="mt-3">
+        The gap is plain arithmetic. A personal year is the birth month plus the birth day plus the year, cut to a single digit, and the personal month and day add the same month and day for both people. The year, the month and the
+        day cancel in a difference, so two people&apos;s numbers stay the same number of steps apart, and that gap depends only on their birth months and days. For example, a birthday on 14 March gives 3 + 14 = 17, cut to 8, and a
+        birthday on 2 November gives 11 + 2 = 13, cut to 4. The difference is 8 − 4 = 4, so whenever the first person is in a 2 year the second is in a 7 year (2 − 4 = −2, and −2 + 9 = 7). If you count cycles from birthdays instead of
+        calendar years, the gap moves by one step between the two birthdays and then returns.
+      </p>
+      <p className="mt-3">
+        It gives no score and no verdict. In a 2020 analysis of 43 studies and 11,196 couples (Joel and colleagues, in <em>PNAS</em>), the best predictors of how happy people were in a relationship were their own perceptions of
+        the relationship itself, such as how committed their partner seemed, how appreciative they felt and how conflict went. Personality traits and the partner&apos;s own answers added no predictive information beyond that, and
+        nothing predicted which relationships would improve or worsen. That study did not test numerology, and we found no credible controlled test showing that birth numbers predict how well two people get on. So Between us
+        offers things to talk about, and says so. What it describes is what a number tends to stand for, never the person you add. See the Privacy page for how their details are handled.
+      </p>
+
       <H2 id="dates">Dates and time zones</H2>
       <p>
         Dates are stored as three whole numbers, never as a JavaScript date, so a birth date cannot slip by a day across a time zone. Today is your own calendar date, read from your device, and the personal day changes at your local

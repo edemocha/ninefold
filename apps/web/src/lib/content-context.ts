@@ -3,7 +3,7 @@
 import { useEffect, useMemo, useSyncExternalStore } from 'react';
 import type { Bank } from '@numerology/composer';
 
-export type LayerName = 'core' | 'life' | 'year' | 'month' | 'day';
+export type LayerName = 'core' | 'life' | 'year' | 'month' | 'day' | 'pair';
 
 /*
  * The content is static JSON, one file per layer, loaded on demand and cached

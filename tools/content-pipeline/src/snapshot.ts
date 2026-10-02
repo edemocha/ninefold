@@ -2,7 +2,7 @@ import { createHash } from 'node:crypto';
 import { mkdirSync, readFileSync, writeFileSync, existsSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { DEFAULT_CONVENTIONS, type Conventions, type YMD } from '@numerology/engine';
-import { composeDay, composeMonth, composeYear, type Bank } from '@numerology/composer';
+import { composeDay, composeMonth, composePair, composeYear, type Bank } from '@numerology/composer';
 import { CONTENT_ROOT, loadFamilies, type LoadedFamily } from './load';
 
 /*
@@ -114,6 +114,41 @@ export function composeSnapshot(bank: Bank, profiles = snapshotProfiles(), dates
   return out;
 }
 
+/** Between us: each profile paired with the next, on one date, so a pair snippet's blast radius shows too. */
+export function composePairSnapshot(
+  bank: Bank,
+  profiles = snapshotProfiles(),
+  on: YMD = { year: 2026, month: 10, day: 1 },
+): SnapshotEntry[] {
+  return profiles.map((p, i) => {
+    const q = profiles[(i + 1) % profiles.length] as SnapshotProfile;
+    const r = composePair(bank, p.birth, q.birth, on, p.conventions);
+    const text = [
+      ...r.sides.map((s) => s.relationships),
+      ...r.sections.map((s) => s.text),
+      r.overlayNote?.text,
+      r.rhythm.headline,
+      ...r.rhythm.lines,
+      r.rhythm.holds,
+      ...r.rhythm.sections.map((s) => s.text),
+    ]
+      .filter(Boolean)
+      .join('\n');
+    return {
+      profile: `${p.id}+${q.id}`,
+      date: `${on.year}-${String(on.month).padStart(2, '0')}-${String(on.day).padStart(2, '0')}`,
+      headline: `${r.numbers}: ${r.rhythm.headline}`,
+      digest: sha(text),
+      sources: [...new Set(r.sources)].sort(),
+    };
+  });
+}
+
+/** Every composed reading in the snapshot: the 600 single-person readings and the 30 pairs. */
+export function composeFullSnapshot(bank: Bank): SnapshotEntry[] {
+  return [...composeSnapshot(bank), ...composePairSnapshot(bank)];
+}
+
 export function textHashes(loaded: LoadedFamily[] = loadFamilies()): Record<string, string> {
   const out: Record<string, string> = {};
   for (const { snippets } of loaded) for (const s of snippets) out[s.id] = sha(s.text, 10);
@@ -153,7 +188,7 @@ export function diffSnapshots(
 }
 
 export function writeSnapshot(bank: Bank): { readings: number; snippets: number } {
-  const composed = composeSnapshot(bank);
+  const composed = composeFullSnapshot(bank);
   const hashes = textHashes();
   mkdirSync(dirname(COMPOSED_FILE), { recursive: true });
   writeFileSync(COMPOSED_FILE, `${JSON.stringify(composed, null, 1)}\n`);

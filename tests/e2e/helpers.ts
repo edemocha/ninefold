@@ -34,6 +34,22 @@ export async function enter(page: Page, p: Person = AMELIA, now: Date = OCT_1_20
 }
 
 /** Client-side navigation: the profile lives in memory, so never reload between screens. */
-export async function go(page: Page, tab: 'Snapshot' | 'Name grid' | 'Life timeline' | 'Year' | 'Month' | 'Day'): Promise<void> {
+export async function go(page: Page, tab: 'Snapshot' | 'Name grid' | 'Life timeline' | 'Year' | 'Month' | 'Day' | 'Between us'): Promise<void> {
   await page.getByRole('navigation', { name: 'Your reading' }).getByRole('link', { name: tab, exact: true }).click();
+}
+
+export type Partner = { label?: string; day: number; month: number; year: number };
+
+/** A second made-up person for Between us: life path 3, a personal year 5 in 2026. */
+export const SAM: Partner = { label: 'Sam', day: 2, month: 11, year: 1988 };
+
+/** Fills the Between us form and submits it. The profile must already be entered. */
+export async function addPartner(page: Page, p: Partner): Promise<void> {
+  const form = page.getByTestId('pair-form');
+  if (p.label) await form.getByLabel(/^Nickname/).fill(p.label);
+  await expect(form.locator('select').nth(2).locator('option')).not.toHaveCount(1);
+  await form.getByLabel('Day', { exact: true }).selectOption(String(p.day));
+  await form.getByLabel('Month', { exact: true }).selectOption(String(p.month));
+  await form.getByLabel('Year', { exact: true }).selectOption(String(p.year));
+  await form.getByRole('button', { name: 'Show us side by side' }).click();
 }

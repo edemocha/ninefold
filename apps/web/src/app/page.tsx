@@ -10,6 +10,7 @@ const OUTPUTS = [
   { n: '2', title: 'Name grid', text: 'Your letters, vowels against consonants, the numbers your name lacks and the one it repeats.' },
   { n: '3', title: 'Life timeline', text: 'Four pinnacles and four challenges on an age axis. Drag the marker to any age from 0 to 100.' },
   { n: '4', title: 'Year, month and day', text: 'A personal year with twelve month tiles, a calendar of personal days and a short card for any date.' },
+  { n: '5', title: 'Between us', text: 'Add someone to see two life paths side by side, and the fixed gap between your cycles, with the arithmetic. No score, only things to talk about.' },
 ];
 
 export default function HomePage() {

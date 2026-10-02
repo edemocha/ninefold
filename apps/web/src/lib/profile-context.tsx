@@ -23,6 +23,13 @@ import { localYMD } from './today';
  */
 export type Profile = { birthName: string; usedName: string; birth: YMD };
 
+/**
+ * A second person for Between us: a birth date and an optional nickname, held
+ * exactly like the first profile (React state, this tab only). The nickname is
+ * only ever shown on screen. It is never in an image, a link or a request.
+ */
+export type Partner = { label: string; birth: YMD };
+
 type Who = 'birth' | 'current';
 
 /**
@@ -52,6 +59,12 @@ type ProfileContextValue = {
   /** Whole years old today, or null before a profile exists. */
   age: number | null;
   under16: boolean;
+  /** The second person added on the Between us tab, or null. */
+  partner: Partner | null;
+  /** True when the second person is under 16. */
+  partnerUnder16: boolean;
+  setPartner: (partner: Partner) => void;
+  clearPartner: () => void;
   submit: (profile: Profile, conventions: Conventions) => void;
   setConventions: (next: Conventions) => void;
   setWho: (who: Who) => void;
@@ -66,6 +79,7 @@ const Ctx = createContext<ProfileContextValue | null>(null);
 
 export function ProfileProvider({ children }: { children: ReactNode }) {
   const [profile, setProfile] = useState<Profile | null>(null);
+  const [partner, setPartnerState] = useState<Partner | null>(null);
   const [view, setViewState] = useState<View>({});
   const hash = useHash();
 
@@ -102,8 +116,20 @@ export function ProfileProvider({ children }: { children: ReactNode }) {
     [setConventions],
   );
 
+  // Analytics stay off for the rest of the visit once either person is under 16.
+  const setPartner = useCallback(
+    (p: Partner) => {
+      setPartnerState(p);
+      if (ageOn(p.birth, localYMD(), conventions) < 16) blockAnalytics();
+    },
+    [conventions],
+  );
+  const clearPartner = useCallback(() => setPartnerState(null), []);
+
+  // Forgetting clears both people.
   const forget = useCallback(() => {
     setProfile(null);
+    setPartnerState(null);
     setViewState({});
     setHash({ who: null });
   }, []);
@@ -122,6 +148,10 @@ export function ProfileProvider({ children }: { children: ReactNode }) {
       core,
       age,
       under16: age !== null && age < 16,
+      partner,
+      partnerUnder16: partner !== null && ageOn(partner.birth, localYMD(), conventions) < 16,
+      setPartner,
+      clearPartner,
       submit,
       setConventions,
       setWho,
@@ -130,7 +160,7 @@ export function ProfileProvider({ children }: { children: ReactNode }) {
       setView,
       hash,
     };
-  }, [profile, conventions, who, submit, setConventions, setWho, forget, view, setView, hash]);
+  }, [profile, partner, conventions, who, submit, setConventions, setWho, setPartner, clearPartner, forget, view, setView, hash]);
 
   return <Ctx.Provider value={value}>{children}</Ctx.Provider>;
 }

@@ -55,6 +55,15 @@ export type DayLayer = {
   caution: CautionTable;
 };
 
+/** Between us: text about a pair of single-digit numbers, keyed "3-7" with the smaller first. */
+export type PairLayer = {
+  core: Record<string, Sections<'meet' | 'stretch' | 'talk'>>;
+  /** One short note when a master number is in the pair: "11", "22", "33" or "both". */
+  master: Record<string, string>;
+  /** The gap between two people's cycles, by the shorter way round the nine ("0" to "4"). */
+  rhythm: Record<string, Sections<'meaning' | 'use' | 'talk'>>;
+};
+
 export type ReleaseManifest = {
   version: string;
   generatedFrom: string;
@@ -62,5 +71,5 @@ export type ReleaseManifest = {
   words: number;
   /** Counts by status, so a build shows how much of the bank is approved. */
   status: { draft: number; edited: number; approved: number };
-  layers: Record<'core' | 'life' | 'year' | 'month' | 'day', { file: string; snippets: number; words: number; sha256: string }>;
+  layers: Record<'core' | 'life' | 'year' | 'month' | 'day' | 'pair', { file: string; snippets: number; words: number; sha256: string }>;
 };

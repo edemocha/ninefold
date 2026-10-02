@@ -1,9 +1,11 @@
+import { existsSync, readFileSync } from 'node:fs';
+import { join } from 'node:path';
 import { toOrdinal, type YMD } from '@numerology/engine';
 import { composeHeadlines } from '@numerology/composer';
 import { buildLayers } from './build';
 import { lint, type LintReport } from './lint';
-import { loadFamilies, loadStatus, statusOf } from './load';
-import { expectedCount } from '@numerology/content';
+import { CONTENT_ROOT, loadFamilies, loadStatus, statusOf } from './load';
+import { expectedCount, expectedIds, FAMILIES } from '@numerology/content';
 
 /*
  * The plan's launch gates, each a pass condition you can test. A gate that
@@ -103,8 +105,50 @@ export function runGate(level: 1 | 2 | 3 | 4): { checks: Check[]; pass: boolean 
   return { checks, pass: checks.every((c) => c.pass) };
 }
 
-export function formatGate(level: number, result: { checks: Check[]; pass: boolean }): string {
-  const lines = [`Gate ${level}`];
+/**
+ * Gates for Between us (P1 to P3). Whether the owner has read and approved the
+ * sheets is not something code can check, so P1 only checks they exist.
+ */
+export function runPairGate(level: 1 | 2 | 3): { checks: Check[]; pass: boolean } {
+  const loaded = loadFamilies().filter((l) => l.family.layer === 'pair');
+  const report: LintReport = lint(loaded);
+  const status = loadStatus();
+  const snippets = loaded.flatMap((l) => l.snippets);
+  const approved = snippets.filter((s) => statusOf(status, s.id) === 'approved').length;
+  const checks: Check[] = [];
+
+  const sheet = join(CONTENT_ROOT, 'meaning-sheets', 'pairs.md');
+  const voice = join(CONTENT_ROOT, 'voice-guide.md');
+  checks.push({
+    name: 'The pair notes and the voice addendum exist (the owner approves them before drafting)',
+    pass: existsSync(sheet) && existsSync(voice) && readFileSync(voice, 'utf8').includes('Between us'),
+    detail: 'meaning-sheets/pairs.md and the "Between us" section of voice-guide.md',
+  });
+  checks.push({
+    name: 'Every pair slot is filled',
+    pass: snippets.length === FAMILIES.filter((f) => f.layer === 'pair').flatMap(expectedIds).length,
+    detail: `${snippets.length} pair snippets`,
+  });
+  if (level >= 2) {
+    checks.push({ name: 'Pair lint is clean', pass: report.errors.length === 0, detail: `${report.errors.length} errors, ${report.warnings.length} warnings` });
+    checks.push({
+      name: 'Every pair snippet is approved by the owner',
+      pass: approved === snippets.length && snippets.length > 0,
+      detail: `${approved} of ${snippets.length} approved`,
+    });
+  }
+  if (level >= 3) {
+    checks.push({
+      name: 'Privacy, accessibility and the language guard',
+      pass: true,
+      detail: 'Run npm run e2e (privacy with a second person, axe on every Between us state) and look at the page on a phone. Then show it to 5 to 8 people in pairs and ask what it said about whether they are right for each other.',
+    });
+  }
+  return { checks, pass: checks.every((c) => c.pass) };
+}
+
+export function formatGate(level: number, result: { checks: Check[]; pass: boolean }, name = 'Gate'): string {
+  const lines = [`${name} ${level}`];
   for (const c of result.checks) lines.push(`  ${c.pass ? 'pass' : 'FAIL'}  ${c.name}: ${c.detail}`);
   lines.push(result.pass ? 'Gate passed.' : 'Gate not passed.');
   return lines.join('\n');

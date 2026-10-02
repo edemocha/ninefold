@@ -2,6 +2,7 @@ import { existsSync, readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { RULES, wordCount } from '@numerology/content';
 import { buildCautionRequest } from './caution-draft';
+import { buildPairRequest } from './pair-draft';
 import { parseId } from './edit';
 import { CONTENT_ROOT, loadFamilies, loadStatus, statusOf } from './load';
 
@@ -30,8 +31,10 @@ function readIfExists(path: string): string {
 }
 
 /** The banned list, as readable words, straight from the lint rules. */
-export function bannedList(): string {
-  return RULES.map((g) => `${g.id}: ${g.patterns.map((p) => p.source.replace(/\\b/g, '').replace(/\\/g, '')).join(', ')}`).join('\n');
+export function bannedList(also: readonly string[] = []): string {
+  return RULES.filter((g) => !g.optIn || also.includes(g.id))
+    .map((g) => `${g.id}: ${g.patterns.map((p) => p.source.replace(/\\b/g, '').replace(/\\/g, '')).join(', ')}`)
+    .join('\n');
 }
 
 function describeSlot(id: string): { family: string; keys: string[]; variant?: number; layer: string; facet?: string } {
@@ -52,6 +55,10 @@ export function buildDraftRequest(id: string, contentRoot = CONTENT_ROOT): Draft
   if (parsed.family.caution) {
     const c = buildCautionRequest(id, contentRoot);
     return { id, model: DRAFT_MODEL, system: c.system, user: c.user, tool: c.tool, budget: parsed.family.words, expectId: c.expectId };
+  }
+  if (parsed.family.layer === 'pair') {
+    const p = buildPairRequest(id, bannedList(parsed.family.also), contentRoot);
+    return { id, model: DRAFT_MODEL, system: p.system, user: p.user, tool: p.tool, budget: parsed.family.words };
   }
   const loaded = loadFamilies(join(contentRoot, 'data')).find((l) => l.family.id === slot.family);
   const status = loadStatus(join(contentRoot, 'status.json'));
@@ -74,7 +81,7 @@ export function buildDraftRequest(id: string, contentRoot = CONTENT_ROOT): Draft
     voice,
     '',
     'Banned and flagged words (the lint fails the draft if any appear):',
-    bannedList(),
+    bannedList(parsed.family.also),
   ].join('\n');
 
   const user = [

@@ -1,17 +1,16 @@
 'use client';
 
 import { useRouter } from 'next/navigation';
-import { useId, useMemo, useState, type FormEvent } from 'react';
+import { useId, useState, type FormEvent } from 'react';
 import {
   CONVENTION_SPEC,
   DEFAULT_CONVENTIONS,
-  daysInMonth,
   isDefaultConventions,
-  MONTH_NAMES,
   nameNumbers,
   validateBirth,
   type Conventions,
 } from '@numerology/engine';
+import { DateFields, EMPTY_DATE, toYMD, type DateValue } from './date-fields';
 import { Disclaimer } from './disclaimer';
 import { Icon } from './icon';
 import { track } from '@/lib/analytics';
@@ -31,24 +30,12 @@ export function ProfileForm() {
 
   const [birthName, setBirthName] = useState(profile?.birthName ?? '');
   const [usedName, setUsedName] = useState(profile?.usedName ?? '');
-  const [day, setDay] = useState(profile ? String(profile.birth.day) : '');
-  const [month, setMonth] = useState(profile ? String(profile.birth.month) : '');
-  const [year, setYear] = useState(profile ? String(profile.birth.year) : '');
+  const [date, setDate] = useState<DateValue>(
+    profile ? { day: String(profile.birth.day), month: String(profile.birth.month), year: String(profile.birth.year) } : EMPTY_DATE,
+  );
   const [errors, setErrors] = useState<{ name?: string; used?: string; date?: string }>({});
 
   const notice = parseHash(hash).get('notice') === 'reload';
-
-  const years = useMemo(() => {
-    if (!today) return [];
-    return Array.from({ length: today.year - 1900 + 1 }, (_, i) => today.year - i);
-  }, [today]);
-
-  const impossible = useMemo(() => {
-    const d = Number(day);
-    const m = Number(month);
-    const y = Number(year);
-    return d && m && y ? d > daysInMonth(y, m) : false;
-  }, [day, month, year]);
 
   function onSubmit(event: FormEvent) {
     event.preventDefault();
@@ -64,15 +51,15 @@ export function ProfileForm() {
       if (!used.ok) next.used = used.issues.find((i) => i.blocking)?.message;
     }
 
-    const birth = { year: Number(year), month: Number(month), day: Number(day) };
-    if (!day || !month || !year) next.date = t('form.error.date');
+    const birth = toYMD(date);
+    if (!birth) next.date = t('form.error.date');
     else {
       const issue = validateBirth(birth, today);
       if (issue) next.date = issue.message;
     }
 
     setErrors(next);
-    if (Object.keys(next).length > 0) return;
+    if (Object.keys(next).length > 0 || !birth) return;
 
     submit({ birthName: birthName.trim(), usedName: usedName.trim(), birth }, conventions);
     track('calculate');
@@ -82,8 +69,6 @@ export function ProfileForm() {
   function choose<K extends ConventionField>(field: K, value: Conventions[K]) {
     setConventions({ ...conventions, [field]: value });
   }
-
-  const dayMax = Number(year) && Number(month) ? daysInMonth(Number(year), Number(month)) : 31;
 
   return (
     <form onSubmit={onSubmit} noValidate className="card space-y-7 p-6 sm:p-8" aria-describedby={`${uid}-privacy`}>
@@ -146,60 +131,7 @@ export function ProfileForm() {
         ) : null}
       </div>
 
-      <fieldset className="space-y-2">
-        <legend className="mb-2 font-medium text-ink-strong">{t('form.birthDate')}</legend>
-        <div className="grid grid-cols-[5.5rem_1fr_6.5rem] gap-3">
-          <div>
-            <label htmlFor={`${uid}-day`} className="sr-only">
-              {t('form.day')}
-            </label>
-            <select id={`${uid}-day`} className="field" value={day} onChange={(e) => setDay(e.target.value)} aria-invalid={errors.date || impossible ? true : undefined}>
-              <option value="">{t('form.day')}</option>
-              {Array.from({ length: 31 }, (_, i) => i + 1).map((d) => (
-                <option key={d} value={d} disabled={d > dayMax}>
-                  {d}
-                </option>
-              ))}
-            </select>
-          </div>
-          <div>
-            <label htmlFor={`${uid}-month`} className="sr-only">
-              {t('form.month')}
-            </label>
-            <select id={`${uid}-month`} className="field" value={month} onChange={(e) => setMonth(e.target.value)} aria-invalid={errors.date || impossible ? true : undefined}>
-              <option value="">{t('form.month')}</option>
-              {MONTH_NAMES.map((name, i) => (
-                <option key={name} value={i + 1}>
-                  {name}
-                </option>
-              ))}
-            </select>
-          </div>
-          <div>
-            <label htmlFor={`${uid}-year`} className="sr-only">
-              {t('form.year')}
-            </label>
-            <select id={`${uid}-year`} className="field" value={year} onChange={(e) => setYear(e.target.value)} aria-invalid={errors.date || impossible ? true : undefined}>
-              <option value="">{t('form.year')}</option>
-              {years.map((y) => (
-                <option key={y} value={y}>
-                  {y}
-                </option>
-              ))}
-            </select>
-          </div>
-        </div>
-        {impossible ? (
-          <p role="alert" className="text-sm text-[color:var(--bad-ink)]">
-            That date does not exist. Pick a day that fits the month.
-          </p>
-        ) : null}
-        {errors.date ? (
-          <p role="alert" className="text-sm text-[color:var(--bad-ink)]">
-            {errors.date}
-          </p>
-        ) : null}
-      </fieldset>
+      <DateFields id={uid} legend={t('form.birthDate')} value={date} onChange={setDate} today={today} error={errors.date} />
 
       <details className="group rounded-lg border border-line bg-surface-2 px-4 py-1" data-testid="advanced">
         <summary className="flex min-h-12 items-center gap-2 text-sm font-medium text-ink-strong">

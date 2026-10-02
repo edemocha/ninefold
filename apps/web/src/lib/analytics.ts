@@ -6,7 +6,7 @@
  * shows they are under 16, nothing more is sent.
  */
 
-export const ALLOWED_EVENTS = ['pageview', 'calculate', 'export_pdf', 'export_ics', 'export_image'] as const;
+export const ALLOWED_EVENTS = ['pageview', 'calculate', 'between', 'export_pdf', 'export_ics', 'export_image'] as const;
 export type AnalyticsEvent = (typeof ALLOWED_EVENTS)[number];
 
 type PlausibleFn = (name: string, options?: { u?: string }) => void;

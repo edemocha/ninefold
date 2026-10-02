@@ -1,0 +1,17 @@
+{
+  "note": "Hand-worked pair vectors under the default conventions (date rule A2, calendar years) unless a case says otherwise. The gap is (first - second) mod 9 of the two single-digit sums of birth month + birth day.",
+  "lifePaths": [
+    { "a": "1990-03-14", "b": "1988-11-02", "aValue": 9, "bValue": 3, "key": "3-9", "overlay": "none" },
+    { "a": "2003-03-03", "b": "1990-03-14", "aValue": 11, "bValue": 9, "key": "2-9", "overlay": "11" },
+    { "a": "2002-09-09", "b": "1990-03-14", "aValue": 22, "bValue": 9, "key": "4-9", "overlay": "22" },
+    { "a": "2003-03-03", "b": "2002-09-09", "aValue": 11, "bValue": 22, "key": "2-4", "overlay": "both" },
+    { "a": "1985-06-17", "b": "1985-06-17", "aValue": 1, "bValue": 1, "key": "1-1", "overlay": "none" }
+  ],
+  "gaps": [
+    { "a": "1990-03-14", "b": "1988-11-02", "on": "2026-10-01", "conventions": {}, "forward": 4, "back": 5, "distance": 4, "aYear": 9, "bYear": 5, "shifted": false },
+    { "a": "1985-06-17", "b": "1985-06-17", "on": "2026-10-01", "conventions": {}, "forward": 0, "back": 0, "distance": 0, "aYear": 6, "bYear": 6, "shifted": false },
+    { "a": "2000-02-29", "b": "1999-12-31", "on": "2027-01-05", "conventions": {}, "forward": 6, "back": 3, "distance": 3, "aYear": 6, "bYear": 9, "shifted": false },
+    { "a": "1990-03-14", "b": "1988-11-02", "on": "2026-06-01", "conventions": { "cycleYear": "birthday" }, "forward": 5, "back": 4, "distance": 4, "aYear": 9, "bYear": 4, "shifted": true },
+    { "a": "1990-03-14", "b": "1988-11-02", "on": "2026-12-01", "conventions": { "cycleYear": "birthday" }, "forward": 4, "back": 5, "distance": 4, "aYear": 9, "bYear": 5, "shifted": false }
+  ]
+}

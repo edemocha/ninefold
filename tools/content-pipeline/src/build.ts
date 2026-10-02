@@ -1,4 +1,4 @@
-import type { CoreLayer, DayLayer, LifeLayer, MonthLayer, YearLayer } from '@numerology/content';
+import type { CoreLayer, DayLayer, LifeLayer, MonthLayer, PairLayer, YearLayer } from '@numerology/content';
 import type { Bank } from '@numerology/composer';
 import { loadFamilies, readSourceFile, type LoadedFamily } from './load';
 
@@ -8,6 +8,7 @@ export type Layers = {
   year: YearLayer;
   month: MonthLayer;
   day: DayLayer;
+  pair: PairLayer;
 };
 
 type Obj = Record<string, unknown>;
@@ -21,9 +22,9 @@ function setPath(root: Obj, path: string[], value: unknown): void {
   cur[path[path.length - 1] as string] = value;
 }
 
-/** Assembles the five released layers from the source files. */
+/** Assembles the six released layers from the source files. */
 export function buildLayers(loaded: LoadedFamily[] = loadFamilies()): Layers {
-  const layers: Record<'life' | 'year' | 'month' | 'day', Obj> = { life: {}, year: {}, month: {}, day: {} };
+  const layers: Record<'life' | 'year' | 'month' | 'day' | 'pair', Obj> = { life: {}, year: {}, month: {}, day: {}, pair: {} };
   for (const { family, data } of loaded) {
     setPath(layers[family.layer], family.path, data);
   }
@@ -34,6 +35,7 @@ export function buildLayers(loaded: LoadedFamily[] = loadFamilies()): Layers {
     year: layers.year as unknown as YearLayer,
     month: layers.month as unknown as MonthLayer,
     day: layers.day as unknown as DayLayer,
+    pair: layers.pair as unknown as PairLayer,
   };
 }
 
