@@ -21,11 +21,20 @@ for (const scheme of ['light'] as const) {
 
     test('public pages', async ({ page }) => {
       test.setTimeout(90_000);
-      for (const path of ['/', '/numbers', '/numbers/8', '/numbers/22', '/method', '/privacy', '/terms']) {
+      for (const path of ['/', '/numbers', '/numbers/8', '/numbers/22', '/between', '/between/3-7', '/between/2-4', '/between/8-8', '/method', '/privacy', '/terms']) {
         await page.goto(path);
         await page.waitForLoadState('networkidle');
         await audit(page, `${scheme} ${path}`);
       }
+    });
+
+    test('the dates-only form on the pair pages, empty and with errors', async ({ page }) => {
+      await page.goto('/between/3-7');
+      await expect(page.getByTestId('dates-only-form')).toBeVisible();
+      await audit(page, `${scheme} dates-only form`);
+      await page.getByTestId('dates-only-form').getByRole('button', { name: 'Show us side by side' }).click();
+      await expect(page.getByText('Choose a day, month and year.').first()).toBeVisible();
+      await audit(page, `${scheme} dates-only form with errors`);
     });
 
     test('the input form with the Advanced panel open and with errors', async ({ page }) => {

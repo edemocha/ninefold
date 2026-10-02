@@ -1,6 +1,6 @@
 import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
-import type { CoreLayer, LifeLayer } from '@numerology/content';
+import type { CoreLayer, LifeLayer, PairLayer } from '@numerology/content';
 
 /*
  * Build-time access to the released content, for the static meaning pages.
@@ -18,7 +18,7 @@ export function releasedVersion(): string {
   return readJson<{ version: string }>(join(ROOT, 'current.json')).version;
 }
 
-export function readReleasedLayer<T>(layer: 'core' | 'life'): T {
+export function readReleasedLayer<T>(layer: 'core' | 'life' | 'pair'): T {
   return readJson<T>(join(ROOT, releasedVersion(), `${layer}.json`));
 }
 
@@ -28,4 +28,8 @@ export function readCore(): CoreLayer {
 
 export function readLife(): LifeLayer {
   return readReleasedLayer<LifeLayer>('life');
+}
+
+export function readPair(): PairLayer {
+  return readReleasedLayer<PairLayer>('pair');
 }

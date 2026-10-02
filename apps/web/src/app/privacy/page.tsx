@@ -29,6 +29,7 @@ export default function PrivacyPage() {
       <ul className="list-disc space-y-2 pl-5">
         <li>The page, its fonts and its readings are static files served from this site. Fetching them does not involve anything you typed.</li>
         <li>Exports (the year report, calendar files and share image) are made in your browser and carry numbers only. They do not contain your name or birth date.</li>
+        <li>The Two numbers pages are static files with no personal data in them. Their form for two birth dates, with no name, works like the main one: what you type stays in the tab.</li>
       </ul>
 
       <h2 className="mt-12 mb-3 text-2xl">Counting visits</h2>

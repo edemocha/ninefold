@@ -1,9 +1,10 @@
 import type { Metadata } from 'next';
 import Link from '@/components/link';
 import { notFound } from 'next/navigation';
+import { cap, numberWithArticle } from '@numerology/composer';
 import { Disclaimer } from '@/components/disclaimer';
 import { readCore, readLife } from '@/lib/content-fs';
-import { ALL_VALUES, rootOf } from '@/lib/site';
+import { ALL_VALUES, pairSlug, rootOf } from '@/lib/site';
 
 export const dynamicParams = false;
 
@@ -111,6 +112,28 @@ export default async function NumberMeaning({ params }: { params: Promise<{ n: s
           <p className="reading text-[1.02rem] leading-relaxed">{pinnacle.theme}</p>
         </section>
       ) : null}
+
+      <section className="mt-12" aria-labelledby="pairs-title" data-testid="number-pairs">
+        <h2 id="pairs-title" className="section-title mb-2">
+          Side by side with another number
+        </h2>
+        <p className="max-w-[60ch] text-sm text-muted">
+          What a {value} tends to bring next to each of the other numbers, and where each may stretch.{value > 9 ? ` A master number uses its root, ${rootOf(value)}, for pairs.` : ''}
+        </p>
+        <ul className="mt-4 flex flex-wrap gap-2">
+          {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((other) => (
+            <li key={other}>
+              <Link
+                href={`/between/${pairSlug(value, other)}`}
+                aria-label={cap(`${numberWithArticle(String(rootOf(value)))} and ${numberWithArticle(String(other))}`)}
+                className={`tint-${other} inline-flex min-h-11 min-w-16 items-center justify-center rounded-md border border-line px-3 font-mono text-sm text-ink-strong hover:border-[var(--primary)]`}
+              >
+                {rootOf(value)}·{other}
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </section>
 
       <section className="card-flat mt-16 flex flex-wrap items-center justify-between gap-5 p-7">
         <div>

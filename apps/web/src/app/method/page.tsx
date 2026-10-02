@@ -144,7 +144,7 @@ export default function MethodPage() {
       <H2 id="between">Between us: two people, side by side</H2>
       <p>
         Between us sets two people&apos;s life paths next to each other and shows the gap between their cycles. A pair of life paths is the two single-digit roots, smaller first, so a 3 and a 7 read the same in either order.
-        A master number (11, 22 or 33) uses its root and adds one short note.
+        A master number (11, 22 or 33) uses its root and adds one short note. The pages under Two numbers show this pair text for each of the 45 pairs, with no dates entered.
       </p>
       <p className="mt-3">
         The gap is plain arithmetic. A personal year is the birth month plus the birth day plus the year, cut to a single digit, and the personal month and day add the same month and day for both people. The year, the month and the

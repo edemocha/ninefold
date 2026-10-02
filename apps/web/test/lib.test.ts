@@ -3,6 +3,7 @@ import { DEFAULT_CONVENTIONS, personalDay, parseConventions, serializeConvention
 import { buildIcs, escapeIcsText, foldLine } from '../src/lib/ics';
 import { hashWith, hrefWith, parseHash, parseYmdParam, ymdParam } from '../src/lib/hash';
 import { localYMD, msUntilLocalMidnight, ymdAtOffset } from '../src/lib/today';
+import { ALL_VALUES, PAIR_SLUGS, pairSlug } from '../src/lib/site';
 import { t } from '../src/lib/t';
 
 describe('calendar files', () => {
@@ -111,5 +112,36 @@ describe('interface strings', () => {
   it('fills placeholders', () => {
     expect(t('reading.karmic', { debt: '19/1' })).toBe('Karmic debt 19/1');
     expect(t('reading.lifePathLine', { lifePath: '11/2' })).toBe('For your life path 11/2');
+  });
+});
+
+describe('the public pair pages', () => {
+  it('has one page for each pair of single digits, smaller number first, 45 in all', () => {
+    expect(PAIR_SLUGS).toHaveLength(45);
+    expect(new Set(PAIR_SLUGS).size).toBe(45);
+    for (const slug of PAIR_SLUGS) {
+      const [a, b] = slug.split('-').map(Number) as [number, number];
+      expect(a).toBeGreaterThanOrEqual(1);
+      expect(b).toBeLessThanOrEqual(9);
+      expect(a).toBeLessThanOrEqual(b);
+    }
+    expect(PAIR_SLUGS[0]).toBe('1-1');
+    expect(PAIR_SLUGS[44]).toBe('9-9');
+  });
+
+  it('sends two numbers in either order, and a master number by its root, to the same page', () => {
+    expect(pairSlug(7, 3)).toBe('3-7');
+    expect(pairSlug(3, 7)).toBe('3-7');
+    expect(pairSlug(11, 9)).toBe('2-9');
+    expect(pairSlug(22, 22)).toBe('4-4');
+    expect(pairSlug(33, 1)).toBe('1-6');
+  });
+
+  it('has a page for every pair a visitor can pick from any of the twelve numbers', () => {
+    for (const a of ALL_VALUES) for (const b of ALL_VALUES) expect(PAIR_SLUGS, `${a} and ${b}`).toContain(pairSlug(a, b));
+  });
+
+  it('names the header link for the public pages', () => {
+    expect(t('nav.pairs')).toBe('Two numbers');
   });
 });
