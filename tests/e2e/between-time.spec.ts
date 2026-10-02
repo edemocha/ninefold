@@ -1,5 +1,5 @@
 import { expect, test, type Page } from '@playwright/test';
-import { addPartner, enter, go, SAM } from './helpers';
+import { addPartner, AMELIA, enter, go, SAM } from './helpers';
 
 /*
  * Between us over time: day by day, month, and life stages. Every text on
@@ -74,6 +74,10 @@ test.describe('Between us: day by day', () => {
     await expect(you).toContainText('Day 8 is about effort and follow-through.');
     await expect(other).toContainText('Day 7 is about reflection, study and quiet.');
     await expect(page.getByText('A question for the day')).toHaveCount(2);
+    // One line for the two day numbers together: day 8 beside day 7 is the pair 7-8.
+    const bridge = page.getByTestId('pair-day-bridge');
+    await expect(bridge.getByRole('heading')).toHaveText('The two days together');
+    await expect(bridge).toContainText('A day 7 beside a day 8:');
     await expect(page.getByTestId('pair-day-gap')).toHaveText('Your numbers are 1 step apart.');
     await expect(page.getByTestId('rhythm-duo').getByRole('img')).toHaveAttribute('aria-label', 'Nine-number cycle. You are on 8. Sam is on 7.');
   });
@@ -88,9 +92,11 @@ test.describe('Between us: day by day', () => {
     await expect(page.getByTestId('pair-day-you').getByLabel('Personal day 9')).toBeVisible();
     await expect(page.getByTestId('pair-day-other').getByLabel('Personal day 8')).toBeVisible();
     await expect(page.getByTestId('pair-day-gap')).toHaveText('Your numbers are 1 step apart.');
+    await expect(page.getByTestId('pair-day-bridge')).toContainText('A day 8 beside a day 9:');
 
     await page.getByTestId('pair-date-picker').fill('2026-12-25');
     await expect(page.getByTestId('pair-day-label')).toHaveText('Friday 25 Dec 2026');
+    await expect(page.getByTestId('pair-day-bridge')).toContainText('A day 6 beside a day 7:');
     await expect(page.getByTestId('pair-day-you').getByLabel('Personal day 7')).toBeVisible();
     await expect(page.getByTestId('pair-day-other').getByLabel('Personal day 6')).toBeVisible();
     await expect(page.getByTestId('pair-day-gap')).toHaveText('Your numbers are 1 step apart.');
@@ -106,6 +112,30 @@ test.describe('Between us: day by day', () => {
       await page.getByTestId('pair-date-picker').fill(date);
       await expect(page.getByTestId('pair-day-gap')).toHaveText('Your numbers are 1 step apart.');
     }
+  });
+});
+
+test.describe('Between us: the bridge line', () => {
+  test('reads the same words for the same two numbers, whichever of you is which, and has its own text for two of a kind', async ({ page }) => {
+    await enter(page);
+    await go(page, 'Between us');
+    // Born on the same month and day as Amelia, so the two of you are always on the same number.
+    await addPartner(page, { label: 'Twin', day: AMELIA.day, month: AMELIA.month, year: 2001 });
+    await openSection(page, 'Day by day');
+    await expect(page.getByTestId('pair-day-bridge')).toContainText('Two day 8s on the same date:');
+    await page.getByTestId('pair-date-picker').fill('2026-10-02');
+    await expect(page.getByTestId('pair-day-bridge')).toContainText('Two day 9s on the same date:');
+  });
+
+  test('is a fixed file, the same for everyone, with no personal data in the request', async ({ page }) => {
+    const urls: string[] = [];
+    page.on('request', (r) => urls.push(r.url()));
+    await ready(page);
+    await openSection(page, 'Day by day');
+    await expect(page.getByTestId('pair-day-bridge')).toBeVisible();
+    const pair = urls.filter((u) => u.includes('/content/') && u.endsWith('/pair.json'));
+    expect(pair.length).toBeGreaterThan(0);
+    for (const u of pair) expect(new URL(u).pathname).toMatch(/^\/content\/v[\w.-]+\/pair\.json$/);
   });
 });
 

@@ -1,4 +1,4 @@
-import { cycleGap, personalMonthOn, type Conventions, type Result, type YMD } from '@numerology/engine';
+import { cycleGap, numberPair, personalMonthOn, type Conventions, type Result, type YMD } from '@numerology/engine';
 import { need, type Bank } from './bank';
 import { composeDay } from './day';
 import { dateLabel } from './format';
@@ -40,6 +40,12 @@ export type PairDay = {
   sides: [PairDaySide, PairDaySide];
   /** How many steps apart the two day numbers are, on this date. */
   gap: { forward: number; back: number; distance: number; headline: string };
+  /**
+   * One line on the two day numbers together, from the bank: "A day 7 beside a
+   * day 8: ...". It reads the same in either order, and says nothing about the
+   * two people beyond what the two numbers tend to bring.
+   */
+  bridge: { key: string; text: string; source: string };
   /** Snippet ids used, for the snapshot's blast radius. */
   sources: string[];
 };
@@ -68,17 +74,20 @@ export function composePairDay(
     };
   };
   const gap = cycleGap(birthYou, birthOther, date, c);
+  const { key } = numberPair(cards[0].personalDay, cards[1].personalDay);
+  const bridgeText = need(bank, 'pair').moment[key] ?? '';
   return {
     date,
     label: dateLabel(date),
     sides: [sideOf('you', 0), sideOf('other', 1)],
+    bridge: { key, text: bridgeText, source: `pair.moment.${key}` },
     gap: {
       forward: gap.forward,
       back: gap.back,
       distance: gap.distance,
       headline: gapSentences(gap, other, c.cycleYear === 'birthday').headline,
     },
-    sources: [...new Set([...cards[0].sources, ...cards[1].sources])],
+    sources: [...new Set([...cards[0].sources, ...cards[1].sources, `pair.moment.${key}`])],
   };
 }
 

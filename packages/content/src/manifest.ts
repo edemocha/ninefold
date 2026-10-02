@@ -371,6 +371,15 @@ export const FAMILIES: readonly Family[] = [
     also: PAIR_RULE_GROUPS,
   },
   {
+    id: 'pair.moment',
+    layer: 'pair',
+    file: 'pair/moment.json',
+    path: ['moment'],
+    axes: [PAIR_KEYS],
+    words: [18, 50],
+    also: PAIR_RULE_GROUPS,
+  },
+  {
     id: 'pair.type',
     layer: 'pair',
     file: 'pair/type.json',

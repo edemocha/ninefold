@@ -70,7 +70,7 @@ export default function PairDaysPage() {
         </div>
       </div>
 
-      <LayerGate layers={['day']}>{(bank) => <PairDayView bank={bank} date={date} />}</LayerGate>
+      <LayerGate layers={['day', 'pair']}>{(bank) => <PairDayView bank={bank} date={date} />}</LayerGate>
     </div>
   );
 }
@@ -116,6 +116,13 @@ function PairDayView({ bank, date }: { bank: Bank; date: YMD }) {
           </article>
         ))}
       </div>
+
+      <section className="card-flat space-y-2 p-5" aria-labelledby="pair-day-bridge-title" data-testid="pair-day-bridge">
+        <h4 id="pair-day-bridge-title" className="section-title">
+          {t('between.days.together')}
+        </h4>
+        <p className="reading max-w-[62ch] leading-relaxed">{day.bridge.text}</p>
+      </section>
 
       <div className="card-flat flex flex-wrap items-center gap-6 p-5">
         <RhythmDuo you={a.personalDay.root} other={b.personalDay.root} otherLabel={otherName} size={150} />

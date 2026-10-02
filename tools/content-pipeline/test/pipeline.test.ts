@@ -25,15 +25,15 @@ describe('the content bank', () => {
     expect(present.size).toBe(expectedCount());
   });
 
-  it('is the size the plan sized (about 1,279 snippets) plus 810 cautions and 172 for Between us', () => {
+  it('is the size the plan sized (about 1,279 snippets) plus 810 cautions and 217 for Between us', () => {
     const cautions = FAMILIES.filter((f) => f.caution).flatMap(expectedIds).length;
     const pair = FAMILIES.filter((f) => f.layer === 'pair').flatMap(expectedIds).length;
     const base = expectedCount() - cautions - pair;
     expect(base).toBeGreaterThanOrEqual(1270);
     expect(base).toBeLessThanOrEqual(1290);
     expect(cautions).toBe(810);
-    expect(pair).toBe(172);
-    expect(expectedCount()).toBe(base + 810 + 172);
+    expect(pair).toBe(217);
+    expect(expectedCount()).toBe(base + 810 + 217);
   });
 
   it('has lint clean: no banned claims, certainty words, fear hooks or missing reflection prompts', () => {

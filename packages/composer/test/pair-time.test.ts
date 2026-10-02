@@ -41,6 +41,38 @@ describe('a day, side by side', () => {
     expect(d.gap).toEqual({ forward: 1, back: 8, distance: 1, headline: 'Your numbers are 1 step apart.' });
   });
 
+  it('adds one bridge line for the two day numbers, the same in either order', () => {
+    const d = composePairDay(bank, you, other, today, c, 'Sam');
+    // Day 8 beside day 7 is the pair 7-8, whichever of you is which.
+    expect(d.bridge.key).toBe('7-8');
+    expect(d.bridge.source).toBe('pair.moment.7-8');
+    expect(d.bridge.text).toBe(bank.pair?.moment['7-8']);
+    expect(d.bridge.text.startsWith('A day 7 beside a day 8:')).toBe(true);
+    expect(d.sources).toContain('pair.moment.7-8');
+    const swapped = composePairDay(bank, other, you, today, c, 'Sam');
+    expect(swapped.bridge).toEqual(d.bridge);
+
+    // Day 7 beside day 6 on 25 December, and two of the same number for twins.
+    expect(composePairDay(bank, you, other, { year: 2026, month: 12, day: 25 }, c).bridge.key).toBe('6-7');
+    const twin = composePairDay(bank, you, { year: 2001, month: 6, day: 17 }, today, c);
+    expect(twin.bridge.key).toBe('8-8');
+    expect(twin.bridge.text.startsWith('Two day 8s on the same date:')).toBe(true);
+  });
+
+  it('has a bridge line for every pair of day numbers that two people can be on', () => {
+    const seen = new Set<string>();
+    for (let gap = 0; gap < 9; gap += 1) {
+      // A second person whose month and day sum sits `gap` steps from yours.
+      for (let day = 1; day <= 28; day += 1) {
+        const d = composePairDay(bank, you, { year: 1990, month: 1 + (gap % 12), day }, { year: 2026, month: 3, day: 1 + (day % 28) }, c);
+        expect(d.bridge.text.length, d.bridge.key).toBeGreaterThan(40);
+        seen.add(d.bridge.key);
+      }
+    }
+    expect(seen.size).toBeGreaterThan(20);
+    for (const key of seen) expect(bank.pair?.moment[key], key).toBeDefined();
+  });
+
   it('names real snippets as its sources', () => {
     const d = composePairDay(bank, you, other, today, c);
     expect(d.sources.length).toBeGreaterThan(8);

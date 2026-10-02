@@ -80,7 +80,12 @@ export function buildPairRequest(id: string, bannedList: string, contentRoot: st
   const [min, max] = family.words;
   const [first, section] = parsed.keys as [string, string | undefined];
 
-  const numbers = family.id === 'pair.core' ? first.split('-') : family.id === 'pair.master' && /^\d+$/.test(first) ? [first] : [];
+  const numbers =
+    family.id === 'pair.core' || family.id === 'pair.moment'
+      ? first.split('-')
+      : family.id === 'pair.master' && /^\d+$/.test(first)
+        ? [first]
+        : [];
   const sheets = numbers
     .map((n) => readIfExists(join(contentRoot, 'meaning-sheets', `${n}.md`)))
     .filter(Boolean)
@@ -98,7 +103,9 @@ export function buildPairRequest(id: string, bannedList: string, contentRoot: st
       ? `the pair of numbers ${first.replace('-', ' and ')}, section "${section}"`
       : family.id === 'pair.master'
         ? `the note for ${first === 'both' ? 'two master numbers' : `a master ${first}`} in a pair`
-        : family.id === 'pair.lens'
+        : family.id === 'pair.moment'
+          ? `the bridge line for two personal-day numbers, ${first.replace('-', ' and ')}, on the same date: start "A day ${first.split('-')[0]} beside a day ${first.split('-')[1]}:" (or "Two day ${first.split('-')[0]}s on the same date:" when they are the same), say what the two day themes tend to bring together, and give one small thing the two of you could try. Not a question, and not a prediction about the day`
+          : family.id === 'pair.lens'
           ? `the one-line frame for reading a pair through ${first === 'soulUrge' ? 'soul urge' : first}: what that number is about, in plain words, and that the pair text below is read as a prompt, not a verdict`
           : family.id === 'pair.type'
             ? `question ${section?.replace('q', '')} of 4 for two people who are ${first === 'couple' ? 'a couple' : first}`

@@ -14,10 +14,17 @@ const pairFamilies = loaded.filter((l) => l.family.layer === 'pair');
 const pair = pairFamilies.flatMap((l) => l.snippets);
 
 describe('Between us: the bank', () => {
-  it('has five families and 172 snippets, every slot filled', () => {
-    expect(FAMILIES.filter((f) => f.layer === 'pair').map((f) => f.id)).toEqual(['pair.core', 'pair.master', 'pair.rhythm', 'pair.lens', 'pair.type']);
+  it('has six families and 217 snippets, every slot filled', () => {
+    expect(FAMILIES.filter((f) => f.layer === 'pair').map((f) => f.id)).toEqual([
+      'pair.core',
+      'pair.master',
+      'pair.rhythm',
+      'pair.lens',
+      'pair.moment',
+      'pair.type',
+    ]);
     expect(PAIR_KEYS).toHaveLength(45);
-    expect(pairFamilies.map((l) => l.snippets.length)).toEqual([135, 4, 15, 2, 16]);
+    expect(pairFamilies.map((l) => l.snippets.length)).toEqual([135, 4, 15, 2, 45, 16]);
     const present = new Set(pair.map((s) => s.id));
     expect(FAMILIES.filter((f) => f.layer === 'pair').flatMap(expectedIds).filter((id) => !present.has(id))).toEqual([]);
   });
@@ -49,6 +56,8 @@ describe('Between us: the bank', () => {
     expect(parseId('pair.rhythm.4.use')?.family.id).toBe('pair.rhythm');
     expect(parseId('pair.lens.soulUrge')?.family.id).toBe('pair.lens');
     expect(parseId('pair.type.couple.q3')).toMatchObject({ keys: ['couple', 'q3'] });
+    expect(parseId('pair.moment.7-8')?.family.id).toBe('pair.moment');
+    expect(parseId('pair.moment.8-7')).toBeNull();
     expect(parseId('pair.type.couple.q5')).toBeNull();
     expect(parseId('pair.core.7-3.meet')).toBeNull();
   });
@@ -150,6 +159,28 @@ describe('Between us: the drafting prompt', () => {
 
   it('does not put the pair ban list in the prompt for the rest of the bank', () => {
     expect(buildDraftRequest('life.core.lifePath.8.shadow').system).not.toContain('pairVerdict:');
+  });
+
+  it('briefs a bridge line with both meaning sheets and no question', () => {
+    const request = buildDraftRequest('pair.moment.7-8');
+    expect(request.user).toContain('two personal-day numbers, 7 and 8');
+    expect(request.user).toContain('A day 7 beside a day 8:');
+    expect(request.user).toContain('Reflection and study');
+    expect(request.user).toContain('Effort and follow-through');
+    expect(request.user).toContain('18 to 50 words');
+    expect(request.user).not.toContain('must end on a question');
+    expect(buildDraftRequest('pair.moment.3-3').user).toContain('Two day 3s on the same date');
+    expect(request.system).toContain('pairVerdict:');
+  });
+
+  it('keeps every bridge line to its own pair, in the same words each way', () => {
+    const lines = pair.filter((s) => s.family === 'pair.moment');
+    expect(lines).toHaveLength(45);
+    for (const s of lines) {
+      const [a, b] = s.keys[0]!.split('-');
+      const expected = a === b ? `Two day ${a}s on the same date:` : `A day ${a} beside a day ${b}:`;
+      expect(s.text.startsWith(expected), s.id).toBe(true);
+    }
   });
 
   it('briefs a lens frame and a type question', () => {
