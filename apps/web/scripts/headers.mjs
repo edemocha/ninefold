@@ -69,11 +69,12 @@ writeFileSync(
 // Vercel runs from the project's Root Directory, apps/web, but this is a monorepo: the workspaces,
 // TypeScript and the content release all live at the repository root. So install and build from
 // there. The root build releases the content layers (public/content is not committed) before
-// `next build` exports the site to apps/web/out.
+// `next build` exports the site to apps/web/out. No outputDirectory is set on purpose: with the
+// Next.js preset Vercel reads it as Next's distDir (.next) and finds the static export itself,
+// so pointing it at `out` fails with "routes-manifest.json couldn't be found".
 const vercel = {
   installCommand: 'cd ../.. && npm ci',
   buildCommand: 'cd ../.. && npm run build',
-  outputDirectory: 'out',
   headers: rules.map((r) => ({ source: r.source, headers: asArray(r.headers) })),
 };
 writeFileSync(join(root, 'vercel.json'), `${JSON.stringify(vercel, null, 2)}\n`);
