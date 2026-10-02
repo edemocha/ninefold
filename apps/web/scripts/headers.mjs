@@ -66,8 +66,15 @@ writeFileSync(
   join(root, 'public', 'serve.json'),
   `${JSON.stringify({ cleanUrls: true, headers: rules.map((r) => ({ source: r.source.replace('(.*)', '**'), headers: asArray(r.headers) })) }, null, 2)}\n`,
 );
-writeFileSync(
-  join(root, 'vercel.json'),
-  `${JSON.stringify({ headers: rules.map((r) => ({ source: r.source, headers: asArray(r.headers) })) }, null, 2)}\n`,
-);
+// Vercel runs from the project's Root Directory, apps/web, but this is a monorepo: the workspaces,
+// TypeScript and the content release all live at the repository root. So install and build from
+// there. The root build releases the content layers (public/content is not committed) before
+// `next build` exports the site to apps/web/out.
+const vercel = {
+  installCommand: 'cd ../.. && npm ci',
+  buildCommand: 'cd ../.. && npm run build',
+  outputDirectory: 'out',
+  headers: rules.map((r) => ({ source: r.source, headers: asArray(r.headers) })),
+};
+writeFileSync(join(root, 'vercel.json'), `${JSON.stringify(vercel, null, 2)}\n`);
 console.log('Wrote public/_headers, public/serve.json and vercel.json');
