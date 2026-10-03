@@ -14,7 +14,20 @@ export const AMELIA: Person = { name: 'Amelia Rose Carter', day: 17, month: 6, y
 /** A fixed moment: 1 October 2026, midday in the browser's own zone. */
 export const OCT_1_2026 = new Date('2026-10-01T12:00:00');
 
-export async function fillProfile(page: Page, p: Person): Promise<void> {
+export type Tradition = 'chaldean' | 'pythagorean';
+
+/** Picks the tradition at the top of the form. The site starts in the Chaldean one. */
+export async function chooseTradition(page: Page, tradition: Tradition): Promise<void> {
+  await page.getByRole('radio', { name: tradition === 'chaldean' ? 'Chaldean' : 'Pythagorean', exact: true }).check();
+}
+
+/**
+ * Fills the form. Most of the suite was written against the Pythagorean numbers
+ * (life path 1 with karmic debt 19, expression 1, soul urge 6), so it picks that
+ * tradition unless a test asks for the Chaldean default.
+ */
+export async function fillProfile(page: Page, p: Person, tradition: Tradition = 'pythagorean'): Promise<void> {
+  await chooseTradition(page, tradition);
   await page.getByLabel('Birth name', { exact: true }).fill(p.name);
   if (p.usedName) await page.getByLabel(/Name you use now/).fill(p.usedName);
   // The year list is built from the visitor's clock on the client.
@@ -25,16 +38,16 @@ export async function fillProfile(page: Page, p: Person): Promise<void> {
 }
 
 /** Opens the home page with a fixed clock, fills the form and lands on the snapshot. */
-export async function enter(page: Page, p: Person = AMELIA, now: Date = OCT_1_2026): Promise<void> {
+export async function enter(page: Page, p: Person = AMELIA, now: Date = OCT_1_2026, tradition: Tradition = 'pythagorean'): Promise<void> {
   await page.clock.install({ time: now });
   await page.goto('/');
-  await fillProfile(page, p);
+  await fillProfile(page, p, tradition);
   await page.getByRole('button', { name: 'Show my numbers' }).click();
   await expect(page.getByRole('heading', { name: 'Your core numbers' })).toBeVisible();
 }
 
 /** Client-side navigation: the profile lives in memory, so never reload between screens. */
-export async function go(page: Page, tab: 'Snapshot' | 'Name grid' | 'Life timeline' | 'Year' | 'Month' | 'Day' | 'Between us'): Promise<void> {
+export async function go(page: Page, tab: 'Snapshot' | 'Name grid' | 'Shadow' | 'Life timeline' | 'Year' | 'Month' | 'Day' | 'Between us'): Promise<void> {
   await page.getByRole('navigation', { name: 'Your reading' }).getByRole('link', { name: tab, exact: true }).click();
 }
 

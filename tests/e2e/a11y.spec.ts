@@ -21,7 +21,7 @@ for (const scheme of ['light'] as const) {
 
     test('public pages', async ({ page }) => {
       test.setTimeout(90_000);
-      for (const path of ['/', '/numbers', '/numbers/8', '/numbers/22', '/between', '/between/3-7', '/between/2-4', '/between/8-8', '/method', '/privacy', '/terms']) {
+      for (const path of ['/', '/numbers', '/numbers/8', '/numbers/22', '/chaldean', '/chaldean/16', '/chaldean/33', '/chaldean/37', '/between', '/between/3-7', '/between/2-4', '/between/8-8', '/method', '/privacy', '/terms']) {
         await page.goto(path);
         await page.waitForLoadState('networkidle');
         await audit(page, `${scheme} ${path}`);
@@ -84,6 +84,27 @@ for (const scheme of ['light'] as const) {
       await page.getByRole('link', { name: /Year report/ }).click();
       await expect(page.getByTestId('report')).toBeVisible();
       await audit(page, `${scheme} report`);
+    });
+
+    test('the Chaldean readings: compounds, the name grid with the 9 held back, and the shadows in detail', async ({ page }) => {
+      test.setTimeout(120_000);
+      await enter(page, undefined, undefined, 'chaldean');
+      await audit(page, `${scheme} chaldean snapshot`);
+
+      await page.getByTestId('core-lifePath').getByRole('link', { name: /Read the life path reading/ }).click();
+      await expect(page.getByTestId('compound-37')).toBeVisible();
+      await audit(page, `${scheme} chaldean number detail`);
+
+      await go(page, 'Name grid');
+      await expect(page.getByLabel('9: not given to any letter in the Chaldean table')).toBeVisible();
+      await audit(page, `${scheme} chaldean name grid`);
+
+      await go(page, 'Shadow');
+      await expect(page.getByTestId('shadow-1')).toBeVisible();
+      await audit(page, `${scheme} shadow`);
+      await page.getByTestId('shadow-picker').getByRole('button', { name: /Soul urge, Birth day/ }).click();
+      await expect(page.getByTestId('shadow-8')).toBeVisible();
+      await audit(page, `${scheme} another shadow`);
     });
 
     test('Between us over time: day by day, month and life stages', async ({ page }) => {

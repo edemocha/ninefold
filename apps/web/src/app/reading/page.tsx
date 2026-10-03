@@ -2,7 +2,7 @@
 
 import type { ChipKind, CoreKey, Result } from '@numerology/engine';
 import { personalDay, personalMonthOn, personalYear, cycleYearOn } from '@numerology/engine';
-import { CORE_LABELS, dateLabel, displayNumber } from '@numerology/composer';
+import { CHALDEAN_NAMES, COMPOUND_TITLES, CORE_LABELS, dateLabel, displayNumber } from '@numerology/composer';
 import { AppLink } from '@/components/app-link';
 import { ShareImageButton } from '@/components/export-buttons';
 import { Icon } from '@/components/icon';
@@ -103,9 +103,15 @@ export default function SnapshotPage() {
                     <BigNumber result={result} tile className={span ? 'text-8xl' : 'text-7xl'} />
                   </p>
                   <p className="mt-3 text-sm text-muted">{label.lens}</p>
+                  {conventions.system === 'chaldean' && CHALDEAN_NAMES[key] ? <p className="mt-1 text-xs text-muted">Chaldean books call this the {CHALDEAN_NAMES[key]?.toLowerCase()}.</p> : null}
                   <div className="mt-4">
                     <ConventionChips kind={key as ChipKind} conventions={conventions} />
                   </div>
+                  {result.compound !== undefined ? (
+                    <p className="mt-3 text-[0.95rem] text-ink-strong" data-testid={`compound-${key}`}>
+                      Compound <strong>{result.compound}</strong>, {COMPOUND_TITLES[result.compound]}
+                    </p>
+                  ) : null}
                   <WhyThisNumber steps={result.steps} chain={result.chain} />
                   <AppLink to={`/reading/number/${key}`} className="mt-5 inline-flex min-h-11 items-center gap-2 text-sm font-medium text-primary underline-offset-4 hover:underline">
                     Read the {label.title.toLowerCase()} reading

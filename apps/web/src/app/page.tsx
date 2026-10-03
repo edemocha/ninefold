@@ -5,8 +5,10 @@ import { t } from '@/lib/t';
 
 /** What it works out, in the order the reading tabs come. Each card borrows one colour from the palette. */
 const CONTENTS = [
-  { hue: 7, span: 'lg:col-span-4', title: 'Core profile', text: 'Life path, expression, soul urge, personality, birth day and maturity, with karmic debt flags.' },
+  { hue: 7, span: 'lg:col-span-4', title: 'Core profile', text: 'Life path, expression, soul urge, personality, birth day and maturity, each with the arithmetic behind it and, in the Chaldean tradition, its compound number.' },
   { hue: 3, span: 'lg:col-span-2', title: 'Name grid', text: 'Your letters, vowels against consonants, the numbers your name lacks and the one it repeats.' },
+  { hue: 8, span: 'lg:col-span-3', title: 'Chaldean compounds', text: 'Every total from 10 to 52 has an image and a reading, from the Wheel of Fortune to the Sceptre. Yours come with the name and date you enter.' },
+  { hue: 1, span: 'lg:col-span-3', title: 'Your shadows, in detail', text: 'Eleven parts for each of your numbers: where the shadow comes from, how it sounds, how it shows at work and at home, and a seven-day practice.' },
   { hue: 5, span: 'lg:col-span-2', title: 'Life timeline', text: 'Four pinnacles and four challenges on an age axis. Drag the marker to any age from 0 to 100.' },
   { hue: 2, span: 'lg:col-span-2', title: 'Year, month and day', text: 'A personal year with twelve month tiles, a calendar of personal days and a short card for any date.' },
   { hue: 9, span: 'lg:col-span-2', title: 'Between us', text: 'Add someone to see two life paths side by side, and the fixed gap between your cycles, with the arithmetic. No score, only things to talk about.' },
@@ -15,13 +17,14 @@ const CONTENTS = [
 /**
  * A real calculation, for the person the build plan uses as its example, so the
  * first thing a visitor sees is the product's one idea: the working is shown.
- * It matches what the app produces for 17 June 1985 under the default rule.
+ * It matches what the app produces for 17 June 1985 in the Chaldean tradition,
+ * the default: every digit in one flat sum, 37, then 10, then 1.
  */
-const WORKING = [
+const WORKING: { label: string; given: string; working: string; result?: number }[] = [
   { label: 'Day', given: '17', working: '1 + 7 =', result: 8 },
   { label: 'Month', given: 'June', working: '', result: 6 },
-  { label: 'Year', given: '1985', working: '1 + 9 + 8 + 5 = 23 →', result: 5 },
-  { label: 'Add', given: '', working: '8 + 6 + 5 = 19 → 10 →', result: 1 },
+  { label: 'Year', given: '1985', working: '1 + 9 + 8 + 5 = 23' },
+  { label: 'Add', given: '', working: '8 + 6 + 23 = 37 → 3 + 7 = 10 →', result: 1 },
 ];
 
 /** The headline's own words, with the middle phrase marked like a highlighter stroke. */
@@ -49,7 +52,10 @@ export default function HomePage() {
         </h1>
 
         <div className="mt-10 grid gap-x-10 gap-y-10 lg:grid-cols-[1fr_28rem] lg:grid-rows-[auto_1fr] lg:items-start">
-          <p className="max-w-[40ch] text-xl font-medium leading-snug text-ink-strong sm:text-2xl lg:col-start-1 lg:row-start-1">{t('site.tagline')}</p>
+          <div className="lg:col-start-1 lg:row-start-1">
+            <p className="max-w-[40ch] text-xl font-medium leading-snug text-ink-strong sm:text-2xl">{t('site.tagline')}</p>
+            <p className="mt-3 max-w-[44ch] text-[1.02rem] text-muted">Starts in the Chaldean tradition, with Pythagorean one click away.</p>
+          </div>
 
           <div className="lg:col-start-2 lg:row-span-2 lg:row-start-1">
             <p className="mb-3 max-w-[44ch] text-[0.95rem] text-muted">{t('form.intro')}</p>
@@ -73,7 +79,9 @@ export default function HomePage() {
                       <td className="py-3 font-mono text-[0.95rem] text-ink-strong">
                         <span className="inline-flex flex-wrap items-center gap-x-2 gap-y-1">
                           {row.working}
-                          <span className={`bright-${row.result} inline-flex size-9 items-center justify-center rounded-xl font-display text-xl font-extrabold`}>{row.result}</span>
+                          {row.result !== undefined ? (
+                            <span className={`bright-${row.result} inline-flex size-9 items-center justify-center rounded-xl font-display text-xl font-extrabold`}>{row.result}</span>
+                          ) : null}
                         </span>
                       </td>
                     </tr>
@@ -84,7 +92,7 @@ export default function HomePage() {
                 <span className="numeral text-7xl">1</span>
                 <div>
                   <p className="font-display text-xl font-bold tracking-tight">Life path 1</p>
-                  <p className="text-sm">Yours is worked out the same way, and every convention behind it can be changed.</p>
+                  <p className="text-sm">Compound 37, the good friend. Yours is worked out the same way, and every convention behind it can be changed.</p>
                 </div>
               </div>
             </figure>

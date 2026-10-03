@@ -1,11 +1,13 @@
 import type { Metadata } from 'next';
 import Link from '@/components/link';
 import { notFound } from 'next/navigation';
-import { cap, numberWithArticle } from '@numerology/composer';
+import { cap, composePlanet, composeShadow, COMPOUND_TITLES, numberWithArticle, type Bank } from '@numerology/composer';
+import { COMPOUNDS } from '@numerology/content';
 import { Disclaimer } from '@/components/disclaimer';
 import { Icon } from '@/components/icon';
+import { ShadowDetail } from '@/components/shadow-detail';
 import { readCore, readLife } from '@/lib/content-fs';
-import { ALL_VALUES, pairSlug, rootOf } from '@/lib/site';
+import { ALL_VALUES, digitalRootOf, pairSlug, rootOf } from '@/lib/site';
 
 export const dynamicParams = false;
 
@@ -53,6 +55,10 @@ export default async function NumberMeaning({ params }: { params: Promise<{ n: s
   const prev = ALL_VALUES[(index + ALL_VALUES.length - 1) % ALL_VALUES.length] as number;
   const next = ALL_VALUES[(index + 1) % ALL_VALUES.length] as number;
   const pinnacle = life.pinnacles[n];
+  const bank: Bank = { core: readCore(), life };
+  const shadow = composeShadow(bank, { value, root: rootOf(value) });
+  const planet = value <= 9 ? composePlanet(bank, value) : undefined;
+  const compounds = COMPOUNDS.filter((c) => digitalRootOf(c) === rootOf(value));
 
   return (
     <article className="mx-auto max-w-4xl px-5 py-14">
@@ -84,6 +90,35 @@ export default async function NumberMeaning({ params }: { params: Promise<{ n: s
           </section>
         ))}
       </div>
+
+      {shadow ? (
+        <div className="mt-14">
+          <ShadowDetail shadow={shadow} root={rootOf(value)} headingLevel={2} />
+        </div>
+      ) : null}
+
+      <section className="mt-14" aria-labelledby="chaldean-title" data-testid="number-chaldean">
+        <h2 id="chaldean-title" className="text-3xl sm:text-4xl">
+          In the Chaldean tradition
+        </h2>
+        {planet ? <p className="reading mt-3 max-w-[62ch] text-[1.02rem] leading-relaxed">{planet.text}</p> : null}
+        {value > 9 ? (
+          <p className="reading mt-3 max-w-[62ch] text-[1.02rem] leading-relaxed">
+            The Chaldean tradition has no master numbers. It reads {value} as a compound number that reduces to {rootOf(value)}, with a traditional image of its own.
+          </p>
+        ) : null}
+        <p className="mt-4 max-w-[62ch] text-sm text-muted">The compound numbers that reduce to {rootOf(value)}:</p>
+        <ul className="mt-3 flex flex-wrap gap-2">
+          {compounds.map((c) => (
+            <li key={c}>
+              <Link href={`/chaldean/${c}`} aria-label={`${c}, ${COMPOUND_TITLES[c]}`} className={`bright-${digitalRootOf(c)} tile inline-flex min-h-11 items-center gap-2 rounded-full px-4 text-sm font-semibold`}>
+                <span className="font-display text-lg font-extrabold">{c}</span>
+                <span className="font-medium">{COMPOUND_TITLES[c]}</span>
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </section>
 
       <section className="mt-20" aria-labelledby="lenses-title">
         <h2 id="lenses-title" className="text-3xl sm:text-4xl">

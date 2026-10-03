@@ -33,16 +33,40 @@ export default function MethodPage() {
         number, lets you switch it under Advanced, and shows the arithmetic with a click.
       </p>
 
-      <H2 id="reducing">Reducing a number</H2>
+      <H2 id="traditions">Two traditions</H2>
       <p>
-        Add the digits until one is left. For dates, stop early at 11 and 22. For names, stop at 11, 22 and 33. A master number is always shown with its root, so 11 appears as 11/2 and
-        19 reduces through 10 to 1.
+        This site reads in two traditions and starts in the older one. <strong className="font-medium text-ink-strong">Chaldean</strong> is the default. <strong className="font-medium text-ink-strong">Pythagorean</strong> is one click away at
+        the top of the form. The choice sets the letter table, how the date is added up, and whether master numbers exist. You can still change each of those switches under Advanced.
+      </p>
+      <ul className="mt-3 list-disc space-y-2 pl-5">
+        <li>
+          <strong className="font-medium text-ink-strong">Chaldean.</strong> Eight groups of letters and no letter for 9, which the tradition holds back as sacred. The whole name is added once. Every digit of the date is added in one flat sum. There are no master
+          numbers. The total before the last reduction is the <Link href="/chaldean" className="underline underline-offset-4 hover:text-accent">compound number</Link>, read from 10 to 52, and a total above 52 is read at the next total down.
+        </li>
+        <li>
+          <strong className="font-medium text-ink-strong">Pythagorean.</strong> A to I are 1 to 9 and the pattern repeats. Each name part is reduced first, 11, 22 and 33 are kept as master numbers, and 13, 14, 16 and 19 are flagged as karmic debt.
+        </li>
+      </ul>
+      <p className="mt-3">
+        The name &quot;Chaldean&quot; points to Babylon, but no ancient text sets the system out. The version in use was written down in the early 1900s, by authors such as Cheiro and Sepharial, and its compound numbers
+        are Cheiro&apos;s. Where Cheiro wrote that a number carries the reading of an earlier one (33 reads like 24, for example), the page says so instead of inventing a separate meaning. For dates, both traditions reach the same single digit, so the cycles and the pair
+        pages read the same either way. For names the letters differ, so the numbers can differ too.
       </p>
 
-      <H2 id="date-rule">The four date rules</H2>
+      <H2 id="reducing">Reducing a number</H2>
+      <p>
+        Add the digits until one is left. In the Pythagorean tradition dates stop early at 11 and 22 and names at 11, 22 and 33. A master number is always shown with its root, so 11 appears as 11/2 and
+        19 reduces through 10 to 1. In the Chaldean tradition nothing stops early: 11, 22 and 33 are compounds that reduce to 2, 4 and 6.
+      </p>
+
+      <H2 id="date-rule">The five date rules</H2>
       <ul className="list-disc space-y-2 pl-5">
         <li>
-          <strong className="font-medium text-ink-strong">A2 (default).</strong> Day, month and year are each cut to a single digit, added, then reduced with 11 and 22 kept. It matches the
+          <strong className="font-medium text-ink-strong">D (Chaldean default).</strong> Every digit of the date is added in one flat sum with no masters. The sum is the compound number and it reduces to the single digit. For 17 June 1985 that is
+          1 + 7 + 6 + 1 + 9 + 8 + 5 = 37, then 10, then 1.
+        </li>
+        <li>
+          <strong className="font-medium text-ink-strong">A2 (Pythagorean default).</strong> Day, month and year are each cut to a single digit, added, then reduced with 11 and 22 kept. It matches the
           published pinnacle example and keeps life path, pinnacles and cycles consistent with each other.
         </li>
         <li>
@@ -96,18 +120,32 @@ export default function MethodPage() {
       <H2 id="names">Names</H2>
       <ul className="list-disc space-y-2 pl-5">
         <li>The birth name drives the core numbers. The name you go by now gets its own set.</li>
-        <li>Letters are Pythagorean: A to I are 1 to 9, then the pattern repeats. A Chaldean table is built and tested, but it ships later, because the two systems disagree (JOHN is 2 and 9, DAVID is 22 and 7).</li>
+        <li>Letters follow the tradition you choose. Chaldean gives eight groups (A, I, J, Q, Y are 1; B, K, R are 2; C, G, L, S are 3; D, M, T are 4; E, H, N, X are 5; U, V, W are 6; O, Z are 7; F, P are 8) and no letter for 9. Pythagorean runs A to I as 1 to 9 and repeats. The two disagree often: JOHN is 2 in Pythagorean and 9 in Chaldean, and DAVID is a master 22 in Pythagorean against a compound 16 in Chaldean, which reduces to 7.</li>
         <li>
-          Per part (default): reduce each name part, add the results, then reduce. Whole name: add every letter and reduce once. For Amelia Rose Carter the soul urge is 6 per part and 33 for the whole name.
+          Per part (Pythagorean default): reduce each name part, add the results, then reduce. Whole name (Chaldean default): add every letter and reduce once. For Amelia Rose Carter the soul urge is 6 per part and 33 for the whole name in the Pythagorean table, and 8 in the Chaldean one, from the compound 26.
         </li>
         <li>Accents are stripped (José becomes JOSE), apostrophes and punctuation are dropped, and hyphens act as spaces. Names in other scripts are not transliterated, because two spellings give two numbers.</li>
         <li>Y is a consonant by default, or a vowel when it is the only vowel in its word. Particles such as bin, binti, a/l and van are counted as written, with a switch to ignore them. Nobody settles either, so the choice is yours.</li>
-        <li>Karmic lessons are the digits 1 to 9 missing from the name. Hidden passion is the digit or digits that appear most often. Subconscious self is 9 minus the number of missing digits.</li>
+        <li>Karmic lessons are the digits missing from the name, 1 to 9 in the Pythagorean table and 1 to 8 in the Chaldean one. Hidden passion is the digit or digits that appear most often. Subconscious self is 9 minus the number of missing digits, and is shown only in the Pythagorean tradition, because a Chaldean name cannot carry a 9.</li>
       </ul>
+
+      <H2 id="compounds">Compound numbers and the planets</H2>
+      <p>
+        In the Chaldean tradition the total before the last reduction is read as a number in its own right, from 10 to 52. Each of the 43 has a traditional image, such as the Wheel of Fortune (10), the Tower Struck by Lightning (16), the Prince of Heaven (19) or the Sceptre (27), and a
+        reading that this site describes as a theme with a shadow side. A name total above 52 is read at the next total down, so 64 reads as 10. A single-digit total has no compound. Each digit also belongs to a planet in Cheiro&apos;s table: 1 the Sun, 2 the Moon, 3 Jupiter, 4 Uranus, 5 Mercury, 6 Venus, 7 Neptune, 8 Saturn, 9 Mars. The
+        compound numbers each have a page under <Link href="/chaldean" className="underline underline-offset-4 hover:text-accent">Chaldean</Link>.
+      </p>
+
+      <H2 id="shadows">Shadows, in detail</H2>
+      <p>
+        Every number has a shadow side: a pattern that protects something and costs something. Each is written in eleven parts: where it comes from, how it sounds in the head, how it shows at work, with people close to you and with time and
+        energy, what it does under pressure, the early signals, what feeds it, what loosens it, the gift inside it, and a seven-day practice that ends on a question. The Shadow tab reads your own numbers this way, and in the Chaldean tradition adds the shadow of each
+        compound. A shadow here is a tendency to notice, never a flaw and never a forecast.
+      </p>
 
       <H2 id="karmic">Karmic debt</H2>
       <p>
-        A total of 13, 14, 16 or 19 on the way to a single digit is flagged: 13/4, 14/5, 16/7 and 19/1. Some versions of the tradition explain a karmic debt as a lesson carried over from earlier. Whatever
+        In the Pythagorean tradition, a total of 13, 14, 16 or 19 on the way to a single digit is flagged: 13/4, 14/5, 16/7 and 19/1. In the Chaldean tradition those four are simply compounds with their own pages, and are not flagged separately. Some versions of the tradition explain a karmic debt as a lesson carried over from earlier. Whatever
         you think of that, read it as a recurring theme.
       </p>
 

@@ -5,6 +5,17 @@ export const KARMIC_DEBTS: readonly KarmicDebt[] = [13, 14, 16, 19];
 export const DATE_MASTERS: readonly number[] = [11, 22];
 /** Masters kept when reducing names (and under date rule A and B). */
 export const NAME_MASTERS: readonly number[] = [11, 22, 33];
+/** The Chaldean tradition reads compound numbers from 10 to 52. */
+export const COMPOUND_MIN = 10;
+export const COMPOUND_MAX = 52;
+
+/**
+ * The compound number in a reduction chain: the first total from 10 to 52.
+ * [37, 10, 1] gives 37, [64, 10, 1] gives 10, [53, 8] and [100, 1] give none.
+ */
+export function compoundIn(chain: readonly number[]): number | undefined {
+  return chain.find((n) => n >= COMPOUND_MIN && n <= COMPOUND_MAX);
+}
 
 export function digitSum(n: number): number {
   let sum = 0;
@@ -33,6 +44,26 @@ export function reduceChain(total: number, masters: readonly number[]): number[]
 
 export function karmicDebtIn(chain: readonly number[]): KarmicDebt | undefined {
   return KARMIC_DEBTS.find((d) => chain.includes(d));
+}
+
+/** The step that names the compound number a Chaldean chain passes through, or nothing when there is none. */
+export function compoundStep(chain: readonly number[]): Step | undefined {
+  const compound = compoundIn(chain);
+  if (compound === undefined) return undefined;
+  const first = chain[0] as number;
+  const root = digitalRoot(chain[chain.length - 1] as number);
+  return {
+    label: 'Compound number',
+    text:
+      first === compound
+        ? `${compound} is the compound number the tradition reads. It reduces to ${root}.`
+        : `${first} is above ${COMPOUND_MAX}, so the tradition reads the next total down: ${compound}. It reduces to ${root}.`,
+  };
+}
+
+/** The masters a name total keeps: none in the Chaldean tradition, which reads 11, 22 and 33 as compounds. */
+export function nameMasters(system: 'pythagorean' | 'chaldean'): readonly number[] {
+  return system === 'chaldean' ? [] : NAME_MASTERS;
 }
 
 /** 1985 -> "1 + 9 + 8 + 5". */
@@ -64,6 +95,8 @@ export function sumText(values: readonly number[]): string {
 
 export type FinishOptions = {
   debt?: boolean;
+  /** Chaldean: record the compound number the chain passes through. */
+  compound?: boolean;
   masters?: readonly number[];
   overtone?: 11 | 22 | 33;
   value?: number;
@@ -85,6 +118,10 @@ export function finish(
     steps,
   };
   if (options.overtone) result.overtone = options.overtone;
+  if (options.compound) {
+    const compound = compoundIn(full);
+    if (compound !== undefined) result.compound = compound;
+  }
   if (options.debt) {
     const debt = karmicDebtIn(full);
     if (debt) result.karmicDebt = debt;

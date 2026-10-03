@@ -1,5 +1,5 @@
 import { beforeAll, describe, expect, it } from 'vitest';
-import { cycleGap, DEFAULT_CONVENTIONS, lifePath, nameNumbers, personalYear, cycleYearOn, type Conventions, type YMD } from '@numerology/engine';
+import { cycleGap, PYTHAGOREAN_CONVENTIONS, lifePath, nameNumbers, personalYear, cycleYearOn, type Conventions, type YMD } from '@numerology/engine';
 import { PAIR_TYPES, PAIR_LENSES, RULES } from '@numerology/content';
 import { composeCircle, composeNamePair, composePair, composeTypeTalk, MAX_PEOPLE, PAIR_TYPE_TITLES, type Bank } from '../src';
 import { loadSourceBank } from '../../../tools/content-pipeline/src/build';
@@ -12,7 +12,7 @@ beforeAll(() => {
   ids = new Set(loadFamilies().flatMap((l) => l.snippets.map((s) => s.id)));
 });
 
-const c: Conventions = { ...DEFAULT_CONVENTIONS };
+const c: Conventions = { ...PYTHAGOREAN_CONVENTIONS };
 const today: YMD = { year: 2026, month: 10, day: 1 };
 const mod9 = (n: number) => ((n % 9) + 9) % 9;
 

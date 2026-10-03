@@ -5,7 +5,7 @@ import {
   ageOn,
   challenges,
   cycleYearOn,
-  DEFAULT_CONVENTIONS,
+  PYTHAGOREAN_CONVENTIONS,
   daysInMonth,
   digitalRoot,
   fromOrdinal,
@@ -95,7 +95,7 @@ describe('numbers stay inside 1-9, 11, 22 and 33', () => {
   it('A2 never produces 33', () => {
     fc.assert(
       fc.property(birthdays, (birth) => {
-        expect(lifePath(birth, { ...DEFAULT_CONVENTIONS, dateRule: 'A2' }).value).not.toBe(33);
+        expect(lifePath(birth, { ...PYTHAGOREAN_CONVENTIONS, dateRule: 'A2' }).value).not.toBe(33);
       }),
       runs,
     );
@@ -121,7 +121,7 @@ describe('personal day', () => {
   it('29 Feb and 1 Mar share a personal day number', () => {
     fc.assert(
       fc.property(birthdays, fc.constantFrom(1904, 1908, 1996, 2000, 2024, 2028, 2096), (birth, year) => {
-        const c = { ...DEFAULT_CONVENTIONS };
+        const c = { ...PYTHAGOREAN_CONVENTIONS };
         const feb29 = personalDay(birth, { year, month: 2, day: 29 }, c).value;
         const mar1 = personalDay(birth, { year, month: 3, day: 1 }, c).value;
         expect(feb29).toBe(mar1);
@@ -144,7 +144,7 @@ describe('personal day', () => {
       fc.property(birthdays, dateIn(1900, 2100), (birth, date) => {
         const seen = new Set(
           (['A2', 'A', 'B', 'C'] as const).map(
-            (dateRule) => personalDay(birth, date, { ...DEFAULT_CONVENTIONS, dateRule }).value,
+            (dateRule) => personalDay(birth, date, { ...PYTHAGOREAN_CONVENTIONS, dateRule }).value,
           ),
         );
         expect(seen.size).toBe(1);
@@ -192,7 +192,7 @@ describe('names never crash', () => {
   it('returns a defined result for any string', () => {
     fc.assert(
       fc.property(fc.string({ unit: 'binary', maxLength: 300 }), (name) => {
-        const profile = nameNumbers(name, DEFAULT_CONVENTIONS);
+        const profile = nameNumbers(name, PYTHAGOREAN_CONVENTIONS);
         if (profile.ok) expect(VALID.has(profile.expression.value)).toBe(true);
         else expect(profile.issues.length).toBeGreaterThan(0);
       }),
@@ -205,14 +205,14 @@ describe('variants', () => {
   it('a single-day index matches the range walk', () => {
     const birth = { year: 1985, month: 6, day: 17 };
     const day = { year: 2026, month: 10, day: 1 };
-    const [entry] = variantIndexRange(birth, day, day, DEFAULT_CONVENTIONS);
-    expect(entry?.variantIndex).toBe(variantIndex(birth, day, DEFAULT_CONVENTIONS));
+    const [entry] = variantIndexRange(birth, day, day, PYTHAGOREAN_CONVENTIONS);
+    expect(entry?.variantIndex).toBe(variantIndex(birth, day, PYTHAGOREAN_CONVENTIONS));
     expect(entry?.personalDay).toBe(8);
   });
 
   it('the index counts earlier days with the same personal day', () => {
     const birth = { year: 1985, month: 6, day: 17 };
-    const days = variantIndexRange(birth, { year: 2026, month: 1, day: 1 }, { year: 2026, month: 3, day: 1 }, DEFAULT_CONVENTIONS);
+    const days = variantIndexRange(birth, { year: 2026, month: 1, day: 1 }, { year: 2026, month: 3, day: 1 }, PYTHAGOREAN_CONVENTIONS);
     const seen = new Map<number, number>();
     for (const d of days) {
       const prev = seen.get(d.personalDay);

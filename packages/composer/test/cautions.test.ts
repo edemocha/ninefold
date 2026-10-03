@@ -1,6 +1,6 @@
 import { beforeAll, describe, expect, it } from 'vitest';
 import {
-  DEFAULT_CONVENTIONS,
+  PYTHAGOREAN_CONVENTIONS,
   fromOrdinal,
   monthVariantIndex,
   personalMonthOn,
@@ -28,7 +28,7 @@ beforeAll(() => {
   bank = loadSourceBank();
 });
 
-const c = DEFAULT_CONVENTIONS;
+const c = PYTHAGOREAN_CONVENTIONS;
 const birth: YMD = { year: 1985, month: 6, day: 17 };
 
 describe('which caution a day gets', () => {

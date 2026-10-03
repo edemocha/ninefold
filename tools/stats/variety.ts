@@ -1,6 +1,6 @@
-import { DEFAULT_CONVENTIONS, variantIndexRange, daysInMonth, toOrdinal } from '@numerology/engine';
+import { PYTHAGOREAN_CONVENTIONS, variantIndexRange, daysInMonth, toOrdinal } from '@numerology/engine';
 
-function minGap(V: number, years: [number, number], c = DEFAULT_CONVENTIONS) {
+function minGap(V: number, years: [number, number], c = PYTHAGOREAN_CONVENTIONS) {
   let worst = Infinity; let worstBirth = '';
   for (let m = 1; m <= 12; m += 1) for (let d = 1; d <= daysInMonth(2024, m); d += 1) {
     const birth = { year: 1990, month: m, day: d };

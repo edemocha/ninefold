@@ -18,6 +18,7 @@ export {
   buildGrid,
   letterValue,
   pythagoreanValue,
+  tableDigits,
   MAX_NAME_LENGTH,
 } from './names';
 export type { NormalizedName } from './names';

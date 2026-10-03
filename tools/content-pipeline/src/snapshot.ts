@@ -1,7 +1,7 @@
 import { createHash } from 'node:crypto';
 import { mkdirSync, readFileSync, writeFileSync, existsSync } from 'node:fs';
 import { dirname, join } from 'node:path';
-import { DEFAULT_CONVENTIONS, type Conventions, type YMD } from '@numerology/engine';
+import { PYTHAGOREAN_CONVENTIONS, type Conventions, type YMD } from '@numerology/engine';
 import { composeDay, composeMonth, composePair, composeYear, type Bank } from '@numerology/composer';
 import { CONTENT_ROOT, loadFamilies, type LoadedFamily } from './load';
 
@@ -42,7 +42,7 @@ export function snapshotProfiles(count = 30): SnapshotProfile[] {
     const month = 1 + Math.floor(rand() * 12);
     const day = 1 + Math.floor(rand() * (days[month - 1] as number));
     const conventions: Conventions =
-      i % 10 === 9 ? { ...DEFAULT_CONVENTIONS, dateRule: 'B', cycleYear: 'birthday' } : { ...DEFAULT_CONVENTIONS };
+      i % 10 === 9 ? { ...PYTHAGOREAN_CONVENTIONS, dateRule: 'B', cycleYear: 'birthday' } : { ...PYTHAGOREAN_CONVENTIONS };
     return {
       id: `p${String(i + 1).padStart(2, '0')}`,
       birth: { year: 1940 + Math.floor(rand() * 70), month, day },

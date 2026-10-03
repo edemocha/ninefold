@@ -7,6 +7,7 @@ import { t } from '@/lib/t';
 
 const LINKS = [
   { href: '/numbers', label: 'nav.numbers' as const },
+  { href: '/chaldean', label: 'nav.chaldean' as const },
   { href: '/between', label: 'nav.pairs' as const },
   { href: '/method', label: 'nav.methods' as const },
 ];

@@ -1,5 +1,5 @@
 import { beforeAll, describe, expect, it } from 'vitest';
-import { daysInMonth, DEFAULT_CONVENTIONS, type Conventions, type YMD } from '@numerology/engine';
+import { daysInMonth, PYTHAGOREAN_CONVENTIONS, type Conventions, type YMD } from '@numerology/engine';
 import { composePairDay, composePairLife, composePairMonth, type Bank } from '../src';
 import { loadSourceBank } from '../../../tools/content-pipeline/src/build';
 import { loadFamilies } from '../../../tools/content-pipeline/src/load';
@@ -11,7 +11,7 @@ beforeAll(() => {
   ids = new Set(loadFamilies().flatMap((l) => l.snippets.map((s) => s.id)));
 });
 
-const c: Conventions = { ...DEFAULT_CONVENTIONS };
+const c: Conventions = { ...PYTHAGOREAN_CONVENTIONS };
 const you: YMD = { year: 1985, month: 6, day: 17 }; // the plan's Amelia
 const other: YMD = { year: 1988, month: 11, day: 2 };
 const today: YMD = { year: 2026, month: 10, day: 1 };

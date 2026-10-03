@@ -7,7 +7,9 @@ import {
   DEFAULT_CONVENTIONS,
   isDefaultConventions,
   nameNumbers,
+  TRADITIONS,
   validateBirth,
+  withTradition,
   type Conventions,
 } from '@numerology/engine';
 import { DateFields, EMPTY_DATE, toYMD, type DateValue } from './date-fields';
@@ -63,7 +65,9 @@ export function ProfileForm() {
 
     submit({ birthName: birthName.trim(), usedName: usedName.trim(), birth }, conventions);
     track('calculate');
-    router.push(hrefWith('/reading', hash, { notice: null }));
+    // The Chaldean tradition reads the name a person is known by, so start there when they gave one.
+    const known = conventions.system === 'chaldean' && usedName.trim() ? 'current' : null;
+    router.push(hrefWith('/reading', hash, { notice: null, who: known }));
   }
 
   function choose<K extends ConventionField>(field: K, value: Conventions[K]) {
@@ -77,6 +81,36 @@ export function ProfileForm() {
           {t('form.redirect')}
         </p>
       ) : null}
+
+      <fieldset className="space-y-3" data-testid="tradition">
+        <legend className="mb-1 font-medium text-ink-strong">{t('form.tradition')}</legend>
+        <div className="grid grid-cols-2 gap-2">
+          {TRADITIONS.map((option) => {
+            const id = `${uid}-tradition-${option.value}`;
+            const checked = conventions.system === option.value;
+            return (
+              <label
+                key={option.value}
+                htmlFor={id}
+                className={`flex min-h-12 cursor-pointer items-center gap-2.5 rounded-full border-2 px-4 text-[0.95rem] font-semibold ${checked ? 'border-ink-strong bg-mark text-ink-strong' : 'border-line-strong text-ink-strong hover:border-ink-strong'}`}
+              >
+                <input
+                  id={id}
+                  type="radio"
+                  name={`${uid}-tradition`}
+                  className="size-4 accent-[var(--primary)]"
+                  checked={checked}
+                  onChange={() => setConventions(withTradition(conventions, option.value))}
+                />
+                {option.label}
+              </label>
+            );
+          })}
+        </div>
+        <p className="text-sm text-muted" data-testid="tradition-help">
+          {TRADITIONS.find((o) => o.value === conventions.system)?.help}
+        </p>
+      </fieldset>
 
       <div className="space-y-2">
         <label htmlFor={`${uid}-name`} className="block font-medium text-ink-strong">
@@ -123,6 +157,7 @@ export function ProfileForm() {
         />
         <p id={`${uid}-used-help`} className="text-sm text-muted">
           {t('form.usedName.help')}
+          {conventions.system === 'chaldean' ? ` ${t('form.usedName.chaldean')}` : ''}
         </p>
         {errors.used ? (
           <p role="alert" className="text-sm text-[color:var(--bad-ink)]">

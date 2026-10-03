@@ -1,15 +1,18 @@
 import { describe, expect, it } from 'vitest';
 import {
+  CHALDEAN_CONVENTIONS,
   DEFAULT_CONVENTIONS,
+  PYTHAGOREAN_CONVENTIONS,
   isDefaultConventions,
   nameNumbers,
   normalizeName,
   parseConventions,
   serializeConventions,
+  withTradition,
   type Conventions,
 } from '../src';
 
-const conv = (over: Partial<Conventions> = {}): Conventions => ({ ...DEFAULT_CONVENTIONS, ...over });
+const conv = (over: Partial<Conventions> = {}): Conventions => ({ ...PYTHAGOREAN_CONVENTIONS, ...over });
 
 describe('name normalisation', () => {
   it('strips accents: José becomes JOSE', () => {
@@ -110,9 +113,16 @@ describe('name normalisation', () => {
 });
 
 describe('conventions in a link', () => {
+  const chaldean = (over: Partial<Conventions> = {}): Conventions => ({ ...CHALDEAN_CONVENTIONS, ...over });
+
+  it('makes Chaldean the default, with the switches that belong to it', () => {
+    expect(DEFAULT_CONVENTIONS).toEqual(CHALDEAN_CONVENTIONS);
+    expect(DEFAULT_CONVENTIONS).toMatchObject({ system: 'chaldean', dateRule: 'D', nameRule: 'whole-name', cycleMasters: 'single' });
+  });
+
   it('round-trips only the switches that differ from the defaults', () => {
     expect(serializeConventions(DEFAULT_CONVENTIONS).toString()).toBe('');
-    const c = conv({ dateRule: 'B', cycleYear: 'birthday', particles: 'ignore' });
+    const c = chaldean({ dateRule: 'B', cycleYear: 'birthday', particles: 'ignore' });
     const q = serializeConventions(c);
     expect([...q.keys()].sort()).toEqual(['cy', 'dr', 'pt']);
     expect(parseConventions(q)).toEqual(c);
@@ -120,10 +130,24 @@ describe('conventions in a link', () => {
     expect(isDefaultConventions(DEFAULT_CONVENTIONS)).toBe(true);
   });
 
+  it('carries the whole Pythagorean choice in four short switches', () => {
+    const q = serializeConventions(PYTHAGOREAN_CONVENTIONS);
+    expect([...q.keys()].sort()).toEqual(['cm', 'dr', 'nr', 'sys']);
+    expect(parseConventions(q)).toEqual(PYTHAGOREAN_CONVENTIONS);
+  });
+
+  it('switches the tradition together with the three switches that belong to it, and leaves the rest', () => {
+    const mine = chaldean({ yRule: 'vowel-if-alone', particles: 'ignore', cycleYear: 'birthday', leapBirthday: 'mar1' });
+    const pyth = withTradition(mine, 'pythagorean');
+    expect(pyth).toMatchObject({ system: 'pythagorean', dateRule: 'A2', nameRule: 'per-part', cycleMasters: 'overtone' });
+    expect(pyth).toMatchObject({ yRule: 'vowel-if-alone', particles: 'ignore', cycleYear: 'birthday', leapBirthday: 'mar1' });
+    expect(withTradition(pyth, 'chaldean')).toEqual(mine);
+  });
+
   it('ignores unknown values and never carries a name or a birth date', () => {
-    const c = parseConventions(new URLSearchParams('dr=Z&nr=whole-name&name=Ada&dob=1985-06-17'));
-    expect(c.dateRule).toBe('A2');
-    expect(c.nameRule).toBe('whole-name');
-    expect(serializeConventions(c).toString()).toBe('nr=whole-name');
+    const c = parseConventions(new URLSearchParams('dr=Z&nr=per-part&name=Ada&dob=1985-06-17'));
+    expect(c.dateRule).toBe('D');
+    expect(c.nameRule).toBe('per-part');
+    expect(serializeConventions(c).toString()).toBe('nr=per-part');
   });
 });

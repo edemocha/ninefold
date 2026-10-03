@@ -1,5 +1,5 @@
 import { beforeAll, describe, expect, it } from 'vitest';
-import { DEFAULT_CONVENTIONS, pairKey, type Conventions, type YMD } from '@numerology/engine';
+import { PYTHAGOREAN_CONVENTIONS, pairKey, type Conventions, type YMD } from '@numerology/engine';
 import { DIGITS, PAIR_KEYS, PAIR_OVERLAYS, PAIR_SAFETY_LINES, RULES } from '@numerology/content';
 import { composePair, PAIR_SAFETY, type Bank, type PairReading } from '../src';
 import { loadSourceBank } from '../../../tools/content-pipeline/src/build';
@@ -12,7 +12,7 @@ beforeAll(() => {
   ids = new Set(loadFamilies().flatMap((l) => l.snippets.map((s) => s.id)));
 });
 
-const c: Conventions = { ...DEFAULT_CONVENTIONS };
+const c: Conventions = { ...PYTHAGOREAN_CONVENTIONS };
 const you: YMD = { year: 1990, month: 3, day: 14 };
 const other: YMD = { year: 1988, month: 11, day: 2 };
 const today: YMD = { year: 2026, month: 10, day: 1 };
@@ -213,7 +213,7 @@ describe('the language guard', () => {
     };
     for (let i = 0; i < 300; i += 1) {
       const conv: Conventions = {
-        ...DEFAULT_CONVENTIONS,
+        ...PYTHAGOREAN_CONVENTIONS,
         dateRule: (['A2', 'A', 'B', 'C'] as const)[int(0, 3)] as Conventions['dateRule'],
         cycleYear: int(0, 1) === 0 ? 'calendar' : 'birthday',
         cycleMasters: (['overtone', 'keep', 'single'] as const)[int(0, 2)] as Conventions['cycleMasters'],

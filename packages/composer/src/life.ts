@@ -15,6 +15,7 @@ import {
 } from '@numerology/engine';
 import { CORE_SECTIONS } from '@numerology/content';
 import { need, type Bank } from './bank';
+import { composeCompound, composePlanet, composeShadow, type CompoundReading, type ShadowReading } from './chaldean';
 import { agesText, displayNumber, ordinal } from './format';
 
 export const CORE_LABELS: Record<CoreKey, { title: string; lens: string }> = {
@@ -53,6 +54,12 @@ export type NumberReading = {
   steps: Step[];
   sections: ReadingSection[];
   karmicDebt?: { debt: number; display: string; overview: string; working: string; sources: string[] };
+  /** Chaldean: the compound number the total passes through, with its image and shadow. */
+  compound?: CompoundReading;
+  /** The shadow side of this number in detail, read through this core number. */
+  shadow?: ShadowReading;
+  /** The planet the Chaldean table gives this digit. */
+  planet?: { planet: string; text: string; source: string };
 };
 
 const DEBT_ROOT: Record<number, number> = { 13: 4, 14: 5, 16: 7, 19: 1 };
@@ -79,6 +86,14 @@ export function composeNumber(bank: Bank, key: CoreKey, result: Result): NumberR
     steps: result.steps,
     sections,
   };
+  if (result.compound !== undefined) {
+    const compound = composeCompound(bank, result.compound);
+    if (compound) reading.compound = compound;
+  }
+  const shadow = composeShadow(bank, result, key);
+  if (shadow) reading.shadow = shadow;
+  const planet = composePlanet(bank, result.root);
+  if (planet) reading.planet = planet;
   if (result.karmicDebt) {
     const debt = life.karmicDebt[String(result.karmicDebt)];
     if (debt) {

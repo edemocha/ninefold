@@ -26,6 +26,14 @@ export type LifeLayer = {
   core: Record<CoreKey, Record<string, Sections<'overview' | 'strengths' | 'shadow' | 'relationships' | 'growth'>>>;
   karmicDebt: Record<string, Sections<'overview' | 'working'>>;
   pinnacles: Record<string, Sections<'theme' | 'guidance'>>;
+  /** The shadow side of each number in detail, for 1 to 9, 11, 22 and 33. */
+  shadow: Record<string, Sections<'root' | 'inner' | 'work' | 'close' | 'resources' | 'stress' | 'signals' | 'feeds' | 'loosen' | 'gift' | 'practice'>>;
+  /** One line on what the shadow means when it is read through each core number. */
+  shadowLens: Record<CoreKey, string>;
+  /** The planet the Chaldean tradition gives each digit, with the digit's shadow in one image. */
+  planet: Record<string, string>;
+  /** The Chaldean compound numbers, 10 to 52. */
+  compound: Record<string, Sections<'overview' | 'shadow' | 'working'>>;
   challenges: Record<string, string>;
   grid: {
     lessons: Record<string, string>;

@@ -11,6 +11,34 @@ export const CHALLENGE_VALUES = [0, 1, 2, 3, 4, 5, 6, 7, 8] as const;
 export const KARMIC_DEBTS = [13, 14, 16, 19] as const;
 export const OVERTONES = [11, 22, 33] as const;
 
+/**
+ * The compound numbers of the Chaldean tradition, 10 to 52. Each total in that
+ * range has its own traditional image and reading; a name or date that adds up
+ * to more than 52 is read at the next total down.
+ */
+export const COMPOUNDS = Array.from({ length: 43 }, (_, i) => i + 10);
+export const COMPOUND_SECTIONS = ['overview', 'shadow', 'working'] as const;
+
+/**
+ * The shadow side of a number, in detail: where it comes from, how it sounds in
+ * the head, how it shows at work, with people close to you and with time and
+ * energy, what it does under pressure, the early signals, what feeds it and
+ * what loosens it, the gift inside it, and a seven-day practice.
+ */
+export const SHADOW_SECTIONS = [
+  'root',
+  'inner',
+  'work',
+  'close',
+  'resources',
+  'stress',
+  'signals',
+  'feeds',
+  'loosen',
+  'gift',
+  'practice',
+] as const;
+
 export const CORE_KEYS = [
   'lifePath',
   'expression',
@@ -252,6 +280,40 @@ export const FAMILIES: readonly Family[] = [
     path: ['grid', 'subconscious'],
     axes: [str(DIGITS)],
     words: [32, 100],
+  },
+  {
+    id: 'life.shadow',
+    layer: 'life',
+    file: 'life/shadow.json',
+    path: ['shadow'],
+    axes: [str(VALUES), str(SHADOW_SECTIONS)],
+    words: [40, 110],
+    question: { axis: 1, value: 'practice' },
+  },
+  {
+    id: 'life.shadowLens',
+    layer: 'life',
+    file: 'life/shadowLens.json',
+    path: ['shadowLens'],
+    axes: [str(CORE_KEYS)],
+    words: [18, 60],
+  },
+  {
+    id: 'life.planet',
+    layer: 'life',
+    file: 'life/planets.json',
+    path: ['planet'],
+    axes: [str(DIGITS)],
+    words: [24, 75],
+  },
+  {
+    id: 'life.compound',
+    layer: 'life',
+    file: 'life/compound.json',
+    path: ['compound'],
+    axes: [str(COMPOUNDS), str(COMPOUND_SECTIONS)],
+    words: [32, 120],
+    question: { axis: 1, value: 'working' },
   },
   {
     id: 'year.personalYear',

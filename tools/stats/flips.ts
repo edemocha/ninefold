@@ -1,10 +1,10 @@
 import {
-  DEFAULT_CONVENTIONS, fromOrdinal, lifePath, personalYear, toOrdinal, daysInMonth,
+  PYTHAGOREAN_CONVENTIONS, fromOrdinal, lifePath, personalYear, toOrdinal, daysInMonth,
   type Conventions, type DateRule, type YMD,
 } from '@numerology/engine';
 
 const rules: DateRule[] = ['A', 'A2', 'B', 'C'];
-const conv = (dateRule: DateRule, extra: Partial<Conventions> = {}): Conventions => ({ ...DEFAULT_CONVENTIONS, dateRule, ...extra });
+const conv = (dateRule: DateRule, extra: Partial<Conventions> = {}): Conventions => ({ ...PYTHAGOREAN_CONVENTIONS, dateRule, ...extra });
 
 // Life path over every birthday 1 Jan 1940 .. 31 Dec 2010.
 const births: YMD[] = [];

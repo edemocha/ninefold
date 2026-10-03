@@ -237,8 +237,8 @@ test.describe('the dates-only way in', () => {
     await page.getByTestId('dates-only-form').getByRole('button', { name: 'Show us side by side' }).click();
     await expect(page.getByTestId('pair-heading')).toHaveText('You and Lee');
     await expect(page.getByTestId('pair-people')).toHaveCount(0);
-    // 3 March 2003 is a life path 11/2; 21 September 1970 is 3 + 9 + 8 = 20, a 2.
-    await expect(page.getByTestId('pair-numbers')).toHaveText('An 11/2 and a 2.');
+    // In the Chaldean default there are no masters: 3 March 2003 adds to 11, then 2; 21 September 1970 adds to 29, then 11, then 2.
+    await expect(page.getByTestId('pair-numbers')).toHaveText('A 2 and a 2.');
   });
 
   test('shows the under-16 notice when either date is under 16', async ({ page }) => {

@@ -8,7 +8,7 @@
  * means something.
  */
 
-export type RefRule = 'A' | 'A2' | 'B' | 'C';
+export type RefRule = 'A' | 'A2' | 'B' | 'C' | 'D';
 
 const digitsOf = (n: number): number[] => String(n).split('').map(Number);
 const sumDigits = (n: number): number => digitsOf(n).reduce((a, b) => a + b, 0);
@@ -29,7 +29,19 @@ const M3 = [11, 22, 33];
 
 export type RefDate = { y: number; m: number; d: number };
 
+/**
+ * Chaldean: from a chain, the first total from 10 to 52 (the compound number
+ * the tradition reads), or undefined when none falls in that range.
+ */
+export function refCompound(chain: number[]): number | undefined {
+  return chain.find((n) => n >= 10 && n <= 52);
+}
+
 export function refDateChain(date: RefDate, rule: RefRule): number[] {
+  if (rule === 'D') {
+    // The Chaldean rule: every digit of the date in one flat sum, no masters.
+    return refChain(sumDigits(date.d) + sumDigits(date.m) + sumDigits(date.y), []);
+  }
   if (rule === 'B') {
     return refChain(sumDigits(date.d) + sumDigits(date.m) + sumDigits(date.y), M3);
   }
@@ -53,10 +65,11 @@ export function refPinnacles(b: RefDate, rule: RefRule): { value: number; from: 
   const m = refSingle(b.m);
   const d = refSingle(b.d);
   const y = refSingle(b.y);
-  const p1 = last(refChain(m + d, M2));
-  const p2 = last(refChain(d + y, M2));
-  const p3 = last(refChain(p1 + p2, M2));
-  const p4 = last(refChain(m + y, M2));
+  const keep = rule === 'D' ? [] : M2;
+  const p1 = last(refChain(m + d, keep));
+  const p2 = last(refChain(d + y, keep));
+  const p3 = last(refChain(p1 + p2, keep));
+  const p4 = last(refChain(m + y, keep));
   const root = refSingle(refLifePath(b, rule));
   const end = 36 - root;
   return [
@@ -187,8 +200,10 @@ export type RefNameOptions = {
 export function refNameNumbers(
   words: string[],
   o: RefNameOptions,
-): { expression: number; soulUrge: number; personality: number } {
+): { expression: number; soulUrge: number; personality: number; compounds: Record<'expression' | 'soulUrge' | 'personality', number | undefined> } {
   const value = o.system === 'pythagorean' ? refPyValue : refChValue;
+  // The Chaldean tradition has no master numbers: 11, 22 and 33 are compounds that reduce.
+  const keep = o.system === 'pythagorean' ? M3 : [];
   const isVowelIn = (word: string, i: number): boolean => {
     const ch = word[i]!;
     if ('AEIOU'.includes(ch)) return true;
@@ -200,15 +215,23 @@ export function refNameNumbers(
     soulUrge: (w: string, i: number) => isVowelIn(w, i),
     personality: (w: string, i: number) => !isVowelIn(w, i),
   };
-  const out = {} as { expression: number; soulUrge: number; personality: number };
+  const out = { compounds: {} } as {
+    expression: number;
+    soulUrge: number;
+    personality: number;
+    compounds: Record<'expression' | 'soulUrge' | 'personality', number | undefined>;
+  };
   for (const key of ['expression', 'soulUrge', 'personality'] as const) {
     const sums = words.map((w) => [...w].reduce((acc, ch, i) => acc + (kinds[key](w, i) ? value(ch) : 0), 0));
+    let chain: number[];
     if (o.nameRule === 'whole-name' || words.length === 1) {
-      out[key] = last(refChain(sums.reduce((a, b) => a + b, 0), M3));
+      chain = refChain(sums.reduce((a, b) => a + b, 0), keep);
     } else {
-      const reduced = sums.map((s) => last(refChain(s, M3)));
-      out[key] = last(refChain(reduced.reduce((a, b) => a + b, 0), M3));
+      const reduced = sums.map((s) => last(refChain(s, keep)));
+      chain = refChain(reduced.reduce((a, b) => a + b, 0), keep);
     }
+    out[key] = last(chain);
+    out.compounds[key] = o.system === 'chaldean' ? refCompound(chain) : undefined;
   }
   return out;
 }
@@ -216,10 +239,12 @@ export function refNameNumbers(
 export function refGrid(words: string[], system: 'pythagorean' | 'chaldean' = 'pythagorean') {
   const value = system === 'pythagorean' ? refPyValue : refChValue;
   const counts: Record<number, number> = {};
-  for (let n = 1; n <= 9; n += 1) counts[n] = 0;
+  // The Chaldean table gives no letter the 9, so the grid has eight numbers.
+  const top9 = system === 'chaldean' ? 8 : 9;
+  for (let n = 1; n <= top9; n += 1) counts[n] = 0;
   for (const w of words) for (const ch of w) counts[value(ch)] = (counts[value(ch)] ?? 0) + 1;
   const lessons = Object.keys(counts).map(Number).filter((n) => counts[n] === 0);
   const top = Math.max(...Object.values(counts));
   const passion = Object.keys(counts).map(Number).filter((n) => counts[n] === top && top > 0);
-  return { lessons, passion, subconscious: 9 - lessons.length };
+  return { lessons, passion, subconscious: top9 - lessons.length };
 }

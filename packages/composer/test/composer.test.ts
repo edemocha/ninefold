@@ -1,6 +1,6 @@
 import { beforeAll, describe, expect, it } from 'vitest';
 import {
-  DEFAULT_CONVENTIONS,
+  PYTHAGOREAN_CONVENTIONS,
   lifePath,
   nameNumbers,
   toOrdinal,
@@ -27,7 +27,7 @@ beforeAll(() => {
   bank = loadSourceBank();
 });
 
-const c: Conventions = { ...DEFAULT_CONVENTIONS };
+const c: Conventions = { ...PYTHAGOREAN_CONVENTIONS };
 const birth: YMD = { year: 1985, month: 6, day: 17 };
 const today: YMD = { year: 2026, month: 10, day: 1 };
 

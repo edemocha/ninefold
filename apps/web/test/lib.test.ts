@@ -3,7 +3,8 @@ import { DEFAULT_CONVENTIONS, personalDay, parseConventions, serializeConvention
 import { buildIcs, escapeIcsText, foldLine } from '../src/lib/ics';
 import { hashWith, hrefWith, parseHash, parseYmdParam, ymdParam } from '../src/lib/hash';
 import { localYMD, msUntilLocalMidnight, ymdAtOffset } from '../src/lib/today';
-import { ALL_VALUES, PAIR_SLUGS, pairSlug } from '../src/lib/site';
+import { ALL_VALUES, PAIR_SLUGS, digitalRootOf, pairSlug, rootOf } from '../src/lib/site';
+import { COMPOUNDS } from '@numerology/content';
 import { t } from '../src/lib/t';
 
 describe('calendar files', () => {
@@ -143,5 +144,36 @@ describe('the public pair pages', () => {
 
   it('names the header link for the public pages', () => {
     expect(t('nav.pairs')).toBe('Two numbers');
+  });
+});
+
+describe('the colour of a compound number', () => {
+  it('takes the single digit it reduces to, for every compound from 10 to 52', () => {
+    expect(digitalRootOf(10)).toBe(1);
+    expect(digitalRootOf(37)).toBe(1);
+    expect(digitalRootOf(29)).toBe(2);
+    expect(digitalRootOf(52)).toBe(7);
+    for (const n of COMPOUNDS) {
+      const root = digitalRootOf(n);
+      expect(root, String(n)).toBeGreaterThanOrEqual(1);
+      expect(root, String(n)).toBeLessThanOrEqual(9);
+    }
+    // rootOf only folds the masters, so a compound needs the full reduction.
+    expect(rootOf(37)).toBe(37);
+    expect(digitalRootOf(0)).toBe(0);
+  });
+
+  it('puts five compounds under each of the digits 1 to 7 and four under 8 and 9', () => {
+    const count = (digit: number) => COMPOUNDS.filter((n) => digitalRootOf(n) === digit).length;
+    expect([1, 2, 3, 4, 5, 6, 7, 8, 9].map(count)).toEqual([5, 5, 5, 5, 5, 5, 5, 4, 4]);
+  });
+});
+
+describe('the interface strings for the tradition', () => {
+  it('has the words the form and the Shadow tab use', () => {
+    expect(t('form.tradition')).toBe('Tradition');
+    expect(t('nav.shadow')).toBe('Shadow');
+    expect(t('nav.chaldean')).toBe('Chaldean');
+    expect(t('shadow.title')).toBe('Your shadows, in detail');
   });
 });

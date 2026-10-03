@@ -4,10 +4,12 @@ import { composeNumber, CORE_LABELS } from '@numerology/composer';
 import type { ChipKind, CoreKey, Result } from '@numerology/engine';
 import { CORE_KEYS } from '@numerology/content';
 import { AppLink } from './app-link';
+import { CompoundCard } from './compound-card';
 import { Icon } from './icon';
 import { LayerGate } from './layer-gate';
 import { BigNumber, ConventionChips, KarmicFlag, WhyThisNumber } from './number';
 import { Sections } from './sections';
+import { ShadowDetail } from './shadow-detail';
 import { useProfile } from '@/lib/profile-context';
 import { t } from '@/lib/t';
 
@@ -47,6 +49,21 @@ export function NumberDetail({ coreKey }: { coreKey: CoreKey }) {
               <div className="grid gap-10 lg:grid-cols-[1fr_20rem]">
                 <div className="space-y-10">
                   <Sections sections={reading.sections} />
+                  {reading.compound ? <CompoundCard reading={reading.compound} headingLevel={2} idPrefix="nd-" /> : null}
+                  {reading.planet && conventions.system === 'chaldean' ? (
+                    <p className="reading rounded-3xl bg-surface-2 p-6 text-[1.02rem] leading-relaxed" data-testid="planet-line">
+                      {reading.planet.text}
+                    </p>
+                  ) : null}
+                  {reading.shadow ? (
+                    <ShadowDetail
+                      shadow={reading.shadow}
+                      root={reading.root}
+                      headingLevel={2}
+                      idPrefix="nd-"
+                      lenses={reading.shadow.lens ? [{ key: coreKey, title: label.title, text: reading.shadow.lens.text }] : []}
+                    />
+                  ) : null}
                   {reading.karmicDebt ? (
                     <section className="card-flat p-6" aria-labelledby="karmic-title">
                       <h2 id="karmic-title" className="section-title mb-3">

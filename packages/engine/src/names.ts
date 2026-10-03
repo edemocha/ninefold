@@ -1,4 +1,4 @@
-import { chainText, finish, NAME_MASTERS, reduceChain, sumText } from './reduce';
+import { chainText, compoundStep, finish, nameMasters, reduceChain, sumText } from './reduce';
 import type {
   Conventions,
   GridLetter,
@@ -162,9 +162,12 @@ function nameTotal(
   parts: string[],
   letters: GridLetter[],
   select: Selector,
-  nameRule: Conventions['nameRule'],
+  c: Pick<Conventions, 'nameRule' | 'system'>,
   title: string,
 ): Result {
+  const nameRule = c.nameRule;
+  const masters = nameMasters(c.system);
+  const chaldean = c.system === 'chaldean';
   const steps: Step[] = [];
   const perPart = parts.map((word, i) => ({ word, sum: partSum(letters, i, select), text: letterText(letters, i, select) }));
 
@@ -174,24 +177,37 @@ function nameTotal(
       if (p.text) steps.push({ label: p.word, text: `${p.text} = ${p.sum}` });
     }
     if (perPart.length > 1) steps.push({ label: 'Add every part', text: sumText(perPart.map((p) => p.sum)) });
-    const chain = reduceChain(total, NAME_MASTERS);
-    steps.push({ label: `Reduce ${title}`, text: chainText(chain, NAME_MASTERS) });
-    return finish(chain, steps, { debt: true });
+    const chain = reduceChain(total, masters);
+    steps.push({ label: `Reduce ${title}`, text: chainText(chain, masters) });
+    return conclude(chain, steps, chaldean);
   }
 
   const reduced: number[] = [];
   for (const p of perPart) {
-    const chain = reduceChain(p.sum, NAME_MASTERS);
+    const chain = reduceChain(p.sum, masters);
     reduced.push(chain[chain.length - 1] as number);
     steps.push({
       label: p.word,
-      text: p.text ? `${p.text} = ${chainText(chain, NAME_MASTERS)}` : 'no letters of this kind = 0',
+      text: p.text ? `${p.text} = ${chainText(chain, masters)}` : 'no letters of this kind = 0',
     });
   }
   steps.push({ label: 'Add the parts', text: sumText(reduced) });
-  const chain = reduceChain(reduced.reduce((a, b) => a + b, 0), NAME_MASTERS);
-  steps.push({ label: `Reduce ${title}`, text: chainText(chain, NAME_MASTERS) });
-  return finish(chain, steps, { debt: true });
+  const chain = reduceChain(reduced.reduce((a, b) => a + b, 0), masters);
+  steps.push({ label: `Reduce ${title}`, text: chainText(chain, masters) });
+  return conclude(chain, steps, chaldean);
+}
+
+/** Pythagorean flags karmic debt; Chaldean names the compound number instead. */
+function conclude(chain: number[], steps: Step[], chaldean: boolean): Result {
+  if (!chaldean) return finish(chain, steps, { debt: true });
+  const step = compoundStep(chain);
+  if (step) steps.push(step);
+  return finish(chain, steps, { compound: true });
+}
+
+/** The numbers a letter table can give. Chaldean keeps the 9 back from every letter. */
+export function tableDigits(system: Conventions['system']): number[] {
+  return system === 'chaldean' ? [1, 2, 3, 4, 5, 6, 7, 8] : [1, 2, 3, 4, 5, 6, 7, 8, 9];
 }
 
 export function buildGrid(parts: string[], c: Conventions): NameGrid {
@@ -215,7 +231,7 @@ export function buildGrid(parts: string[], c: Conventions): NameGrid {
     const target = l.kind === 'vowel' ? vowelCounts : consonantCounts;
     target[l.value] = (target[l.value] as number) + 1;
   }
-  return { letters, counts, vowelCounts, consonantCounts };
+  return { digits: tableDigits(c.system), letters, counts, vowelCounts, consonantCounts };
 }
 
 /**
@@ -230,25 +246,26 @@ export function nameNumbers(name: string, c: Conventions): NameProfile {
   }
   const { parts } = normalized;
   const grid = buildGrid(parts, c);
-  const expression = nameTotal(parts, grid.letters, 'all', c.nameRule, 'expression');
-  const soulUrge = nameTotal(parts, grid.letters, 'vowel', c.nameRule, 'soul urge');
-  const personality = nameTotal(parts, grid.letters, 'consonant', c.nameRule, 'personality');
+  const expression = nameTotal(parts, grid.letters, 'all', c, 'expression');
+  const soulUrge = nameTotal(parts, grid.letters, 'vowel', c, 'soul urge');
+  const personality = nameTotal(parts, grid.letters, 'consonant', c, 'personality');
 
   const lessons: number[] = [];
   let max = 0;
-  for (let n = 1; n <= 9; n += 1) {
+  for (const n of grid.digits) {
     const count = grid.counts[n] as number;
     if (count === 0) lessons.push(n);
     if (count > max) max = count;
   }
-  const passion = [1, 2, 3, 4, 5, 6, 7, 8, 9].filter((n) => (grid.counts[n] as number) === max && max > 0);
+  const passion = grid.digits.filter((n) => (grid.counts[n] as number) === max && max > 0);
+  const span = grid.digits.length;
   const subconscious = {
-    value: 9 - lessons.length,
+    value: span - lessons.length,
     missing: lessons.length,
     steps: [
       {
         label: 'Subconscious self',
-        text: `9 − ${lessons.length} missing ${lessons.length === 1 ? 'number' : 'numbers'}${lessons.length ? ` (${lessons.join(', ')})` : ''} = ${9 - lessons.length}`,
+        text: `${span} − ${lessons.length} missing ${lessons.length === 1 ? 'number' : 'numbers'}${lessons.length ? ` (${lessons.join(', ')})` : ''} = ${span - lessons.length}`,
       },
     ],
   };

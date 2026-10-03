@@ -2,7 +2,7 @@ import { describe, expect, it } from 'vitest';
 import {
   variantIndexRange,
   daysInMonth,
-  DEFAULT_CONVENTIONS,
+  PYTHAGOREAN_CONVENTIONS,
   fromOrdinal,
   lifePath,
   personalYear,
@@ -18,7 +18,7 @@ import {
  * rules are read the way the plan reads them.
  */
 
-const conv = (dateRule: DateRule, extra: Partial<Conventions> = {}): Conventions => ({ ...DEFAULT_CONVENTIONS, dateRule, ...extra });
+const conv = (dateRule: DateRule, extra: Partial<Conventions> = {}): Conventions => ({ ...PYTHAGOREAN_CONVENTIONS, dateRule, ...extra });
 const pairs: [DateRule, DateRule][] = [['A', 'A2'], ['A', 'B'], ['A', 'C'], ['A2', 'B'], ['A2', 'C'], ['B', 'C']];
 const pct = (n: number, of: number) => Math.round((1000 * n) / of) / 10;
 
@@ -68,7 +68,7 @@ describe('the variety claim in the plan', () => {
     let shortest = Infinity;
     for (let m = 1; m <= 12; m += 1) {
       for (let d = 1; d <= daysInMonth(2024, m); d += 1) {
-        const days = variantIndexRange({ year: 1990, month: m, day: d }, { year: 2020, month: 1, day: 1 }, { year: 2029, month: 12, day: 31 }, DEFAULT_CONVENTIONS);
+        const days = variantIndexRange({ year: 1990, month: m, day: d }, { year: 2020, month: 1, day: 1 }, { year: 2029, month: 12, day: 31 }, PYTHAGOREAN_CONVENTIONS);
         const last = new Map<string, number>();
         for (const row of days) {
           const key = `${row.personalDay}:${row.variantIndex % variants}`;

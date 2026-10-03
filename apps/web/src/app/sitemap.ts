@@ -1,4 +1,5 @@
 import type { MetadataRoute } from 'next';
+import { COMPOUNDS } from '@numerology/content';
 import { ALL_VALUES, PAIR_SLUGS, SITE_URL } from '@/lib/site';
 
 export const dynamic = 'force-static';
@@ -9,6 +10,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/',
     '/numbers',
     ...ALL_VALUES.map((n) => `/numbers/${n}`),
+    '/chaldean',
+    ...COMPOUNDS.map((n) => `/chaldean/${n}`),
     '/between',
     ...PAIR_SLUGS.map((slug) => `/between/${slug}`),
     '/method',

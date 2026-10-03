@@ -2,7 +2,7 @@ import { describe, expect, it } from 'vitest';
 import {
   challenges,
   cycleGap,
-  DEFAULT_CONVENTIONS,
+  PYTHAGOREAN_CONVENTIONS,
   lifePath,
   lifePathPair,
   nameNumbers,
@@ -17,6 +17,7 @@ import {
 } from '@numerology/engine';
 import {
   refChallenges,
+  refCompound,
   refCycleYear,
   refGrid,
   refKarmic,
@@ -80,8 +81,8 @@ function profiles(count: number, seed: number): Profile[] {
       birth,
       words: Array.from({ length: int(rand, 1, 4) }, () => randomWord(rand)),
       c: {
-        ...DEFAULT_CONVENTIONS,
-        dateRule: pick(rand, ['A2', 'A', 'B', 'C'] as DateRule[]),
+        ...PYTHAGOREAN_CONVENTIONS,
+        dateRule: pick(rand, ['A2', 'A', 'B', 'C', 'D'] as DateRule[]),
         nameRule: pick(rand, ['per-part', 'whole-name'] as const),
         yRule: pick(rand, ['consonant', 'vowel-if-alone'] as const),
         cycleYear: pick(rand, ['calendar', 'birthday'] as const),
@@ -103,7 +104,10 @@ describe('engine against the independent reference: 200 random profiles', () => 
       const b = ymd(p.birth);
       const lp = lifePath(p.birth, p.c);
       expect(lp.value, JSON.stringify(p)).toBe(refLifePath(b, p.c.dateRule));
-      expect(lp.karmicDebt).toBe(refKarmic(refDateChain(b, p.c.dateRule)));
+      const chain = refDateChain(b, p.c.dateRule);
+      // Rule D is the Chaldean rule: it names the compound number and flags no karmic debt.
+      expect(lp.karmicDebt).toBe(p.c.dateRule === 'D' ? undefined : refKarmic(chain));
+      expect(lp.compound).toBe(p.c.dateRule === 'D' ? refCompound(chain) : undefined);
 
       const pin = pinnacles(p.birth, p.c);
       const refPin = refPinnacles(b, p.c.dateRule);
@@ -162,12 +166,15 @@ describe('engine against the independent reference: 200 random profiles', () => 
           [profile.expression.value, profile.soulUrge.value, profile.personality.value],
           `${p.words.join(' ')} ${system} ${conv.nameRule} ${conv.yRule}`,
         ).toEqual([ref.expression, ref.soulUrge, ref.personality]);
-        if (system === 'pythagorean') {
-          const grid = refGrid(p.words, system);
-          expect(profile.lessons).toEqual(grid.lessons);
-          expect(profile.passion).toEqual(grid.passion);
-          expect(profile.subconscious.value).toBe(grid.subconscious);
-        }
+        const grid = refGrid(p.words, system);
+        expect(profile.lessons).toEqual(grid.lessons);
+        expect(profile.passion).toEqual(grid.passion);
+        expect(profile.subconscious.value).toBe(grid.subconscious);
+        // Chaldean names carry the compound number the tradition reads; Pythagorean names do not.
+        expect(
+          [profile.expression.compound, profile.soulUrge.compound, profile.personality.compound],
+          `${p.words.join(' ')} compounds`,
+        ).toEqual([ref.compounds.expression, ref.compounds.soulUrge, ref.compounds.personality]);
       }
     }
   });

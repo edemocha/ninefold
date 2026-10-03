@@ -1,8 +1,10 @@
 /** A calendar date as three integers. Never a JavaScript Date (see calendar.ts). */
 export type YMD = { year: number; month: number; day: number };
 
-export type System = 'pythagorean' | 'chaldean'; // only 'pythagorean' ships in v1
-export type DateRule = 'A2' | 'A' | 'B' | 'C';
+/** The letter table, and with it the tradition: Chaldean keeps 9 back from the letters and has no master numbers. */
+export type System = 'pythagorean' | 'chaldean';
+/** D is the Chaldean rule: every digit of the date in one flat sum, no masters, the sum is the compound number. */
+export type DateRule = 'A2' | 'A' | 'B' | 'C' | 'D';
 export type NameRule = 'per-part' | 'whole-name';
 export type CycleYear = 'calendar' | 'birthday';
 export type CycleMasters = 'overtone' | 'keep' | 'single';
@@ -11,11 +13,11 @@ export type Particles = 'include' | 'ignore';
 export type LeapBirthday = 'feb28' | 'mar1';
 
 export type Conventions = {
-  system: System; // default 'pythagorean'
-  dateRule: DateRule; // default 'A2'
-  nameRule: NameRule; // default 'per-part'
+  system: System; // default 'chaldean'
+  dateRule: DateRule; // default 'D'
+  nameRule: NameRule; // default 'whole-name'
   cycleYear: CycleYear; // default 'calendar'
-  cycleMasters: CycleMasters; // default 'overtone'
+  cycleMasters: CycleMasters; // default 'single'
   yRule: YRule; // default 'consonant'
   particles: Particles; // default 'include'
   leapBirthday: LeapBirthday; // default 'feb28'
@@ -36,6 +38,12 @@ export type Result = {
   /** Every intermediate total, e.g. [19, 10, 1]. */
   chain: number[];
   karmicDebt?: KarmicDebt;
+  /**
+   * Chaldean only: the compound number the tradition reads, from 10 to 52. It is
+   * the first total on the way down that falls in that range, so a sum of 64
+   * reads as 10. Absent when the sum is a single digit or no total falls in range.
+   */
+  compound?: number;
   steps: Step[];
 };
 
@@ -71,6 +79,8 @@ export type GridLetter = {
 };
 
 export type NameGrid = {
+  /** The numbers a letter can carry: 1 to 9 (Pythagorean) or 1 to 8 (Chaldean, which gives no letter the 9). */
+  digits: number[];
   letters: GridLetter[];
   /** counts[n] is how many letters have the value n (index 0 is unused). */
   counts: number[];
@@ -89,12 +99,12 @@ export type NameProfileOk = {
   soulUrge: Result;
   personality: Result;
   grid: NameGrid;
-  /** Karmic lessons: digits 1-9 that never appear in the name. */
+  /** Karmic lessons: the numbers the letter table can give that never appear in the name. */
   lessons: number[];
   /** Hidden passion: the digit or digits that appear most often. */
   passion: number[];
   passionCount: number;
-  /** 9 minus the number of missing digits. */
+  /** The count of numbers the table can give, minus the number missing (9 minus, or 8 minus under Chaldean). */
   subconscious: { value: number; missing: number; steps: Step[] };
 };
 

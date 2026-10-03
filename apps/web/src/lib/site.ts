@@ -21,3 +21,8 @@ export function pairSlug(a: number, b: number): string {
 export function rootOf(value: number): number {
   return value === 11 ? 2 : value === 22 ? 4 : value === 33 ? 6 : value;
 }
+
+/** The single digit any total reduces to: 37 gives 1, 29 gives 2. Use this for compound numbers, which rootOf does not reduce. */
+export function digitalRootOf(value: number): number {
+  return value <= 0 ? 0 : 1 + ((value - 1) % 9);
+}

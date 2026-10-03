@@ -1,4 +1,4 @@
-import { chainText, DATE_MASTERS, digitalRoot, finish, NAME_MASTERS, reduceChain, sumText } from './reduce';
+import { chainText, compoundStep, DATE_MASTERS, digitalRoot, finish, NAME_MASTERS, reduceChain, sumText } from './reduce';
 import { monthName } from './calendar';
 import type { Conventions, DateRule, Period, Result, Step, YMD } from './types';
 
@@ -11,23 +11,25 @@ function partLabel(part: DatePart): string {
 }
 
 /**
- * Adds a date under one of the four rules. `order` is the order the parts are
+ * Adds a date under one of the five rules. `order` is the order the parts are
  * shown and added in. Every rule keeps the same digital root; they differ only
- * in which masters survive.
+ * in which masters survive. D is the Chaldean rule: a flat sum of every digit,
+ * with no masters.
  */
 export function combineDate(ymd: YMD, rule: DateRule, order: readonly DatePart[]): Combined {
   const raw: Record<DatePart, number> = { day: ymd.day, month: ymd.month, year: ymd.year };
   const steps: Step[] = [];
 
-  if (rule === 'B') {
+  if (rule === 'B' || rule === 'D') {
+    const masters = rule === 'B' ? NAME_MASTERS : [];
     const digits = order.flatMap((p) => String(raw[p]).split('').map(Number));
     const total = digits.reduce((a, b) => a + b, 0);
     steps.push({
       label: 'Flat digit sum',
       text: `${order.map((p) => `${p} ${raw[p]}`).join(', ')}: ${digits.join(' + ')} = ${total}`,
     });
-    const chain = reduceChain(total, NAME_MASTERS);
-    steps.push({ label: 'Reduce', text: chainText(chain, NAME_MASTERS) });
+    const chain = reduceChain(total, masters);
+    steps.push({ label: 'Reduce', text: chainText(chain, masters) });
     return { chain, steps };
   }
 
@@ -51,11 +53,27 @@ export function combineDate(ymd: YMD, rule: DateRule, order: readonly DatePart[]
 
 export function lifePath(birth: YMD, c: Conventions): Result {
   const { chain, steps } = combineDate(birth, c.dateRule, ['day', 'month', 'year']);
+  if (c.dateRule === 'D') {
+    const step = compoundStep(chain);
+    if (step) steps.push(step);
+    return finish(chain, steps, { compound: true });
+  }
   return finish(chain, steps, { debt: true });
 }
 
-/** Day of the month, reduced. 11 and 22 are kept. */
-export function birthDay(birth: YMD): Result {
+/**
+ * Day of the month, reduced. 11 and 22 are kept, except under the Chaldean
+ * rule D, which keeps no masters and reads the day itself as the compound
+ * number when it is 10 or more.
+ */
+export function birthDay(birth: YMD, c?: Pick<Conventions, 'dateRule'>): Result {
+  if (c?.dateRule === 'D') {
+    const chain = reduceChain(birth.day, []);
+    const steps: Step[] = [{ label: 'Day', text: chainText(chain) }];
+    const step = compoundStep(chain);
+    if (step) steps.push(step);
+    return finish(chain, steps, { compound: true });
+  }
   const chain = reduceChain(birth.day, DATE_MASTERS);
   const steps: Step[] = [{ label: 'Day', text: chainText(chain, DATE_MASTERS) }];
   return finish(chain, steps, { debt: true });
@@ -100,13 +118,14 @@ function agesText(ageFrom: number, ageTo: number | null): string {
 export function pinnacles(birth: YMD, c: Conventions): Period[] {
   const parts = digitParts(birth);
   const ages = periodAges(lifePath(birth, c).root);
+  const masters = c.dateRule === 'D' ? [] : DATE_MASTERS;
 
-  const p1Chain = reduceChain(parts.month + parts.day, DATE_MASTERS);
-  const p2Chain = reduceChain(parts.day + parts.year, DATE_MASTERS);
+  const p1Chain = reduceChain(parts.month + parts.day, masters);
+  const p2Chain = reduceChain(parts.day + parts.year, masters);
   const p1 = p1Chain[p1Chain.length - 1] as number;
   const p2 = p2Chain[p2Chain.length - 1] as number;
-  const p3Chain = reduceChain(p1 + p2, DATE_MASTERS);
-  const p4Chain = reduceChain(parts.month + parts.year, DATE_MASTERS);
+  const p3Chain = reduceChain(p1 + p2, masters);
+  const p4Chain = reduceChain(parts.month + parts.year, masters);
 
   const rows: { expr: string; chain: number[] }[] = [
     { expr: `month ${parts.month} + day ${parts.day}`, chain: p1Chain },
@@ -120,7 +139,7 @@ export function pinnacles(birth: YMD, c: Conventions): Period[] {
     const value = row.chain[row.chain.length - 1] as number;
     const steps: Step[] = [
       ...(i === 0 ? parts.steps : []),
-      { label: `Pinnacle ${i + 1}`, text: `${row.expr} = ${chainText(row.chain, DATE_MASTERS)}` },
+      { label: `Pinnacle ${i + 1}`, text: `${row.expr} = ${chainText(row.chain, masters)}` },
       { label: 'Ages', text: agesText(ageFrom, ageTo) },
     ];
     return { n: (i + 1) as Period['n'], value, root: digitalRoot(value), ageFrom, ageTo, steps };

@@ -22,6 +22,7 @@ export default function GridPage() {
     );
   }
   const name = names;
+  const chaldean = conventions.system === 'chaldean';
 
   return (
     <div className="space-y-12">
@@ -29,7 +30,9 @@ export default function GridPage() {
         <p className="eyebrow">Birth name, letter by letter</p>
         <h1 className="text-4xl sm:text-5xl">Name grid</h1>
         <p className="max-w-[62ch] text-muted">
-          Every letter has a value from 1 to 9, repeating after I. Vowels and consonants are shaded differently, and the grid below counts how often each value appears.
+          {chaldean
+            ? 'Every letter has a value from 1 to 8. The Chaldean table gives no letter the 9, which is held back as a sacred number and only turns up when a total is reduced. Vowels are round and consonants are square, and the grid below counts how often each value appears.'
+            : 'Every letter has a value from 1 to 9, repeating after I. Vowels are round and consonants are square, and the grid below counts how often each value appears.'}
         </p>
         <ConventionChips kind="soulUrge" conventions={conventions} />
       </header>
@@ -74,8 +77,16 @@ export default function GridPage() {
         <h2 id="grid-title" className="section-title">
           How often each number appears
         </h2>
-        <div className="grid max-w-md grid-cols-3 gap-3" role="list" aria-label="Counts for each number from 1 to 9">
+        <div className="grid max-w-md grid-cols-3 gap-3" role="list" aria-label={chaldean ? 'Counts for each number from 1 to 8, with the 9 held back' : 'Counts for each number from 1 to 9'}>
           {GRID_ORDER.map((n) => {
+            if (chaldean && n === 9) {
+              return (
+                <div key={n} role="listitem" aria-label="9: not given to any letter in the Chaldean table" className="hue-9 rounded-2xl border-[3px] border-dashed border-line-strong p-3">
+                  <span className="numeral numeral-hue text-3xl">9</span>
+                  <p className="mt-2 text-xs font-semibold text-muted">held back</p>
+                </div>
+              );
+            }
             const count = name.grid.counts[n] as number;
             const missing = count === 0;
             const passion = name.passion.includes(n);
@@ -139,6 +150,7 @@ export default function GridPage() {
                 </ul>
               </section>
 
+              {chaldean ? null : (
               <section aria-labelledby="sub-title" className="space-y-5">
                 <h2 id="sub-title" className="text-2xl sm:text-3xl">
                   Subconscious self
@@ -152,6 +164,7 @@ export default function GridPage() {
                   <WhyThisNumber steps={grid.subconscious.steps} />
                 </div>
               </section>
+              )}
             </>
           );
         }}

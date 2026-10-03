@@ -25,15 +25,19 @@ describe('the content bank', () => {
     expect(present.size).toBe(expectedCount());
   });
 
-  it('is the size the plan sized (about 1,279 snippets) plus 810 cautions and 217 for Between us', () => {
+  it('is the size the plan sized (about 1,279 snippets) plus 810 cautions, 217 for Between us, and 276 for the Chaldean and shadow work', () => {
     const cautions = FAMILIES.filter((f) => f.caution).flatMap(expectedIds).length;
     const pair = FAMILIES.filter((f) => f.layer === 'pair').flatMap(expectedIds).length;
-    const base = expectedCount() - cautions - pair;
+    // The Chaldean tradition and the detailed shadows came after the plan: compounds 10 to 52, the shadow of every number, the planets, and the shadow through each lens.
+    const chaldeanAndShadow = FAMILIES.filter((f) => ['life.compound', 'life.shadow', 'life.shadowLens', 'life.planet'].includes(f.id)).flatMap(expectedIds).length;
+    const base = expectedCount() - cautions - pair - chaldeanAndShadow;
     expect(base).toBeGreaterThanOrEqual(1270);
     expect(base).toBeLessThanOrEqual(1290);
     expect(cautions).toBe(810);
     expect(pair).toBe(217);
-    expect(expectedCount()).toBe(base + 810 + 217);
+    // 43 compounds by 3 sections, 12 numbers by 11 sections, 9 planets, 6 lenses.
+    expect(chaldeanAndShadow).toBe(43 * 3 + 12 * 11 + 9 + 6);
+    expect(expectedCount()).toBe(base + 810 + 217 + chaldeanAndShadow);
   });
 
   it('has lint clean: no banned claims, certainty words, fear hooks or missing reflection prompts', () => {

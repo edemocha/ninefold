@@ -9,7 +9,7 @@ import {
   cycleGapSegments,
   cycleStrip,
   daysInMonth,
-  DEFAULT_CONVENTIONS,
+  PYTHAGOREAN_CONVENTIONS,
   digitalRoot,
   lifePathPair,
   pairKey,
@@ -60,7 +60,7 @@ const dateIn = (y0: number, y1: number): fc.Arbitrary<YMD> =>
 
 const birthdays = dateIn(1900, 2025);
 const mod9 = (n: number) => ((n % 9) + 9) % 9;
-const calendar: Conventions = { ...DEFAULT_CONVENTIONS, cycleYear: 'calendar' };
+const calendar: Conventions = { ...PYTHAGOREAN_CONVENTIONS, cycleYear: 'calendar' };
 
 describe('pair key', () => {
   it('reads the same in either order and uses the single-digit roots', () => {
@@ -74,7 +74,7 @@ describe('pair key', () => {
 
 describe('golden pair vectors', () => {
   it.each(golden.lifePaths)('life path pair $a and $b', (v) => {
-    const pair = lifePathPair(ymd(v.a), ymd(v.b), DEFAULT_CONVENTIONS);
+    const pair = lifePathPair(ymd(v.a), ymd(v.b), PYTHAGOREAN_CONVENTIONS);
     expect(pair.a.value).toBe(v.aValue);
     expect(pair.b.value).toBe(v.bValue);
     expect(pair.key).toBe(v.key);
@@ -82,7 +82,7 @@ describe('golden pair vectors', () => {
   });
 
   it.each(golden.gaps)('cycle gap $a and $b on $on', (v) => {
-    const c: Conventions = { ...DEFAULT_CONVENTIONS, ...v.conventions };
+    const c: Conventions = { ...PYTHAGOREAN_CONVENTIONS, ...v.conventions };
     const gap = cycleGap(ymd(v.a), ymd(v.b), ymd(v.on), c);
     expect(gap.forward).toBe(v.forward);
     expect(gap.back).toBe(v.back);

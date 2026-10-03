@@ -10,6 +10,7 @@ import { t, type MessageKey } from '@/lib/t';
 const TABS: { href: string; label: MessageKey }[] = [
   { href: '/reading', label: 'nav.snapshot' },
   { href: '/reading/grid', label: 'nav.grid' },
+  { href: '/reading/shadow', label: 'nav.shadow' },
   { href: '/reading/timeline', label: 'nav.timeline' },
   { href: '/reading/year', label: 'nav.year' },
   { href: '/reading/month', label: 'nav.month' },
